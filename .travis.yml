@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - node
+before_script:
+  - yarn install
+  - yarn run build
+script:
+  - yarn run coverage
+after_success:
+  - cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
+  - yarn pack
+  - yarn run doc
+notifications:
+  email:
+    on_success: always
+    on_failure: always
+    recipients:
+      - ouimetmarcantoine@gmail.com

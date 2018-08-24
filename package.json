@@ -1,0 +1,48 @@
+{
+  "name": "find-files-patterns",
+  "version": "0.0.0",
+  "description": "Find files of patterns upwards, downwards and in directories",
+  "license": "MIT",
+  "author": "Marc-Antoine Ouimet <ouimetmarcantoine@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MartyO256/find-files-patterns.git"
+  },
+  "homepage": "https://github.com/MartyO256/find-files-patterns#readme",
+  "bugs": {
+    "url": "https://github.com/MartyO256/find-files-patterns/issues",
+    "email": "ouimetmarcantoine@gmail.com"
+  },
+  "files": [
+    "./lib"
+  ],
+  "main": "./lib/index.js",
+  "scripts": {
+    "format": "prettier --write \"./{src,test}/**/*.ts\"",
+    "lint": "tslint --force --format verbose \"./src/**/*.ts\"",
+    "build": "npm run format && npm run lint && echo Using TypeScript && tsc --version && tsc --project src --pretty",
+    "doc": "typedoc --out ./doc/ ./src --mode file --module commonjs",
+    "test": "mocha",
+    "coverage": "nyc npm run test"
+  },
+  "dependencies": {
+    "debug": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/debug": "^0.0.30",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.7.2",
+    "chai": "^4.1.2",
+    "coveralls": "^3.0.2",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2",
+    "prettier": "^1.14.2",
+    "source-map-support": "^0.5.9",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.14.0",
+    "typedoc": "^0.12.0",
+    "typescript": "^3.0.1"
+  }
+}
