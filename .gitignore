@@ -1,5 +1,6 @@
 .vscode
 coverage
+doc
 lib
 node_modules
 

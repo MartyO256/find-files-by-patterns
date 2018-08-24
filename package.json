@@ -1,6 +1,6 @@
 {
   "name": "find-files-patterns",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Find files of patterns upwards, downwards and in directories",
   "license": "MIT",
   "author": "Marc-Antoine Ouimet <ouimetmarcantoine@gmail.com>",
@@ -19,8 +19,8 @@
   "main": "./lib/index.js",
   "scripts": {
     "format": "prettier --write \"./{src,test}/**/*.ts\"",
-    "lint": "tslint --force --format verbose \"./src/**/*.ts\"",
-    "build": "npm run format && npm run lint && echo Using TypeScript && tsc --version && tsc --project src --pretty",
+    "lint": "tslint --force --format verbose \"./{src,test}/**/*.ts\"",
+    "build": "npm run format && npm run lint && echo Using TypeScript && tsc --version && tsc --pretty",
     "doc": "typedoc --out ./doc/ ./src --mode file --module commonjs",
     "test": "mocha",
     "coverage": "nyc npm run test"
