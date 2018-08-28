@@ -6,6 +6,5 @@
   "require": ["ts-node/register", "source-map-support/register"],
   "reporter": ["text", "html", "lcov"],
   "sourceMap": true,
-  "instrument": true,
-  "all": true
+  "instrument": true
 }
