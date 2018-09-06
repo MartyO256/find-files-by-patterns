@@ -10,3 +10,6 @@ export {
   AsynchronousFilesFinder,
   SynchronousFilesFinder,
 } from "./filesFinder";
+
+export { findFile } from "./findFile";
+export { findFiles } from "./findFiles";

@@ -1,23 +1,20 @@
-import { PathLike } from "fs";
-
 import { Matcher } from "./matcher";
 
 /**
  * Synchronously reads the given directories and performs the given tests on all
- * of their soft and hard-linked files in order to find the files whose path
- * passes all of the tests.
+ * of their soft and hard-linked files in order to find the files or directories
+ * whose path passes all of the tests.
  * @version 0.1.0
- * @author Marc-Antoine Ouimet
  */
 export interface SynchronousFilesFinder extends Function {
   /**
    * Synchronously reads the current working directory and performs the given
    * tests on all of its soft and hard-linked files in order to find the files
-   * whose path passes all of the tests.
-   * @param tests The sequence of tests a file's path must pass in order to be
-   * considered among the desired files to be found. If a file's path does not
-   * match any of the tests, then it is ignored. If no tests are specified, then
-   * the function will arbitrarily return `null`.
+   * or directories whose path passes all of the tests.
+   * @param tests The sequence of tests a file or directory's path must pass in
+   * order to be considered among the desired paths to be found. If a path does
+   * not match any of the tests, then it is ignored. If no tests are specified,
+   * then the function will arbitrarily return `null`.
    * @throws If one of the given tests throws an error.
    * @example Consider the following file structure:
    *
@@ -43,21 +40,23 @@ export interface SynchronousFilesFinder extends Function {
    * performed on each file of the directory is for a file whose root name is
    * `data`, then the function will return `/home/user/project/data/data.json`
    * and `/home/user/project/data/data.yaml`.
-   * @returns The set of files' path in the current working directory that pass
-   * all the tests. These files' path are sorted alphanumerically.
+   * @returns The set of files or directories' path in the current working
+   * directory that pass all the tests. These paths are sorted alphanumerically.
    */
   (...tests: Matcher[]): Set<string>;
 
   /**
    * Synchronously reads the given directories and performs the given tests on
-   * all of their soft and hard-linked files in order to find the files whose
-   * path passes all of the tests.
+   * all of their soft and hard-linked files in order to find the files or
+   * directories whose path passes all of the tests.
    * @param directories The directories' path in which to search for all the
-   * files' path that pass all the tests.
-   * @param tests The sequence of tests a file's path must pass in order to be
-   * considered among the desired files to be found. If a file's path does not
-   * match any of the tests, then it is ignored. If no tests are specified, then
-   * the function will arbitrarily return `null`.
+   * files or directories' path that pass all the tests. If any of these
+   * directories is not absolute, then it is resolved relative to the current
+   * working directory.
+   * @param tests The sequence of tests a file or directory's path must pass in
+   * order to be considered among the desired paths to be found. If a path does
+   * not match any of the tests, then it is ignored. If no tests are specified,
+   * then the function will arbitrarily return `null`.
    * @throws If any of the given directories' path cannot be resolved to a
    * directory.
    * @throws If one of the given tests throws an error.
@@ -100,31 +99,28 @@ export interface SynchronousFilesFinder extends Function {
    * `./data` directory are sorted alphanumerically. The matching files from
    * `./data` are returned before those of `./files` since `./data` was given
    * first as a directory to explore.
-   * @returns The set of files' path in the given directories that pass all the
-   * tests. The files' path are returned in order of directory and sorted
-   * alphanumerically by basename in each directory.
+   * @returns The set of files or directories' path in the given directories
+   * that pass all the tests. The paths are returned in order of directory and
+   * sorted alphanumerically by base name in each directory.
    */
-  (directories: PathLike | Iterable<PathLike>, ...tests: Matcher[]): Set<
-    string
-  >;
+  (directories: string | Iterable<string>, ...tests: Matcher[]): Set<string>;
 }
 
 /**
  * Asynchronously reads the given directories and performs the given tests on
- * all of their soft and hard-linked files in order to find the files whose path
- * passes all of the tests.
+ * all of their soft and hard-linked files in order to find the files or
+ * directories whose path passes all of the tests.
  * @version 0.1.0
- * @author Marc-Antoine Ouimet
  */
 export interface AsynchronousFilesFinder extends Function {
   /**
    * Asynchronously reads the current working directory and performs the given
    * tests on all of its soft and hard-linked files in order to find the files
-   * whose path passes all of the tests.
-   * @param tests The sequence of tests a file's path must pass in order to be
-   * considered among the desired files to be found. If a file's path does not
-   * match any of the tests, then it is ignored. If no tests are specified, then
-   * the function will arbitrarily return `null`.
+   * or directories whose path passes all of the tests.
+   * @param tests The sequence of tests a file or directory's path must pass in
+   * order to be considered among the desired paths to be found. If a path does
+   * not match any of the tests, then it is ignored. If no tests are specified,
+   * then the promise will arbitrarily be resolved to `null`.
    * @rejects If one of the given tests throws an error.
    * @example Consider the following file structure:
    *
@@ -151,21 +147,22 @@ export interface AsynchronousFilesFinder extends Function {
    * `data`, then the function will resolve to
    * `/home/user/project/data/data.json` and
    * `/home/user/project/data/data.yaml`.
-   * @returns The set of files' path in the current working directory that pass
-   * all the tests. These files' path are sorted alphanumerically.
+   * @returns The set of files or directories' path in the current working
+   * directory that pass all the tests. These paths are sorted alphanumerically.
    */
   (...tests: Matcher[]): Promise<Set<string>>;
 
   /**
    * Asynchronously reads the given directories and performs the given tests on
-   * all of their soft and hard-linked files in order to find the files' path
-   * that passes all of the tests.
-   * @param directories The directories' path in which to search for files' path
-   * that pass all the tests. If it is undefined, then the search for the file
-   * only occurs in the current working directory.
-   * @param tests The sequence of tests a file's path must pass in order to be
-   * considered among the files found. If a file's path does not match any of
-   * the tests, then it is ignored.
+   * all of their soft and hard-linked files in order to find the files or
+   * directories' path that passes all of the tests.
+   * @param directories The directories' path in which to search for files or
+   * directories' path that pass all the tests. If any of these directories is
+   * not absolute, then it is resolved relative to the current working
+   * directory.
+   * @param tests The sequence of tests a file or directory's path must pass in
+   * order to be considered among the paths found. If a path does not match any
+   * of the tests, then it is ignored.
    * @rejects If any of the given directories' path cannot be resolved to a
    * directory.
    * @rejects If one of the given tests throws an error.
@@ -208,21 +205,20 @@ export interface AsynchronousFilesFinder extends Function {
    * `./data` directory are sorted alphanumerically. The matching files from
    * `./data` are returned before those of `./files` since `./data` was given
    * first as a directory to explore.
-   * @returns A promise for an async iterator over the files in the directories
-   * that pass all the tests. The files' path are returned in order of directory
-   * and sorted alphanumerically by basename in each directory.
+   * @returns A promise for the set of files or directories' path in the
+   * directories that pass all the tests. The paths are returned in order of
+   * directory and sorted alphanumerically by base name in each directory.
    */
-  (directories: PathLike | Iterable<PathLike>, ...tests: Matcher[]): Promise<
+  (directories: string | Iterable<string>, ...tests: Matcher[]): Promise<
     Set<string>
   >;
 }
 
 /**
- * A files finder is a function that finds zero or more files' path in
- * directories from a given sequence of directories such that each file's path
+ * A files finder is a function that finds zero or more files or directories'
+ * path in directories from a given sequence of directories such that each path
  * passes a given sequence of tests.
  * @version 0.1.0
- * @author Marc-Antoine Ouimet
  */
 export interface FilesFinder extends AsynchronousFilesFinder {
   sync: SynchronousFilesFinder;

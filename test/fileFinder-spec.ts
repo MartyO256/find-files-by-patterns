@@ -5,13 +5,14 @@ import chaiAsPromised = require("chai-as-promised");
 import { PathLike } from "fs";
 import * as mock from "mock-fs";
 import { resolve } from "path";
-import { URL } from "url";
 
-import { FileFinder, ofBasename } from "../src";
+import { FileFinder, findFile as defaultFindFile, ofBasename } from "../src";
 
 chai.use(chaiAsPromised);
 
 const fileFinders: Map<string, FileFinder> = new Map();
+
+fileFinders.set("DefaultFindFile", defaultFindFile);
 
 const testFileFinder = (findFile: FileFinder, name: string): void => {
   describe(name, () => {
@@ -67,39 +68,9 @@ const testFileFinder = (findFile: FileFinder, name: string): void => {
           resolve("./file.html"),
         );
       });
-      it("should handle a directory specified with a buffer", () => {
-        assert.eventually.strictEqual(
-          findFile(Buffer.from("./"), ofBasename("file.html")),
-          resolve("./file.html"),
-        );
-      });
-      it("should handle a directory specified with a URL with the file protocol", () => {
-        assert.eventually.strictEqual(
-          findFile(new URL(resolve(), "file:"), ofBasename("file.html")),
-          resolve("./file.html"),
-        );
-      });
       it("should handle directories specified with string paths", () => {
         assert.eventually.strictEqual(
           findFile(["./", "./files"], ofBasename("file.html")),
-          resolve("./file.html"),
-        );
-      });
-      it("should handle directories specified with buffers", () => {
-        assert.eventually.strictEqual(
-          findFile(
-            [Buffer.from("./"), Buffer.from("./files")],
-            ofBasename("file.html"),
-          ),
-          resolve("./file.html"),
-        );
-      });
-      it("should handle directories specified with URLs with the file protocol", () => {
-        assert.eventually.strictEqual(
-          findFile(
-            [new URL(resolve(), "file:"), new URL(resolve("files"), "file:")],
-            ofBasename("file.html"),
-          ),
           resolve("./file.html"),
         );
       });
@@ -113,12 +84,12 @@ const testFileFinder = (findFile: FileFinder, name: string): void => {
           resolve("./files/file.html"),
         );
       });
-      it("should return null if there is no matching file in a directory", () => {
+      it("should resolve to null if there is no matching file in a directory", () => {
         assert.eventually.isNull(
           findFile("/home/user/files", ofBasename("inexistant.json")),
         );
       });
-      it("should return null if there is no matching file in directories", () => {
+      it("should resolve to null if there is no matching file in directories", () => {
         assert.eventually.isNull(
           findFile(
             ["/home/user/files", "/home/user/symbolic-files"],
@@ -126,19 +97,46 @@ const testFileFinder = (findFile: FileFinder, name: string): void => {
           ),
         );
       });
-      it("should return a file's path if there is only one matching file in a directory", () => {
+      it("should resolve to a file's path if there is only one matching file in a directory", () => {
         assert.eventually.strictEqual(
           findFile("/home/user/files", ofBasename("file.html")),
-          "/home/user/files/file.html",
+          resolve("/home/user/files/file.html"),
         );
       });
-      it("should return a file's path if there is only one matching file in a directory among the directories", () => {
+      it("should resolve to a file's path if there is only one matching file in a directory among the directories", () => {
         assert.eventually.strictEqual(
           findFile(
             ["/home/user/files", "/home/user/symbolic-files"],
             ofBasename("file.html"),
           ),
-          "/home/user/files/file.html",
+          resolve("/home/user/files/file.html"),
+        );
+      });
+      it("should resolve to a found directory's path", () => {
+        assert.eventually.strictEqual(
+          findFile(ofBasename("files")),
+          resolve("./files"),
+        );
+      });
+      it("should resolve to a found file's path", () => {
+        assert.eventually.strictEqual(
+          findFile(ofBasename("file.html")),
+          resolve("./file.html"),
+        );
+      });
+      it("should not resolve to a path that doesn't pass all the tests", () => {
+        assert.eventually.isNull(
+          findFile(ofBasename("file.html"), ofBasename("files")),
+        );
+      });
+      it("should resolve to a path that passes all the tests", () => {
+        assert.eventually.isNotNull(
+          findFile(ofBasename(/^file/), ofBasename(/\.html$/)),
+        );
+      });
+      it("should be rejected if any of the given directories does not exist", () => {
+        assert.isRejected(
+          findFile("./unexistant-folder", ofBasename("unexistant.html")),
         );
       });
       it("should be rejected if one of the tests throws an error", () => {
@@ -152,11 +150,6 @@ const testFileFinder = (findFile: FileFinder, name: string): void => {
       });
       it("should be rejected if there is more than one matching file in a directory", () => {
         assert.isRejected(findFile("/home/user/files", ofBasename(/^file\./)));
-      });
-      it("should be rejected if there is more than one matching file across multiple directories", () => {
-        assert.isRejected(
-          findFile(["./", "/home/user/files"], ofBasename(/^file\./)),
-        );
       });
     });
     describe("Synchronous", () => {
@@ -175,39 +168,9 @@ const testFileFinder = (findFile: FileFinder, name: string): void => {
           resolve("./file.html"),
         );
       });
-      it("should handle a directory specified with a buffer", () => {
-        assert.strictEqual(
-          findFile.sync(Buffer.from("./"), ofBasename("file.html")),
-          resolve("./file.html"),
-        );
-      });
-      it("should handle a directory specified with a URL with the file protocol", () => {
-        assert.strictEqual(
-          findFile.sync(new URL(resolve(), "file:"), ofBasename("file.html")),
-          resolve("./file.html"),
-        );
-      });
       it("should handle directories specified with string paths", () => {
         assert.strictEqual(
           findFile.sync(["./", "./files"], ofBasename("file.html")),
-          resolve("./file.html"),
-        );
-      });
-      it("should handle directories specified with buffers", () => {
-        assert.strictEqual(
-          findFile.sync(
-            [Buffer.from("./"), Buffer.from("./files")],
-            ofBasename("file.html"),
-          ),
-          resolve("./file.html"),
-        );
-      });
-      it("should handle directories specified with URLs with the file protocol", () => {
-        assert.strictEqual(
-          findFile.sync(
-            [new URL(resolve(), "file:"), new URL(resolve("files"), "file:")],
-            ofBasename("file.html"),
-          ),
           resolve("./file.html"),
         );
       });
@@ -219,6 +182,28 @@ const testFileFinder = (findFile: FileFinder, name: string): void => {
         assert.strictEqual(
           findFile.sync("./files", ofBasename("file.html")),
           resolve("./files/file.html"),
+        );
+      });
+      it("should return a found directory's path", () => {
+        assert.strictEqual(
+          findFile.sync(ofBasename("files")),
+          resolve("./files"),
+        );
+      });
+      it("should return a found file's path", () => {
+        assert.strictEqual(
+          findFile.sync(ofBasename("file.html")),
+          resolve("./file.html"),
+        );
+      });
+      it("should not return a path that doesn't pass all the tests", () => {
+        assert.isNull(
+          findFile.sync(ofBasename("file.html"), ofBasename("files")),
+        );
+      });
+      it("should return a path that passes all the tests", () => {
+        assert.isNotNull(
+          findFile.sync(ofBasename(/^file/), ofBasename(/\.html$/)),
         );
       });
       it("should return null if there is no matching file in a directory", () => {
@@ -237,7 +222,7 @@ const testFileFinder = (findFile: FileFinder, name: string): void => {
       it("should return a file's path if there is only one matching file in a directory", () => {
         assert.strictEqual(
           findFile.sync("/home/user/files", ofBasename("file.html")),
-          "/home/user/files/file.html",
+          resolve("/home/user/files/file.html"),
         );
       });
       it("should return a file's path if there is only one matching file in a directory among the directories", () => {
@@ -246,8 +231,13 @@ const testFileFinder = (findFile: FileFinder, name: string): void => {
             ["/home/user/files", "/home/user/symbolic-files"],
             ofBasename("file.html"),
           ),
-          "/home/user/files/file.html",
+          resolve("/home/user/files/file.html"),
         );
+      });
+      it("should throw an error if any of the given directories does not exist", () => {
+        assert.throws(() => {
+          findFile.sync("./unexistant-folder", ofBasename("unexistant.html"));
+        });
       });
       it("should throw an error if one of the tests throws an error", () => {
         assert.throws(() => {
@@ -261,11 +251,6 @@ const testFileFinder = (findFile: FileFinder, name: string): void => {
       it("should throw an error if there is more than one matching file in a directory", () => {
         assert.throws(() =>
           findFile.sync("/home/user/files", ofBasename(/^file\./)),
-        );
-      });
-      it("should throw an error if there is more than one matching file across multiple directories", () => {
-        assert.throws(() =>
-          findFile.sync(["./", "/home/user/files"], ofBasename(/^file\./)),
         );
       });
     });
