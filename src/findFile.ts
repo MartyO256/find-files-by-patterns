@@ -34,25 +34,29 @@ const makeFindFile = (
    */
   const asyncFinder = (directories: Iterable<string>, tests: Matcher[]) =>
     new Promise<string | null>((resolve, reject) => {
-      for (let directory of directories) {
-        directory = resolvePath(directory);
-        readdir(directory, (error, files) => {
-          if (error) {
-            reject(error);
-          }
-          try {
-            const matches = matchingFiles(directory, files, tests);
-            if (matches.length >= 1) {
-              if (matches.length === 1) {
-                resolve(matches[0]);
-              } else {
-                reject(conflictingFilesError(matches));
-              }
+      if (tests.length === 0) {
+        resolve(null);
+      } else {
+        for (let directory of directories) {
+          directory = resolvePath(directory);
+          readdir(directory, (error, files) => {
+            if (error) {
+              reject(error);
             }
-          } catch (error) {
-            reject(error);
-          }
-        });
+            try {
+              const matches = matchingFiles(directory, files, tests);
+              if (matches.length >= 1) {
+                if (matches.length === 1) {
+                  resolve(matches[0]);
+                } else {
+                  reject(conflictingFilesError(matches));
+                }
+              }
+            } catch (error) {
+              reject(error);
+            }
+          });
+        }
       }
     });
 
@@ -64,14 +68,18 @@ const makeFindFile = (
     directories: Iterable<string>,
     tests: Matcher[],
   ): string | null => {
-    for (let directory of directories) {
-      directory = resolvePath(directory);
-      const files = matchingFiles(directory, readdirSync(directory), tests);
-      if (files.length >= 1) {
-        if (files.length === 1) {
-          return files[0];
-        } else {
-          throw conflictingFilesError(files);
+    if (tests.length === 0) {
+      return null;
+    } else {
+      for (let directory of directories) {
+        directory = resolvePath(directory);
+        const files = matchingFiles(directory, readdirSync(directory), tests);
+        if (files.length >= 1) {
+          if (files.length === 1) {
+            return files[0];
+          } else {
+            throw conflictingFilesError(files);
+          }
         }
       }
     }

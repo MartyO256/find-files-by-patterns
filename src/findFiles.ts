@@ -22,32 +22,37 @@ const makeFindFiles = (
    */
   const asyncFinder = (directories: Iterable<string>, tests: Matcher[]) =>
     new Promise<Set<string>>((resolve, reject) => {
-      [...directories]
-        .map((directory) => resolvePath(directory))
-        .map(
-          (directory) =>
-            new Promise<string[]>((resolve) => {
-              readdir(directory, (error, files) => {
-                if (error) {
-                  reject(error);
-                }
-                try {
-                  resolve(matchingFiles(directory, files, tests).sort());
-                } catch (error) {
-                  reject(error);
-                }
-              });
-            }),
-        )
-        .reduce(
-          (previous, current) =>
-            new Promise<string[]>((resolve) =>
-              Promise.all([previous, current]).then((files) =>
-                resolve(files[0].concat(files[1])),
+      if (tests.length === 0) {
+        resolve(new Set<string>());
+      } else {
+        [...directories]
+          .map((directory) => resolvePath(directory))
+          .map(
+            (directory) =>
+              new Promise<string[]>((resolve) => {
+                readdir(directory, (error, files) => {
+                  if (error) {
+                    reject(error);
+                  } else {
+                    try {
+                      resolve(matchingFiles(directory, files, tests).sort());
+                    } catch (error) {
+                      reject(error);
+                    }
+                  }
+                });
+              }),
+          )
+          .reduce(
+            (previous, current) =>
+              new Promise<string[]>((resolve) =>
+                Promise.all([previous, current]).then((files) =>
+                  resolve(files[0].concat(files[1])),
+                ),
               ),
-            ),
-        )
-        .then((files) => resolve(new Set<string>(files)));
+          )
+          .then((files) => resolve(new Set<string>(files)));
+      }
     });
 
   /**
@@ -56,14 +61,16 @@ const makeFindFiles = (
    */
   const syncFinder = (directories: Iterable<string>, tests: Matcher[]) =>
     new Set<string>(
-      [...directories]
-        .map((directory) => resolvePath(directory))
-        .map((directory) =>
-          matchingFiles(directory, readdirSync(directory), tests).sort(),
-        )
-        .reduce((previousFiles, currentFiles) =>
-          previousFiles.concat(currentFiles),
-        ),
+      tests.length === 0
+        ? []
+        : [...directories]
+            .map((directory) => resolvePath(directory))
+            .map((directory) =>
+              matchingFiles(directory, readdirSync(directory), tests).sort(),
+            )
+            .reduce((previousFiles, currentFiles) =>
+              previousFiles.concat(currentFiles),
+            ),
     );
 
   /**
