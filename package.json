@@ -1,6 +1,6 @@
 {
   "name": "find-files-patterns",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Find files of patterns upwards, downwards and in directories",
   "license": "MIT",
   "author": "Marc-Antoine Ouimet <ouimetmarcantoine@gmail.com>",

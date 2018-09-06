@@ -2,7 +2,6 @@ import { assert } from "chai";
 import chai = require("chai");
 import chaiAsPromised = require("chai-as-promised");
 
-import { PathLike } from "fs";
 import * as mock from "mock-fs";
 import { resolve } from "path";
 
@@ -18,7 +17,10 @@ const FirstFileFinders: Map<string, FirstFileFinder> = new Map();
 
 FirstFileFinders.set("DefaultFindFirstFile", defaultFindFirstFile);
 
-const testFirstFileFinder = (findFile: FirstFileFinder, name: string): void => {
+const testFirstFileFinder = (
+  findFirstFile: FirstFileFinder,
+  name: string,
+): void => {
   describe(name, () => {
     beforeEach(() => {
       mock(
@@ -57,45 +59,57 @@ const testFirstFileFinder = (findFile: FirstFileFinder, name: string): void => {
       mock.restore();
     });
     describe("Asynchronous", () => {
-      it("should arbitrarily resolve to `null` if there are no test to perform on files' path", () => {
-        assert.eventually.isNull(findFile("./"));
+      it("should arbitrarily resolve to `null` if no arguments are provided", () => {
+        assert.eventually.isNull(findFirstFile());
+      });
+      it("should arbitrarily resolve to `null` if only an empty set of directories is provided", () => {
+        assert.eventually.isNull(findFirstFile([]));
+      });
+      it("should arbitrarily resolve to `null` if an empty set of directories is provided", () => {
+        assert.eventually.isNull(findFirstFile([], ofBasename()));
+      });
+      it("should arbitrarily resolve to `null` if empty sets of directories and tests are provided", () => {
+        assert.eventually.isNull(findFirstFile([], ...[]));
+      });
+      it("should arbitrarily resolve to `null` if no tests are provided", () => {
+        assert.eventually.isNull(findFirstFile("./"));
       });
       it("should resolve an undefined directory path to the current working directory", () => {
         assert.eventually.strictEqual(
-          findFile(ofBasename("file.html")),
+          findFirstFile(ofBasename("file.html")),
           resolve("./file.html"),
         );
       });
       it("should handle a directory specified with a string path", () => {
         assert.eventually.strictEqual(
-          findFile("./", ofBasename("file.html")),
+          findFirstFile("./", ofBasename("file.html")),
           resolve("./file.html"),
         );
       });
       it("should handle directories specified with string paths", () => {
         assert.eventually.strictEqual(
-          findFile(["./", "./files"], ofBasename("file.html")),
+          findFirstFile(["./", "./files"], ofBasename("file.html")),
           resolve("./file.html"),
         );
       });
       it("should resolve directory paths which are not absolute relative to the current working directory", () => {
         assert.eventually.strictEqual(
-          findFile("./", ofBasename("file.html")),
+          findFirstFile("./", ofBasename("file.html")),
           resolve("./file.html"),
         );
         assert.eventually.strictEqual(
-          findFile("./files", ofBasename("file.html")),
+          findFirstFile("./files", ofBasename("file.html")),
           resolve("./files/file.html"),
         );
       });
       it("should resolve to null if there is no matching file in a directory", () => {
         assert.eventually.isNull(
-          findFile("/home/user/files", ofBasename("inexistant.json")),
+          findFirstFile("/home/user/files", ofBasename("inexistant.json")),
         );
       });
       it("should resolve to null if there is no matching file in directories", () => {
         assert.eventually.isNull(
-          findFile(
+          findFirstFile(
             ["/home/user/files", "/home/user/symbolic-files"],
             ofBasename("inexistant.json"),
           ),
@@ -103,13 +117,13 @@ const testFirstFileFinder = (findFile: FirstFileFinder, name: string): void => {
       });
       it("should resolve to a file's path if there is only one matching file in a directory", () => {
         assert.eventually.strictEqual(
-          findFile("/home/user/files", ofBasename("file.html")),
+          findFirstFile("/home/user/files", ofBasename("file.html")),
           resolve("/home/user/files/file.html"),
         );
       });
       it("should resolve to a file's path if there is only one matching file in a directory among the directories", () => {
         assert.eventually.strictEqual(
-          findFile(
+          findFirstFile(
             ["/home/user/files", "/home/user/symbolic-files"],
             ofBasename("file.html"),
           ),
@@ -118,35 +132,35 @@ const testFirstFileFinder = (findFile: FirstFileFinder, name: string): void => {
       });
       it("should resolve to a found directory's path", () => {
         assert.eventually.strictEqual(
-          findFile(ofBasename("files")),
+          findFirstFile(ofBasename("files")),
           resolve("./files"),
         );
       });
       it("should resolve to a found file's path", () => {
         assert.eventually.strictEqual(
-          findFile(ofBasename("file.html")),
+          findFirstFile(ofBasename("file.html")),
           resolve("./file.html"),
         );
       });
       it("should not resolve to a path that doesn't pass all the tests", () => {
         assert.eventually.isNull(
-          findFile(ofBasename("file.html"), ofBasename("files")),
+          findFirstFile(ofBasename("file.html"), ofBasename("files")),
         );
       });
       it("should resolve to a path that passes all the tests", () => {
         assert.eventually.isNotNull(
-          findFile(ofBasename(/^file/), ofBasename(/\.html$/)),
+          findFirstFile(ofBasename(/^file/), ofBasename(/\.html$/)),
         );
       });
       it("should be rejected if any of the given directories does not exist", () => {
         assert.isRejected(
-          findFile("./unexistant-folder", ofBasename("unexistant.html")),
+          findFirstFile("./unexistant-folder", ofBasename("unexistant.html")),
         );
       });
       it("should be rejected if one of the tests throws an error", () => {
         assert.isRejected(
-          findFile(
-            (path: PathLike): boolean => {
+          findFirstFile(
+            (path: string): boolean => {
               throw new Error();
             },
           ),
@@ -154,72 +168,84 @@ const testFirstFileFinder = (findFile: FirstFileFinder, name: string): void => {
       });
       it("should not be rejected if there is more than one matching file in a directory", () => {
         assert.eventually.isNotNull(
-          findFile("/home/user/files", ofBasename(/^file\./)),
+          findFirstFile("/home/user/files", ofBasename(/^file\./)),
         );
       });
     });
     describe("Synchronous", () => {
+      it("should arbitrarily return `null` if no arguments are provided", () => {
+        assert.isNull(findFirstFile.sync());
+      });
+      it("should arbitrarily return `null` if only an empty set of directories is provided", () => {
+        assert.isNull(findFirstFile.sync([]));
+      });
+      it("should arbitrarily return `null` if an empty set of directories is provided", () => {
+        assert.isNull(findFirstFile.sync([], ofBasename()));
+      });
+      it("should arbitrarily return `null` if empty sets of directories and tests are provided", () => {
+        assert.isNull(findFirstFile.sync([], ...[]));
+      });
       it("should arbitrarily return `null` if there are no tests to perform on files' path", () => {
-        assert.isNull(findFile.sync("./"));
+        assert.isNull(findFirstFile.sync("./"));
       });
       it("should resolve an undefined directory path to the current working directory", () => {
         assert.strictEqual(
-          findFile.sync(ofBasename("file.html")),
+          findFirstFile.sync(ofBasename("file.html")),
           resolve("./file.html"),
         );
       });
       it("should handle a directory specified with a string path", () => {
         assert.strictEqual(
-          findFile.sync("./", ofBasename("file.html")),
+          findFirstFile.sync("./", ofBasename("file.html")),
           resolve("./file.html"),
         );
       });
       it("should handle directories specified with string paths", () => {
         assert.strictEqual(
-          findFile.sync(["./", "./files"], ofBasename("file.html")),
+          findFirstFile.sync(["./", "./files"], ofBasename("file.html")),
           resolve("./file.html"),
         );
       });
       it("should resolve directory paths which are not absolute relative to the current working directory", () => {
         assert.strictEqual(
-          findFile.sync("./", ofBasename("file.html")),
+          findFirstFile.sync("./", ofBasename("file.html")),
           resolve("./file.html"),
         );
         assert.strictEqual(
-          findFile.sync("./files", ofBasename("file.html")),
+          findFirstFile.sync("./files", ofBasename("file.html")),
           resolve("./files/file.html"),
         );
       });
       it("should return a found directory's path", () => {
         assert.strictEqual(
-          findFile.sync(ofBasename("files")),
+          findFirstFile.sync(ofBasename("files")),
           resolve("./files"),
         );
       });
       it("should return a found file's path", () => {
         assert.strictEqual(
-          findFile.sync(ofBasename("file.html")),
+          findFirstFile.sync(ofBasename("file.html")),
           resolve("./file.html"),
         );
       });
       it("should not return a path that doesn't pass all the tests", () => {
         assert.isNull(
-          findFile.sync(ofBasename("file.html"), ofBasename("files")),
+          findFirstFile.sync(ofBasename("file.html"), ofBasename("files")),
         );
       });
       it("should return a path that passes all the tests", () => {
         assert.isNotNull(
-          findFile.sync(ofBasename(/^file/), ofBasename(/\.html$/)),
+          findFirstFile.sync(ofBasename(/^file/), ofBasename(/\.html$/)),
         );
       });
       it("should return null if there is no matching file in a directory", () => {
         assert.isNull(
-          findFile.sync("/home/user/files", ofBasename("inexistant.json")),
+          findFirstFile.sync("/home/user/files", ofBasename("inexistant.json")),
         );
       });
       it("should return null if there is no matching file in directories", () => {
         assert.isNull(
-          findFile.sync(
+          findFirstFile.sync(
             ["/home/user/files", "/home/user/symbolic-files"],
             ofBasename("inexistant.json"),
           ),
@@ -227,13 +253,13 @@ const testFirstFileFinder = (findFile: FirstFileFinder, name: string): void => {
       });
       it("should return a file's path if there is only one matching file in a directory", () => {
         assert.strictEqual(
-          findFile.sync("/home/user/files", ofBasename("file.html")),
+          findFirstFile.sync("/home/user/files", ofBasename("file.html")),
           resolve("/home/user/files/file.html"),
         );
       });
       it("should return a file's path if there is only one matching file in a directory among the directories", () => {
         assert.strictEqual(
-          findFile.sync(
+          findFirstFile.sync(
             ["/home/user/files", "/home/user/symbolic-files"],
             ofBasename("file.html"),
           ),
@@ -242,13 +268,16 @@ const testFirstFileFinder = (findFile: FirstFileFinder, name: string): void => {
       });
       it("should throw an error if any of the given directories does not exist", () => {
         assert.throws(() => {
-          findFile.sync("./unexistant-folder", ofBasename("unexistant.html"));
+          findFirstFile.sync(
+            "./unexistant-folder",
+            ofBasename("unexistant.html"),
+          );
         });
       });
       it("should throw an error if one of the tests throws an error", () => {
         assert.throws(() => {
-          findFile.sync(
-            (path: PathLike): boolean => {
+          findFirstFile.sync(
+            (path: string): boolean => {
               throw new Error();
             },
           );
@@ -256,7 +285,7 @@ const testFirstFileFinder = (findFile: FirstFileFinder, name: string): void => {
       });
       it("should not throw an error if there is more than one matching file in a directory", () => {
         assert.isNotNull(
-          findFile.sync("/home/user/files", ofBasename(/^file\./)),
+          findFirstFile.sync("/home/user/files", ofBasename(/^file\./)),
         );
       });
     });

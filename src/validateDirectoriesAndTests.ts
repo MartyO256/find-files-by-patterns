@@ -27,7 +27,7 @@ export const validateDirectoriesAndTests = (
     directories = [directories];
   }
   return {
-    directories,
+    directories: directories || [],
     tests,
   };
 };

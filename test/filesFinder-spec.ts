@@ -2,7 +2,6 @@ import { assert } from "chai";
 import chai = require("chai");
 import chaiAsPromised = require("chai-as-promised");
 
-import { PathLike } from "fs";
 import * as mock from "mock-fs";
 import { resolve } from "path";
 
@@ -61,6 +60,18 @@ const testFilesFinder = (findFiles: FilesFinder, name: string): void => {
       mock.restore();
     });
     describe("Asynchronous", () => {
+      it("should arbitrarily resolve to `null` if no arguments are provided", () => {
+        assert.eventually.isEmpty(findFiles());
+      });
+      it("should arbitrarily resolve to `null` if only an empty set of directories is provided", () => {
+        assert.eventually.isEmpty(findFiles([]));
+      });
+      it("should arbitrarily resolve to `null` if an empty set of directories is provided", () => {
+        assert.eventually.isEmpty(findFiles([], ofBasename()));
+      });
+      it("should arbitrarily resolve to `null` if empty sets of directories and tests are provided", () => {
+        assert.eventually.isEmpty(findFiles([], ...[]));
+      });
       it("should arbitrarily resolve to an empty set if there are no test to perform on files' path", () => {
         assert.eventually.isEmpty(findFiles("./"));
       });
@@ -209,7 +220,7 @@ const testFilesFinder = (findFiles: FilesFinder, name: string): void => {
       it("should be rejected if one of the tests throws an error", () => {
         assert.isRejected(
           findFiles(
-            (path: PathLike): boolean => {
+            (path: string): boolean => {
               throw new Error();
             },
           ),
@@ -217,6 +228,18 @@ const testFilesFinder = (findFiles: FilesFinder, name: string): void => {
       });
     });
     describe("Synchronous", () => {
+      it("should arbitrarily return `null` if no arguments are provided", () => {
+        assert.isEmpty(findFiles.sync());
+      });
+      it("should arbitrarily return `null` if only an empty set of directories is provided", () => {
+        assert.isEmpty(findFiles.sync([]));
+      });
+      it("should arbitrarily return `null` if an empty set of directories is provided", () => {
+        assert.isEmpty(findFiles.sync([], ofBasename()));
+      });
+      it("should arbitrarily return `null` if empty sets of directories and tests are provided", () => {
+        assert.isEmpty(findFiles.sync([], ...[]));
+      });
       it("should arbitrarily return an empty set if there are no test to perform on files' path", () => {
         assert.isEmpty(findFiles.sync("./"));
       });
@@ -371,7 +394,7 @@ const testFilesFinder = (findFiles: FilesFinder, name: string): void => {
       it("should throw an error if one of the tests throws an error", () => {
         assert.throws(() => {
           findFiles.sync(
-            (path: PathLike): boolean => {
+            (path: string): boolean => {
               throw new Error();
             },
           );

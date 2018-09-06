@@ -22,10 +22,11 @@ const makeFindFiles = (
    */
   const asyncFinder = (directories: Iterable<string>, tests: Matcher[]) =>
     new Promise<Set<string>>((resolve, reject) => {
-      if (tests.length === 0) {
+      const expandedDirectories: string[] = [...directories];
+      if (tests.length === 0 || expandedDirectories.length === 0) {
         resolve(new Set<string>());
       } else {
-        [...directories]
+        expandedDirectories
           .map((directory) => resolvePath(directory))
           .map(
             (directory) =>
@@ -59,19 +60,23 @@ const makeFindFiles = (
    * The validated synchronous files finder function.
    * @see [[SynchronousFilesFinder]] The specifications of the function.
    */
-  const syncFinder = (directories: Iterable<string>, tests: Matcher[]) =>
-    new Set<string>(
-      tests.length === 0
-        ? []
-        : [...directories]
-            .map((directory) => resolvePath(directory))
-            .map((directory) =>
-              matchingFiles(directory, readdirSync(directory), tests).sort(),
-            )
-            .reduce((previousFiles, currentFiles) =>
-              previousFiles.concat(currentFiles),
-            ),
-    );
+  const syncFinder = (directories: Iterable<string>, tests: Matcher[]) => {
+    const expandedDirectories = [...directories];
+    if (tests.length === 0 || expandedDirectories.length === 0) {
+      return new Set<string>();
+    } else {
+      return new Set<string>(
+        expandedDirectories
+          .map((directory) => resolvePath(directory))
+          .map((directory) =>
+            matchingFiles(directory, readdirSync(directory), tests).sort(),
+          )
+          .reduce((previousFiles, currentFiles) =>
+            previousFiles.concat(currentFiles),
+          ),
+      );
+    }
+  };
 
   /**
    * The asynchronous files finder function.
