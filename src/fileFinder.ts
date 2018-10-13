@@ -4,7 +4,7 @@ import { Matcher } from "./matcher";
  * Synchronously reads the given directories and performs the given tests on all
  * of their soft and hard-linked files in order to find the first and only file
  * or directory's path in its directory that passes all of the tests.
- * @version 0.1.0
+ * @since 0.1.0
  */
 export interface SynchronousFileFinder extends Function {
   /**
@@ -181,7 +181,7 @@ export interface SynchronousFileFinder extends Function {
  * Asynchronously reads the given directories and performs the given tests on
  * all of their soft and hard-linked files in order to find the first and only
  * file or directory's path in its directory that passes all of the tests.
- * @version 0.1.0
+ * @since 0.1.0
  */
 export interface AsynchronousFileFinder extends Function {
   /**
@@ -364,7 +364,7 @@ export interface AsynchronousFileFinder extends Function {
  * A file finder is a function that finds one and only one file or directory's
  * path in a directory from a given sequence of directories such that the file
  * or directory's path passes a given sequence of tests.
- * @version 0.1.0
+ * @since 0.1.0
  */
 export interface FileFinder extends AsynchronousFileFinder {
   sync: SynchronousFileFinder;

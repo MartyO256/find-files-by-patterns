@@ -1,3 +1,5 @@
+export { Matcher } from "./matcher";
+
 export { ofBasename } from "./ofBasename";
 
 export {
@@ -19,3 +21,7 @@ export {
 export { findFile } from "./findFile";
 export { findFiles } from "./findFiles";
 export { findFirstFile } from "./findFirstFile";
+
+export { UpwardDirectoriesFetcher } from "./upwardDirectoriesFetcher";
+
+export { upwards } from "./upwards";

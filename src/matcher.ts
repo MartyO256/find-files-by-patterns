@@ -19,7 +19,8 @@ export const isMatcher = (object: any): object is Matcher => {
 
 /**
  * Determines whether or not an existing given path to a file or directory
- * matches all the given sequence of tests.
+ * matches all the given sequence of tests. If no tests are provided, then the
+ * path won't match.
  * @param path The path to test.
  * @param tests The tests to perform on the path.
  * @returns Whether or not the given path passes all the given tests.

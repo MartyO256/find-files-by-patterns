@@ -1,4 +1,4 @@
-import { readdir, readdirSync } from "fs";
+import { existsSync, readdir, readdirSync } from "fs";
 import { resolve as resolvePath } from "path";
 
 import { FilesFinder } from "./filesFinder";
@@ -30,7 +30,7 @@ const makeFindFiles = (
           .map((directory) => resolvePath(directory))
           .map(
             (directory) =>
-              new Promise<string[]>((resolve) => {
+              new Promise<string[]>((resolve, reject) => {
                 readdir(directory, (error, files) => {
                   if (error) {
                     reject(error);
@@ -46,13 +46,16 @@ const makeFindFiles = (
           )
           .reduce(
             (previous, current) =>
-              new Promise<string[]>((resolve) =>
-                Promise.all([previous, current]).then((files) =>
-                  resolve(files[0].concat(files[1])),
-                ),
-              ),
+              new Promise<string[]>((resolve, reject) => {
+                Promise.all([previous, current])
+                  .then((files) => {
+                    resolve(files[0].concat(files[1]));
+                  })
+                  .catch((reason) => reject(reason));
+              }),
           )
-          .then((files) => resolve(new Set<string>(files)));
+          .then((files) => resolve(new Set<string>(files)))
+          .catch((reason) => reject(reason));
       }
     });
 
@@ -83,7 +86,7 @@ const makeFindFiles = (
    * @see [[FilesFinder]] The specifications of the function.
    */
   const finder: any = (
-    directories: Iterable<string>,
+    directories: Iterable<string> | Matcher,
     ...tests: Matcher[]
   ): Promise<Set<string>> => {
     const validatedParameters = validateDirectoriesAndTests(
@@ -102,7 +105,7 @@ const makeFindFiles = (
    * @see [[FilesFinder.sync]] The specifications of the function.
    */
   finder.sync = (
-    directories: Iterable<string>,
+    directories: Iterable<string> | Matcher,
     ...tests: Matcher[]
   ): Set<string> => {
     const validatedParameters = validateDirectoriesAndTests(
@@ -118,4 +121,10 @@ const makeFindFiles = (
   return finder as FilesFinder;
 };
 
+/**
+ * A files finder function.
+ * @see [[FilesFinder]] The specifications of the function.
+ * @version 0.3.0
+ * @since 0.1.0
+ */
 export const findFiles: FilesFinder = makeFindFiles();

@@ -91,7 +91,7 @@ const makeFindFile = (
    * @see [[FileFinder]] The specifications of the function.
    */
   const finder: any = (
-    directories: string | Iterable<string>,
+    directories: string | Iterable<string> | Matcher,
     ...tests: Matcher[]
   ): Promise<string | null> => {
     const validatedParameters = validateDirectoriesAndTests(
@@ -110,7 +110,7 @@ const makeFindFile = (
    * @see [[FileFinder.sync]] The specifications of the function.
    */
   finder.sync = (
-    directories: string | Iterable<string>,
+    directories: string | Iterable<string> | Matcher,
     ...tests: Matcher[]
   ): string | null => {
     const validatedParameters = validateDirectoriesAndTests(
@@ -129,6 +129,7 @@ const makeFindFile = (
 /**
  * A file finder function.
  * @see [[FileFinder]] The specifications of the function.
+ * @version 0.3.0
  * @since 0.1.0
  */
 export const findFile: FileFinder = makeFindFile();
