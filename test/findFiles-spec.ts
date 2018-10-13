@@ -282,7 +282,7 @@ describe("findFiles", () => {
     it("should return a set with one file's path if there is only one matching file in a directory", () => {
       assert.deepEqual(
         findFiles.sync("/home/user/files", ofBasename("file.html")),
-        new Set(["/home/user/files/file.html"]),
+        new Set([resolve("/home/user/files/file.html")]),
       );
     });
     it("should return a set with one file's path if there is only one matching file in a directory among the directories", () => {
@@ -291,13 +291,16 @@ describe("findFiles", () => {
           ["/home/user/files", "/home/user/symbolic-files"],
           ofBasename("file.md"),
         ),
-        new Set(["/home/user/files/file.md"]),
+        new Set([resolve("/home/user/files/file.md")]),
       );
     });
     it("should return a set of matching files in a directory", () => {
       assert.deepEqual(
         findFiles.sync("/home/user/files", ofBasename(/^file/)),
-        new Set(["/home/user/files/file.html", "/home/user/files/file.md"]),
+        new Set([
+          resolve("/home/user/files/file.html"),
+          resolve("/home/user/files/file.md"),
+        ]),
       );
     });
     it("should return a set of matching files in directories", () => {
@@ -307,15 +310,15 @@ describe("findFiles", () => {
           ofBasename("file.html"),
         ),
         new Set([
-          "/home/user/files/file.html",
-          "/home/user/symbolic-files/file.html",
+          resolve("/home/user/files/file.html"),
+          resolve("/home/user/symbolic-files/file.html"),
         ]),
       );
     });
     it("should return a set with one directory's path if there is only one matching file in a directory", () => {
       assert.deepEqual(
         findFiles.sync("/home/user", ofBasename("files")),
-        new Set(["/home/user/files"]),
+        new Set([resolve("/home/user/files")]),
       );
     });
     it("should return a set with one directory's path if there is only one matching file in a directory among the directories", () => {
@@ -324,13 +327,16 @@ describe("findFiles", () => {
           ["/home/user/files", "/home/user/"],
           ofBasename("files"),
         ),
-        new Set(["/home/user/files"]),
+        new Set([resolve("/home/user/files")]),
       );
     });
     it("should return a set of matching directories' path in a directory", () => {
       assert.deepEqual(
         findFiles.sync("/home/user", ofBasename(/^files/, /files$/)),
-        new Set(["/home/user/files", "/home/user/symbolic-files"]),
+        new Set([
+          resolve("/home/user/files"),
+          resolve("/home/user/symbolic-files"),
+        ]),
       );
     });
     it("should return a set of matching directories' path in directories", () => {
@@ -339,16 +345,19 @@ describe("findFiles", () => {
           ["/home/user", "/home/user/other-folder"],
           ofBasename("files"),
         ),
-        new Set(["/home/user/files", "/home/user/other-folder/files"]),
+        new Set([
+          resolve("/home/user/files"),
+          resolve("/home/user/other-folder/files"),
+        ]),
       );
     });
     it("should return a set of matching files and directories' path", () => {
       assert.deepEqual(
         findFiles.sync(["/home/user", "/home/user/files"], ofBasename(/^file/)),
         new Set([
-          "/home/user/files",
-          "/home/user/files/file.md",
-          "/home/user/files/file.html",
+          resolve("/home/user/files"),
+          resolve("/home/user/files/file.md"),
+          resolve("/home/user/files/file.html"),
         ]),
       );
     });
@@ -356,9 +365,9 @@ describe("findFiles", () => {
       assert.deepEqual(
         findFiles.sync("/home/user/files", ofBasename(/^_/)),
         new Set([
-          "/home/user/files/_a",
-          "/home/user/files/_b",
-          "/home/user/files/_c",
+          resolve("/home/user/files/_a"),
+          resolve("/home/user/files/_b"),
+          resolve("/home/user/files/_c"),
         ]),
       );
     });
@@ -369,12 +378,12 @@ describe("findFiles", () => {
           ofBasename(/^_/),
         ),
         new Set([
-          "/home/user/files/_a",
-          "/home/user/files/_b",
-          "/home/user/files/_c",
-          "/home/user/symbolic-folder/_a",
-          "/home/user/symbolic-folder/_b",
-          "/home/user/symbolic-folder/_c",
+          resolve("/home/user/files/_a"),
+          resolve("/home/user/files/_b"),
+          resolve("/home/user/files/_c"),
+          resolve("/home/user/symbolic-folder/_a"),
+          resolve("/home/user/symbolic-folder/_b"),
+          resolve("/home/user/symbolic-folder/_c"),
         ]),
       );
     });

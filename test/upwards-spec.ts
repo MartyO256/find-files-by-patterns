@@ -12,10 +12,10 @@ import { upwards } from "../src";
  */
 const upwardDirectories = (directory: string = process.cwd()): string[] => {
   const { root } = parse(directory);
-  const upwardDirectories: string[] = [directory];
+  const upwardDirectories: string[] = [resolve(directory)];
   do {
     directory = dirname(directory);
-    upwardDirectories.push(directory);
+    upwardDirectories.push(resolve(directory));
   } while (directory !== root);
   return upwardDirectories;
 };
@@ -95,7 +95,12 @@ describe("upwards", () => {
             (path) => path.search(/[0-9]/g) === -1,
           ),
         ],
-        ["/home/user/first", "/home/user", "/home", "/"],
+        [
+          resolve("/home/user/first"),
+          resolve("/home/user"),
+          resolve("/home"),
+          resolve("/"),
+        ],
       );
     });
     it("should filter out directories that don't match the tests", () => {
@@ -117,7 +122,7 @@ describe("upwards", () => {
     it("should return only the `from` path if the given amount of directories upwards is zero", () => {
       assert.deepEqual(
         [...upwards("/home/user/first/1/2/3", 0)],
-        ["/home/user/first/1/2/3"],
+        [resolve("/home/user/first/1/2/3")],
       );
     });
     it("should return an empty set if there are no existing upwards paths with the given amount of directories", () => {
@@ -152,9 +157,9 @@ describe("upwards", () => {
       assert.deepEqual(
         [...upwards("/home/user/first/1/2/3/unexistant", 3)],
         [
-          "/home/user/first/1/2/3",
-          "/home/user/first/1/2",
-          "/home/user/first/1",
+          resolve("/home/user/first/1/2/3"),
+          resolve("/home/user/first/1/2"),
+          resolve("/home/user/first/1"),
         ],
       );
     });
@@ -181,11 +186,11 @@ describe("upwards", () => {
       assert.deepEqual(
         [...upwards("first/1/2/3", "/home/user")],
         [
-          "/home/user/first/1/2/3",
-          "/home/user/first/1/2",
-          "/home/user/first/1",
-          "/home/user/first",
-          "/home/user",
+          resolve("/home/user/first/1/2/3"),
+          resolve("/home/user/first/1/2"),
+          resolve("/home/user/first/1"),
+          resolve("/home/user/first"),
+          resolve("/home/user"),
         ],
       );
     });
@@ -199,7 +204,7 @@ describe("upwards", () => {
     it("should use the dirname of the `to` path before resolving the `from` path relative to it", () => {
       assert.deepEqual(
         [...upwards("./unexistant", "/home/user/first/1/2/3/file.html")],
-        ["/home/user/first/1/2/3"],
+        [resolve("/home/user/first/1/2/3")],
       );
     });
     it("should throw if the path from which traverse directory paths is not relative to the path up to which the traversal takes place", () => {
@@ -207,7 +212,7 @@ describe("upwards", () => {
     });
     if (process.platform === "win32") {
       it("should throw an error if the two given paths do not share the same root", () => {
-        assert.throws(() => upwards("C:\\", "D:\\"));
+        assert.throws(() => upwards("A:\\", resolve("/")));
       });
     }
     it("should throw if the path up to which the traversal takes place does not exist", () => {
