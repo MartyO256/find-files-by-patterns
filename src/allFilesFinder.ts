@@ -6,7 +6,7 @@ import { Matcher } from "./matcher";
  * whose path passes all of the tests.
  * @since 0.1.0
  */
-export interface SynchronousFilesFinder extends Function {
+export interface SynchronousAllFilesFinder extends Function {
   /**
    * Synchronously reads the current working directory and performs the given
    * tests on all of its soft and hard-linked files in order to find the files
@@ -112,7 +112,7 @@ export interface SynchronousFilesFinder extends Function {
  * directories whose path passes all of the tests.
  * @since 0.1.0
  */
-export interface AsynchronousFilesFinder extends Function {
+export interface AsynchronousAllFilesFinder extends Function {
   /**
    * Asynchronously reads the current working directory and performs the given
    * tests on all of its soft and hard-linked files in order to find the files
@@ -220,6 +220,6 @@ export interface AsynchronousFilesFinder extends Function {
  * passes a given sequence of tests.
  * @since 0.1.0
  */
-export interface FilesFinder extends AsynchronousFilesFinder {
-  sync: SynchronousFilesFinder;
+export interface AllFilesFinder extends AsynchronousAllFilesFinder {
+  sync: SynchronousAllFilesFinder;
 }

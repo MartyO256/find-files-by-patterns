@@ -3,24 +3,24 @@ export { Matcher } from "./matcher";
 export { ofBasename } from "./ofBasename";
 
 export {
+  StrictFileFinder,
+  AsynchronousStrictFileFinder,
+  SynchronousStrictFileFinder,
+} from "./strictFileFinder";
+export {
+  AllFilesFinder,
+  AsynchronousAllFilesFinder,
+  SynchronousAllFilesFinder,
+} from "./allFilesFinder";
+export {
   FileFinder,
   AsynchronousFileFinder,
   SynchronousFileFinder,
 } from "./fileFinder";
-export {
-  FilesFinder,
-  AsynchronousFilesFinder,
-  SynchronousFilesFinder,
-} from "./filesFinder";
-export {
-  FirstFileFinder,
-  AsynchronousFirstFileFinder,
-  SynchronousFirstFileFinder,
-} from "./firstFileFinder";
 
+export { strictFindFile } from "./strictFindFile";
+export { findAllFiles } from "./findAllFiles";
 export { findFile } from "./findFile";
-export { findFiles } from "./findFiles";
-export { findFirstFile } from "./findFirstFile";
 
 export { UpwardDirectoriesFetcher } from "./upwardDirectoriesFetcher";
 
