@@ -1,6 +1,8 @@
 export { Matcher } from "./matcher";
 
 export { ofBasename } from "./ofBasename";
+export { ofDirname } from "./ofDirname";
+export { ofExtname } from "./ofExtname";
 
 export {
   StrictFileFinder,

@@ -18,6 +18,51 @@ export const isMatcher = (object: any): object is Matcher => {
 };
 
 /**
+ * Creates a matcher function which determines whether or not an extracted part
+ * from a path matches a chained sequences of tests.
+ * @param extractor The function that extracts part of any given path before
+ * matching it to the given tests.
+ * @param chain The matcher function which chains the given sequence of tests.
+ * @param tests The sequences of tests an extracted part of any path must pass
+ * in order to be a positive match, depending upon the chaining function that is
+ * used.
+ * @returns A matcher function that determines whether or not an extracted part
+ * of any path matches the chained sequence of tests.
+ */
+export const pathPartMatcher = (
+  extractor: ((path: string) => string),
+  chain: ((tests: Matcher[]) => Matcher),
+  tests: Array<string | RegExp | ((part: string) => boolean)>,
+): Matcher =>
+  chain(
+    tests.map(
+      (test) =>
+        typeof test === "string"
+          ? (path: string) => test === extractor(path)
+          : typeof test === "function"
+            ? (path: string) => test(extractor(path))
+            : (path: string) => test.test(extractor(path)),
+    ),
+  );
+
+/**
+ * Chains a sequence of tests using logical disjunctions.
+ * @param tests The sequences of tests to chain.
+ * @returns A matcher function which determines whether or not any of the given
+ * tests returns `true` for a given path.
+ */
+export const orChain = (tests: Matcher[]): Matcher => {
+  return (path: string): boolean => {
+    for (const test of tests) {
+      if (test(path)) {
+        return true;
+      }
+    }
+    return false;
+  };
+};
+
+/**
  * Determines whether or not an existing given path to a file or directory
  * matches all the given sequence of tests. If no tests are provided, then the
  * path won't match.

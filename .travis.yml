@@ -1,46 +1,57 @@
+os:
+- linux
+- osx
 language: node_js
 node_js:
 - node
-before_script:
-- yarn install
-- yarn run build
-script:
-- yarn run coverage
-after_success:
-- cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
-- yarn pack
-- yarn run doc
-deploy:
-- provider: pages
-  skip_cleanup: true
-  local_dir: ./doc/
-  github_token: $GITHUB_TOKEN
-  keep-history: true
-  on:
-    branch: master
-    tags: true
-- provider: releases
-  api_key: $GITHUB_TOKEN
-  file_glob: true
-  file: find-files-by-patterns-*.tgz
-  skip_cleanup: true
-  on:
-    branch: master
-    tags: true
-- provider: npm
-  email: ouimetmarcantoine@gmail.com
-  api_key: $NPM_TOKEN
-  skip_cleanup: true
-  on:
-    branch: master
-    tags: true
+- "10"
+- "8"
+- "6"
+stages:
+- build
+- test
+- coverage
+- name: deploy
+  if: branch = master AND tag = true
+jobs:
+  include:
+    - stage: build
+      os: linux
+      node_js: "10"
+      script:
+        - yarn run build
+    - stage: test
+      script: yarn run test
+    - stage: coverage
+      os: linux
+      node_js: "10"
+      script: yarn run coverage
+      after_success: cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
+    - stage: deploy
+      os: linux
+      node_js: "10"
+      script:
+        - yarn run build
+        - yarn pack
+        - yarn run doc
+      deploy:
+      - provider: pages
+        github_token: $GITHUB_TOKEN
+        local_dir: ./doc/
+        keep-history: true
+        skip_cleanup: true
+      - provider: releases
+        api_key: $GITHUB_TOKEN
+        file_glob: true
+        file: find-files-by-patterns-*.tgz
+        skip_cleanup: true
+      - provider: npm
+        email: ouimetmarcantoine@gmail.com
+        api_key: $NPM_TOKEN
+        skip_cleanup: true
 notifications:
   email:
     on_success: always
     on_failure: always
     recipients:
     - ouimetmarcantoine@gmail.com
-env:
-  global:
-  - secure: pYym6eaSdcXd8SVkDkECuN8ceKIWAbrKyYDbVyJm1Ua33At3ZLfKR/EKwamkb4XuAhN1ZQB96F57WiO26Ym/jAATtmPkB2VkBoji0UG8wtUX5mwGaJKOkCRlH2KmkFU4nCfQAVxhF++Zd20DShdPsa2AEUGm9UtCR3aMAX+7CqF2SJ2wuiaiCkKHzFCwlSjb8Hxf1P/RRa9jCVZt8/BLYcjCDzYrhsfwKeDVygs9tREI8MpAB+w5TekIR7qhYllTQDOGUfmFpOegMVpVeAVJb2nypaf358W3NBC0HhmxT7CajxG5rys0siQ9Y3K098x48rPTjuWPGjZo5jp7VCfjKvlKSlMdvlMVo3GVERSvENQjWjy81o8BpWubzwaS+C4OFhGxtB48/DtJeog/s5lJ+TMmH3iNIsZwoNTXsBKWxDVCUjH577tQvTxRmaTnDEcjWjvDnmQl08QtZiiCoEj0+utA5EFZpNUEjoq+W33GVF1uqpvhp2D2V08g0lUyJBM0UbRW8Eqv80beWPZcHt8apZEdw63wnBqP7iZM6kR0QckxFPxEayVoBwn1NPAusaanK4Y8cO7HS1swaLT0PnaPrdi38SQgXqOgn0YZq5BOiNtmbim7VGp3LdmfMsLxIfP/8Mqfyv3WAAHAlOx3GWC9j8fCeFCbkLABY+1hvugDSIA=
-  - secure: pF+cEIzi69G32afprBbl4WClAm+z9z7k7m5d/Z3ICyDATtbgU9vHP0aRE0ValHlPt/WG83kI6h7wHq1tYeZRsRqht30B3ymKqt968O/tCPvzvUI+z3Qg0hbY90I83LFALyI2028cOzXZd5QqqiDgN7KHqUXexkz9fQwG8fOcFwyCGb6S6TNUocRvOzDB3mUsyXD7Q4TGwZhqBRhQmXLb09VOfvS6g0asOYEny3bBupVuoHOSWkp0RxEwmbTskFqtByfB4saAM/zj+PyQ/437zh/g62HWak6ZB7Gq6/2hdNIaub1m+5gKz9u+lYzqB5zaJOg/4Md7LDXR5FQzmBvFBoEjWXF3LFBpNxRoSHV5/xaflvzu0OBfscaeaOzBt35DIOyu+dH+dPxaXXQNzOCTh+XpFFILx4hCRWL2uty3WwrgJIDgk81UAGBI22k5xBOkz2+moA5T+eEtesXyNMyCngSRyaRLLfW6zQzJKzvchaRmXC6LyIn+I5VjLKjgeROjdznPKumYErSMQgyA/j9Hvey1zBg0bLXryzB1l20lrHep95SL3UB3RYnkcBrHO667Q//tQ95XIN/ISAN4EFxTrvjKYg2nMMGMLcBx2A1pk9mqf4NXe4mQrA8bOWCyiiH9/2/s/hm1IHvIBhFhBx57nUQ/oqrDKacvgv/l51okgmI=

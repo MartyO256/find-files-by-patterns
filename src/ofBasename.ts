@@ -1,6 +1,6 @@
 import { basename as pathBasename } from "path";
 
-import { Matcher } from "./matcher";
+import { Matcher, orChain, pathPartMatcher } from "./matcher";
 
 /**
  * Constructs a matcher function which determines whether or not a given path
@@ -14,26 +14,9 @@ import { Matcher } from "./matcher";
  * a base name matching a given full base name, a regular expression or a
  * function.
  * @see [[basename]] The way the base name is extracted from each path.
- * @version 0.3.0
+ * @version 0.5.0
  * @since 0.0.1
  */
 export const ofBasename = (
   ...basenames: Array<string | RegExp | ((basename: string) => boolean)>
-): Matcher => {
-  const tests: Matcher[] = basenames.map(
-    (basename) =>
-      typeof basename === "string"
-        ? (path: string) => basename === pathBasename(path)
-        : typeof basename === "function"
-          ? basename
-          : (path: string) => basename.test(pathBasename(path)),
-  );
-  return (path: string): boolean => {
-    for (const test of tests) {
-      if (test(path)) {
-        return true;
-      }
-    }
-    return false;
-  };
-};
+): Matcher => pathPartMatcher(pathBasename, orChain, basenames);
