@@ -61,7 +61,7 @@ export interface SynchronousStrictFileFinder extends SynchronousFileFinder {
    * only one found in the current working directory such that it passes all the
    * tests, or `null` if there is no such path in the current working directory.
    */
-  (...tests: Matcher[]): string | null;
+  (...tests: Array<Matcher<string>>): string | null;
 
   /**
    * Synchronously reads the given directories and performs the given tests on
@@ -175,7 +175,9 @@ export interface SynchronousStrictFileFinder extends SynchronousFileFinder {
    * only one found in the directories such that it passes all the tests, or
    * `null` if there is no such path in any of the directories.
    */
-  (directories: string | Iterable<string>, ...tests: Matcher[]): string | null;
+  (directories: string | Iterable<string>, ...tests: Array<Matcher<string>>):
+    | string
+    | null;
 }
 
 /**
@@ -240,7 +242,7 @@ export interface AsynchronousStrictFileFinder extends AsynchronousFileFinder {
    * passes all the tests, or `null` if there is no such path in the current
    * working directory.
    */
-  (...tests: Matcher[]): Promise<string | null>;
+  (...tests: Array<Matcher<string>>): Promise<string | null>;
 
   /**
    * Asynchronously reads the given directories and performs the given tests on
@@ -356,9 +358,10 @@ export interface AsynchronousStrictFileFinder extends AsynchronousFileFinder {
    * first and the only one found in the directories such that it passes all the
    * tests, or `null` if there is no such file in any of the directories.
    */
-  (directories: string | Iterable<string>, ...tests: Matcher[]): Promise<
-    string | null
-  >;
+  (
+    directories: string | Iterable<string>,
+    ...tests: Array<Matcher<string>>
+  ): Promise<string | null>;
 }
 
 /**

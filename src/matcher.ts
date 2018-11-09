@@ -1,10 +1,10 @@
-import { resolve } from "path";
+import { join } from "path";
 
 /**
  * A matcher is a function that determines whether or not a given path matches a
  * pattern.
  */
-export type Matcher = (path: string) => boolean;
+export type Matcher<T> = (value: T) => boolean;
 
 /**
  * Loosely determines whether or not a given parameter is a matcher function.
@@ -13,7 +13,7 @@ export type Matcher = (path: string) => boolean;
  * @see [[Matcher]] The actual type of a matcher function.
  * @returns Whether or not the given parameter is a matcher function.
  */
-export const isMatcher = (object: any): object is Matcher => {
+export const isMatcher = <T>(object: any): object is Matcher<T> => {
   return typeof object === "function";
 };
 
@@ -31,9 +31,9 @@ export const isMatcher = (object: any): object is Matcher => {
  */
 export const pathPartMatcher = (
   extractor: ((path: string) => string),
-  chain: ((tests: Matcher[]) => Matcher),
+  chain: ((tests: Array<Matcher<string>>) => Matcher<string>),
   tests: Array<string | RegExp | ((part: string) => boolean)>,
-): Matcher =>
+): Matcher<string> =>
   chain(
     tests.map(
       (test) =>
@@ -49,12 +49,12 @@ export const pathPartMatcher = (
  * Chains a sequence of tests using logical disjunctions.
  * @param tests The sequences of tests to chain.
  * @returns A matcher function which determines whether or not any of the given
- * tests returns `true` for a given path.
+ * tests returns `true` for a given value.
  */
-export const orChain = (tests: Matcher[]): Matcher => {
-  return (path: string): boolean => {
+export const orChain = <T>(tests: Array<Matcher<T>>): Matcher<T> => {
+  return (value: T): boolean => {
     for (const test of tests) {
-      if (test(path)) {
+      if (test(value)) {
         return true;
       }
     }
@@ -69,10 +69,14 @@ export const orChain = (tests: Matcher[]): Matcher => {
  * @param path The path to test.
  * @param tests The tests to perform on the path.
  * @returns Whether or not the given path passes all the given tests.
+ * @deprecated
  */
-export const matches = (path: string, tests: Matcher[]): boolean => {
+export const matches = <T>(
+  value: T,
+  tests: Array<(value: T) => boolean>,
+): boolean => {
   for (const test of tests) {
-    if (!test(path)) {
+    if (!test(value)) {
       return false;
     }
   }
@@ -80,20 +84,17 @@ export const matches = (path: string, tests: Matcher[]): boolean => {
 };
 
 /**
- * Retrieves the set of files or directories' path among the given file names
- * resolved from the given directory, such that the paths pass all the given
+ * Retrieves the set of files or directories' names among the given file names
+ * joined to the given directory, such that their paths pass all the given
  * tests.
  * @param directory The directory in which the given files are located.
  * @param files The name of the files in the given directory.
  * @param tests The sequence of tests a path has to pass in order to be
  * considered among the matching paths.
- * @returns The set of paths that match the tests.
+ * @returns The set of files that match the tests.
  */
 export const matchingFiles = (
   directory: string,
   files: string[],
-  tests: Matcher[],
-): string[] =>
-  files
-    .map((file) => resolve(directory, file))
-    .filter((path) => matches(path, tests));
+  tests: Array<Matcher<string>>,
+): string[] => files.filter((file) => matches(join(directory, file), tests));

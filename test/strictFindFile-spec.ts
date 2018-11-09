@@ -47,12 +47,12 @@ describe("strictFindFile", () => {
     mock.restore();
   });
   describe("Asynchronous", () => {
-    describe("(...tests: Matcher[]): Promise<string | null>", () => {
+    describe("(...tests: Array<Matcher<string>>): Promise<string | null>", () => {
       it("should arbitrarily resolve to `null` if no arguments are provided", () => {
         return assert.eventually.isNull(strictFindFile());
       });
       it("should arbitrarily resolve to `null` if only an empty set of tests is provided", () => {
-        const tests: Matcher[] = [];
+        const tests: Array<Matcher<string>> = [];
         return assert.eventually.isNull(strictFindFile(...tests));
       });
       it("should arbitrarily resolve to `null` if there are no test to perform on files' path", () => {
@@ -99,7 +99,7 @@ describe("strictFindFile", () => {
         return assert.isRejected(strictFindFile(ofBasename(/^file/)));
       });
     });
-    describe("(directories: string | Iterable<string>, ...tests: Matcher[]): Promise<string | null>", () => {
+    describe("(directories: string | Iterable<string>, ...tests: Array<Matcher<string>>): Promise<string | null>", () => {
       it("should arbitrarily resolve to `null` if no arguments are provided", () => {
         return assert.eventually.isNull(strictFindFile());
       });
@@ -204,12 +204,12 @@ describe("strictFindFile", () => {
     });
   });
   describe("Synchronous", () => {
-    describe("(...tests: Matcher[]): string | null", () => {
+    describe("(...tests: Array<Matcher<string>>): string | null", () => {
       it("should arbitrarily return `null` if no arguments are provided", () => {
         assert.isNull(strictFindFile.sync());
       });
       it("should arbitrarily return `null` if only an empty set of tests is provided", () => {
-        const tests: Matcher[] = [];
+        const tests: Array<Matcher<string>> = [];
         assert.isNull(strictFindFile.sync(...tests));
       });
       it("should resolve an undefined directory path to the current working directory", () => {
@@ -253,7 +253,7 @@ describe("strictFindFile", () => {
         assert.throws(() => strictFindFile.sync(ofBasename(/^file/)));
       });
     });
-    describe("(directories: string | Iterable<string>, ...tests: Matcher[]): string | null", () => {
+    describe("(directories: string | Iterable<string>, ...tests: Array<Matcher<string>>): string | null", () => {
       it("should arbitrarily return `null` if no arguments are provided", () => {
         assert.isNull(strictFindFile.sync());
       });

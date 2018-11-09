@@ -46,7 +46,7 @@ export interface SynchronousFileFinder extends Function {
    * found in the current working directory such that it passes all the tests,
    * or `null` if there is no such path in the current working directory.
    */
-  (...tests: Matcher[]): string | null;
+  (...tests: Array<Matcher<string>>): string | null;
 
   /**
    * Synchronously reads the given directories and performs the given tests on
@@ -159,7 +159,9 @@ export interface SynchronousFileFinder extends Function {
    * found in the directories such that it passes all the tests, or `null` if
    * there is no such path in any of the directories.
    */
-  (directories: string | Iterable<string>, ...tests: Matcher[]): string | null;
+  (directories: string | Iterable<string>, ...tests: Array<Matcher<string>>):
+    | string
+    | null;
 }
 
 /**
@@ -223,7 +225,7 @@ export interface AsynchronousFileFinder extends Function {
    * the tests, or `null` if there is no such path in the current working
    * directory.
    */
-  (...tests: Matcher[]): Promise<string | null>;
+  (...tests: Array<Matcher<string>>): Promise<string | null>;
 
   /**
    * Asynchronously reads the given directories and performs the given tests on
@@ -338,9 +340,10 @@ export interface AsynchronousFileFinder extends Function {
    * first one found in the directories such that it passes all the tests, or
    * `null` if there is no such path in any of the directories.
    */
-  (directories: string | Iterable<string>, ...tests: Matcher[]): Promise<
-    string | null
-  >;
+  (
+    directories: string | Iterable<string>,
+    ...tests: Array<Matcher<string>>
+  ): Promise<string | null>;
 }
 
 /**

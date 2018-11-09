@@ -20,4 +20,4 @@ import { Matcher, orChain, pathPartMatcher } from "./matcher";
  */
 export const ofExtname = (
   ...extnames: Array<string | RegExp | ((extname: string) => boolean)>
-): Matcher => pathPartMatcher(pathExtname, orChain, extnames);
+): Matcher<string> => pathPartMatcher(pathExtname, orChain, extnames);

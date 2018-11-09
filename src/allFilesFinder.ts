@@ -43,7 +43,7 @@ export interface SynchronousAllFilesFinder extends Function {
    * @returns The set of files or directories' path in the current working
    * directory that pass all the tests. These paths are sorted alphanumerically.
    */
-  (...tests: Matcher[]): Set<string>;
+  (...tests: Array<Matcher<string>>): Set<string>;
 
   /**
    * Synchronously reads the given directories and performs the given tests on
@@ -103,7 +103,10 @@ export interface SynchronousAllFilesFinder extends Function {
    * that pass all the tests. The paths are returned in order of directory and
    * sorted alphanumerically by base name in each directory.
    */
-  (directories: string | Iterable<string>, ...tests: Matcher[]): Set<string>;
+  (
+    directories: string | Iterable<string>,
+    ...tests: Array<Matcher<string>>
+  ): Set<string>;
 }
 
 /**
@@ -150,7 +153,7 @@ export interface AsynchronousAllFilesFinder extends Function {
    * @returns The set of files or directories' path in the current working
    * directory that pass all the tests. These paths are sorted alphanumerically.
    */
-  (...tests: Matcher[]): Promise<Set<string>>;
+  (...tests: Array<Matcher<string>>): Promise<Set<string>>;
 
   /**
    * Asynchronously reads the given directories and performs the given tests on
@@ -209,9 +212,10 @@ export interface AsynchronousAllFilesFinder extends Function {
    * directories that pass all the tests. The paths are returned in order of
    * directory and sorted alphanumerically by base name in each directory.
    */
-  (directories: string | Iterable<string>, ...tests: Matcher[]): Promise<
-    Set<string>
-  >;
+  (
+    directories: string | Iterable<string>,
+    ...tests: Array<Matcher<string>>
+  ): Promise<Set<string>>;
 }
 
 /**

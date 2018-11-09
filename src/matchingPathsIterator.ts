@@ -11,7 +11,7 @@ import { Matcher, matches } from "./matcher";
  */
 export const matchingPathsIterator = (
   paths: string[],
-  tests: Matcher[],
+  tests: Array<Matcher<string>>,
 ): Iterable<string> => {
   if (tests.length > 0) {
     return {

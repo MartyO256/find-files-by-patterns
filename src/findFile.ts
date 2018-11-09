@@ -1,9 +1,68 @@
 import { readdirSync } from "fs";
-import { resolve as resolvePath } from "path";
+import { join, resolve as resolvePath } from "path";
 
+import { concatenatedIterable } from "./concatenatedIterable";
 import { FileFinder } from "./fileFinder";
-import { Matcher, matches } from "./matcher";
+import { filteredIterable } from "./filteredIterable";
+import { mappedIterable } from "./mappedIterable";
+import { Matcher } from "./matcher";
 import { validateDirectoriesAndTests } from "./validateDirectoriesAndTests";
+
+/**
+ * The validated asynchronous file finder function.
+ * @see [[AsynchronousFileFinder]] The specifications of the function.
+ */
+const asyncFinder = (
+  directories: Iterable<string>,
+  tests: Array<Matcher<string>>,
+) => {
+  if (tests.length === 0) {
+    return new Promise<null>((resolve) => resolve(null));
+  }
+  return new Promise<string | null>((resolve, reject) => {
+    for (const file of filteredIterable(
+      mappedIterable(concatenatedIterable(directories), (directory) => {
+        const resolvedDirectory = resolvePath(directory);
+        try {
+          return readdirSync(resolvedDirectory)
+            .sort()
+            .map((file) => join(resolvedDirectory, file));
+        } catch (error) {
+          reject(error);
+        }
+      }),
+      tests,
+    )) {
+      resolve(file);
+    }
+    resolve(null);
+  });
+};
+
+/**
+ * The validated synchronous file finder function.
+ * @see [[SynchronousFileFinder]] The specifications of the function.
+ */
+const syncFinder = (
+  directories: Iterable<string>,
+  tests: Array<Matcher<string>>,
+): string | null => {
+  if (tests.length === 0) {
+    return null;
+  }
+  for (const file of filteredIterable(
+    mappedIterable(concatenatedIterable(directories), (directory) => {
+      const resolvedDirectory = resolvePath(directory);
+      return readdirSync(resolvedDirectory)
+        .sort()
+        .map((file) => join(resolvedDirectory, file));
+    }),
+    tests,
+  )) {
+    return file;
+  }
+  return null;
+};
 
 /**
  * Constructs a file finder in accordance with the `FileFinder` interface's
@@ -17,61 +76,12 @@ const makeFindFile = (
   defaultDirectories: string[] = [process.cwd()],
 ): FileFinder => {
   /**
-   * The validated asynchronous file finder function.
-   * @see [[AsynchronousFileFinder]] The specifications of the function.
-   */
-  const asyncFinder = (directories: Iterable<string>, tests: Matcher[]) => {
-    if (tests.length === 0) {
-      return new Promise<null>((resolve) => resolve(null));
-    }
-    return new Promise<string | null>((resolve, reject) => {
-      for (let directory of directories) {
-        directory = resolvePath(directory);
-        try {
-          readdirSync(directory).forEach((file) => {
-            const path = resolvePath(directory, file);
-            if (matches(path, tests)) {
-              resolve(path);
-            }
-          });
-        } catch (error) {
-          reject(error);
-        }
-      }
-      resolve(null);
-    });
-  };
-
-  /**
-   * The validated synchronous file finder function.
-   * @see [[SynchronousFileFinder]] The specifications of the function.
-   */
-  const syncFinder = (
-    directories: Iterable<string>,
-    tests: Matcher[],
-  ): string | null => {
-    if (tests.length === 0) {
-      return null;
-    }
-    for (let directory of directories) {
-      directory = resolvePath(directory);
-      for (const file of readdirSync(directory)) {
-        const path = resolvePath(directory, file);
-        if (matches(path, tests)) {
-          return path;
-        }
-      }
-    }
-    return null;
-  };
-
-  /**
    * The asynchronous file finder function.
    * @see [[FileFinder]] The specifications of the function.
    */
   const finder: any = (
-    directories: string | Iterable<string> | Matcher,
-    ...tests: Matcher[]
+    directories: string | Iterable<string> | Matcher<string>,
+    ...tests: Array<Matcher<string>>
   ): Promise<string | null> => {
     const validatedParameters = validateDirectoriesAndTests(
       directories,
@@ -89,8 +99,8 @@ const makeFindFile = (
    * @see [[FileFinder.sync]] The specifications of the function.
    */
   finder.sync = (
-    directories: string | Iterable<string> | Matcher,
-    ...tests: Matcher[]
+    directories: string | Iterable<string> | Matcher<string>,
+    ...tests: Array<Matcher<string>>
   ): string | null => {
     const validatedParameters = validateDirectoriesAndTests(
       directories,
@@ -108,7 +118,7 @@ const makeFindFile = (
 /**
  * A file finder function.
  * @see [[FileFinder]] The specifications of the function.
- * @version 0.4.0
+ * @version 0.6.0
  * @since 0.2.0
  */
 export const findFile: FileFinder = makeFindFile();

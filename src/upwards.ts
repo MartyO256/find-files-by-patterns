@@ -17,9 +17,9 @@ const makeUpwards = (
   startingDirectory: string = process.cwd(),
 ): UpwardDirectoriesFetcher => {
   const upwards = (
-    from: undefined | string | Matcher,
-    to: undefined | string | number | Matcher,
-    ...tests: Matcher[]
+    from: undefined | string | Matcher<string>,
+    to: undefined | string | number | Matcher<string>,
+    ...tests: Array<Matcher<string>>
   ): Iterable<string> => {
     if (typeof from === "undefined") {
       from = startingDirectory;

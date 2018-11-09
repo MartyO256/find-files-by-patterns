@@ -12,14 +12,14 @@ import { isMatcher, Matcher } from "./matcher";
  * @return The validated directories and tests.
  */
 export const validateDirectoriesAndTests = (
-  directories: string | Iterable<string> | Matcher,
-  tests: Matcher[],
+  directories: string | Iterable<string> | Matcher<string>,
+  tests: Array<Matcher<string>>,
   defaultDirectories: Iterable<string>,
 ): {
   directories: Iterable<string>;
-  tests: Matcher[];
+  tests: Array<Matcher<string>>;
 } => {
-  if (isMatcher(directories)) {
+  if (isMatcher<string>(directories)) {
     tests.unshift(directories);
     directories = defaultDirectories;
   }

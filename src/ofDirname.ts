@@ -20,4 +20,4 @@ import { Matcher, orChain, pathPartMatcher } from "./matcher";
  */
 export const ofDirname = (
   ...dirnames: Array<string | RegExp | ((dirname: string) => boolean)>
-): Matcher => pathPartMatcher(pathDirname, orChain, dirnames);
+): Matcher<string> => pathPartMatcher(pathDirname, orChain, dirnames);

@@ -19,4 +19,4 @@ import { Matcher, orChain, pathPartMatcher } from "./matcher";
  */
 export const ofBasename = (
   ...basenames: Array<string | RegExp | ((basename: string) => boolean)>
-): Matcher => pathPartMatcher(pathBasename, orChain, basenames);
+): Matcher<string> => pathPartMatcher(pathBasename, orChain, basenames);

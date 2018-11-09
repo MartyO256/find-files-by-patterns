@@ -3,25 +3,33 @@ export { Matcher } from "./matcher";
 export { ofBasename } from "./ofBasename";
 export { ofDirname } from "./ofDirname";
 export { ofExtname } from "./ofExtname";
+export { isDirectory } from "./isDirectory";
+export { isFile } from "./isFile";
+export { doesNotHaveAnyPathSegment, hasPathSegments } from "./hasPathSegments";
+export { hasFile } from "./hasFile";
+
+export {
+  AllFilesFinder,
+  AsynchronousAllFilesFinder,
+  SynchronousAllFilesFinder,
+} from "./allFilesFinder";
+
+export { findAllFiles } from "./findAllFiles";
 
 export {
   StrictFileFinder,
   AsynchronousStrictFileFinder,
   SynchronousStrictFileFinder,
 } from "./strictFileFinder";
-export {
-  AllFilesFinder,
-  AsynchronousAllFilesFinder,
-  SynchronousAllFilesFinder,
-} from "./allFilesFinder";
+
+export { strictFindFile } from "./strictFindFile";
+
 export {
   FileFinder,
   AsynchronousFileFinder,
   SynchronousFileFinder,
 } from "./fileFinder";
 
-export { strictFindFile } from "./strictFindFile";
-export { findAllFiles } from "./findAllFiles";
 export { findFile } from "./findFile";
 
 export { UpwardDirectoriesFetcher } from "./upwardDirectoriesFetcher";

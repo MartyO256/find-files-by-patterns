@@ -57,12 +57,12 @@ describe("findAllFiles", () => {
     mock.restore();
   });
   describe("Asynchronous", () => {
-    describe("(...tests: Matcher[]): Promise<Set<string>>", () => {
+    describe("(...tests: Array<Matcher<string>>): Promise<Set<string>>", () => {
       it("should arbitrarily resolve to an empty set if no arguments are provided", () => {
         return assert.eventually.isEmpty(findAllFiles());
       });
       it("should arbitrarily resolve to an empty set if only an empty set of tests is provided", () => {
-        const tests: Matcher[] = [];
+        const tests: Array<Matcher<string>> = [];
         return assert.eventually.isEmpty(findAllFiles(...tests));
       });
       it("should search in the current working directory", () => {
@@ -135,7 +135,7 @@ describe("findAllFiles", () => {
         );
       });
     });
-    describe("(directories: string | Iterable<string>, ...tests: Matcher[]): Promise<Set<string>>", () => {
+    describe("(directories: string | Iterable<string>, ...tests: Array<Matcher<string>>): Promise<Set<string>>", () => {
       it("should arbitrarily resolve to an empty set if no arguments are provided", () => {
         return assert.eventually.isEmpty(findAllFiles());
       });
@@ -331,12 +331,12 @@ describe("findAllFiles", () => {
     });
   });
   describe("Synchronous", () => {
-    describe("(...tests: Matcher[]): Set<string>", () => {
+    describe("(...tests: Array<Matcher<string>>): Set<string>", () => {
       it("should arbitrarily return an empty set if no arguments are provided", () => {
         assert.isEmpty(findAllFiles.sync());
       });
       it("should arbitrarily return an empty set if only an empty set of tests is provided", () => {
-        const tests: Matcher[] = [];
+        const tests: Array<Matcher<string>> = [];
         assert.isEmpty(findAllFiles.sync(...tests));
       });
       it("should search in the current working directory", () => {
@@ -399,7 +399,7 @@ describe("findAllFiles", () => {
         );
       });
     });
-    describe("(directories: string | Iterable<string>, ...tests: Matcher[]): Set<string>", () => {
+    describe("(directories: string | Iterable<string>, ...tests: Array<Matcher<string>>): Set<string>", () => {
       it("should arbitrarily return an empty set if no arguments are provided", () => {
         assert.isEmpty(findAllFiles.sync());
       });

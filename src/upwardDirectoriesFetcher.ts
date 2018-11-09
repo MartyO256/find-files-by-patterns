@@ -24,7 +24,7 @@ export interface UpwardDirectoriesFetcher {
    * @returns An iterable over the set of upward directory paths that match the
    * given tests.
    */
-  (...tests: Matcher[]): Iterable<string>;
+  (...tests: Array<Matcher<string>>): Iterable<string>;
 
   /**
    * Fetches an iterable over the path to the directories which are located
@@ -36,6 +36,9 @@ export interface UpwardDirectoriesFetcher {
    * directory. If it is not absolute, then it is resolved relative to the
    * current working directory. If a path to an existing file is given, then its
    * directory is considered as the starting point for the traversal.
+   * @param tests The sequence of tests a directory's path must pass in order to
+   * be among the iterated upward directory paths. If no tests are specified,
+   * then all the upward paths will be iterator results.
    * @example Assuming the given `from` directory is `/home/user/Documents`,
    * then the upward directories that will be iterated over by the returned
    * iterable will be `/home/user/Documents`, `/home/user`, `/home` and `/` in
@@ -48,13 +51,10 @@ export interface UpwardDirectoriesFetcher {
    * iterated over by the returned iterable will start with the given path's
    * directory, hence they will be `/home/user/Documents`, `/home/user`, `/home`
    * and `/` in that order, provided no test excludes any of them.
-   * @param tests The sequence of tests a directory's path must pass in order to
-   * be among the iterated upward directory paths. If no tests are specified,
-   * then all the upward paths will be iterator results.
    * @returns An iterable over the set of upward directory paths that match the
    * given tests.
    */
-  (from: string, ...tests: Matcher[]): Iterable<string>;
+  (from: string, ...tests: Array<Matcher<string>>): Iterable<string>;
 
   /**
    * Fetches an iterable over the path to the directories which are located
@@ -96,7 +96,9 @@ export interface UpwardDirectoriesFetcher {
    * @returns An iterable over the set of upward directory paths that match the
    * given tests.
    */
-  (from: string, levels: number, ...tests: Matcher[]): Iterable<string>;
+  (from: string, levels: number, ...tests: Array<Matcher<string>>): Iterable<
+    string
+  >;
 
   /**
    * Fetches an iterable over the path to the directories which are located
@@ -149,5 +151,7 @@ export interface UpwardDirectoriesFetcher {
    * given tests.
    */
   // tslint:disable:unified-signatures
-  (from: string, to: string, ...tests: Matcher[]): Iterable<string>;
+  (from: string, to: string, ...tests: Array<Matcher<string>>): Iterable<
+    string
+  >;
 }
