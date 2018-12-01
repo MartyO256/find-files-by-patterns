@@ -42,7 +42,7 @@ const makeUpwards = (
       to = parse(from).root;
     } else if (typeof to === "function") {
       tests.unshift(to);
-      to = parse(from as string).root;
+      to = parse(from).root;
     } else if (typeof to === "number") {
       if (to < 0) {
         throw new Error(

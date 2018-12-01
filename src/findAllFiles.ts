@@ -1,10 +1,5 @@
-import { readdirSync } from "fs";
-import { join, resolve as resolvePath } from "path";
-
 import { AllFilesFinder } from "./allFilesFinder";
-import { concatenatedIterable } from "./concatenatedIterable";
-import { filteredIterable } from "./filteredIterable";
-import { mappedIterable } from "./mappedIterable";
+import { files } from "./files";
 import { Matcher } from "./matcher";
 import { validateDirectoriesAndTests } from "./validateDirectoriesAndTests";
 
@@ -20,26 +15,11 @@ const asyncFinder = (
     return new Promise<Set<string>>((resolve) => resolve(new Set<string>()));
   }
   return new Promise<Set<string>>((resolve, reject) => {
-    resolve(
-      new Set<string>(
-        filteredIterable<string>(
-          mappedIterable<string, string>(
-            concatenatedIterable(directories),
-            (directory) => {
-              const resolvedDirectory = resolvePath(directory);
-              try {
-                return readdirSync(resolvedDirectory)
-                  .sort()
-                  .map((file) => join(resolvedDirectory, file));
-              } catch (error) {
-                reject(error);
-              }
-            },
-          ),
-          tests,
-        ),
-      ),
-    );
+    try {
+      resolve(new Set<string>(files(directories, ...tests)));
+    } catch (error) {
+      reject(error);
+    }
   });
 };
 
@@ -54,33 +34,16 @@ const syncFinder = (
   if (tests.length === 0) {
     return new Set<string>();
   }
-  return new Set<string>(
-    filteredIterable<string>(
-      mappedIterable<string, string>(
-        concatenatedIterable(directories),
-        (directory) => {
-          const resolvedDirectory = resolvePath(directory);
-          return readdirSync(resolvedDirectory)
-            .sort()
-            .map((file) => join(resolvedDirectory, file));
-        },
-      ),
-      tests,
-    ),
-  );
+  return new Set<string>(files(directories, ...tests));
 };
 
 /**
  * Constructs an all files finder in accordance with the `AllFilesFinder`
  * interface's specifications.
  * @see [[AllFilesFinder]] The specifications of an all files finder.
- * @param defaultDirectories The directories in which to search for the files if
- * no directories are specified.
  * @returns A find all files function.
  */
-const makeFindAllFiles = (
-  defaultDirectories: string[] = [process.cwd()],
-): AllFilesFinder => {
+export const makeFindAllFiles = (): AllFilesFinder => {
   /**
    * The asynchronous files finder function.
    * @see [[FilesFinder]] The specifications of the function.
@@ -89,11 +52,7 @@ const makeFindAllFiles = (
     directories: Iterable<string> | Matcher<string>,
     ...tests: Array<Matcher<string>>
   ): Promise<Set<string>> => {
-    const validatedParameters = validateDirectoriesAndTests(
-      directories,
-      tests,
-      defaultDirectories,
-    );
+    const validatedParameters = validateDirectoriesAndTests(directories, tests);
     return asyncFinder(
       validatedParameters.directories,
       validatedParameters.tests,
@@ -108,11 +67,7 @@ const makeFindAllFiles = (
     directories: Iterable<string> | Matcher<string>,
     ...tests: Array<Matcher<string>>
   ): Set<string> => {
-    const validatedParameters = validateDirectoriesAndTests(
-      directories,
-      tests,
-      defaultDirectories,
-    );
+    const validatedParameters = validateDirectoriesAndTests(directories, tests);
     return syncFinder(
       validatedParameters.directories,
       validatedParameters.tests,
@@ -124,7 +79,7 @@ const makeFindAllFiles = (
 /**
  * A files finder function.
  * @see [[AllFilesFinder]] The specifications of the function.
- * @version 0.6.0
+ * @version 0.7.0
  * @since 0.1.0
  */
 export const findAllFiles: AllFilesFinder = makeFindAllFiles();

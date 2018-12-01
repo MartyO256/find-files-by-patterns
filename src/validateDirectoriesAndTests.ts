@@ -14,14 +14,13 @@ import { isMatcher, Matcher } from "./matcher";
 export const validateDirectoriesAndTests = (
   directories: string | Iterable<string> | Matcher<string>,
   tests: Array<Matcher<string>>,
-  defaultDirectories: Iterable<string>,
 ): {
   directories: Iterable<string>;
   tests: Array<Matcher<string>>;
 } => {
   if (isMatcher<string>(directories)) {
     tests.unshift(directories);
-    directories = defaultDirectories;
+    directories = [process.cwd()];
   }
   if (typeof directories === "string") {
     directories = [directories];

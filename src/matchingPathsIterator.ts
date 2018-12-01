@@ -24,7 +24,7 @@ export const matchingPathsIterator = (
             } while (path && !matches(path, tests));
             return {
               done: !path,
-              value: path as any,
+              value: path,
             };
           },
         };
@@ -38,7 +38,7 @@ export const matchingPathsIterator = (
             const path: string | undefined = paths.pop();
             return {
               done: !path,
-              value: path as any,
+              value: path,
             };
           },
         };

@@ -1,5 +1,3 @@
-import { join } from "path";
-
 /**
  * A matcher is a function that determines whether or not a given path matches a
  * pattern.
@@ -82,19 +80,3 @@ export const matches = <T>(
   }
   return tests.length > 0;
 };
-
-/**
- * Retrieves the set of files or directories' names among the given file names
- * joined to the given directory, such that their paths pass all the given
- * tests.
- * @param directory The directory in which the given files are located.
- * @param files The name of the files in the given directory.
- * @param tests The sequence of tests a path has to pass in order to be
- * considered among the matching paths.
- * @returns The set of files that match the tests.
- */
-export const matchingFiles = (
-  directory: string,
-  files: string[],
-  tests: Array<Matcher<string>>,
-): string[] => files.filter((file) => matches(join(directory, file), tests));

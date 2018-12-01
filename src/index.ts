@@ -35,3 +35,9 @@ export { findFile } from "./findFile";
 export { UpwardDirectoriesFetcher } from "./upwardDirectoriesFetcher";
 
 export { upwards } from "./upwards";
+
+export { DownwardDirectoriesFetcher } from "./downwardDirectoriesFetcher";
+
+export { downwards } from "./downwards";
+
+export { files } from "./files";

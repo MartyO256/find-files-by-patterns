@@ -37,7 +37,7 @@ export const concatenatedIterable = <T>(
           } while (!valuesIteratorDone && value === undefined);
           return {
             done: value === undefined,
-            value: value as any,
+            value,
           };
         },
       };

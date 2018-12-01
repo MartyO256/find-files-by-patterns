@@ -1,7 +1,7 @@
-import { readdirSync } from "fs";
-import { join, resolve as resolvePath } from "path";
+import { resolve as resolvePath } from "path";
 
-import { Matcher, matchingFiles } from "./matcher";
+import { files } from "./files";
+import { Matcher } from "./matcher";
 import { StrictFileFinder } from "./strictFileFinder";
 import { validateDirectoriesAndTests } from "./validateDirectoriesAndTests";
 
@@ -10,7 +10,7 @@ import { validateDirectoriesAndTests } from "./validateDirectoriesAndTests";
  * @param files The files or directories' path that are conflicting.
  * @returns The error to throw.
  */
-const conflictingFilesError = (files: string[]) =>
+const conflictingFilesError = (...files: string[]) =>
   new Error(
     `The following paths are in conflict as they match all the tests in the same directory:\n${files.join(
       "\n",
@@ -29,24 +29,22 @@ const asyncFinder = (
     return new Promise<null>((resolve) => resolve(null));
   }
   return new Promise<string | null>((resolve, reject) => {
-    for (let directory of directories) {
-      directory = resolvePath(directory);
-      try {
-        const matches = matchingFiles(directory, readdirSync(directory), tests);
-        if (matches.length >= 1) {
-          if (matches.length === 1) {
-            resolve(join(directory, matches[0]));
-          } else {
-            reject(
-              conflictingFilesError(
-                matches.sort().map((file) => join(directory, file)),
-              ),
-            );
+    try {
+      for (let directory of directories) {
+        directory = resolvePath(directory);
+        let retainedMatch: string | undefined;
+        for (const match of files(directory, ...tests)) {
+          if (retainedMatch) {
+            throw conflictingFilesError(retainedMatch, match);
           }
+          retainedMatch = match;
         }
-      } catch (error) {
-        reject(error);
+        if (retainedMatch) {
+          resolve(retainedMatch);
+        }
       }
+    } catch (error) {
+      reject(error);
     }
     resolve(null);
   });
@@ -65,15 +63,15 @@ const syncFinder = (
   }
   for (let directory of directories) {
     directory = resolvePath(directory);
-    const matches = matchingFiles(directory, readdirSync(directory), tests);
-    if (matches.length >= 1) {
-      if (matches.length === 1) {
-        return join(directory, matches[0]);
-      } else {
-        throw conflictingFilesError(
-          matches.sort().map((file) => join(directory, file)),
-        );
+    let retainedMatch: string | undefined;
+    for (const match of files(directory, ...tests)) {
+      if (retainedMatch) {
+        throw conflictingFilesError(retainedMatch, match);
       }
+      retainedMatch = match;
+    }
+    if (retainedMatch) {
+      return retainedMatch;
     }
   }
   return null;
@@ -83,13 +81,9 @@ const syncFinder = (
  * Constructs a strict file finder in accordance with the `StrictFileFinder`
  * interface's specifications.
  * @see [[StrictFileFinder]] The specifications of a strict file finder.
- * @param defaultDirectories The directories in which to search for the file if
- * no directories are specified.
  * @returns A strict find file function.
  */
-const makeStrictFindFile = (
-  defaultDirectories: string[] = [process.cwd()],
-): StrictFileFinder => {
+export const makeStrictFindFile = (): StrictFileFinder => {
   /**
    * The asynchronous strict file finder function.
    * @see [[StrictFileFinder]] The specifications of the function.
@@ -98,11 +92,7 @@ const makeStrictFindFile = (
     directories: string | Iterable<string> | Matcher<string>,
     ...tests: Array<Matcher<string>>
   ): Promise<string | null> => {
-    const validatedParameters = validateDirectoriesAndTests(
-      directories,
-      tests,
-      defaultDirectories,
-    );
+    const validatedParameters = validateDirectoriesAndTests(directories, tests);
     return asyncFinder(
       validatedParameters.directories,
       validatedParameters.tests,
@@ -117,11 +107,7 @@ const makeStrictFindFile = (
     directories: string | Iterable<string> | Matcher<string>,
     ...tests: Array<Matcher<string>>
   ): string | null => {
-    const validatedParameters = validateDirectoriesAndTests(
-      directories,
-      tests,
-      defaultDirectories,
-    );
+    const validatedParameters = validateDirectoriesAndTests(directories, tests);
     return syncFinder(
       validatedParameters.directories,
       validatedParameters.tests,
@@ -133,7 +119,7 @@ const makeStrictFindFile = (
 /**
  * A strict file finder function.
  * @see [[StrictFileFinder]] The specifications of the function.
- * @version 0.6.0
+ * @version 0.7.0
  * @since 0.1.0
  */
 export const strictFindFile: StrictFileFinder = makeStrictFindFile();

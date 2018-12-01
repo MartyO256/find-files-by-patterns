@@ -1,6 +1,7 @@
 {
   "printWidth": 80,
   "parser": "typescript",
+  "typescript": "all",
   "tabWidth": 2,
   "bracketSpacing": true,
   "arrowParens": "always",

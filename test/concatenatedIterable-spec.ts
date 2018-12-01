@@ -6,7 +6,7 @@ describe("concatenatedIterable = <T>(...values: Array<Iterable<T>>): Iterable<T>
   it("should return an empty iterable if no values are given", () => {
     assert.isEmpty([...concatenatedIterable()]);
   });
-  it("should return an empty iterable if an emptry value is given", () => {
+  it("should return an empty iterable if an empty value is given", () => {
     assert.isEmpty([...concatenatedIterable([])]);
   });
   it("should return an empty iteralbe if empty values are given", () => {

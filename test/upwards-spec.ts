@@ -49,7 +49,7 @@ describe("upwards", () => {
   afterEach(() => {
     mock.restore();
   });
-  describe("(...tests: Matcher[]): Iterable<string>", () => {
+  describe("(...tests: Array<Matcher<string>>): Iterable<string>", () => {
     it("should return by default the directories upwards from the current working directory to the root", () => {
       assert.deepEqual([...upwards()], upwardDirectories());
     });
@@ -68,7 +68,7 @@ describe("upwards", () => {
       ]);
     });
   });
-  describe("(from: string, ...tests: Matcher[]): Iterable<string>", () => {
+  describe("(from: string, ...tests: Array<Matcher<string>>): Iterable<string>", () => {
     it("should resolve a `from` path relative to the current working directory", () => {
       assert.deepEqual([...upwards("")], upwardDirectories());
     });
@@ -118,7 +118,7 @@ describe("upwards", () => {
       ]);
     });
   });
-  describe("(from: string, levels: number, ...tests: Matcher[]): Iterable<string>", () => {
+  describe("(from: string, levels: number, ...tests: Array<Matcher<string>>): Iterable<string>", () => {
     it("should return only the `from` path if the given amount of directories upwards is zero", () => {
       assert.deepEqual(
         [...upwards("/home/user/first/1/2/3", 0)],
@@ -181,7 +181,7 @@ describe("upwards", () => {
       ]);
     });
   });
-  describe("(from: string, to: string, ...tests: Matcher[]): Iterable<string>", () => {
+  describe("(from: string, to: string, ...tests: Array<Matcher<string>>): Iterable<string>", () => {
     it("should resolve the `from` path relative to the `to` path if the former is not absolute", () => {
       assert.deepEqual(
         [...upwards("first/1/2/3", "/home/user")],

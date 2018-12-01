@@ -26,7 +26,7 @@ export const filteredIterable = <T>(
           } while (value !== undefined && !matches<T>(value, tests));
           return {
             done: value === undefined,
-            value: value as any,
+            value,
           };
         },
       };
