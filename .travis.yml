@@ -1,12 +1,6 @@
-os:
-- linux
-- osx
 language: node_js
 node_js:
-- node
 - "10"
-- "8"
-- "6"
 stages:
 - build
 - test
@@ -25,8 +19,14 @@ jobs:
     - stage: coverage
       os: linux
       node_js: "10"
+      before_script:
+        - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+        - chmod +x ./cc-test-reporter
+        - ./cc-test-reporter before-build
       script: yarn run coverage
-      after_success: cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
+      after_success:
+        - cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
+        - ./cc-test-reporter after-build
     - stage: deploy
       os: linux
       node_js: "10"

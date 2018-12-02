@@ -5,12 +5,14 @@
     "lib": ["esnext"],
     "outDir": "./lib",
     "typeRoots": ["./node_modules/@types"],
-    "rootDir": "./src",
     "alwaysStrict": true,
     "declaration": true,
     "declarationMap": true,
     "composite": true,
     "noImplicitAny": false,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "listFiles": true,
+    "listEmittedFiles": true,
+    "pretty": true
   }
 }

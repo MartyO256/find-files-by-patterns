@@ -24,7 +24,7 @@ describe("hasFile = (...tests: Array<Matcher<string>>): Matcher<string> => (path
   });
   it("should return `false` for a path that does not exist", () => {
     assert.isFalse(
-      hasFile(ofExtname(".html"))("/home/user/unexistant-directory"),
+      hasFile(ofExtname(".html"))("/home/user/inexistant-directory"),
     );
   });
   it("should return `false` for a path that is not a directory", () => {
