@@ -11,13 +11,27 @@ export type Filter<T> = (element: T) => Promise<boolean>;
 export type FilterSync<T> = (element: T) => boolean;
 
 /**
+ * A filter compounder is a test function which combines a sequence of filters.
+ */
+export type FilterCompounder = <T>(
+  filters: Array<Filter<T> | FilterSync<T>>,
+) => Filter<T>;
+
+/**
+ * A filter compounder is a test function which combines a sequence of filters.
+ */
+export type FilterCompounderSync = <T>(
+  filters: Array<FilterSync<T>>,
+) => FilterSync<T>;
+
+/**
  * A conjunction is a filter which combines a given array of filters using
  * logical conjunction. This means that any element that passes the combined
  * test has passed all of the filters.
  * @param filters The filters to combine in conjunction.
  * @returns The logical conjunction of the given tests.
  */
-export const conjunction = <T>(
+export const conjunction: FilterCompounder = <T>(
   filters: Array<Filter<T> | FilterSync<T>>,
 ): Filter<T> => async (element: T): Promise<boolean> => {
   for (const filter of filters) {
@@ -35,7 +49,7 @@ export const conjunction = <T>(
  * @param filters The filters to combine in conjunction.
  * @returns The logical conjunction of the given tests.
  */
-export const conjunctionSync = <T>(
+export const conjunctionSync: FilterCompounderSync = <T>(
   filters: Array<FilterSync<T>>,
 ): FilterSync<T> => (element: T): boolean => {
   for (const filter of filters) {
@@ -53,7 +67,7 @@ export const conjunctionSync = <T>(
  * @param filters The filters to combine in disjunction.
  * @returns The logical disjunction of the given tests.
  */
-export const disjunction = <T>(
+export const disjunction: FilterCompounder = <T>(
   filters: Array<Filter<T> | FilterSync<T>>,
 ): Filter<T> => async (element: T): Promise<boolean> => {
   for (const filter of filters) {
@@ -72,7 +86,7 @@ export const disjunction = <T>(
  * @returns The logical disjunction of the given tests.
  */
 
-export const disjunctionSync = <T>(
+export const disjunctionSync: FilterCompounderSync = <T>(
   filters: Array<FilterSync<T>>,
 ): FilterSync<T> => (element: T): boolean => {
   for (const filter of filters) {

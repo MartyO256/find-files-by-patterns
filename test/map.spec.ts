@@ -43,13 +43,13 @@ describe("map", () => {
     });
   });
   describe("multiMap", () => {
-    it("should correclty map simple values", async () => {
+    it("should correctly map simple values", async () => {
       assert.deepStrictEqual(
         await asyncIterableToArray(multiMap([-1, 0, 1], async (i) => 2 * i)),
         [-2, 0, 2],
       );
     });
-    it("should correclty map multiple values", async () => {
+    it("should correctly map multiple values", async () => {
       assert.deepStrictEqual(
         await asyncIterableToArray(
           multiMap([-1, 0, 1], async (i) => [i, 2 * i]),
@@ -57,7 +57,7 @@ describe("map", () => {
         [-1, -2, 0, 0, 1, 2],
       );
     });
-    it("should correclty map simple and multiple values", async () => {
+    it("should correctly map simple and multiple values", async () => {
       assert.deepStrictEqual(
         await asyncIterableToArray(
           multiMap([-1, 0, 1], async (i) => (i % 2 === 0 ? i : [i, 2 * i])),
@@ -65,7 +65,7 @@ describe("map", () => {
         [-1, -2, 0, 1, 2],
       );
     });
-    it("should correclty map simple string values", async () => {
+    it("should correctly map simple string values", async () => {
       assert.deepStrictEqual(
         await asyncIterableToArray(
           multiMap(["-1", "0", "1"], async (i) => `${i}0`),
@@ -73,7 +73,7 @@ describe("map", () => {
         ["-10", "00", "10"],
       );
     });
-    it("should correclty map multiple string values", async () => {
+    it("should correctly map multiple string values", async () => {
       assert.deepStrictEqual(
         await asyncIterableToArray(
           multiMap(["-1", "0", "1"], async (i) => [i, `${i}0`]),
@@ -81,7 +81,7 @@ describe("map", () => {
         ["-1", "-10", "0", "00", "1", "10"],
       );
     });
-    it("should correclty map simple and multiple string values", async () => {
+    it("should correctly map simple and multiple string values", async () => {
       assert.deepStrictEqual(
         await asyncIterableToArray(
           multiMap(["-1", "0", "1"], async (i) =>
@@ -96,37 +96,37 @@ describe("map", () => {
     });
   });
   describe("multiMapSync", () => {
-    it("should correclty map simple values", () => {
+    it("should correctly map simple values", () => {
       assert.deepStrictEqual(
         [...multiMapSync([-1, 0, 1], (i) => 2 * i)],
         [-2, 0, 2],
       );
     });
-    it("should correclty map multiple values", () => {
+    it("should correctly map multiple values", () => {
       assert.deepStrictEqual(
         [...multiMapSync([-1, 0, 1], (i) => [i, 2 * i])],
         [-1, -2, 0, 0, 1, 2],
       );
     });
-    it("should correclty map simple and multiple values", () => {
+    it("should correctly map simple and multiple values", () => {
       assert.deepStrictEqual(
         [...multiMapSync([-1, 0, 1], (i) => (i % 2 === 0 ? i : [i, 2 * i]))],
         [-1, -2, 0, 1, 2],
       );
     });
-    it("should correclty map simple string values", () => {
+    it("should correctly map simple string values", () => {
       assert.deepStrictEqual(
         [...multiMapSync(["-1", "0", "1"], (i) => `${i}0`)],
         ["-10", "00", "10"],
       );
     });
-    it("should correclty map multiple string values", () => {
+    it("should correctly map multiple string values", () => {
       assert.deepStrictEqual(
         [...multiMapSync(["-1", "0", "1"], (i) => [i, `${i}0`])],
         ["-1", "-10", "0", "00", "1", "10"],
       );
     });
-    it("should correclty map simple and multiple string values", () => {
+    it("should correctly map simple and multiple string values", () => {
       assert.deepStrictEqual(
         [
           ...multiMapSync(["-1", "0", "1"], (i) =>

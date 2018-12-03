@@ -3,8 +3,7 @@ export { Matcher } from "./matcher";
 export { ofBasename } from "./ofBasename";
 export { ofDirname } from "./ofDirname";
 export { ofExtname } from "./ofExtname";
-export { isDirectory } from "./isDirectory";
-export { isFile } from "./isFile";
+export { isFile, isDirectory, isFileSync, isDirectorySync } from "./isStat";
 export { doesNotHaveAnyPathSegment, hasPathSegments } from "./hasPathSegments";
 export { hasFile } from "./hasFile";
 
