@@ -9,9 +9,9 @@ import {
   isFileSync,
   isSafeStat,
   isSafeStatSync,
-} from "../src/isStat";
+} from "../src/stat";
 
-describe("isStat", () => {
+describe("stat", () => {
   describe("isSafeStat", () => {
     beforeEach(() => {
       mock({

@@ -8,7 +8,7 @@ import { Filter, FilterSync } from "./filter";
  * @returns Whether or not the given error is a file not found exception.
  */
 const isFileNotFoundException = (error: NodeJS.ErrnoException): boolean =>
-  error.code && error.code === "ENOENT";
+  error.code === "ENOENT";
 
 /**
  * Safely retrieves the status of a file which may or may not exist.
