@@ -1,3 +1,4 @@
+import { rejects } from "assert";
 import { assert } from "chai";
 
 import * as mock from "mock-fs";
@@ -93,10 +94,10 @@ describe("strictFindFile", () => {
         );
       });
       it("should be rejected if one of the tests throws an error", async () => {
-        assert.isRejected(strictFindFile(error));
+        rejects(strictFindFile(error));
       });
       it("should be rejected if there is more than one matching file in a directory", async () => {
-        assert.isRejected(strictFindFile(ofBasename(/^file/)));
+        rejects(strictFindFile(ofBasename(/^file/)));
       });
     });
     describe("(directories: string | AsyncIterable<string> | Iterable<string>, ...tests: Array<Filter<string> | FilterSync<string>>): Promise<string | null>", () => {
@@ -178,20 +179,18 @@ describe("strictFindFile", () => {
         );
       });
       it("should be rejected if any of the given directories does not exist", async () => {
-        assert.isRejected(
+        rejects(
           strictFindFile("./inexistant-folder", ofBasename("inexistant.html")),
         );
       });
       it("should be rejected if one of the tests throws an error", async () => {
-        assert.isRejected(strictFindFile("./", error));
+        rejects(strictFindFile("./", error));
       });
       it("should be rejected if there is more than one matching file in a directory", async () => {
-        assert.isRejected(
-          strictFindFile("/home/user/files", ofBasename(/^file\./)),
-        );
+        rejects(strictFindFile("/home/user/files", ofBasename(/^file\./)));
       });
       it("should be rejected if one of the directories is a file", async () => {
-        assert.isRejected(
+        rejects(
           strictFindFile(["./", "./file.html"], ofBasename("inexistant.html")),
         );
       });

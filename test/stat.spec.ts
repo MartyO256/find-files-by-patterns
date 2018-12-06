@@ -1,3 +1,4 @@
+import { rejects } from "assert";
 import { assert } from "chai";
 
 import * as mock from "mock-fs";
@@ -34,7 +35,7 @@ describe("stat", () => {
       );
     });
     it("should throw an error if there is an I/O error different from a file not found exception", async () => {
-      assert.isRejected(
+      rejects(
         isSafeStat(
           "/home/user/non-searchable-directory/unreadable-file",
           () => true,

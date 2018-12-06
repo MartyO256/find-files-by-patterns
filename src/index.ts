@@ -1,8 +1,6 @@
-export { Matcher } from "./matcher";
-
-export { ofBasename, ofDirname, ofExtname } from "./path";
+export { ofBasename, ofDirname, ofExtname, segments } from "./path";
 export { isFile, isDirectory, isFileSync, isDirectorySync } from "./stat";
-export { hasFile } from "./hasFile";
+export { hasFile, hasFileSync } from "./hasFile";
 
 export { AllFilesFinder, AllFilesFinderSync } from "./allFilesFinder";
 

@@ -1,4 +1,12 @@
-import { basename, dirname, extname } from "path";
+import {
+  basename,
+  dirname,
+  extname,
+  isAbsolute,
+  normalize,
+  parse,
+  sep,
+} from "path";
 import { disjunctionSync, FilterSync } from "./filter";
 
 /**
@@ -96,3 +104,63 @@ export const ofDirname = (...tests: SegmentTester[]): FilterSync<string> =>
  */
 export const ofExtname = (...tests: SegmentTester[]): FilterSync<string> =>
   ofSegment(tests, extname);
+
+/**
+ * The set of special characters found in paths that a segment cannot solely
+ * consist of.
+ */
+const specialCharacters = [".", sep];
+
+/**
+ * The position of the first segment in a given normalized path.
+ * @param normalizedPath The normalized path in which to search for the position
+ * of the first character in its first segment.
+ * @returns `-1` if there is no path segment in the normalized path, or the
+ * position of the leftmost character in the first segment.
+ */
+export const firstSegmentPosition = (normalizedPath: string): number => {
+  if (isAbsolute(normalizedPath)) {
+    const { root } = parse(normalizedPath);
+    return root.length === normalizedPath.length ? -1 : root.length;
+  } else {
+    let position = 0;
+    for (const character of normalizedPath) {
+      if (!specialCharacters.includes(character)) {
+        const previousSeparatorPosition = normalizedPath.lastIndexOf(
+          sep,
+          position,
+        );
+        return previousSeparatorPosition < 0
+          ? 0
+          : previousSeparatorPosition + 1;
+      }
+      position++;
+    }
+    return -1;
+  }
+};
+
+/**
+ * Constructs a generator which yields the segments of a path. These segments
+ * are based off the normalized path, which may or may not be absolute. Each
+ * yielded segment must have at least one non-special character, meaning that a
+ * segment cannot consist solely of dots or segment separators.
+ * @param path The path from which to yield the segments.
+ * @returns An iterator over the segments of the normalized path.
+ */
+export function* segments(path: string) {
+  const normalizedPath = normalize(path);
+  const firstSegmentPos = firstSegmentPosition(normalizedPath);
+  if (firstSegmentPos >= 0) {
+    let position = firstSegmentPos;
+    do {
+      const nextSeparatorPosition = normalizedPath.indexOf(sep, position);
+      const segmentEndPosition =
+        nextSeparatorPosition <= 0
+          ? normalizedPath.length
+          : nextSeparatorPosition;
+      yield normalizedPath.substring(position, segmentEndPosition);
+      position = segmentEndPosition + 1;
+    } while (position < normalizedPath.length);
+  }
+}

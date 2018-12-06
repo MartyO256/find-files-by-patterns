@@ -1,3 +1,4 @@
+import { rejects } from "assert";
 import { assert } from "chai";
 
 import * as mock from "mock-fs";
@@ -116,7 +117,7 @@ describe("findAllFiles", () => {
         assert.deepStrictEqual(await findAllFiles(ofBasename("file.json")), []);
       });
       it("should be rejected if one of the tests throws an error", async () => {
-        assert.isRejected(findAllFiles(error));
+        rejects(findAllFiles(error));
       });
     });
     describe("(directories: string | AsyncIterable<string> | Iterable<string>, ...tests: Array<Filter<string> | FilterSync<string>>): Promise<string[]>", () => {
@@ -297,15 +298,15 @@ describe("findAllFiles", () => {
         );
       });
       it("should be rejected if any of the given directories does not exist", async () => {
-        assert.isRejected(
+        rejects(
           findAllFiles("./inexistant-folder", ofBasename("inexistant.html")),
         );
       });
       it("should be rejected if one of the tests throws an error", async () => {
-        assert.isRejected(findAllFiles("./", error));
+        rejects(findAllFiles("./", error));
       });
       it("should be rejected if one of the directories is a file", async () => {
-        assert.isRejected(
+        rejects(
           findAllFiles(["./", "./file.html"], ofBasename("inexistant.html")),
         );
       });

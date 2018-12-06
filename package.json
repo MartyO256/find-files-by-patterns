@@ -1,6 +1,6 @@
 {
   "name": "find-files-by-patterns",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Find files by patterns in directories, upwards or downwards from other paths.",
   "license": "MIT",
   "author": "Marc-Antoine Ouimet <ouimetmarcantoine@gmail.com>",
@@ -31,12 +31,10 @@
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
-    "@types/chai-as-promised": "^7.1.0",
     "@types/mocha": "^5.2.5",
     "@types/mock-fs": "^3.6.30",
     "@types/node": "^10.12.7",
     "chai": "^4.2.0",
-    "chai-as-promised": "^7.1.1",
     "coveralls": "^3.0.2",
     "mocha": "^5.2.0",
     "mock-fs": "^4.7.0",

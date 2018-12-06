@@ -1,3 +1,4 @@
+import { rejects } from "assert";
 import { assert } from "chai";
 
 import { asyncIterableToArray } from "../src/iterable";
@@ -22,7 +23,7 @@ describe("map", () => {
       );
     });
     it("should throw an error if the mapping function throws an error", async () => {
-      assert.isRejected(asyncIterableToArray(simpleMap([0, 1, 2, 3], error)));
+      rejects(asyncIterableToArray(simpleMap([0, 1, 2, 3], error)));
     });
   });
   describe("simpleMapSync", () => {
@@ -92,7 +93,7 @@ describe("map", () => {
       );
     });
     it("should throw an error if the mapping function throws an error", async () => {
-      assert.isRejected(asyncIterableToArray(multiMap([0, 1, 2, 3], error)));
+      rejects(asyncIterableToArray(multiMap([0, 1, 2, 3], error)));
     });
   });
   describe("multiMapSync", () => {

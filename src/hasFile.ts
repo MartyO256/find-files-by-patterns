@@ -1,34 +1,58 @@
-import { existsSync, readdirSync, statSync } from "fs";
-import { join } from "path";
-
-import { filteredIterable } from "./filteredIterable";
-import { mappedIterable } from "./mappedIterable";
-import { Matcher } from "./matcher";
+import {
+  conjunction,
+  conjunctionSync,
+  filter,
+  Filter,
+  FilterSync,
+  filterSync,
+} from "./filter";
+import { readdir, readdirSync } from "./readdirs";
+import { isDirectory, isDirectorySync } from "./stat";
 
 /**
- * Constructs a matcher function which determines whether of not a directory has
- * a file or directory's path that passes a given sequence of tests. The
- * returned matcher function will arbitrarily be false for any path that isn't a
- * directory. The path should have already been resolved.
+ * Constructs a filter which determines whether of not a directory has a file or
+ * directory's path that passes a given sequence of tests. The returned filter
+ * will arbitrarily be false for any path that isn't a directory. The path
+ * should have already been resolved.
  * @param tests The tests to perform on each files' path until there is a match.
  * @throws If any of the tests throws an error for any of the files in the
  * directory.
- * @returns A matcher function which determines whether of not a directory has a
- * file or directory's path that passes a given sequence of tests.
- * @see [[statSync]] How the file statuses are retrieved.
- * @since 0.6.0
- * @version 0.6.0
+ * @returns A filter which determines whether of not a directory has a file or
+ * directory's path that passes a given sequence of tests.
  */
-export const hasFile = (...tests: Array<Matcher<string>>): Matcher<string> => (
-  path: string,
-): boolean => {
-  if (existsSync(path) && statSync(path).isDirectory()) {
-    for (const match of filteredIterable(
-      mappedIterable(readdirSync(path), (file) => join(path, file)),
-      tests,
-    )) {
-      return true;
-    }
-  }
-  return false;
-};
+export const hasFile = (
+  ...tests: Array<Filter<string> | FilterSync<string>>
+): Filter<string> =>
+  conjunction([
+    isDirectory,
+    async (directory: string): Promise<boolean> => {
+      for await (const match of filter(readdir(directory), tests)) {
+        return true;
+      }
+      return false;
+    },
+  ]);
+
+/**
+ * Constructs a filter which determines whether of not a directory has a file or
+ * directory's path that passes a given sequence of tests. The returned filter
+ * will arbitrarily be false for any path that isn't a directory. The path
+ * should have already been resolved.
+ * @param tests The tests to perform on each files' path until there is a match.
+ * @throws If any of the tests throws an error for any of the files in the
+ * directory.
+ * @returns A filter which determines whether of not a directory has a file or
+ * directory's path that passes a given sequence of tests.
+ */
+export const hasFileSync = (
+  ...tests: Array<FilterSync<string>>
+): FilterSync<string> =>
+  conjunctionSync<string>([
+    isDirectorySync,
+    (directory: string): boolean => {
+      for (const match of filterSync(readdirSync(directory), tests)) {
+        return true;
+      }
+      return false;
+    },
+  ]);

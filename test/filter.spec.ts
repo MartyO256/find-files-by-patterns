@@ -1,3 +1,4 @@
+import { rejects } from "assert";
 import { assert } from "chai";
 
 import {
@@ -38,7 +39,7 @@ describe("filter", () => {
       }
     });
     it("should throw an error if any of the filters throws an error", async () => {
-      await assert.isRejected(conjunction([isEven, isGreaterThan2, error])(4));
+      rejects(conjunction([isEven, isGreaterThan2, error])(4));
     });
   });
   describe("conjunctionSync", () => {
@@ -72,7 +73,7 @@ describe("filter", () => {
       }
     });
     it("should throw an error if any of the filters throws an error", async () => {
-      await assert.isRejected(disjunction([isEven, isGreaterThan2, error])(1));
+      rejects(disjunction([isEven, isGreaterThan2, error])(1));
     });
   });
   describe("disjunctionSync", () => {
@@ -126,7 +127,7 @@ describe("filter", () => {
       );
     });
     it("should throw an error if any of the filters throws an error", async () => {
-      await assert.isRejected(asyncIterableToArray(filter(elements, [error])));
+      rejects(asyncIterableToArray(filter(elements, [error])));
     });
   });
   describe("filterSync", () => {

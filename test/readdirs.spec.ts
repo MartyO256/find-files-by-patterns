@@ -1,6 +1,5 @@
+import { rejects } from "assert";
 import { assert } from "chai";
-import chai = require("chai");
-import chaiAsPromised = require("chai-as-promised");
 
 import * as mock from "mock-fs";
 
@@ -8,8 +7,6 @@ import { resolve } from "path";
 
 import { asyncIterableToArray } from "../src/iterable";
 import { readdir, readdirs, readdirsSync, readdirSync } from "../src/readdirs";
-
-chai.use(chaiAsPromised);
 
 describe("readdirs", () => {
   const resolvedPaths = (...paths: string[]): string[] =>
@@ -84,12 +81,10 @@ describe("readdirs", () => {
       );
     });
     it("should throw an error if the given directory path is a file", async () => {
-      assert.isRejected(asyncIterableToArray(readdir("./file.html")));
+      rejects(asyncIterableToArray(readdir("./file.html")));
     });
     it("should throw an error if the given directory path does not exist", async () => {
-      assert.isRejected(
-        asyncIterableToArray(readdir("./inexistant-directory")),
-      );
+      rejects(asyncIterableToArray(readdir("./inexistant-directory")));
     });
   });
   describe("readdirSync", () => {
@@ -190,12 +185,10 @@ describe("readdirs", () => {
       );
     });
     it("should throw an error if any of the given directory paths is a file", async () => {
-      assert.isRejected(asyncIterableToArray(readdirs([".", "./file.html"])));
+      rejects(asyncIterableToArray(readdirs([".", "./file.html"])));
     });
     it("should throw an error if any of the given directory paths does not exist", async () => {
-      assert.isRejected(
-        asyncIterableToArray(readdirs([".", "./inexistant-directory"])),
-      );
+      rejects(asyncIterableToArray(readdirs([".", "./inexistant-directory"])));
     });
   });
   describe("readdirsSync", () => {
