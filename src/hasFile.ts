@@ -22,16 +22,18 @@ import { isDirectory, isDirectorySync } from "./stat";
  */
 export const hasFile = (
   ...tests: Array<Filter<string> | FilterSync<string>>
-): Filter<string> =>
-  conjunction([
+): Filter<string> => {
+  const test = conjunction(tests);
+  return conjunction([
     isDirectory,
     async (directory: string): Promise<boolean> => {
-      for await (const match of filter(readdir(directory), tests)) {
+      for await (const match of filter(readdir(directory), test)) {
         return true;
       }
       return false;
     },
   ]);
+};
 
 /**
  * Constructs a filter which determines whether of not a directory has a file or
@@ -46,13 +48,15 @@ export const hasFile = (
  */
 export const hasFileSync = (
   ...tests: Array<FilterSync<string>>
-): FilterSync<string> =>
-  conjunctionSync<string>([
+): FilterSync<string> => {
+  const test = conjunctionSync(tests);
+  return conjunctionSync([
     isDirectorySync,
     (directory: string): boolean => {
-      for (const match of filterSync(readdirSync(directory), tests)) {
+      for (const match of filterSync(readdirSync(directory), test)) {
         return true;
       }
       return false;
     },
   ]);
+};

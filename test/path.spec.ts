@@ -4,6 +4,7 @@ import { join } from "path";
 import { FilterSync } from "../src/filter";
 import {
   firstSegmentPosition,
+  hasPathSegments,
   ofBasename,
   ofDirname,
   ofExtname,
@@ -287,6 +288,40 @@ describe("path", () => {
       for (const [path, expectedSegments] of expectedSegmentsSet) {
         assert.deepStrictEqual([...segments(path)], expectedSegments);
       }
+    });
+  });
+  describe("hasPathSegments", () => {
+    it("should always be failse if there are no tests", () => {
+      const test = hasPathSegments();
+      [
+        "./_folder/file.html",
+        "./folder/file.html",
+        "./../folder/./file.html/././//",
+      ].forEach((path) => assert.isFalse(test(path)));
+    });
+    it("should be true if all path segments pass the tests", () => {
+      assert.isTrue(
+        hasPathSegments((segment) => !segment.startsWith("_"))(
+          "./folder/file.html",
+        ),
+      );
+    });
+    it("should be false if any path segment fails the tests", () => {
+      assert.isFalse(
+        hasPathSegments((segment) => !segment.startsWith("_"))(
+          "./_folder/file.html",
+        ),
+      );
+    });
+    it("should normalize and trim paths to extract the path segments to test", () => {
+      assert.isTrue(
+        hasPathSegments((segment) => !segment.startsWith("_"))(
+          "./../folder/./file.html/././//",
+        ),
+      );
+    });
+    it("should throw an error if any of the tests throws an error", () => {
+      assert.throws(() => hasPathSegments(errorSync)("./_folder/file.html"));
     });
   });
 });

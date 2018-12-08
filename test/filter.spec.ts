@@ -97,22 +97,17 @@ describe("filter", () => {
   describe("filter", () => {
     const elements = [1, 2, 3, 4, 5, 6];
     const filteredElements = [4, 6];
-    it("should filter in all the elements if there are no filters", async () => {
-      assert.strictEqual(
-        (await asyncIterableToArray(filter(elements, []))).length,
-        elements.length,
-      );
-    });
     it("should filter in the correct amount of elements", async () => {
       assert.strictEqual(
-        (await asyncIterableToArray(filter(elements, [isEven, isGreaterThan2])))
-          .length,
+        (await asyncIterableToArray(
+          filter(elements, conjunction([isEven, isGreaterThan2])),
+        )).length,
         filteredElements.length,
       );
     });
     it("should only filter in elements that pass all of the filters", async () => {
       for (const element of await asyncIterableToArray(
-        filter(elements, [isEven, isGreaterThan2]),
+        filter(elements, conjunction([isEven, isGreaterThan2])),
       )) {
         assert.isTrue(
           filteredElements.includes(element),
@@ -122,31 +117,35 @@ describe("filter", () => {
     });
     it("should filter in all the elements that pass all of the filters", async () => {
       assert.deepStrictEqual(
-        await asyncIterableToArray(filter(elements, [isEven, isGreaterThan2])),
+        await asyncIterableToArray(
+          filter(elements, conjunction([isEven, isGreaterThan2])),
+        ),
         filteredElements,
       );
     });
     it("should throw an error if any of the filters throws an error", async () => {
-      rejects(asyncIterableToArray(filter(elements, [error])));
+      rejects(asyncIterableToArray(filter(elements, error)));
     });
   });
   describe("filterSync", () => {
     const elements = [1, 2, 3, 4, 5, 6];
     const filteredElements = [4, 6];
-    it("should filter in all the elements if there are no filters", () => {
-      assert.strictEqual([...filterSync(elements, [])].length, elements.length);
-    });
     it("should filter in the correct amount of elements", () => {
       assert.strictEqual(
-        [...filterSync(elements, [isEvenSync, isGreaterThan2Sync])].length,
+        [
+          ...filterSync(
+            elements,
+            conjunctionSync([isEvenSync, isGreaterThan2Sync]),
+          ),
+        ].length,
         filteredElements.length,
       );
     });
     it("should only filter in elements that pass all of the filters", () => {
-      for (const element of filterSync(elements, [
-        isEvenSync,
-        isGreaterThan2Sync,
-      ])) {
+      for (const element of filterSync(
+        elements,
+        conjunctionSync([isEvenSync, isGreaterThan2Sync]),
+      )) {
         assert.isTrue(
           filteredElements.includes(element),
           `The element ${element} was unexpectedly yielded.`,
@@ -155,12 +154,17 @@ describe("filter", () => {
     });
     it("should filter in all the elements that pass all of the filters", () => {
       assert.deepStrictEqual(
-        [...filterSync(elements, [isEvenSync, isGreaterThan2Sync])],
+        [
+          ...filterSync(
+            elements,
+            conjunctionSync([isEvenSync, isGreaterThan2Sync]),
+          ),
+        ],
         filteredElements,
       );
     });
     it("should throw an error if any of the filters throws an error", () => {
-      assert.throws(() => [...filterSync(elements, [errorSync])]);
+      assert.throws(() => [...filterSync(elements, errorSync)]);
     });
   });
 });

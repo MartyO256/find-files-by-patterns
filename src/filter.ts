@@ -98,53 +98,39 @@ export const disjunctionSync: FilterCompounderSync = <T>(
 };
 
 /**
- * Filters out elements of an iterable which don't pass all the given filters.
- * If there are no filters, then all the elements of the iterable are yielded.
+ * Filters out elements of an iterable which don't pass a given filter.
  * @param iterable The iterable to filter.
- * @param filters The sequence of filters an element must pass in order to be
- * filtered in.
- * @throws If any of the filters throws an error for any of the elements of the
+ * @param filter The filter an element must pass in order to be filtered in.
+ * @throws If the filter throws an error for any of the elements of the
  * iterable.
  * @returns An iterator over the filtered elements.
  */
 export async function* filter<T>(
   iterable: Iterable<T> | AsyncIterable<T>,
-  filters: Array<Filter<T> | FilterSync<T>>,
+  filter: Filter<T> | FilterSync<T>,
 ): AsyncIterable<T> {
-  if (filters.length > 0) {
-    const filter = conjunction(filters);
-    for await (const element of iterable) {
-      if (await filter(element)) {
-        yield element;
-      }
+  for await (const element of iterable) {
+    if (await filter(element)) {
+      yield element;
     }
-  } else {
-    yield* iterable;
   }
 }
 
 /**
- * Filters out elements of an iterable which don't pass all the given filters.
- * If there are no filters, then all the elements of the iterable are yielded.
+ * Filters out elements of an iterable which don't pass a given filter.
  * @param iterable The iterable to filter.
- * @param filters The sequence of filters an element must pass in order to be
- * filtered in.
- * @throws If any of the filters throws an error for any of the elements of the
+ * @param filter The filter an element must pass in order to be filtered in.
+ * @throws If the filter throws an error for any of the elements of the
  * iterable.
  * @returns An iterator over the filtered elements.
  */
 export function* filterSync<T>(
   iterable: Iterable<T>,
-  filters: Array<FilterSync<T>>,
+  filter: FilterSync<T>,
 ): Iterable<T> {
-  if (filters.length > 0) {
-    const filter = conjunctionSync(filters);
-    for (const element of iterable) {
-      if (filter(element)) {
-        yield element;
-      }
+  for (const element of iterable) {
+    if (filter(element)) {
+      yield element;
     }
-  } else {
-    yield* iterable;
   }
 }

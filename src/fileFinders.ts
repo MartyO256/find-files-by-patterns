@@ -1,4 +1,11 @@
-import { Filter, filter, FilterSync, filterSync } from "./filter";
+import {
+  conjunction,
+  conjunctionSync,
+  Filter,
+  filter,
+  FilterSync,
+  filterSync,
+} from "./filter";
 import { asyncIterableToArray } from "./iterable";
 import { readdir, readdirs, readdirsSync, readdirSync } from "./readdirs";
 
@@ -76,11 +83,13 @@ export const findFile: FileFinder = async (
   ...filters: Array<Filter<string> | FilterSync<string>>
 ): Promise<string | null> => {
   [directories, filters] = handleFunctionOverload(directories, filters);
-  if (filters.length === 0) {
-    return null;
-  }
-  for await (const file of filter(readdirs(directories), filters)) {
-    return file;
+  if (filters.length > 0) {
+    for await (const file of filter(
+      readdirs(directories),
+      conjunction(filters),
+    )) {
+      return file;
+    }
   }
   return null;
 };
@@ -93,11 +102,13 @@ export const findFileSync: FileFinderSync = (
   ...filters: Array<FilterSync<string>>
 ): string | null => {
   [directories, filters] = handleFunctionOverloadSync(directories, filters);
-  if (filters.length === 0) {
-    return null;
-  }
-  for (const file of filterSync(readdirsSync(directories), filters)) {
-    return file;
+  if (filters.length > 0) {
+    for (const file of filterSync(
+      readdirsSync(directories),
+      conjunctionSync(filters),
+    )) {
+      return file;
+    }
   }
   return null;
 };
@@ -127,19 +138,21 @@ export const strictFindFile: StrictFileFinder = async (
   ...filters: Array<Filter<string> | FilterSync<string>>
 ): Promise<string | null> => {
   [directories, filters] = handleFunctionOverload(directories, filters);
-  if (filters.length === 0) {
-    return null;
-  }
-  for await (const directory of directories) {
-    let retainedMatch: string | undefined;
-    for await (const match of filter(readdir(directory), filters)) {
-      if (retainedMatch) {
-        throw conflictingFilesError(retainedMatch, match);
+  if (filters.length > 0) {
+    for await (const directory of directories) {
+      let retainedMatch: string | undefined;
+      for await (const match of filter(
+        readdir(directory),
+        conjunction(filters),
+      )) {
+        if (retainedMatch) {
+          throw conflictingFilesError(retainedMatch, match);
+        }
+        retainedMatch = match;
       }
-      retainedMatch = match;
-    }
-    if (retainedMatch) {
-      return retainedMatch;
+      if (retainedMatch) {
+        return retainedMatch;
+      }
     }
   }
   return null;
@@ -153,19 +166,21 @@ export const strictFindFileSync: StrictFileFinderSync = (
   ...filters: Array<FilterSync<string>>
 ): string | null => {
   [directories, filters] = handleFunctionOverloadSync(directories, filters);
-  if (filters.length === 0) {
-    return null;
-  }
-  for (const directory of directories) {
-    let retainedMatch: string | undefined;
-    for (const match of filterSync(readdirSync(directory), filters)) {
-      if (retainedMatch) {
-        throw conflictingFilesError(retainedMatch, match);
+  if (filters.length > 0) {
+    for (const directory of directories) {
+      let retainedMatch: string | undefined;
+      for (const match of filterSync(
+        readdirSync(directory),
+        conjunctionSync(filters),
+      )) {
+        if (retainedMatch) {
+          throw conflictingFilesError(retainedMatch, match);
+        }
+        retainedMatch = match;
       }
-      retainedMatch = match;
-    }
-    if (retainedMatch) {
-      return retainedMatch;
+      if (retainedMatch) {
+        return retainedMatch;
+      }
     }
   }
   return null;
@@ -186,7 +201,7 @@ export const findAllFiles: AllFilesFinder = async (
   [directories, filters] = handleFunctionOverload(directories, filters);
   return filters.length === 0
     ? []
-    : asyncIterableToArray(filter(readdirs(directories), filters));
+    : asyncIterableToArray(filter(readdirs(directories), conjunction(filters)));
 };
 
 export const findAllFilesSync: AllFilesFinderSync = (
@@ -196,5 +211,5 @@ export const findAllFilesSync: AllFilesFinderSync = (
   [directories, filters] = handleFunctionOverloadSync(directories, filters);
   return filters.length === 0
     ? []
-    : [...filterSync(readdirsSync(directories), filters)];
+    : [...filterSync(readdirsSync(directories), conjunctionSync(filters))];
 };
