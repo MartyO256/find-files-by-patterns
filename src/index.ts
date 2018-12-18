@@ -1,3 +1,22 @@
+export {
+  Filter,
+  FilterSync,
+  conjunction,
+  conjunctionSync,
+  disjunction,
+  disjunctionSync,
+  filter,
+  filterSync,
+} from "./filter";
+export {
+  allElements,
+  allElementsSync,
+  firstElement,
+  firstElementSync,
+  strictFirstElement,
+  strictFirstElementSync,
+} from "./iterable";
+
 export { ofBasename, ofDirname, ofExtname, segments } from "./path";
 export { isFile, isDirectory, isFileSync, isDirectorySync } from "./stat";
 export { hasFile, hasFileSync } from "./hasFile";
@@ -17,10 +36,4 @@ export {
   strictFindFileSync,
 } from "./fileFinders";
 
-export { UpwardDirectoriesFetcher } from "./upwardDirectoriesFetcher";
-
-export { upwards } from "./upwards";
-
-export { DownwardDirectoriesFetcher } from "./downwardDirectoriesFetcher";
-
-export { downwards } from "./downwards";
+export { downwardFiles, downwardFilesSync } from "./files";
