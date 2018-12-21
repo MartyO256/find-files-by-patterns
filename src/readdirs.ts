@@ -17,7 +17,7 @@ const readdirPromise = promisify(fsReaddir);
  */
 export async function* readdir(directory: string): AsyncIterable<string> {
   const resolvedDirectory = resolve(directory);
-  yield* simpleMap(await readdirPromise(directory), (file) =>
+  yield* simpleMap(await readdirPromise(resolvedDirectory), (file) =>
     join(resolvedDirectory, file),
   );
 }
@@ -31,12 +31,12 @@ export async function* readdir(directory: string): AsyncIterable<string> {
  * @throws If the given directory's path is inexistant.
  * @returns An iterator over the read files of the given directory's path.
  */
-export function* readdirSync(directory: string): Iterable<string> {
+export const readdirSync = (directory: string): Iterable<string> => {
   const resolvedDirectory = resolve(directory);
-  yield* simpleMapSync(fsReaddirSync(directory), (file) =>
+  return simpleMapSync(fsReaddirSync(resolvedDirectory), (file) =>
     join(resolvedDirectory, file),
   );
-}
+};
 
 /**
  * Constructs a generator which yields the files read asynchronously from the
@@ -48,11 +48,10 @@ export function* readdirSync(directory: string): Iterable<string> {
  * @throws If any of the given directory's path is inexistant.
  * @returns An iterator over the read files of the given directory paths.
  */
-export async function* readdirs(
+export const readdirs = (
   directories: Iterable<string> | AsyncIterable<string>,
-): AsyncIterable<string> {
-  yield* multiMap(directories, async (directory) => readdir(directory));
-}
+): AsyncIterable<string> =>
+  multiMap(directories, async (directory) => readdir(directory));
 
 /**
  * Constructs a generator which yields the files read synchronously from the
@@ -65,6 +64,5 @@ export async function* readdirs(
  * @throws If any of the given directory's path is inexistant.
  * @returns An iterator over the read files of the given directory paths.
  */
-export function* readdirsSync(directories: Iterable<string>): Iterable<string> {
-  yield* multiMapSync(directories, (directory) => readdirSync(directory));
-}
+export const readdirsSync = (directories: Iterable<string>): Iterable<string> =>
+  multiMapSync(directories, (directory) => readdirSync(directory));

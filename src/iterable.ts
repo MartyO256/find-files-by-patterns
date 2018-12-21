@@ -77,7 +77,7 @@ const conflictingElementsError = <T>(firstElement: T, secondElement: T) =>
  * @throws If there is more than one element in the iterable.
  * @return The first and only element of the given iterable.
  */
-export const strictFirstElement = async <T>(
+export const onlyElement = async <T>(
   iterable: AsyncIterable<T>,
 ): Promise<T | null> => {
   let retainedElement: T;
@@ -98,7 +98,7 @@ export const strictFirstElement = async <T>(
  * @throws If there is more than one element in the iterable.
  * @return The first and only element of the given iterable.
  */
-export const strictFirstElementSync = <T>(iterable: Iterable<T>): T | null => {
+export const onlyElementSync = <T>(iterable: Iterable<T>): T | null => {
   let retainedElement: T;
   for (const element of iterable) {
     if (retainedElement === undefined) {

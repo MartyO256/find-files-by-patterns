@@ -74,6 +74,7 @@ const negativeMaximumDepthError = (maximumDepth: number) =>
  * Handles the function overload of downward file fetchers.
  * @param startDirectory The first argument of the function.
  * @param maximumDepth The second argument of the function.
+ * @throws If the maximum depth to return is negative.
  * @returns The validated arguments for the downward file fetchers function
  * call.
  */
@@ -84,6 +85,9 @@ const handleFunctionOverload = (
   if (typeof startDirectory === "number") {
     maximumDepth = startDirectory;
     startDirectory = ".";
+  }
+  if (maximumDepth < 0) {
+    throw negativeMaximumDepthError(maximumDepth);
   }
   return [startDirectory, maximumDepth];
 };
@@ -213,12 +217,10 @@ export const downwardFiles: DownwardFilesFetcher = (
     startDirectory,
     maximumDepth,
   );
-  if (maximumDepth === undefined) {
-    return unconstrainedDownwardFiles(startDirectory);
-  } else if (maximumDepth >= 0) {
+  if (maximumDepth >= 0) {
     return constrainedDownwardFiles(startDirectory, maximumDepth);
   } else {
-    throw negativeMaximumDepthError(maximumDepth);
+    return unconstrainedDownwardFiles(startDirectory);
   }
 };
 
@@ -302,12 +304,10 @@ export const downwardFilesSync: DownwardFilesFetcherSync = (
     startDirectory,
     maximumDepth,
   );
-  if (maximumDepth === undefined) {
-    return unconstrainedDownwardFilesSync(startDirectory);
-  } else if (maximumDepth >= 0) {
+  if (maximumDepth >= 0) {
     return constrainedDownwardFilesSync(startDirectory, maximumDepth);
   } else {
-    throw negativeMaximumDepthError(maximumDepth);
+    return unconstrainedDownwardFilesSync(startDirectory);
   }
 };
 

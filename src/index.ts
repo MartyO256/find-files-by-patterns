@@ -13,27 +13,27 @@ export {
   allElementsSync,
   firstElement,
   firstElementSync,
-  strictFirstElement,
-  strictFirstElementSync,
+  onlyElement,
+  onlyElementSync,
 } from "./iterable";
 
 export { ofBasename, ofDirname, ofExtname, segments } from "./path";
 export { isFile, isDirectory, isFileSync, isDirectorySync } from "./stat";
 export { hasFile, hasFileSync } from "./hasFile";
 
-export { AllFilesFinder, AllFilesFinderSync } from "./allFilesFinder";
-
-export { StrictFileFinder, StrictFileFinderSync } from "./strictFileFinder";
-
-export { FileFinder, FileFinderSync } from "./fileFinder";
-
 export {
   findAllFiles,
   findAllFilesSync,
   findFile,
   findFileSync,
-  strictFindFile,
-  strictFindFileSync,
+  findOnlyFile,
+  findOnlyFileSync,
+  AllFilesFinder,
+  AllFilesFinderSync,
+  FileFinder,
+  FileFinderSync,
+  OnlyFileFinder,
+  OnlyFileFinderSync,
 } from "./fileFinders";
 
 export { downwardFiles, downwardFilesSync } from "./files";
