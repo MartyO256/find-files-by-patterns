@@ -17,7 +17,13 @@ export {
   onlyElementSync,
 } from "./iterable";
 
-export { ofBasename, ofDirname, ofExtname, segments } from "./path";
+export {
+  hasPathSegments,
+  ofBasename,
+  ofDirname,
+  ofExtname,
+  segments,
+} from "./path";
 export { isFile, isDirectory, isFileSync, isDirectorySync } from "./stat";
 export { hasFile, hasFileSync } from "./hasFile";
 
@@ -37,3 +43,9 @@ export {
 } from "./fileFinders";
 
 export { downwardFiles, downwardFilesSync } from "./files";
+export {
+  downwardDirectories,
+  downwardDirectoriesSync,
+  upwardDirectories,
+  upwardDirectoriesSync,
+} from "./directories";

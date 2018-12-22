@@ -2,7 +2,8 @@ import { realpath, realpathSync } from "fs";
 import { resolve } from "path";
 import { promisify } from "util";
 
-import { readdir, readdirSync } from "./readdirs";
+import { upwardDirectories, upwardDirectoriesSync } from "./directories";
+import { readdir, readdirs, readdirsSync, readdirSync } from "./readdirs";
 import { isDirectory, isDirectorySync } from "./stat";
 
 /**
@@ -78,7 +79,7 @@ const negativeMaximumDepthError = (maximumDepth: number) =>
  * @returns The validated arguments for the downward file fetchers function
  * call.
  */
-const handleFunctionOverload = (
+export const handleDownwardFilesOverload = (
   startDirectory: number | string = ".",
   maximumDepth?: number,
 ): [string, number] => {
@@ -213,7 +214,7 @@ export const downwardFiles: DownwardFilesFetcher = (
   startDirectory?: number | string,
   maximumDepth?: number,
 ): AsyncIterable<string> => {
-  [startDirectory, maximumDepth] = handleFunctionOverload(
+  [startDirectory, maximumDepth] = handleDownwardFilesOverload(
     startDirectory,
     maximumDepth,
   );
@@ -300,7 +301,7 @@ export const downwardFilesSync: DownwardFilesFetcherSync = (
   startDirectory?: number | string,
   maximumDepth?: number,
 ): Iterable<string> => {
-  [startDirectory, maximumDepth] = handleFunctionOverload(
+  [startDirectory, maximumDepth] = handleDownwardFilesOverload(
     startDirectory,
     maximumDepth,
   );

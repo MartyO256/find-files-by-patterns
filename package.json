@@ -1,6 +1,6 @@
 {
   "name": "find-files-by-patterns",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "Find files by patterns in directories, upwards or downwards from other paths.",
   "license": "MIT",
   "author": "Marc-Antoine Ouimet <ouimetmarcantoine@gmail.com>",
@@ -27,24 +27,25 @@
     "build": "npm run format && npm run lint && echo Using TypeScript && tsc --version && tsc --project tsconfig.build.json",
     "doc": "typedoc --out ./doc/ ./src --mode file --module commonjs",
     "test": "mocha --opts ./mocha.opts",
+    "test:watch": "mocha --opts ./mocha.opts --watch-extensions ts --watch",
     "coverage": "nyc npm run test"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.5",
     "@types/mock-fs": "^3.6.30",
-    "@types/node": "^10.12.7",
+    "@types/node": "^10.12.18",
     "chai": "^4.2.0",
     "coveralls": "^3.0.2",
     "mocha": "^5.2.0",
     "mock-fs": "^4.7.0",
     "nyc": "^13.1.0",
-    "prettier": "^1.15.2",
+    "prettier": "^1.15.3",
     "source-map-support": "^0.5.9",
     "ts-node": "^7.0.1",
-    "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.16.0",
+    "tslint": "^5.12.0",
+    "tslint-config-prettier": "^1.17.0",
     "typedoc": "^0.13.0",
-    "typescript": "^3.1.6"
+    "typescript": "^3.2.2"
   }
 }
