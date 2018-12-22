@@ -94,46 +94,46 @@ export const handleDownwardFilesOverload = (
 };
 
 /**
- * A downward files fetcher constructs an iterator over the files downwards from
+ * A downward files fetcher constructs an iterable over the files downwards from
  * a given directory path.
  */
 interface DownwardFilesFetcher extends Function {
   /**
-   * Constructs an iterator over the downward files starting from the current
+   * Constructs an iterable over the downward files starting from the current
    * working directory. Symbolic links are followed, and the directories are
    * traversed in breadth-first order. Directories are read only once.
-   * @returns An iterator over the downward files.
+   * @returns An iterable over the downward files.
    */
   (): AsyncIterable<string>;
 
   /**
-   * Constructs an iterator over the downward files starting from the current
+   * Constructs an iterable over the downward files starting from the current
    * working directory and down to a given maximum depth of a directory.
    * Symbolic links are followed, and the directories are traversed in
    * breadth-first order. Directories are read only once.
    * @param maximumDepth The maximum depth of a read directory relative to the
    * start directory. This maximum depth should be zero or positive.
    * @throws If the maximum depth is negative.
-   * @returns An iterator over the downward files down to the maximum depth.
+   * @returns An iterable over the downward files down to the maximum depth.
    */
   // tslint:disable-next-line:unified-signatures
   (maximumDepth: number): AsyncIterable<string>;
 
   /**
-   * Constructs an iterator over the downward files starting from a given path.
+   * Constructs an iterable over the downward files starting from a given path.
    * Symbolic links are followed, and the directories are traversed in
    * breadth-first order. Directories are read only once.
    * @param startDirectory The starting directory from which to start the
    * downward traversal.
    * @throws If the starting path is a file.
    * @throws If the starting path is inexistant.
-   * @returns An iterator over the downward files.
+   * @returns An iterable over the downward files.
    */
   // tslint:disable-next-line:unified-signatures
   (startDirectory: string): AsyncIterable<string>;
 
   /**
-   * Constructs an iterator over the downward files starting from a given path
+   * Constructs an iterable over the downward files starting from a given path
    * and down to a given maximum depth of a directory. Symbolic links are
    * followed, and the directories are traversed in breadth-first order.
    * Directories are read only once.
@@ -144,53 +144,53 @@ interface DownwardFilesFetcher extends Function {
    * @throws If the starting path is a file.
    * @throws If the starting path is inexistant.
    * @throws If the maximum depth is negative.
-   * @returns An iterator over the downward files down to the maximum depth.
+   * @returns An iterable over the downward files down to the maximum depth.
    */
   // tslint:disable-next-line:unified-signatures
   (startDirectory: string, maximumDepth: number): AsyncIterable<string>;
 }
 
 /**
- * A downward files fetcher constructs an iterator over the files downwards from
+ * A downward files fetcher constructs an iterable over the files downwards from
  * a given directory path.
  */
 interface DownwardFilesFetcherSync extends Function {
   /**
-   * Constructs an iterator over the downward files starting from the current
+   * Constructs an iterable over the downward files starting from the current
    * working directory. Symbolic links are followed, and the directories are
    * traversed in breadth-first order. Directories are read only once.
-   * @returns An iterator over the downward files.
+   * @returns An iterable over the downward files.
    */
   (): Iterable<string>;
 
   /**
-   * Constructs an iterator over the downward files starting from the current
+   * Constructs an iterable over the downward files starting from the current
    * working directory and down to a given maximum depth of a directory.
    * Symbolic links are followed, and the directories are traversed in
    * breadth-first order. Directories are read only once.
    * @param maximumDepth The maximum depth of a read directory relative to the
    * start directory. This maximum depth should be zero or positive.
    * @throws If the maximum depth is negative.
-   * @returns An iterator over the downward files down to the maximum depth.
+   * @returns An iterable over the downward files down to the maximum depth.
    */
   // tslint:disable-next-line:unified-signatures
   (maximumDepth: number): Iterable<string>;
 
   /**
-   * Constructs an iterator over the downward files starting from a given path.
+   * Constructs an iterable over the downward files starting from a given path.
    * Symbolic links are followed, and the directories are traversed in
    * breadth-first order. Directories are read only once.
    * @param startDirectory The starting directory from which to start the
    * downward traversal.
    * @throws If the starting path is a file.
    * @throws If the starting path is inexistant.
-   * @returns An iterator over the downward files.
+   * @returns An iterable over the downward files.
    */
   // tslint:disable-next-line:unified-signatures
   (startDirectory: string): Iterable<string>;
 
   /**
-   * Constructs an iterator over the downward files starting from a given path
+   * Constructs an iterable over the downward files starting from a given path
    * and down to a given maximum depth of a directory. Symbolic links are
    * followed, and the directories are traversed in breadth-first order.
    * Directories are read only once.
@@ -201,7 +201,7 @@ interface DownwardFilesFetcherSync extends Function {
    * @throws If the starting path is a file.
    * @throws If the starting path is inexistant.
    * @throws If the maximum depth is negative.
-   * @returns An iterator over the downward files down to the maximum depth.
+   * @returns An iterable over the downward files down to the maximum depth.
    */
   // tslint:disable-next-line:unified-signatures
   (startDirectory: string, maximumDepth: number): Iterable<string>;
@@ -226,14 +226,14 @@ export const downwardFiles: DownwardFilesFetcher = (
 };
 
 /**
- * Constructs an iterator over the downward files starting from a given path.
+ * Constructs an iterable over the downward files starting from a given path.
  * Symbolic links are followed, and the directories are traversed in
  * breadth-first order. Directories are read only once.
  * @param startDirectory The starting directory from which to start the downward
  * traversal.
  * @throws If the starting path is a file.
  * @throws If the starting path is inexistant.
- * @returns An iterator over the downward files.
+ * @returns An iterable over the downward files.
  */
 async function* unconstrainedDownwardFiles(
   startDirectory: string,
@@ -257,7 +257,7 @@ async function* unconstrainedDownwardFiles(
 }
 
 /**
- * Constructs an iterator over the downward files starting from a given path and
+ * Constructs an iterable over the downward files starting from a given path and
  * down to a given maximum depth of a directory. Symbolic links are followed,
  * and the directories are traversed in breadth-first order. Directories are
  * read only once.
@@ -268,7 +268,7 @@ async function* unconstrainedDownwardFiles(
  * @throws If the starting path is a file.
  * @throws If the starting path is inexistant.
  * @throws If the maximum depth is negative.
- * @returns An iterator over the downward files down to the maximum depth.
+ * @returns An iterable over the downward files down to the maximum depth.
  */
 async function* constrainedDownwardFiles(
   startDirectory: string,
@@ -313,14 +313,14 @@ export const downwardFilesSync: DownwardFilesFetcherSync = (
 };
 
 /**
- * Constructs an iterator over the downward files starting from a given path.
+ * Constructs an iterable over the downward files starting from a given path.
  * Symbolic links are followed, and the directories are traversed in
  * breadth-first order. Directories are read only once.
  * @param startDirectory The starting directory from which to start the downward
  * traversal.
  * @throws If the starting path is a file.
  * @throws If the starting path is inexistant.
- * @returns An iterator over the downward files.
+ * @returns An iterable over the downward files.
  */
 function* unconstrainedDownwardFilesSync(
   startDirectory: string,
@@ -344,7 +344,7 @@ function* unconstrainedDownwardFilesSync(
 }
 
 /**
- * Constructs an iterator over the downward files starting from a given path and
+ * Constructs an iterable over the downward files starting from a given path and
  * down to a given maximum depth of a directory. Symbolic links are followed,
  * and the directories are traversed in breadth-first order. Directories are
  * read only once.
@@ -355,7 +355,7 @@ function* unconstrainedDownwardFilesSync(
  * @throws If the starting path is a file.
  * @throws If the starting path is inexistant.
  * @throws If the maximum depth is negative.
- * @returns An iterator over the downward files down to the maximum depth.
+ * @returns An iterable over the downward files down to the maximum depth.
  */
 function* constrainedDownwardFilesSync(
   startDirectory: string,
@@ -380,3 +380,187 @@ function* constrainedDownwardFilesSync(
     }
   }
 }
+
+/**
+ * An upward file fetcher constructs an iterable over the files in upward
+ * directories relative to a start path.
+ */
+interface UpwardFilesFetcher extends Function {
+  /**
+   * Constructs an iterable over the files in the upward directories relative to
+   * the current working directory, up to the root inclusively of the current
+   * working directory. The directories are traversed in increasing order of
+   * height relative to the start directory. The start directory is not read.
+   * @returns An iterable over the upward files.
+   */
+  (): AsyncIterable<string>;
+
+  /**
+   * Constructs an iterable over the files in the upward directories relative to
+   * the current working directory, up to the upward directory whose height
+   * realtive to the current working directory is equal to the given maximum
+   * height. The directories are traversed in increasing order of height
+   * relative to the start directory. The start directory is not read.
+   * @param maximumHeight The maximum height of a directory. The height of the
+   * start directory is zero. This value should be greater than or equal to one.
+   * @returns An iterable over the upward files.
+   */
+  // tslint:disable-next-line:unified-signatures
+  (maximumHeight: number): AsyncIterable<string>;
+
+  /**
+   * Constructs an iterable over the files in the upward directories relative to
+   * the start path, up to the root inclusively of the start path directory. The
+   * directories are traversed in increasing order of height relative to the
+   * start directory. The start path is not read if it is a directory. If the
+   * start path is a file, then its directory is the first directory to be read.
+   * @param startPath The start path of the upward traversal.
+   * @returns An iterable over the upward files.
+   */
+  // tslint:disable-next-line:unified-signatures
+  (startPath: string): AsyncIterable<string>;
+
+  /**
+   * Constructs an iterable over the files in the upward directories relative to
+   * the start path, up to the upward directory whose height realtive to the
+   * start path is equal to the given maximum height. The directories are
+   * traversed in increasing order of height relative to the start directory.
+   * The start path is not read if it is a directory. If the start path is a
+   * file, then its directory is the first directory to be read, if its height
+   * does not exceed the maximum height.
+   * @param startPath The start path of the upward traversal.
+   * @param maximumHeight The maximum height of a directory. The height of the
+   * start path is zero. This value should be greater than or equal to one.
+   * @returns An iterable over the upward files.
+   */
+  // tslint:disable-next-line:unified-signatures
+  (startPath: string, maximumHeight: number): AsyncIterable<string>;
+
+  /**
+   * Constructs an iterable over the files in the upward directories relative to
+   * the start path, up to an end path. The directories are traversed in
+   * increasing order of height relative to the start directory. The start path
+   * is not read if it is a directory. If the start path is a file, then its
+   * directory is the first directory to be read. If the end directory is not
+   * parent to the start path, then all the upward paths from the start path are
+   * yielded up to its root. The iteration stops once the end directory is
+   * reached and its files are yielded.
+   * @param startPath The start path of the upward traversal.
+   * @param endDirectory The end directory at which point all the upward
+   * directories have been read.
+   * @returns An iterable over the upward files.
+   */
+  // tslint:disable-next-line:unified-signatures
+  (startPath: string, endDirectory: string): AsyncIterable<string>;
+}
+
+/**
+ * An upward file fetcher constructs an iterable over the files in upward
+ * directories relative to a start path.
+ */
+interface UpwardFilesFetcherSync extends Function {
+  /**
+   * Constructs an iterable over the files in the upward directories relative to
+   * the current working directory, up to the root inclusively of the current
+   * working directory. The directories are traversed in increasing order of
+   * height relative to the start directory. The start directory is not read.
+   * @returns An iterable over the upward files.
+   */
+  (): Iterable<string>;
+
+  /**
+   * Constructs an iterable over the files in the upward directories relative to
+   * the current working directory, up to the upward directory whose height
+   * realtive to the current working directory is equal to the given maximum
+   * height. The directories are traversed in increasing order of height
+   * relative to the start directory. The start directory is not read.
+   * @param maximumHeight The maximum height of a directory. The height of the
+   * start directory is zero. This value should be greater than or equal to one.
+   * @returns An iterable over the upward files.
+   */
+  // tslint:disable-next-line:unified-signatures
+  (maximumHeight: number): Iterable<string>;
+
+  /**
+   * Constructs an iterable over the files in the upward directories relative to
+   * the start path, up to the root inclusively of the start path directory. The
+   * directories are traversed in increasing order of height relative to the
+   * start directory. The start path is not read if it is a directory. If the
+   * start path is a file, then its directory is the first directory to be read.
+   * @param startPath The start path of the upward traversal.
+   * @returns An iterable over the upward files.
+   */
+  // tslint:disable-next-line:unified-signatures
+  (startPath: string): Iterable<string>;
+
+  /**
+   * Constructs an iterable over the files in the upward directories relative to
+   * the start path, up to the upward directory whose height realtive to the
+   * start path is equal to the given maximum height. The directories are
+   * traversed in increasing order of height relative to the start directory.
+   * The start path is not read if it is a directory. If the start path is a
+   * file, then its directory is the first directory to be read, if its height
+   * does not exceed the maximum height.
+   * @param startPath The start path of the upward traversal.
+   * @param maximumHeight The maximum height of a directory. The height of the
+   * start path is zero. This value should be greater than or equal to one.
+   * @returns An iterable over the upward files.
+   */
+  // tslint:disable-next-line:unified-signatures
+  (startPath: string, maximumHeight: number): Iterable<string>;
+
+  /**
+   * Constructs an iterable over the files in the upward directories relative to
+   * the start path, up to an end path. The directories are traversed in
+   * increasing order of height relative to the start directory. The start path
+   * is not read if it is a directory. If the start path is a file, then its
+   * directory is the first directory to be read. If the end directory is not
+   * parent to the start path, then all the upward paths from the start path are
+   * yielded up to its root. The iteration stops once the end directory is
+   * reached and its files are yielded.
+   * @param startPath The start path of the upward traversal.
+   * @param endDirectory The end directory at which point all the upward
+   * directories have been read.
+   * @returns An iterable over the upward files.
+   */
+  // tslint:disable-next-line:unified-signatures
+  (startPath: string, endDirectory: string): Iterable<string>;
+}
+
+/**
+ * Handles the function overload of upward file fetchers.
+ * @param startPath The first argument of the function.
+ * @param maximumHeight The second argument of the function.
+ * @returns The validated arguments for the upward file fetchers function call.
+ */
+const handleUpwardFilesOverload = (
+  startPath: number | string = ".",
+  maximumHeight?: number | string,
+): [string, undefined | number | string] => {
+  if (typeof startPath === "number") {
+    return [".", startPath];
+  }
+  return [startPath, maximumHeight];
+};
+
+/**
+ * @see [[UpwardFilesFetcher]] The specifications of the function.
+ */
+export const upwardFiles: UpwardFilesFetcher = (
+  startPath?: number | string,
+  upperBound?: number | string,
+): AsyncIterable<string> => {
+  [startPath, upperBound] = handleUpwardFilesOverload(startPath, upperBound);
+  return readdirs(upwardDirectories(startPath, upperBound as any));
+};
+
+/**
+ * @see [[UpwardFilesFetcherSync]] The specifications of the function.
+ */
+export const upwardFilesSync: UpwardFilesFetcherSync = (
+  startPath?: number | string,
+  upperBound?: number | string,
+): Iterable<string> => {
+  [startPath, upperBound] = handleUpwardFilesOverload(startPath, upperBound);
+  return readdirsSync(upwardDirectoriesSync(startPath, upperBound as any));
+};

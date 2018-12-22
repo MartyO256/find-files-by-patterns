@@ -4,7 +4,12 @@ import { assert } from "chai";
 import * as mock from "mock-fs";
 import { join, resolve } from "path";
 
-import { downwardFiles, downwardFilesSync } from "../src/files";
+import {
+  downwardFiles,
+  downwardFilesSync,
+  upwardFiles,
+  upwardFilesSync,
+} from "../src/files";
 import { allElements, allElementsSync } from "../src/iterable";
 
 const resolvedPath = (path: string) => resolve(path);
@@ -436,6 +441,154 @@ describe("files", () => {
         ));
       it("should throw an error if the constraint is negative", () =>
         assert.throws(() => downwardFilesSync("./inexistant-directory", -1)));
+    });
+  });
+  describe("upwardFiles", () => {
+    it("should terminate", async () => upwardFiles());
+    it("should yield the correct amount of files", async () => {
+      assert.strictEqual(
+        (await allElements(upwardFiles("/home/user/files/file", "/home/user")))
+          .length,
+        7,
+      );
+    });
+    it("should only yield correct files", async () => {
+      const correctFiles = resolvedPaths(
+        "/home/user/files/file.html",
+        "/home/user/files/file.md",
+        "/home/user/files",
+        "/home/user/symbolic-files",
+        "/home/user/symbolic-folder",
+        "/home/user/loop",
+        "/home/user/breadth-first",
+      );
+      for await (const file of upwardFiles(
+        "/home/user/files/file",
+        "/home/user",
+      )) {
+        assert.isTrue(correctFiles.includes(file), `Unexpected file ${file}`);
+      }
+    });
+    it("should yield all the correct files", async () => {
+      const correctFiles = resolvedPaths(
+        "/home/user/files/file.html",
+        "/home/user/files/file.md",
+        "/home/user/files",
+        "/home/user/symbolic-files",
+        "/home/user/symbolic-folder",
+        "/home/user/loop",
+        "/home/user/breadth-first",
+      );
+      assert.deepStrictEqual(
+        (await allElements(
+          upwardFiles("/home/user/files/file", "/home/user"),
+        )).sort(),
+        correctFiles.sort(),
+      );
+    });
+    it("should yield all the correct files in ascending order of directory height", async () => {
+      const firstPart = resolvedPaths(
+        "/home/user/files/file.html",
+        "/home/user/files/file.md",
+      ).sort();
+      const secondPart = resolvedPaths(
+        "/home/user/files",
+        "/home/user/symbolic-files",
+        "/home/user/symbolic-folder",
+        "/home/user/loop",
+        "/home/user/breadth-first",
+      ).sort();
+      const actualFiles = await allElements(
+        upwardFiles("/home/user/files/file", "/home/user"),
+      );
+      assert.deepStrictEqual(
+        actualFiles.slice(0, firstPart.length).sort(),
+        firstPart,
+      );
+      assert.deepStrictEqual(
+        actualFiles.slice(firstPart.length).sort(),
+        secondPart,
+      );
+    });
+    it("should limit the amount of read upward directories", async () => {
+      assert.deepStrictEqual(
+        await allElements(upwardFiles(1)),
+        resolvedPaths("."),
+      );
+    });
+  });
+  describe("upwardFilesSync", () => {
+    it("should terminate", () => upwardFilesSync());
+    it("should yield the correct amount of files", () => {
+      assert.strictEqual(
+        allElementsSync(upwardFilesSync("/home/user/files/file", "/home/user"))
+          .length,
+        7,
+      );
+    });
+    it("should only yield correct files", () => {
+      const correctFiles = resolvedPaths(
+        "/home/user/files/file.html",
+        "/home/user/files/file.md",
+        "/home/user/files",
+        "/home/user/symbolic-files",
+        "/home/user/symbolic-folder",
+        "/home/user/loop",
+        "/home/user/breadth-first",
+      );
+      for (const file of upwardFilesSync(
+        "/home/user/files/file",
+        "/home/user",
+      )) {
+        assert.isTrue(correctFiles.includes(file), `Unexpected file ${file}`);
+      }
+    });
+    it("should yield all the correct files", () => {
+      const correctFiles = resolvedPaths(
+        "/home/user/files/file.html",
+        "/home/user/files/file.md",
+        "/home/user/files",
+        "/home/user/symbolic-files",
+        "/home/user/symbolic-folder",
+        "/home/user/loop",
+        "/home/user/breadth-first",
+      );
+      assert.deepStrictEqual(
+        allElementsSync(
+          upwardFilesSync("/home/user/files/file", "/home/user"),
+        ).sort(),
+        correctFiles.sort(),
+      );
+    });
+    it("should yield all the correct files in ascending order of directory height", () => {
+      const firstPart = resolvedPaths(
+        "/home/user/files/file.html",
+        "/home/user/files/file.md",
+      ).sort();
+      const secondPart = resolvedPaths(
+        "/home/user/files",
+        "/home/user/symbolic-files",
+        "/home/user/symbolic-folder",
+        "/home/user/loop",
+        "/home/user/breadth-first",
+      ).sort();
+      const actualFiles = allElementsSync(
+        upwardFilesSync("/home/user/files/file", "/home/user"),
+      );
+      assert.deepStrictEqual(
+        actualFiles.slice(0, firstPart.length).sort(),
+        firstPart,
+      );
+      assert.deepStrictEqual(
+        actualFiles.slice(firstPart.length).sort(),
+        secondPart,
+      );
+    });
+    it("should limit the amount of read upward directories", () => {
+      assert.deepStrictEqual(
+        allElementsSync(upwardFilesSync(1)),
+        resolvedPaths("."),
+      );
     });
   });
 });

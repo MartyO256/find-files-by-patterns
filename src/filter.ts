@@ -103,7 +103,7 @@ export const disjunctionSync: FilterCompounderSync = <T>(
  * @param filter The filter an element must pass in order to be filtered in.
  * @throws If the filter throws an error for any of the elements of the
  * iterable.
- * @returns An iterator over the filtered elements.
+ * @returns An iterable over the filtered elements.
  */
 export async function* filter<T>(
   iterable: Iterable<T> | AsyncIterable<T>,
@@ -122,7 +122,7 @@ export async function* filter<T>(
  * @param filter The filter an element must pass in order to be filtered in.
  * @throws If the filter throws an error for any of the elements of the
  * iterable.
- * @returns An iterator over the filtered elements.
+ * @returns An iterable over the filtered elements.
  */
 export function* filterSync<T>(
   iterable: Iterable<T>,

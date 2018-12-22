@@ -146,7 +146,7 @@ export const firstSegmentPosition = (normalizedPath: string): number => {
  * yielded segment must have at least one non-special character, meaning that a
  * segment cannot consist solely of dots or segment separators.
  * @param path The path from which to yield the segments.
- * @returns An iterator over the segments of the normalized path.
+ * @returns An iterable over the segments of the normalized path.
  */
 export function* segments(path: string): Iterable<string> {
   const normalizedPath = normalize(path);

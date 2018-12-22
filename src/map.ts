@@ -7,7 +7,7 @@ import { isAsyncIterable, isIterable } from "./iterable";
  * iterable onto simple elements of a certain type.
  * @throws If the mapping function throws an error for any of the iterated
  * elements.
- * @returns An iterator over the mapped elements.
+ * @returns An iterable over the mapped elements.
  */
 export async function* simpleMap<T, U>(
   iterable: Iterable<T> | AsyncIterable<T>,
@@ -25,7 +25,7 @@ export async function* simpleMap<T, U>(
  * iterable onto simple elements of a certain type.
  * @throws If the mapping function throws an error for any of the iterated
  * elements.
- * @returns An iterator over the mapped elements.
+ * @returns An iterable over the mapped elements.
  */
 export function* simpleMapSync<T, U>(
   iterable: Iterable<T>,
@@ -44,7 +44,7 @@ export function* simpleMapSync<T, U>(
  * the mapping should not be iterable, unless it is a string.
  * @throws If the mapping function throws an error for any of the iterated
  * elements.
- * @returns An iterator over the mapped elements.
+ * @returns An iterable over the mapped elements.
  */
 export async function* multiMap<T, U>(
   iterable: Iterable<T> | AsyncIterable<T>,
@@ -71,7 +71,7 @@ export async function* multiMap<T, U>(
  * the mapping should not be iterable, unless it is a string.
  * @throws If the mapping function throws an error for any of the iterated
  * elements.
- * @returns An iterator over the mapped elements.
+ * @returns An iterable over the mapped elements.
  */
 export function* multiMapSync<T, U>(
   iterable: Iterable<T>,

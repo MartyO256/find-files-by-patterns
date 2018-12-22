@@ -13,7 +13,7 @@ const readdirPromise = promisify(fsReaddir);
  * then it is resolved relative to the current working directory.
  * @throws If the given directory's path is a file.
  * @throws If the given directory's path is inexistant.
- * @returns An iterator over the read files of the given directory's path.
+ * @returns An iterable over the read files of the given directory's path.
  */
 export async function* readdir(directory: string): AsyncIterable<string> {
   const resolvedDirectory = resolve(directory);
@@ -29,7 +29,7 @@ export async function* readdir(directory: string): AsyncIterable<string> {
  * then it is resolved relative to the current working directory.
  * @throws If the given directory's path is a file.
  * @throws If the given directory's path is inexistant.
- * @returns An iterator over the read files of the given directory's path.
+ * @returns An iterable over the read files of the given directory's path.
  */
 export const readdirSync = (directory: string): Iterable<string> => {
   const resolvedDirectory = resolve(directory);
@@ -46,7 +46,7 @@ export const readdirSync = (directory: string): Iterable<string> => {
  * not absolute, then it is resolved relative to the current working directory.
  * @throws If any of the given directory's path is a file.
  * @throws If any of the given directory's path is inexistant.
- * @returns An iterator over the read files of the given directory paths.
+ * @returns An iterable over the read files of the given directory paths.
  */
 export const readdirs = (
   directories: Iterable<string> | AsyncIterable<string>,
@@ -62,7 +62,7 @@ export const readdirs = (
  * directory.
  * @throws If any of the given directory's path is a file.
  * @throws If any of the given directory's path is inexistant.
- * @returns An iterator over the read files of the given directory paths.
+ * @returns An iterable over the read files of the given directory paths.
  */
 export const readdirsSync = (directories: Iterable<string>): Iterable<string> =>
   multiMapSync(directories, (directory) => readdirSync(directory));
