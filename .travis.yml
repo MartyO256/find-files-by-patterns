@@ -1,12 +1,19 @@
 language: node_js
 node_js:
 - "10"
+
+branches:
+  except:
+    - gh-pages
+
+cache: yarn
+
 stages:
 - build
 - test
 - coverage
-- name: deploy
-  if: branch = master AND tag = true
+- deploy
+
 jobs:
   include:
     - stage: build
@@ -28,6 +35,7 @@ jobs:
         - cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
         - ./cc-test-reporter after-build
     - stage: deploy
+      if: tag IS present
       os: linux
       node_js: "10"
       script:
@@ -40,15 +48,22 @@ jobs:
         local_dir: ./doc/
         keep-history: true
         skip_cleanup: true
+        on:
+          tags: true
       - provider: releases
         api_key: $GITHUB_TOKEN
         file_glob: true
         file: find-files-by-patterns-*.tgz
         skip_cleanup: true
+        on:
+          tags: true
       - provider: npm
         email: ouimetmarcantoine@gmail.com
         api_key: $NPM_TOKEN
         skip_cleanup: true
+        on:
+          tags: true
+
 notifications:
   email:
     on_success: always

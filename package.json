@@ -1,6 +1,6 @@
 {
   "name": "find-files-by-patterns",
-  "version": "0.13.0",
+  "version": "1.0.0",
   "description": "Find files by patterns in directories, upwards or downwards from other paths.",
   "license": "MIT",
   "author": "Marc-Antoine Ouimet <ouimetmarcantoine@gmail.com>",
@@ -14,7 +14,7 @@
     "email": "ouimetmarcantoine@gmail.com"
   },
   "files": [
-    "./lib"
+    "lib"
   ],
   "main": "./lib/index.js",
   "engineStrict": true,
@@ -40,6 +40,18 @@
     "*.ts": ["tslint --force --format verbose", "git add"],
     "*.md": ["markdown-toc -i", "git add"]
   },
+  "keywords": [
+    "find-files",
+    "find-up",
+    "find-down",
+    "patterns",
+    "walk",
+    "walking",
+    "search",
+    "files",
+    "directories",
+    "iterable"
+  ],
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.5",
