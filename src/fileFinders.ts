@@ -107,7 +107,7 @@ export const findFileSync: FileFinderSync = (
 };
 
 /**
- * @see [[StrictFileFinder]] The specifications of the function.
+ * @see [[OnlyFileFinder]] The specifications of the function.
  */
 export const findOnlyFile: OnlyFileFinder = async (
   directories?:
@@ -133,7 +133,7 @@ export const findOnlyFile: OnlyFileFinder = async (
 };
 
 /**
- * @see [[StrictFileFinderSync]] The specifications of the function.
+ * @see [[OnlyFileFinderSync]] The specifications of the function.
  */
 export const findOnlyFileSync: OnlyFileFinderSync = (
   directories?: string | Iterable<string> | FilterSync<string>,

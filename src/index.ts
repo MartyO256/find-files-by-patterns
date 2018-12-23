@@ -16,6 +16,7 @@ export {
   onlyElement,
   onlyElementSync,
 } from "./iterable";
+export { readdir, readdirSync, readdirs, readdirsSync } from "./readdirs";
 
 export {
   hasPathSegments,
@@ -42,10 +43,23 @@ export {
   OnlyFileFinderSync,
 } from "./fileFinders";
 
-export { downwardFiles, downwardFilesSync } from "./files";
+export {
+  downwardFiles,
+  downwardFilesSync,
+  upwardFiles,
+  upwardFilesSync,
+  DownwardFilesFetcher,
+  DownwardFilesFetcherSync,
+  UpwardFilesFetcher,
+  UpwardFilesFetcherSync,
+} from "./files";
 export {
   downwardDirectories,
   downwardDirectoriesSync,
   upwardDirectories,
   upwardDirectoriesSync,
+  DownwardDirectoriesFetcher,
+  DownwardDirectoriesFetcherSync,
+  UpwardDirectoriesFetcher,
+  UpwardDirectoriesFetcherSync,
 } from "./directories";

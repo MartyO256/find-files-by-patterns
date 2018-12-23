@@ -1,6 +1,6 @@
 {
   "name": "find-files-by-patterns",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "description": "Find files by patterns in directories, upwards or downwards from other paths.",
   "license": "MIT",
   "author": "Marc-Antoine Ouimet <ouimetmarcantoine@gmail.com>",
@@ -28,7 +28,17 @@
     "doc": "typedoc --out ./doc/ ./src --mode file --module commonjs",
     "test": "mocha --opts ./mocha.opts",
     "test:watch": "mocha --opts ./mocha.opts --watch-extensions ts --watch",
-    "coverage": "nyc npm run test"
+    "coverage": "nyc npm run test",
+    "pre-commit": "lint-staged && npm run format"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run pre-commit"
+    }
+  },
+  "lint-staged": {
+    "*.ts": ["tslint --force --format verbose", "git add"],
+    "*.md": ["markdown-toc -i", "git add"]
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
@@ -37,6 +47,9 @@
     "@types/node": "^10.12.18",
     "chai": "^4.2.0",
     "coveralls": "^3.0.2",
+    "husky": "^1.2.1",
+    "lint-staged": "^8.1.0",
+    "markdown-toc": "^1.2.0",
     "mocha": "^5.2.0",
     "mock-fs": "^4.7.0",
     "nyc": "^13.1.0",

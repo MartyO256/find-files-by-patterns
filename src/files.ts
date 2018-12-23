@@ -97,7 +97,7 @@ export const handleDownwardFilesOverload = (
  * A downward files fetcher constructs an iterable over the files downwards from
  * a given directory path.
  */
-interface DownwardFilesFetcher extends Function {
+export interface DownwardFilesFetcher extends Function {
   /**
    * Constructs an iterable over the downward files starting from the current
    * working directory. Symbolic links are followed, and the directories are
@@ -154,7 +154,7 @@ interface DownwardFilesFetcher extends Function {
  * A downward files fetcher constructs an iterable over the files downwards from
  * a given directory path.
  */
-interface DownwardFilesFetcherSync extends Function {
+export interface DownwardFilesFetcherSync extends Function {
   /**
    * Constructs an iterable over the downward files starting from the current
    * working directory. Symbolic links are followed, and the directories are
@@ -385,7 +385,7 @@ function* constrainedDownwardFilesSync(
  * An upward file fetcher constructs an iterable over the files in upward
  * directories relative to a start path.
  */
-interface UpwardFilesFetcher extends Function {
+export interface UpwardFilesFetcher extends Function {
   /**
    * Constructs an iterable over the files in the upward directories relative to
    * the current working directory, up to the root inclusively of the current
@@ -458,7 +458,7 @@ interface UpwardFilesFetcher extends Function {
  * An upward file fetcher constructs an iterable over the files in upward
  * directories relative to a start path.
  */
-interface UpwardFilesFetcherSync extends Function {
+export interface UpwardFilesFetcherSync extends Function {
   /**
    * Constructs an iterable over the files in the upward directories relative to
    * the current working directory, up to the root inclusively of the current

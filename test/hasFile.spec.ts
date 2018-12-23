@@ -41,9 +41,6 @@ describe("hasFile", () => {
   it("should return `false` for a path that is a directory and doesn't have any matching file", async () => {
     assert.isFalse(await hasFile(ofExtname(".html"))("/home/user/directory"));
   });
-  it("should return `false` for a path that is an empty directory and no tests are given", async () => {
-    assert.isFalse(await hasFile()("/home/user/directory"));
-  });
   it("should throw an error if any of the tests throws an error", async () => {
     assert.isFalse(await hasFile(error)("/home/user/directory"));
   });
@@ -76,9 +73,6 @@ describe("hasFileSync", () => {
   });
   it("should return `false` for a path that is a directory and doesn't have any matching file", () => {
     assert.isFalse(hasFileSync(ofExtname(".html"))("/home/user/directory"));
-  });
-  it("should return `false` for a path that is an empty directory and no tests are given", () => {
-    assert.isFalse(hasFileSync()("/home/user/directory"));
   });
   it("should throw an error if any of the tests throws an error", () => {
     assert.isFalse(hasFileSync(errorSync)("/home/user/directory"));

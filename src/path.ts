@@ -7,7 +7,7 @@ import {
   parse,
   sep,
 } from "path";
-import { conjunctionSync, disjunctionSync, FilterSync } from "./filter";
+import { disjunctionSync, FilterSync } from "./filter";
 
 /**
  * A segment tester is a type which can be used to test a substring of a path.
@@ -169,7 +169,7 @@ export function* segments(path: string): Iterable<string> {
  * Constructs a filter which determines whether or not all the path segments of
  * a path pass a sequence of tests. In order for a path to match, there must not
  * be a path segment that fails a test. If no tests are provided, then the
- * matcher will return `false` regardless of the path it checks.
+ * filter will return `false` regardless of the path it checks.
  * @param tests The sequence of tests each path segment must pass in order for
  * the path to match.
  * @throws If any of the tests throws an error for any path segment.
@@ -177,12 +177,9 @@ export function* segments(path: string): Iterable<string> {
  * path pass a sequence of tests
  */
 export const hasPathSegments = (
-  ...tests: Array<FilterSync<string>>
+  ...tests: SegmentTester[]
 ): FilterSync<string> => {
-  if (tests.length === 0) {
-    return () => false;
-  }
-  const test = conjunctionSync(tests);
+  const test = ofSegmentFilter(tests);
   return (path: string) => {
     for (const segment of segments(path)) {
       if (!test(segment)) {

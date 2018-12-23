@@ -12,7 +12,7 @@ import { isDirectory, isDirectorySync } from "./stat";
  * A downward directories fetcher constructs an iterable over the directories
  * downwards from a given directory path.
  */
-interface DownwardDirectoriesFetcher extends Function {
+export interface DownwardDirectoriesFetcher extends Function {
   /**
    * Constructs an iterable over the downward directories starting from the
    * current working directory. Symbolic links are followed, and the directories
@@ -74,7 +74,7 @@ interface DownwardDirectoriesFetcher extends Function {
  * A downward directories fetcher constructs an iterable over the directories
  * downwards from a given directory path.
  */
-interface DownwardDirectoriesFetcherSync extends Function {
+export interface DownwardDirectoriesFetcherSync extends Function {
   /**
    * Constructs an iterable over the downward directories starting from the
    * current working directory. Symbolic links are followed, and the directories
@@ -267,7 +267,7 @@ const overloadedUpwardPaths = (
  * An upward directories fetcher constructs an iterable over the directories
  * upwards from a given directory path.
  */
-interface UpwardDirectoriesFetcher extends Function {
+export interface UpwardDirectoriesFetcher extends Function {
   /**
    * Constructs an iterable over the upward directories starting from the
    * current working directory. The current working directory is not yielded.
@@ -323,7 +323,7 @@ interface UpwardDirectoriesFetcher extends Function {
  * An upward directories fetcher constructs an iterable over the directories
  * upwards from a given directory path.
  */
-interface UpwardDirectoriesFetcherSync extends Function {
+export interface UpwardDirectoriesFetcherSync extends Function {
   /**
    * Constructs an iterable over the upward directories starting from the
    * current working directory. The current working directory is not yielded.
