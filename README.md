@@ -9,7 +9,8 @@
 
 ---
 
-Use the iteration protocol to find files upwards and downwards in the file system.
+Use the iteration protocol to find files upwards and downwards in the file
+system.
 
 ---
 
@@ -21,9 +22,10 @@ Using npm:
 npm install find-files-by-patterns
 ```
 
-Assuming this file system, where the current working directory is `/Documents/project`:
+Assuming this file system, where the current working directory is
+`/Documents/project`:
 
-```
+```txt
 /
 └── Documents
     ├── data.csv
@@ -54,6 +56,7 @@ const { findFile, upwardDirectories,
 ```
 
 ## Table of Contents
+
 <details>
 
 <!-- toc -->
@@ -93,55 +96,60 @@ const { findFile, upwardDirectories,
 ## API
 
 <details>
+
 <summary>Complete list of exported functions</summary>
 
 Finders:
 
-* [`findFile` and `findFileSync`](#findFile-and-findFileSync)
-* [`findAllFiles` and `findAllFilesSync`](#findAllFiles-and-findAllFilesSync)
-* [`findOnlyFile` and `findOnlyFileSync`](#findOnlyFile-and-findOnlyFileSync)
+- [`findFile` and `findFileSync`](#findFile-and-findFileSync)
+- [`findAllFiles` and `findAllFilesSync`](#findAllFiles-and-findAllFilesSync)
+- [`findOnlyFile` and `findOnlyFileSync`](#findOnlyFile-and-findOnlyFileSync)
 
 Files:
 
-* [`downwardFiles` and `downwardFilesSync`](#downwardFiles-and-downwardFilesSync)
-* [`upwardFiles` and `upwardFilesSync`](#upwardFiles-and-upwardFilesSync)
+- [`downwardFiles` and `downwardFilesSync`](#downwardFiles-and-downwardFilesSync)
+- [`upwardFiles` and `upwardFilesSync`](#upwardFiles-and-upwardFilesSync)
 
 Directories:
 
-* [`downwardDirectories` and `downwardDirectoriesSync`](#downwardDirectories-and-downwardDirectoriesSync)
-* [`upwardDirectories` and `upwardDirectoriesSync`](#upwardDirectories-and-upwardDirectoriesSync)
+- [`downwardDirectories` and `downwardDirectoriesSync`](#downwardDirectories-and-downwardDirectoriesSync)
+- [`upwardDirectories` and `upwardDirectoriesSync`](#upwardDirectories-and-upwardDirectoriesSync)
 
 Filters:
 
-* [`ofBasename`, `ofDirname` and `ofExtname`](#ofBasename-ofDirname-and-ofExtname)
-* [`hasPathSegments`](#hasPathSegments)
-* [`isFile` and `isFileSync`](#isFile-and-isFileSync)
-* [`isDirectory` and `isDirectorySync`](#isDirectory-and-isDirectorySync)
-* [`hasFile` and `hasFileSync`](#hasFile-and-hasFileSync)
-* [`conjunction` and `conjunctionSync`](#conjunction-and-conjunctionSync)
-* [`disjunction` and `disjunctionSync`](#disjunction-and-disjunctionSync)
+- [`ofBasename`, `ofDirname` and `ofExtname`](#ofBasename-ofDirname-and-ofExtname)
+- [`hasPathSegments`](#hasPathSegments)
+- [`isFile` and `isFileSync`](#isFile-and-isFileSync)
+- [`isDirectory` and `isDirectorySync`](#isDirectory-and-isDirectorySync)
+- [`hasFile` and `hasFileSync`](#hasFile-and-hasFileSync)
+- [`conjunction` and `conjunctionSync`](#conjunction-and-conjunctionSync)
+- [`disjunction` and `disjunctionSync`](#disjunction-and-disjunctionSync)
 
 Iterable `readdir`:
 
-* [`readdir` and `readdirSync`](#readdir-and-readdirSync)
-* [`readdirs` and `readdirsSync`](#readdirs-and-readdirsSync)
+- [`readdir` and `readdirSync`](#readdir-and-readdirSync)
+- [`readdirs` and `readdirsSync`](#readdirs-and-readdirsSync)
 
 Iterable utilities:
 
-* [`filter` and `filterSync`](#filter-and-filterSync)
-* [`allElements` and `allElementsSync`](#allElements-and-allElementsSync)
-* [`firstElement` and `firstElementSync`](#firstElement-and-firstElementSync)
-* [`onlyElement` and `onlyElementSync`](#onlyElement-and-onlyElementSync)
+- [`filter` and `filterSync`](#filter-and-filterSync)
+- [`allElements` and `allElementsSync`](#allElements-and-allElementsSync)
+- [`firstElement` and `firstElementSync`](#firstElement-and-firstElementSync)
+- [`onlyElement` and `onlyElementSync`](#onlyElement-and-onlyElementSync)
+
 </details>
 
 ### `findFile` and `findFileSync`
 
-Finds the first file that matches all of the given filters in the given directories or current working.
-If no directory is supplied, then the current directory is read.
+Finds the first file that matches all of the given filters in the given
+directories.
+If no directory is supplied, then the current working directory is read.
 
 > Specifications
 
 ```ts
+type Filter<T> = (element: T) => Promise<boolean>;
+type FilterSync<T> = (element: T) => boolean;
 findFile(...tests: Array<Filter<string> | FilterSync<string>>): Promise<
   string | null
 >;
@@ -149,22 +157,26 @@ findFile(
   directories: string | AsyncIterable<string> | Iterable<string>,
   ...tests: Array<Filter<string> | FilterSync<string>>
 ): Promise<string | null>;
+findFileSync(...tests: Array<FilterSync<string>>): string | null;
 findFileSync(
   directories: string | Iterable<string>,
   ...tests: Array<FilterSync<string>>
 ): string | null;
-findFileSync(...tests: Array<FilterSync<string>>): string | null;
 ```
 
 ### `findAllFiles` and `findAllFilesSync`
 
-Finds all the files that match all of the given filters in the given directories.
-If no directory is supplied, then the current directory is read.
+Finds all the files that match all of the given filters in the given
+directories.
+If no directory is supplied, then the current working directory is read.
 
 > Specifications
 
 ```ts
-findAllFiles(...tests: Array<Filter<string> | FilterSync<string>>): Promise<string[]>;
+type Filter<T> = (element: T) => Promise<boolean>;
+type FilterSync<T> = (element: T) => boolean;
+findAllFiles(...tests: Array<Filter<string>
+                     | FilterSync<string>>): Promise<string[]>;
 findAllFiles(
   directories: string | AsyncIterable<string> | Iterable<string>,
   ...tests: Array<Filter<string> | FilterSync<string>>
@@ -178,12 +190,15 @@ findAllFilesSync(
 
 ### `findOnlyFile` and `findOnlyFileSync`
 
-Finds the first and only file in its directory that matches all of the given filters.
-If no directory is supplied, then the current directory is read.
+Finds the first and only file in its directory that matches all of the given
+filters.
+If no directory is supplied, then the current working directory is read.
 
 > Specifications
 
 ```ts
+type Filter<T> = (element: T) => Promise<boolean>;
+type FilterSync<T> = (element: T) => boolean;
 findOnlyFile(...tests: Array<Filter<string> | FilterSync<string>>): Promise<
   string | null
 >;
@@ -200,7 +215,8 @@ findOnlyFileSync(
 
 ### `downwardDirectories` and `downwardDirectoriesSync`
 
-Returns an iterable ocer the existing downward files from a start path. Symbolic links are followed and handled such that no directory is traversed twice.
+Returns an iterable ocer the existing downward files from a start path. Symbolic
+links are followed and handled such that no directory is traversed twice.
 
 > Specifications
 
@@ -208,18 +224,20 @@ Returns an iterable ocer the existing downward files from a start path. Symbolic
 downwardDirectories(): AsyncIterable<string>;
 downwardDirectories(maximumDepth: number): AsyncIterable<string>;
 downwardDirectories(startDirectory: string): AsyncIterable<string>;
-downwardDirectories(startDirectory: string, maximumDepth: number): AsyncIterable<string>;
+downwardDirectories(startDirectory: string,
+                    maximumDepth: number): AsyncIterable<string>;
 downwardDirectoriesSync(): Iterable<string>;
 downwardDirectoriesSync(maximumDepth: number): Iterable<string>;
 downwardDirectoriesSync(startDirectory: string): Iterable<string>;
-downwardDirectoriesSync(startDirectory: string, maximumDepth: number): Iterable<string>;
+downwardDirectoriesSync(startDirectory: string,
+                        maximumDepth: number): Iterable<string>;
 ```
 
 > Example
 
 Assuming this file system, where the current working directory is `/Documents`:
 
-```
+```txt
 /
 └── Documents
     ├── Images
@@ -234,8 +252,11 @@ const { downwardDirectoriesSync } = require("find-files-by-patterns");
 
 [
   ...downwardDirectoriesSync()
-]; //=> `[ '/Documents/Images', '/Documents/project', '/Documents/project/node_modules' ]`
-[...downwardDirectoriesSync(1)]; //=> `[ '/Documents/Images', '/Documents/project' ]`
+]; /*=> `[ '/Documents/Images',
+           '/Documents/project',
+           '/Documents/project/node_modules' ]`*/
+[...downwardDirectoriesSync(1)]; /*=> `[ '/Documents/Images',
+                                         '/Documents/project' ]`*/
 [...downwardDirectoriesSync(
   "/Documents/project"
 )]; //=> `[ '/Documents/project/node_modules' ]`
@@ -253,19 +274,22 @@ Returns an iterable over the existing directories upwards from a start path.
 ```ts
 upwardDirectories(): AsyncIterable<string>;
 upwardDirectories(startPath: string): AsyncIterable<string>;
-upwardDirectories(startPath: string, maximumHeight: number): AsyncIterable<string>;
+upwardDirectories(startPath: string,
+                  maximumHeight: number): AsyncIterable<string>;
 upwardDirectories(startPath: string, endPath: string): AsyncIterable<string>;
 upwardDirectoriesSync(): Iterable<string>;
 upwardDirectoriesSync(startPath: string): Iterable<string>;
-upwardDirectoriesSync(startPath: string, maximumHeight: number): Iterable<string>;
+upwardDirectoriesSync(startPath: string,
+                      maximumHeight: number): Iterable<string>;
 upwardDirectoriesSync(startPath: string, endPath: string): Iterable<string>;
 ```
 
 > Example
 
-Assuming this file system, where the current working directory is `/Documents/project`:
+Assuming this file system, where the current working directory is
+`/Documents/project`:
 
-```
+```txt
 /
 └── Documents
     ├── Images
@@ -293,7 +317,8 @@ const { upwardDirectoriesSync } = require("find-files-by-patterns");
 
 ### `downwardFiles` and `downwardFilesSync`
 
-Returns and iterable over the files in each downward directory yielded by `downwardDirectories` or `downwardDirectoriesSync`.
+Returns and iterable over the files in each downward directory yielded by
+`downwardDirectories` or `downwardDirectoriesSync`.
 
 > Specifications
 
@@ -301,16 +326,19 @@ Returns and iterable over the files in each downward directory yielded by `downw
 downwardFiles(): AsyncIterable<string>;
 downwardFiles(maximumDepth: number): AsyncIterable<string>;
 downwardFiles(startDirectory: string): AsyncIterable<string>;
-downwardFiles(startDirectory: string, maximumDepth: number): AsyncIterable<string>;
+downwardFiles(startDirectory: string,
+              maximumDepth: number): AsyncIterable<string>;
 downwardFilesSync(): Iterable<string>;
 downwardFilesSync(maximumDepth: number): Iterable<string>;
 downwardFilesSync(startDirectory: string): Iterable<string>;
-downwardFilesSync(startDirectory: string, maximumDepth: number): Iterable<string>;
+downwardFilesSync(startDirectory: string,
+                  maximumDepth: number): Iterable<string>;
 ```
 
 ### `upwardFiles` and `upwardFilesSync`
 
-Returns and iterable over the files in each upward directory yielded by `upwardDirectories` or `upwardDirectoriesSync`.
+Returns and iterable over the files in each upward directory yielded by
+`upwardDirectories` or `upwardDirectoriesSync`.
 
 > Specifications
 
@@ -327,11 +355,16 @@ upwardFilesSync(startPath: string, endPath: string): Iterable<string>;
 
 ### `ofBasename`, `ofDirname` and `ofExtname`
 
-Determines whether or not a path's `basename`, `dirname` or `extname` matches any of a sequence of segment testers.
+Determines whether or not a path's `basename`, `dirname` or `extname` matches
+any of a sequence of segment testers.
 A segment tester can be a string, a regular expression or a function.
-* If it is a string, then the segment must correspond to it for the path to match.
-* If it is a regular expression, then the segment must test against it for the path to match.
-* If it is a function, then the segment must make it return `true` for the path to match.
+
+- If it is a string, then the segment must correspond to it for the path to
+  match.
+- If it is a regular expression, then the segment must test against it for the
+  path to match.
+- If it is a function, then the segment must make it return `true` for the path
+  to match.
 
 > Specifications
 
@@ -360,11 +393,16 @@ isInDocuments("/Documents/src/index.js"); //=> `false`
 
 ### `hasPathSegments`
 
-Determines whether or not all the paths segments of a path match a sequence of segment testers.
+Determines whether or not all the paths segments of a path match a sequence of
+segment testers.
 A segment tester can be a string, a regular expression or a function.
-* If it is a string, then the segment must correspond to it for the path to match.
-* If it is a regular expression, then the segment must test against it for the path to match.
-* If it is a function, then the segment must make it return `true` for the path to match.
+
+- If it is a string, then the segment must correspond to it for the path to
+  match.
+- If it is a regular expression, then the segment must test against it for the
+  path to match.
+- If it is a function, then the segment must make it return `true` for the path
+  to match.
 
 > Specifications
 
@@ -408,7 +446,8 @@ isDirectorySync(path: string): boolean;
 
 ### `hasFile` and `hasFileSync`
 
-Returns a filter which determines whether or not a path is a directory that has a file which matches a filter.
+Returns a filter which determines whether or not a path is a directory that has
+a file which matches a filter.
 
 > Specifications
 
@@ -419,9 +458,10 @@ hasFileSync(test: FilterSync<string>): FilterSync<string>;
 
 > Example
 
-Assuming this file system, where the current working directory is `/Documents/project`:
+Assuming this file system, where the current working directory is
+`/Documents/project`:
 
-```
+```txt
 /
 └── Documents
     ├── Images
@@ -454,7 +494,8 @@ readdirSync(directory: string): Iterable<string>;
 
 ### `readdirs` and `readdirsSync`
 
-Returns an iterable over the fully qualified file names in the given sequence of directories.
+Returns an iterable over the fully qualified file names in the given sequence of
+directories.
 
 > Specifications
 
@@ -463,15 +504,17 @@ readdirs(directory: string): AsyncIterable<string>;
 readdirsSync(directory: string): Iterable<string>;
 ```
 
-
 ### `filter` and `filterSync`
 
-Filters out the iterated elements of an iterable for which the filter function returns `false`.
+Filters out the iterated elements of an iterable for which the filter function
+returns `false`.
 This is analogous to the array filter method.
 
 > Specifications
 
 ```ts
+type Filter<T> = (element: T) => Promise<boolean>;
+type FilterSync<T> = (element: T) => boolean;
 filter<T>(iterable: Iterable<T> | AsyncIterable<T>,
           filter: Filter<T> | FilterSync<T>): AsyncIterable<T>;
 filterSync<T>(iterable: Iterable<T>,
@@ -500,6 +543,8 @@ Compounds a sequence of filters using logical conjunction.
 > Specifications
 
 ```ts
+type Filter<T> = (element: T) => Promise<boolean>;
+type FilterSync<T> = (element: T) => boolean;
 conjunction<T>(filters: Array<Filter<T> | FilterSync<T>>): Filter<T>;
 conjunctionSync<T>(filters: Array<FilterSync<T>>): FilterSync<T>;
 ```
@@ -528,6 +573,8 @@ Compounds a sequence of filters using logical disjunction.
 > Specifications
 
 ```ts
+type Filter<T> = (element: T) => Promise<boolean>;
+type FilterSync<T> = (element: T) => boolean;
 disjunction<T>(filters: Array<Filter<T> | FilterSync<T>>): Filter<T>;
 disjunctionSync<T>(filters: Array<FilterSync<T>>): FilterSync<T>;
 ```
@@ -568,11 +615,12 @@ Returns the first element of an iterable.
 firstElement<T>(iterable: AsyncIterable<T>): Promise<T | null>;
 firstElementSync<T>(iterable: Iterable<T>): T | null;
 ```
- 
+
 ### `onlyElement` and `onlyElementSync`
 
 Returns the only yielded element of an iterable.
-If there is more than one element yielded by the iterable, then an error is thrown.
+If there is more than one element yielded by the iterable, then an error is
+thrown.
 
 > Specifications
 
@@ -580,7 +628,7 @@ If there is more than one element yielded by the iterable, then an error is thro
 onlyElement<T>(iterable: AsyncIterable<T>): Promise<T | null>;
 onlyElementSync<T>(iterable: Iterable<T>): T | null;
 ```
- 
+
 ## About
 
 ### Building the documentation
@@ -603,8 +651,9 @@ npm run build
 
 ### Authors
 
-* **Marc-Antoine Ouimet** - [MartyO256](https://github.com/MartyO256)
+- **Marc-Antoine Ouimet** - [MartyO256](https://github.com/MartyO256)
 
 ### License
 
-This project is licensed under the MIT License. See the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License. See the [LICENSE.md](LICENSE.md)
+file for details.
