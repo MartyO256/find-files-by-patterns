@@ -72,18 +72,21 @@
 					<a href="https://codeclimate.com/github/MartyO256/find-files-by-patterns/maintainability"><img src="https://api.codeclimate.com/v1/badges/6d2069677a848c509e3a/maintainability" alt="Maintainability"></a>
 				<a href="http://opensource.org/licenses/MIT"><img src="http://img.shields.io/badge/license-MIT-brightgreen.svg" alt="MIT license"></a></p>
 				<hr>
-				<p>Use the iteration protocol to find files upwards and downwards in the file system.</p>
+				<p>Use the iteration protocol to find files upwards and downwards in the file
+				system.</p>
 				<hr>
 				<h2 id="installation">Installation</h2>
 				<p>Using npm:</p>
 				<pre><code class="language-sh">npm install find-files-by-patterns</code></pre>
-				<p>Assuming this file system, where the current working directory is <code>/Documents/project</code>:</p>
-				<pre><code>/
-└── <span class="hljs-type">Documents</span>
-    ├── <span class="hljs-class"><span class="hljs-keyword">data</span>.csv</span>
+				<p>Assuming this file system, where the current working directory is
+				<code>/Documents/project</code>:</p>
+				<pre><code class="language-txt">/
+└── Documents
+    ├── data.csv
     └── project
         ├── node_modules
-        └── package.json</code></pre><p>In Node.js:</p>
+        └── package.json</code></pre>
+				<p>In Node.js:</p>
 				<pre><code class="language-js"><span class="hljs-keyword">const</span> { findFile, upwardDirectories,
   ofBasename, downwardFiles } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"find-files-by-patterns"</span>);
 
@@ -177,34 +180,41 @@
 						<li><a href="#filter-and-filterSync"><code>filter</code> and <code>filterSync</code></a></li>
 						<li><a href="#allElements-and-allElementsSync"><code>allElements</code> and <code>allElementsSync</code></a></li>
 						<li><a href="#firstElement-and-firstElementSync"><code>firstElement</code> and <code>firstElementSync</code></a></li>
-				<li><a href="#onlyElement-and-onlyElementSync"><code>onlyElement</code> and <code>onlyElementSync</code></a></details>
-				</li>
-				</ul>
+						<li><a href="#onlyElement-and-onlyElementSync"><code>onlyElement</code> and <code>onlyElementSync</code></a></li>
+					</ul>
+				</details>
 				<h3 id="findfile-and-findfilesync"><code>findFile</code> and <code>findFileSync</code></h3>
-				<p>Finds the first file that matches all of the given filters in the given directories or current working.
-				If no directory is supplied, then the current directory is read.</p>
+				<p>Finds the first file that matches all of the given filters in the given
+					directories.
+				If no directory is supplied, then the current working directory is read.</p>
 				<blockquote>
 					<p>Specifications</p>
 				</blockquote>
-				<pre><code class="language-ts">findFile(...tests: <span class="hljs-built_in">Array</span>&lt;Filter&lt;<span class="hljs-built_in">string</span>&gt; | FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;): <span class="hljs-built_in">Promise</span>&lt;
+				<pre><code class="language-ts"><span class="hljs-keyword">type</span> Filter&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">boolean</span>&gt;;
+<span class="hljs-keyword">type</span> FilterSync&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>;
+findFile(...tests: <span class="hljs-built_in">Array</span>&lt;Filter&lt;<span class="hljs-built_in">string</span>&gt; | FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;): <span class="hljs-built_in">Promise</span>&lt;
   <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>
 &gt;;
 findFile(
   directories: <span class="hljs-built_in">string</span> | AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt; | Iterable&lt;<span class="hljs-built_in">string</span>&gt;,
   ...tests: <span class="hljs-built_in">Array</span>&lt;Filter&lt;<span class="hljs-built_in">string</span>&gt; | FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;
 ): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>&gt;;
+findFileSync(...tests: <span class="hljs-built_in">Array</span>&lt;FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;): <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>;
 findFileSync(
   directories: <span class="hljs-built_in">string</span> | Iterable&lt;<span class="hljs-built_in">string</span>&gt;,
   ...tests: <span class="hljs-built_in">Array</span>&lt;FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;
-): <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>;
-findFileSync(...tests: <span class="hljs-built_in">Array</span>&lt;FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;): <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>;</code></pre>
+): <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>;</code></pre>
 				<h3 id="findallfiles-and-findallfilessync"><code>findAllFiles</code> and <code>findAllFilesSync</code></h3>
-				<p>Finds all the files that match all of the given filters in the given directories.
-				If no directory is supplied, then the current directory is read.</p>
+				<p>Finds all the files that match all of the given filters in the given
+					directories.
+				If no directory is supplied, then the current working directory is read.</p>
 				<blockquote>
 					<p>Specifications</p>
 				</blockquote>
-				<pre><code class="language-ts">findAllFiles(...tests: <span class="hljs-built_in">Array</span>&lt;Filter&lt;<span class="hljs-built_in">string</span>&gt; | FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">string</span>[]&gt;;
+				<pre><code class="language-ts"><span class="hljs-keyword">type</span> Filter&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">boolean</span>&gt;;
+<span class="hljs-keyword">type</span> FilterSync&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>;
+findAllFiles(...tests: <span class="hljs-built_in">Array</span>&lt;Filter&lt;<span class="hljs-built_in">string</span>&gt;
+                     | FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">string</span>[]&gt;;
 findAllFiles(
   directories: <span class="hljs-built_in">string</span> | AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt; | Iterable&lt;<span class="hljs-built_in">string</span>&gt;,
   ...tests: <span class="hljs-built_in">Array</span>&lt;Filter&lt;<span class="hljs-built_in">string</span>&gt; | FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;
@@ -215,12 +225,15 @@ findAllFilesSync(
   ...tests: <span class="hljs-built_in">Array</span>&lt;FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;
 ): <span class="hljs-built_in">string</span>[];</code></pre>
 				<h3 id="findonlyfile-and-findonlyfilesync"><code>findOnlyFile</code> and <code>findOnlyFileSync</code></h3>
-				<p>Finds the first and only file in its directory that matches all of the given filters.
-				If no directory is supplied, then the current directory is read.</p>
+				<p>Finds the first and only file in its directory that matches all of the given
+					filters.
+				If no directory is supplied, then the current working directory is read.</p>
 				<blockquote>
 					<p>Specifications</p>
 				</blockquote>
-				<pre><code class="language-ts">findOnlyFile(...tests: <span class="hljs-built_in">Array</span>&lt;Filter&lt;<span class="hljs-built_in">string</span>&gt; | FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;): <span class="hljs-built_in">Promise</span>&lt;
+				<pre><code class="language-ts"><span class="hljs-keyword">type</span> Filter&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">boolean</span>&gt;;
+<span class="hljs-keyword">type</span> FilterSync&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>;
+findOnlyFile(...tests: <span class="hljs-built_in">Array</span>&lt;Filter&lt;<span class="hljs-built_in">string</span>&gt; | FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;): <span class="hljs-built_in">Promise</span>&lt;
   <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>
 &gt;;
 findOnlyFile(
@@ -233,34 +246,41 @@ findOnlyFileSync(
   ...tests: <span class="hljs-built_in">Array</span>&lt;FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;
 ): <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>;</code></pre>
 				<h3 id="downwarddirectories-and-downwarddirectoriessync"><code>downwardDirectories</code> and <code>downwardDirectoriesSync</code></h3>
-				<p>Returns an iterable ocer the existing downward files from a start path. Symbolic links are followed and handled such that no directory is traversed twice.</p>
+				<p>Returns an iterable ocer the existing downward files from a start path. Symbolic
+				links are followed and handled such that no directory is traversed twice.</p>
 				<blockquote>
 					<p>Specifications</p>
 				</blockquote>
 				<pre><code class="language-ts">downwardDirectories(): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
 downwardDirectories(maximumDepth: <span class="hljs-built_in">number</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
 downwardDirectories(startDirectory: <span class="hljs-built_in">string</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
-downwardDirectories(startDirectory: <span class="hljs-built_in">string</span>, maximumDepth: <span class="hljs-built_in">number</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
+downwardDirectories(startDirectory: <span class="hljs-built_in">string</span>,
+                    maximumDepth: <span class="hljs-built_in">number</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
 downwardDirectoriesSync(): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
 downwardDirectoriesSync(maximumDepth: <span class="hljs-built_in">number</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
 downwardDirectoriesSync(startDirectory: <span class="hljs-built_in">string</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
-downwardDirectoriesSync(startDirectory: <span class="hljs-built_in">string</span>, maximumDepth: <span class="hljs-built_in">number</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;</code></pre>
+downwardDirectoriesSync(startDirectory: <span class="hljs-built_in">string</span>,
+                        maximumDepth: <span class="hljs-built_in">number</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;</code></pre>
 				<blockquote>
 					<p>Example</p>
 				</blockquote>
 				<p>Assuming this file system, where the current working directory is <code>/Documents</code>:</p>
-				<pre><code>/
+				<pre><code class="language-txt">/
 └── Documents
     ├── Images
-    |   └── <span class="hljs-built_in">image</span>.jpeg
+    |   └── image.jpeg
     └── project
         ├── node_modules
-        └── <span class="hljs-keyword">package</span>.json</code></pre><pre><code class="language-js"><span class="hljs-keyword">const</span> { downwardDirectoriesSync } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"find-files-by-patterns"</span>);
+        └── package.json</code></pre>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> { downwardDirectoriesSync } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"find-files-by-patterns"</span>);
 
 [
   ...downwardDirectoriesSync()
-]; <span class="hljs-comment">//=&gt; `[ '/Documents/Images', '/Documents/project', '/Documents/project/node_modules' ]`</span>
-[...downwardDirectoriesSync(<span class="hljs-number">1</span>)]; <span class="hljs-comment">//=&gt; `[ '/Documents/Images', '/Documents/project' ]`</span>
+]; <span class="hljs-comment">/*=&gt; `[ '/Documents/Images',
+           '/Documents/project',
+           '/Documents/project/node_modules' ]`*/</span>
+[...downwardDirectoriesSync(<span class="hljs-number">1</span>)]; <span class="hljs-comment">/*=&gt; `[ '/Documents/Images',
+                                         '/Documents/project' ]`*/</span>
 [...downwardDirectoriesSync(
   <span class="hljs-string">"/Documents/project"</span>
 )]; <span class="hljs-comment">//=&gt; `[ '/Documents/project/node_modules' ]`</span>
@@ -274,23 +294,27 @@ downwardDirectoriesSync(startDirectory: <span class="hljs-built_in">string</span
 				</blockquote>
 				<pre><code class="language-ts">upwardDirectories(): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
 upwardDirectories(startPath: <span class="hljs-built_in">string</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
-upwardDirectories(startPath: <span class="hljs-built_in">string</span>, maximumHeight: <span class="hljs-built_in">number</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
+upwardDirectories(startPath: <span class="hljs-built_in">string</span>,
+                  maximumHeight: <span class="hljs-built_in">number</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
 upwardDirectories(startPath: <span class="hljs-built_in">string</span>, endPath: <span class="hljs-built_in">string</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
 upwardDirectoriesSync(): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
 upwardDirectoriesSync(startPath: <span class="hljs-built_in">string</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
-upwardDirectoriesSync(startPath: <span class="hljs-built_in">string</span>, maximumHeight: <span class="hljs-built_in">number</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
+upwardDirectoriesSync(startPath: <span class="hljs-built_in">string</span>,
+                      maximumHeight: <span class="hljs-built_in">number</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
 upwardDirectoriesSync(startPath: <span class="hljs-built_in">string</span>, endPath: <span class="hljs-built_in">string</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;</code></pre>
 				<blockquote>
 					<p>Example</p>
 				</blockquote>
-				<p>Assuming this file system, where the current working directory is <code>/Documents/project</code>:</p>
-				<pre><code>/
+				<p>Assuming this file system, where the current working directory is
+				<code>/Documents/project</code>:</p>
+				<pre><code class="language-txt">/
 └── Documents
     ├── Images
-    |   └── <span class="hljs-built_in">image</span>.jpeg
+    |   └── image.jpeg
     └── project
         ├── node_modules
-        └── <span class="hljs-keyword">package</span>.json</code></pre><pre><code class="language-js"><span class="hljs-keyword">const</span> { upwardDirectoriesSync } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"find-files-by-patterns"</span>);
+        └── package.json</code></pre>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> { upwardDirectoriesSync } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"find-files-by-patterns"</span>);
 
 [...upwardDirectoriesSync()]; <span class="hljs-comment">//=&gt; `[ '/Documents', '/' ]`</span>
 [...upwardDirectoriesSync(<span class="hljs-number">1</span>)]; <span class="hljs-comment">//=&gt; `[ '/Documents' ]`</span>
@@ -304,20 +328,24 @@ upwardDirectoriesSync(startPath: <span class="hljs-built_in">string</span>, endP
   <span class="hljs-string">"/Documents/Images/image.jpeg"</span>, <span class="hljs-string">"/Documents"</span>
 )]; <span class="hljs-comment">//=&gt; `[ '/Documents/Images', '/Documents' ]`</span></code></pre>
 				<h3 id="downwardfiles-and-downwardfilessync"><code>downwardFiles</code> and <code>downwardFilesSync</code></h3>
-				<p>Returns and iterable over the files in each downward directory yielded by <code>downwardDirectories</code> or <code>downwardDirectoriesSync</code>.</p>
+				<p>Returns and iterable over the files in each downward directory yielded by
+				<code>downwardDirectories</code> or <code>downwardDirectoriesSync</code>.</p>
 				<blockquote>
 					<p>Specifications</p>
 				</blockquote>
 				<pre><code class="language-ts">downwardFiles(): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
 downwardFiles(maximumDepth: <span class="hljs-built_in">number</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
 downwardFiles(startDirectory: <span class="hljs-built_in">string</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
-downwardFiles(startDirectory: <span class="hljs-built_in">string</span>, maximumDepth: <span class="hljs-built_in">number</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
+downwardFiles(startDirectory: <span class="hljs-built_in">string</span>,
+              maximumDepth: <span class="hljs-built_in">number</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
 downwardFilesSync(): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
 downwardFilesSync(maximumDepth: <span class="hljs-built_in">number</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
 downwardFilesSync(startDirectory: <span class="hljs-built_in">string</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
-downwardFilesSync(startDirectory: <span class="hljs-built_in">string</span>, maximumDepth: <span class="hljs-built_in">number</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;</code></pre>
+downwardFilesSync(startDirectory: <span class="hljs-built_in">string</span>,
+                  maximumDepth: <span class="hljs-built_in">number</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;</code></pre>
 				<h3 id="upwardfiles-and-upwardfilessync"><code>upwardFiles</code> and <code>upwardFilesSync</code></h3>
-				<p>Returns and iterable over the files in each upward directory yielded by <code>upwardDirectories</code> or <code>upwardDirectoriesSync</code>.</p>
+				<p>Returns and iterable over the files in each upward directory yielded by
+				<code>upwardDirectories</code> or <code>upwardDirectoriesSync</code>.</p>
 				<blockquote>
 					<p>Specifications</p>
 				</blockquote>
@@ -330,12 +358,16 @@ upwardFilesSync(startPath: <span class="hljs-built_in">string</span>): Iterable&
 upwardFilesSync(startPath: <span class="hljs-built_in">string</span>, maximumHeight: <span class="hljs-built_in">number</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
 upwardFilesSync(startPath: <span class="hljs-built_in">string</span>, endPath: <span class="hljs-built_in">string</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;</code></pre>
 				<h3 id="ofbasename-ofdirname-and-ofextname"><code>ofBasename</code>, <code>ofDirname</code> and <code>ofExtname</code></h3>
-				<p>Determines whether or not a path&#39;s <code>basename</code>, <code>dirname</code> or <code>extname</code> matches any of a sequence of segment testers.
+				<p>Determines whether or not a path&#39;s <code>basename</code>, <code>dirname</code> or <code>extname</code> matches
+					any of a sequence of segment testers.
 				A segment tester can be a string, a regular expression or a function.</p>
 				<ul>
-					<li>If it is a string, then the segment must correspond to it for the path to match.</li>
-					<li>If it is a regular expression, then the segment must test against it for the path to match.</li>
-					<li>If it is a function, then the segment must make it return <code>true</code> for the path to match.</li>
+					<li>If it is a string, then the segment must correspond to it for the path to
+					match.</li>
+					<li>If it is a regular expression, then the segment must test against it for the
+					path to match.</li>
+					<li>If it is a function, then the segment must make it return <code>true</code> for the path
+					to match.</li>
 				</ul>
 				<blockquote>
 					<p>Specifications</p>
@@ -359,12 +391,16 @@ isDataFilename(<span class="hljs-string">"/Documents/data.json"</span>); <span c
 isInDocuments(<span class="hljs-string">"/Documents/data.json"</span>); <span class="hljs-comment">//=&gt; `true`</span>
 isInDocuments(<span class="hljs-string">"/Documents/src/index.js"</span>); <span class="hljs-comment">//=&gt; `false`</span></code></pre>
 				<h3 id="haspathsegments"><code>hasPathSegments</code></h3>
-				<p>Determines whether or not all the paths segments of a path match a sequence of segment testers.
+				<p>Determines whether or not all the paths segments of a path match a sequence of
+					segment testers.
 				A segment tester can be a string, a regular expression or a function.</p>
 				<ul>
-					<li>If it is a string, then the segment must correspond to it for the path to match.</li>
-					<li>If it is a regular expression, then the segment must test against it for the path to match.</li>
-					<li>If it is a function, then the segment must make it return <code>true</code> for the path to match.</li>
+					<li>If it is a string, then the segment must correspond to it for the path to
+					match.</li>
+					<li>If it is a regular expression, then the segment must test against it for the
+					path to match.</li>
+					<li>If it is a function, then the segment must make it return <code>true</code> for the path
+					to match.</li>
 				</ul>
 				<blockquote>
 					<p>Specifications</p>
@@ -395,7 +431,8 @@ isFileSync(path: <span class="hljs-built_in">string</span>): <span class="hljs-b
 				<pre><code class="language-ts">isDirectory(path: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">boolean</span>&gt;;
 isDirectorySync(path: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">boolean</span>;</code></pre>
 				<h3 id="hasfile-and-hasfilesync"><code>hasFile</code> and <code>hasFileSync</code></h3>
-				<p>Returns a filter which determines whether or not a path is a directory that has a file which matches a filter.</p>
+				<p>Returns a filter which determines whether or not a path is a directory that has
+				a file which matches a filter.</p>
 				<blockquote>
 					<p>Specifications</p>
 				</blockquote>
@@ -404,14 +441,16 @@ hasFileSync(test: FilterSync&lt;<span class="hljs-built_in">string</span>&gt;): 
 				<blockquote>
 					<p>Example</p>
 				</blockquote>
-				<p>Assuming this file system, where the current working directory is <code>/Documents/project</code>:</p>
-				<pre><code>/
+				<p>Assuming this file system, where the current working directory is
+				<code>/Documents/project</code>:</p>
+				<pre><code class="language-txt">/
 └── Documents
     ├── Images
-    |   └── <span class="hljs-built_in">image</span>.jpeg
+    |   └── image.jpeg
     └── project
         ├── node_modules
-        └── <span class="hljs-keyword">package</span>.json</code></pre><pre><code class="language-js"><span class="hljs-keyword">const</span> { findFileSync, upwardDirectoriesSync,
+        └── package.json</code></pre>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> { findFileSync, upwardDirectoriesSync,
   hasFileSync, ofBasename } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"find-files-by-patterns"</span>);
 
 <span class="hljs-keyword">const</span> imagesDirectory = findFileSync(
@@ -426,19 +465,23 @@ hasFileSync(test: FilterSync&lt;<span class="hljs-built_in">string</span>&gt;): 
 				<pre><code class="language-ts">readdir(directory: <span class="hljs-built_in">string</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
 readdirSync(directory: <span class="hljs-built_in">string</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;</code></pre>
 				<h3 id="readdirs-and-readdirssync"><code>readdirs</code> and <code>readdirsSync</code></h3>
-				<p>Returns an iterable over the fully qualified file names in the given sequence of directories.</p>
+				<p>Returns an iterable over the fully qualified file names in the given sequence of
+				directories.</p>
 				<blockquote>
 					<p>Specifications</p>
 				</blockquote>
 				<pre><code class="language-ts">readdirs(directory: <span class="hljs-built_in">string</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
 readdirsSync(directory: <span class="hljs-built_in">string</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;</code></pre>
 				<h3 id="filter-and-filtersync"><code>filter</code> and <code>filterSync</code></h3>
-				<p>Filters out the iterated elements of an iterable for which the filter function returns <code>false</code>.
+				<p>Filters out the iterated elements of an iterable for which the filter function
+					returns <code>false</code>.
 				This is analogous to the array filter method.</p>
 				<blockquote>
 					<p>Specifications</p>
 				</blockquote>
-				<pre><code class="language-ts">filter&lt;T&gt;(iterable: Iterable&lt;T&gt; | AsyncIterable&lt;T&gt;,
+				<pre><code class="language-ts"><span class="hljs-keyword">type</span> Filter&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">boolean</span>&gt;;
+<span class="hljs-keyword">type</span> FilterSync&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>;
+filter&lt;T&gt;(iterable: Iterable&lt;T&gt; | AsyncIterable&lt;T&gt;,
           filter: Filter&lt;T&gt; | FilterSync&lt;T&gt;): AsyncIterable&lt;T&gt;;
 filterSync&lt;T&gt;(iterable: Iterable&lt;T&gt;,
               filter: FilterSync&lt;T&gt;): Iterable&lt;T&gt;;</code></pre>
@@ -460,7 +503,9 @@ filterSync&lt;T&gt;(iterable: Iterable&lt;T&gt;,
 				<blockquote>
 					<p>Specifications</p>
 				</blockquote>
-				<pre><code class="language-ts">conjunction&lt;T&gt;(filters: <span class="hljs-built_in">Array</span>&lt;Filter&lt;T&gt; | FilterSync&lt;T&gt;&gt;): Filter&lt;T&gt;;
+				<pre><code class="language-ts"><span class="hljs-keyword">type</span> Filter&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">boolean</span>&gt;;
+<span class="hljs-keyword">type</span> FilterSync&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>;
+conjunction&lt;T&gt;(filters: <span class="hljs-built_in">Array</span>&lt;Filter&lt;T&gt; | FilterSync&lt;T&gt;&gt;): Filter&lt;T&gt;;
 conjunctionSync&lt;T&gt;(filters: <span class="hljs-built_in">Array</span>&lt;FilterSync&lt;T&gt;&gt;): FilterSync&lt;T&gt;;</code></pre>
 				<blockquote>
 					<p>Example</p>
@@ -482,7 +527,9 @@ isDataFile(<span class="hljs-string">"/Documents/project/_data.json"</span>); <s
 				<blockquote>
 					<p>Specifications</p>
 				</blockquote>
-				<pre><code class="language-ts">disjunction&lt;T&gt;(filters: <span class="hljs-built_in">Array</span>&lt;Filter&lt;T&gt; | FilterSync&lt;T&gt;&gt;): Filter&lt;T&gt;;
+				<pre><code class="language-ts"><span class="hljs-keyword">type</span> Filter&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">boolean</span>&gt;;
+<span class="hljs-keyword">type</span> FilterSync&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>;
+disjunction&lt;T&gt;(filters: <span class="hljs-built_in">Array</span>&lt;Filter&lt;T&gt; | FilterSync&lt;T&gt;&gt;): Filter&lt;T&gt;;
 disjunctionSync&lt;T&gt;(filters: <span class="hljs-built_in">Array</span>&lt;FilterSync&lt;T&gt;&gt;): FilterSync&lt;T&gt;;</code></pre>
 				<blockquote>
 					<p>Example</p>
@@ -513,7 +560,8 @@ allElementsSync&lt;T&gt;(iterable: Iterable&lt;T&gt;): T[];</code></pre>
 firstElementSync&lt;T&gt;(iterable: Iterable&lt;T&gt;): T | <span class="hljs-literal">null</span>;</code></pre>
 				<h3 id="onlyelement-and-onlyelementsync"><code>onlyElement</code> and <code>onlyElementSync</code></h3>
 				<p>Returns the only yielded element of an iterable.
-				If there is more than one element yielded by the iterable, then an error is thrown.</p>
+					If there is more than one element yielded by the iterable, then an error is
+				thrown.</p>
 				<blockquote>
 					<p>Specifications</p>
 				</blockquote>
@@ -531,7 +579,8 @@ onlyElementSync&lt;T&gt;(iterable: Iterable&lt;T&gt;): T | <span class="hljs-lit
 					<li><strong>Marc-Antoine Ouimet</strong> - <a href="https://github.com/MartyO256">MartyO256</a></li>
 				</ul>
 				<h3 id="license">License</h3>
-				<p>This project is licensed under the MIT License. See the <a href="LICENSE.md">LICENSE.md</a> file for details.</p>
+				<p>This project is licensed under the MIT License. See the <a href="LICENSE.md">LICENSE.md</a>
+				file for details.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
