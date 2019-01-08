@@ -72,6 +72,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-interface"><a href="interfaces/allfilesfinder.html" class="tsd-kind-icon">All<wbr>Files<wbr>Finder</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/allfilesfindersync.html" class="tsd-kind-icon">All<wbr>Files<wbr>Finder<wbr>Sync</a></li>
+								<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/conflicterror.html" class="tsd-kind-icon">Conflict<wbr>Error</a></li>
 								<li class="tsd-kind-interface tsd-is-not-exported"><a href="interfaces/directory.html" class="tsd-kind-icon">Directory</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/downwarddirectoriesfetcher.html" class="tsd-kind-icon">Downward<wbr>Directories<wbr>Fetcher</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/downwarddirectoriesfetchersync.html" class="tsd-kind-icon">Downward<wbr>Directories<wbr>Fetcher<wbr>Sync</a></li>
@@ -112,7 +113,6 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#allelements" class="tsd-kind-icon">all<wbr>Elements</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#allelementssync" class="tsd-kind-icon">all<wbr>Elements<wbr>Sync</a></li>
-								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#asynciterabletoarray" class="tsd-kind-icon">async<wbr>Iterable<wbr>ToArray</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter tsd-is-not-exported"><a href="globals.html#conflictingelementserror" class="tsd-kind-icon">conflicting<wbr>Elements<wbr>Error</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#conjunction" class="tsd-kind-icon">conjunction</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#conjunctionsync" class="tsd-kind-icon">conjunction<wbr>Sync</a></li>
@@ -159,6 +159,7 @@
 								<li class="tsd-kind-function"><a href="globals.html#ofbasename" class="tsd-kind-icon">of<wbr>Basename</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#ofdirname" class="tsd-kind-icon">of<wbr>Dirname</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#ofextname" class="tsd-kind-icon">of<wbr>Extname</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#ofname" class="tsd-kind-icon">of<wbr>Name</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#ofsegment" class="tsd-kind-icon">of<wbr>Segment</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#ofsegmentfilter" class="tsd-kind-icon">of<wbr>Segment<wbr>Filter</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#onlyelement" class="tsd-kind-icon">only<wbr>Element</a></li>
@@ -198,7 +199,7 @@
 					<div class="tsd-signature tsd-kind-icon">Filter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/filter.ts#L5">filter.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/filter.ts#L5">filter.ts:5</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -235,7 +236,7 @@
 					<div class="tsd-signature tsd-kind-icon">Filter<wbr>Compounder<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/filter.ts#L16">filter.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/filter.ts#L16">filter.ts:16</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -277,7 +278,7 @@
 					<div class="tsd-signature tsd-kind-icon">Filter<wbr>Compounder<wbr>Sync<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/filter.ts#L23">filter.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/filter.ts#L23">filter.ts:23</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -319,7 +320,7 @@
 					<div class="tsd-signature tsd-kind-icon">Filter<wbr>Sync<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/filter.ts#L11">filter.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/filter.ts#L11">filter.ts:11</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -356,7 +357,7 @@
 					<div class="tsd-signature tsd-kind-icon">Segment<wbr>Tester<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/path.ts#L18">path.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/path.ts#L18">path.ts:18</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -374,7 +375,7 @@
 					<div class="tsd-signature tsd-kind-icon">Stat<wbr>Checker<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/stat.ts#L56">stat.ts:56</a></li>
+							<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/stat.ts#L56">stat.ts:56</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -414,7 +415,7 @@
 					<div class="tsd-signature tsd-kind-icon">readdir<wbr>Promise<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">__promisify__</span><span class="tsd-signature-symbol"> =&nbsp;promisify(fsReaddir)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/readdirs.ts#L7">readdirs.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/readdirs.ts#L7">readdirs.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -424,7 +425,7 @@
 					<div class="tsd-signature tsd-kind-icon">realpath<wbr>Native<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> =&nbsp;promisify(realpath.native)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/files.ts#L63">files.ts:63</a></li>
+							<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/files.ts#L63">files.ts:63</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -455,7 +456,7 @@
 					<div class="tsd-signature tsd-kind-icon">realpath<wbr>Native<wbr>Sync<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">native</span><span class="tsd-signature-symbol"> =&nbsp;realpathSync.native</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/files.ts#L64">files.ts:64</a></li>
+							<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/files.ts#L64">files.ts:64</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -465,7 +466,7 @@
 					<div class="tsd-signature tsd-kind-icon">special<wbr>Characters<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[&quot;.&quot;, sep]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/path.ts#L112">path.ts:112</a></li>
+							<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/path.ts#L127">path.ts:127</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -482,13 +483,13 @@
 					<a name="allelements" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> all<wbr>Elements</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">all<wbr>Elements&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">all<wbr>Elements&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/iterable.ts#L119">iterable.ts:119</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/iterable.ts#L114">iterable.ts:114</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -505,7 +506,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>iterable: <span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>The iterable from which to retrieve all the elements.</p>
@@ -529,7 +530,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/iterable.ts#L129">iterable.ts:129</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/iterable.ts#L130">iterable.ts:130</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -560,59 +561,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
-					<a name="asynciterabletoarray" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> async<wbr>Iterable<wbr>ToArray</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">async<wbr>Iterable<wbr>ToArray&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/iterable.ts#L28">iterable.ts:28</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Converts an asynchronous iterable to an array. The given iterable should be
-									finite.</p>
-								</div>
-							</div>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>T</h4>
-								</li>
-							</ul>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>iterable: <span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>The finite iterable to convert.</p>
-										</div>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>The array consisting of the elements asynchronously iterated over by
-							the given iterable.</p>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
 					<a name="conflictingelementserror" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> conflicting<wbr>Elements<wbr>Error</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">conflicting<wbr>Elements<wbr>Error&lt;T&gt;<span class="tsd-signature-symbol">(</span>firstElement<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, secondElement<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span></li>
+						<li class="tsd-signature tsd-kind-icon">conflicting<wbr>Elements<wbr>Error&lt;T&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>conflicts<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/conflicterror.html" class="tsd-signature-type">ConflictError</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/iterable.ts#L70">iterable.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/iterable.ts#L63">iterable.ts:63</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -629,23 +588,15 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>firstElement: <span class="tsd-signature-type">T</span></h5>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>conflicts: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>The first conflicting element.</p>
-										</div>
-									</div>
-								</li>
-								<li>
-									<h5>secondElement: <span class="tsd-signature-type">T</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>The second conflicting element.</p>
+											<p>The conflicting elements.</p>
 										</div>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Error</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="interfaces/conflicterror.html" class="tsd-signature-type">ConflictError</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>The error to throw in case of conflicting elements.</p>
 						</li>
 					</ul>
@@ -660,7 +611,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/filter.ts#L34">filter.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/filter.ts#L34">filter.ts:34</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -702,7 +653,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/filter.ts#L52">filter.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/filter.ts#L52">filter.ts:52</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -744,7 +695,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/files.ts#L273">files.ts:273</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/files.ts#L273">files.ts:273</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -798,7 +749,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/files.ts#L360">files.ts:360</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/files.ts#L360">files.ts:360</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -852,7 +803,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/filter.ts#L70">filter.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/filter.ts#L70">filter.ts:70</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -894,7 +845,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/filter.ts#L89">filter.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/filter.ts#L89">filter.ts:89</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -936,7 +887,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/directories.ts#L140">directories.ts:140</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/directories.ts#L140">directories.ts:140</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -968,7 +919,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/directories.ts#L156">directories.ts:156</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/directories.ts#L156">directories.ts:156</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1000,7 +951,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/files.ts#L213">files.ts:213</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/files.ts#L213">files.ts:213</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1026,7 +977,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/files.ts#L300">files.ts:300</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/files.ts#L300">files.ts:300</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1052,7 +1003,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/filter.ts#L108">filter.ts:108</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/filter.ts#L108">filter.ts:108</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1102,7 +1053,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/filter.ts#L127">filter.ts:127</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/filter.ts#L127">filter.ts:127</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1152,7 +1103,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/fileFinders.ts#L159">fileFinders.ts:159</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/fileFinders.ts#L159">fileFinders.ts:159</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1178,7 +1129,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/fileFinders.ts#L177">fileFinders.ts:177</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/fileFinders.ts#L177">fileFinders.ts:177</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1204,7 +1155,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/fileFinders.ts#L79">fileFinders.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/fileFinders.ts#L79">fileFinders.ts:79</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1230,7 +1181,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/fileFinders.ts#L97">fileFinders.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/fileFinders.ts#L97">fileFinders.ts:97</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1259,7 +1210,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/fileFinders.ts#L112">fileFinders.ts:112</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/fileFinders.ts#L112">fileFinders.ts:112</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1285,7 +1236,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/fileFinders.ts#L138">fileFinders.ts:138</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/fileFinders.ts#L138">fileFinders.ts:138</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1308,13 +1259,13 @@
 					<a name="firstelement" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> first<wbr>Element</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">first<wbr>Element&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">first<wbr>Element&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/iterable.ts#L43">iterable.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/iterable.ts#L26">iterable.ts:26</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1331,7 +1282,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>iterable: <span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>The iterable from which to retrieve the first element.</p>
@@ -1354,7 +1305,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/iterable.ts#L57">iterable.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/iterable.ts#L40">iterable.ts:40</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1397,7 +1348,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/path.ts#L121">path.ts:121</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/path.ts#L136">path.ts:136</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1433,7 +1384,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/files.ts#L82">files.ts:82</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/files.ts#L82">files.ts:82</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1476,7 +1427,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/fileFinders.ts#L28">fileFinders.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/fileFinders.ts#L28">fileFinders.ts:28</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1521,7 +1472,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/fileFinders.ts#L61">fileFinders.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/fileFinders.ts#L61">fileFinders.ts:61</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1566,7 +1517,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/files.ts#L536">files.ts:536</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/files.ts#L536">files.ts:536</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1608,7 +1559,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/hasFile.ts#L23">hasFile.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/hasFile.ts#L23">hasFile.ts:23</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1646,7 +1597,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/hasFile.ts#L42">hasFile.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/hasFile.ts#L42">hasFile.ts:42</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1684,7 +1635,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/path.ts#L179">path.ts:179</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/path.ts#L194">path.ts:194</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1723,7 +1674,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/iterable.ts#L18">iterable.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/iterable.ts#L18">iterable.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1765,7 +1716,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/stat.ts#L129">stat.ts:129</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/stat.ts#L129">stat.ts:129</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1800,7 +1751,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/stat.ts#L70">stat.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/stat.ts#L70">stat.ts:70</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1834,7 +1785,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/stat.ts#L140">stat.ts:140</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/stat.ts#L140">stat.ts:140</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1869,7 +1820,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/stat.ts#L109">stat.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/stat.ts#L109">stat.ts:109</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1904,7 +1855,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/stat.ts#L10">stat.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/stat.ts#L10">stat.ts:10</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1938,7 +1889,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/stat.ts#L63">stat.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/stat.ts#L63">stat.ts:63</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1972,7 +1923,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/stat.ts#L119">stat.ts:119</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/stat.ts#L119">stat.ts:119</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2007,7 +1958,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/iterable.ts#L8">iterable.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/iterable.ts#L8">iterable.ts:8</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2049,7 +2000,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/stat.ts#L81">stat.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/stat.ts#L81">stat.ts:81</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2092,7 +2043,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/stat.ts#L97">stat.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/stat.ts#L97">stat.ts:97</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2135,7 +2086,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/map.ts#L49">map.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/map.ts#L49">map.ts:49</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2208,7 +2159,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/map.ts#L76">map.ts:76</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/map.ts#L76">map.ts:76</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2284,7 +2235,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/files.ts#L71">files.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/files.ts#L71">files.ts:71</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2318,7 +2269,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/path.ts#L73">path.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/path.ts#L73">path.ts:73</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2334,6 +2285,11 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>tests: <a href="globals.html#segmenttester" class="tsd-signature-type">SegmentTester</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The set of tests run on the paths to check.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="globals.html#filtersync" class="tsd-signature-type">FilterSync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -2352,7 +2308,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/path.ts#L89">path.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/path.ts#L104">path.ts:104</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2369,6 +2325,11 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>tests: <a href="globals.html#segmenttester" class="tsd-signature-type">SegmentTester</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The set of tests run on the paths to check.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="globals.html#filtersync" class="tsd-signature-type">FilterSync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -2388,7 +2349,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/path.ts#L105">path.ts:105</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/path.ts#L120">path.ts:120</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2405,12 +2366,57 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>tests: <a href="globals.html#segmenttester" class="tsd-signature-type">SegmentTester</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The set of tests run on the paths to check.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="globals.html#filtersync" class="tsd-signature-type">FilterSync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A filter which determines whether or not a given path has an
 								extension name matching a given full extension name, a regular expression or
 							a function.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="ofname" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> of<wbr>Name</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">of<wbr>Name<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>tests<span class="tsd-signature-symbol">: </span><a href="globals.html#segmenttester" class="tsd-signature-type">SegmentTester</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#filtersync" class="tsd-signature-type">FilterSync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/path.ts#L88">path.ts:88</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Constructs a filter which determines whether or not a given path has a name
+										matching a given full name, a regular expression or a function. The name of a
+										path corresponds to its base name without its extension name. If a path&#39;s
+										name is equal to any of the given string names, or if it matches with any of
+										the regular expressions, or if any of the name functions returns <code>true</code>, then
+									the filter returns <code>true</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>tests: <a href="globals.html#segmenttester" class="tsd-signature-type">SegmentTester</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The set of tests run on the paths to check.</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="globals.html#filtersync" class="tsd-signature-type">FilterSync</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A filter which determines whether or not a given path has a base
+							name matching a given full base name, a regular expression or a function.</p>
 						</li>
 					</ul>
 				</section>
@@ -2424,7 +2430,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/path.ts#L54">path.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/path.ts#L54">path.ts:54</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2489,7 +2495,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/path.ts#L29">path.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/path.ts#L29">path.ts:29</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2521,13 +2527,13 @@
 					<a name="onlyelement" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> only<wbr>Element</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">only<wbr>Element&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">only<wbr>Element&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/iterable.ts#L80">iterable.ts:80</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/iterable.ts#L75">iterable.ts:75</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2544,7 +2550,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>iterable: <span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AsyncIterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>The iterable from which to retrieve the first and only
@@ -2568,7 +2574,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/iterable.ts#L101">iterable.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/iterable.ts#L96">iterable.ts:96</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2612,7 +2618,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/directories.ts#L251">directories.ts:251</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/directories.ts#L251">directories.ts:251</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2656,7 +2662,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/files.ts#L54">files.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/files.ts#L54">files.ts:54</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2692,7 +2698,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/readdirs.ts#L18">readdirs.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/readdirs.ts#L18">readdirs.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2734,7 +2740,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/readdirs.ts#L34">readdirs.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/readdirs.ts#L34">readdirs.ts:34</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2770,7 +2776,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/readdirs.ts#L51">readdirs.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/readdirs.ts#L51">readdirs.ts:51</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2807,7 +2813,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/readdirs.ts#L67">readdirs.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/readdirs.ts#L67">readdirs.ts:67</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2845,7 +2851,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/stat.ts#L20">stat.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/stat.ts#L20">stat.ts:20</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2880,7 +2886,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/stat.ts#L41">stat.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/stat.ts#L41">stat.ts:41</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2918,7 +2924,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/path.ts#L151">path.ts:151</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/path.ts#L166">path.ts:166</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2953,7 +2959,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/map.ts#L12">map.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/map.ts#L12">map.ts:12</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3028,7 +3034,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/map.ts#L30">map.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/map.ts#L30">map.ts:30</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3100,7 +3106,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/files.ts#L33">files.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/files.ts#L33">files.ts:33</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3137,7 +3143,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/files.ts#L42">files.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/files.ts#L42">files.ts:42</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3188,7 +3194,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/files.ts#L238">files.ts:238</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/files.ts#L238">files.ts:238</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3231,7 +3237,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/files.ts#L325">files.ts:325</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/files.ts#L325">files.ts:325</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3274,7 +3280,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/directories.ts#L201">directories.ts:201</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/directories.ts#L201">directories.ts:201</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3319,7 +3325,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/directories.ts#L381">directories.ts:381</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/directories.ts#L381">directories.ts:381</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3345,7 +3351,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/directories.ts#L390">directories.ts:390</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/directories.ts#L390">directories.ts:390</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3371,7 +3377,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/files.ts#L549">files.ts:549</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/files.ts#L549">files.ts:549</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3397,7 +3403,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/files.ts#L560">files.ts:560</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/files.ts#L560">files.ts:560</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3423,7 +3429,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/directories.ts#L230">directories.ts:230</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/directories.ts#L230">directories.ts:230</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3469,7 +3475,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/c95556b/src/directories.ts#L179">directories.ts:179</a></li>
+									<li>Defined in <a href="https://github.com/MartyO256/find-files-by-patterns/blob/6d69b52/src/directories.ts#L179">directories.ts:179</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3512,6 +3518,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/allfilesfindersync.html" class="tsd-kind-icon">All<wbr>Files<wbr>Finder<wbr>Sync</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/conflicterror.html" class="tsd-kind-icon">Conflict<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="interfaces/directory.html" class="tsd-kind-icon">Directory</a>
@@ -3587,9 +3596,6 @@
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#allelementssync" class="tsd-kind-icon">all<wbr>Elements<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#asynciterabletoarray" class="tsd-kind-icon">async<wbr>Iterable<wbr>ToArray</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
 						<a href="globals.html#conflictingelementserror" class="tsd-kind-icon">conflicting<wbr>Elements<wbr>Error</a>
@@ -3728,6 +3734,9 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#ofextname" class="tsd-kind-icon">of<wbr>Extname</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#ofname" class="tsd-kind-icon">of<wbr>Name</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#ofsegment" class="tsd-kind-icon">of<wbr>Segment</a>

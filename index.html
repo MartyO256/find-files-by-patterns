@@ -65,8 +65,9 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<h1 id="find-files-by-patterns">find-files-by-patterns</h1>
-				<p><img src="https://img.shields.io/badge/node-%3E%3D%2010.0.0-green.svg" alt="Node Version">
-					<a href="https://martyo256.github.io/find-files-by-patterns/"><img src="https://img.shields.io/website-up-down-green-red/https/shields.io.svg?label=documentation" alt="Documentation"></a>
+				<p><a href="https://www.npmjs.com/package/find-files-by-patterns"><img src="https://img.shields.io/npm/v/find-files-by-patterns.svg" alt="npm Information Page"></a>
+					<img src="https://img.shields.io/badge/node-%3E%3D%2010.0.0-green.svg" alt="Node Version">
+					<a href="https://martyo256.github.io/find-files-by-patterns/"><img src="https://img.shields.io/website-up-down-green-red/https/martyo256.github.io/find-files-by-patterns.svg?label=documentation" alt="Documentation"></a>
 					<a href="https://travis-ci.org/MartyO256/find-files-by-patterns"><img src="https://travis-ci.org/MartyO256/find-files-by-patterns.svg" alt="Build Status"></a>
 					<a href="https://coveralls.io/github/MartyO256/find-files-by-patterns?branch=development"><img src="https://coveralls.io/repos/github/MartyO256/find-files-by-patterns/badge.svg" alt="Coverage Status"></a>
 					<a href="https://codeclimate.com/github/MartyO256/find-files-by-patterns/maintainability"><img src="https://api.codeclimate.com/v1/badges/6d2069677a848c509e3a/maintainability" alt="Maintainability"></a>
@@ -115,7 +116,7 @@
 								<li><a href="#upwarddirectories-and-upwarddirectoriessync"><code>upwardDirectories</code> and <code>upwardDirectoriesSync</code></a></li>
 								<li><a href="#downwardfiles-and-downwardfilessync"><code>downwardFiles</code> and <code>downwardFilesSync</code></a></li>
 								<li><a href="#upwardfiles-and-upwardfilessync"><code>upwardFiles</code> and <code>upwardFilesSync</code></a></li>
-								<li><a href="#ofbasename-ofdirname-and-ofextname"><code>ofBasename</code>, <code>ofDirname</code> and <code>ofExtname</code></a></li>
+								<li><a href="#ofbasename-ofname-ofdirname-and-ofextname"><code>ofBasename</code>, <code>ofName</code>, <code>ofDirname</code> and <code>ofExtname</code></a></li>
 								<li><a href="#haspathsegments"><code>hasPathSegments</code></a></li>
 								<li><a href="#isfile-and-isfilesync"><code>isFile</code> and <code>isFileSync</code></a></li>
 								<li><a href="#isdirectory-and-isdirectorysync"><code>isDirectory</code> and <code>isDirectorySync</code></a></li>
@@ -162,7 +163,7 @@
 					</ul>
 					<p>Filters:</p>
 					<ul>
-						<li><a href="#ofBasename-ofDirname-and-ofExtname"><code>ofBasename</code>, <code>ofDirname</code> and <code>ofExtname</code></a></li>
+						<li><a href="#ofBasename-ofName-ofDirname-and-ofExtname"><code>ofBasename</code>, <code>ofName</code>, <code>ofDirname</code> and <code>ofExtname</code></a></li>
 						<li><a href="#hasPathSegments"><code>hasPathSegments</code></a></li>
 						<li><a href="#isFile-and-isFileSync"><code>isFile</code> and <code>isFileSync</code></a></li>
 						<li><a href="#isDirectory-and-isDirectorySync"><code>isDirectory</code> and <code>isDirectorySync</code></a></li>
@@ -357,9 +358,9 @@ upwardFilesSync(): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
 upwardFilesSync(startPath: <span class="hljs-built_in">string</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
 upwardFilesSync(startPath: <span class="hljs-built_in">string</span>, maximumHeight: <span class="hljs-built_in">number</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
 upwardFilesSync(startPath: <span class="hljs-built_in">string</span>, endPath: <span class="hljs-built_in">string</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;</code></pre>
-				<h3 id="ofbasename-ofdirname-and-ofextname"><code>ofBasename</code>, <code>ofDirname</code> and <code>ofExtname</code></h3>
-				<p>Determines whether or not a path&#39;s <code>basename</code>, <code>dirname</code> or <code>extname</code> matches
-					any of a sequence of segment testers.
+				<h3 id="ofbasename-ofname-ofdirname-and-ofextname"><code>ofBasename</code>, <code>ofName</code>, <code>ofDirname</code> and <code>ofExtname</code></h3>
+				<p>Determines whether or not a path&#39;s <code>basename</code>, <code>name</code>, <code>dirname</code> or <code>extname</code>
+					matches any of a sequence of segment testers.
 				A segment tester can be a string, a regular expression or a function.</p>
 				<ul>
 					<li>If it is a string, then the segment must correspond to it for the path to
@@ -374,19 +375,24 @@ upwardFilesSync(startPath: <span class="hljs-built_in">string</span>, endPath: <
 				</blockquote>
 				<pre><code class="language-ts"><span class="hljs-keyword">type</span> SegmentTester = <span class="hljs-built_in">string</span> | <span class="hljs-built_in">RegExp</span> | <span class="hljs-function">(<span class="hljs-params">(<span class="hljs-params">segment: <span class="hljs-built_in">string</span></span>) =&gt; <span class="hljs-built_in">boolean</span></span>);
 <span class="hljs-params">ofBasename</span>(<span class="hljs-params">...tests: SegmentTester[]</span>): <span class="hljs-params">FilterSync</span>&lt;<span class="hljs-params">string</span>&gt;;
+<span class="hljs-params">ofName</span>(<span class="hljs-params">...tests: SegmentTester[]</span>): <span class="hljs-params">FilterSync</span>&lt;<span class="hljs-params">string</span>&gt;;
 <span class="hljs-params">ofDirname</span>(<span class="hljs-params">...tests: SegmentTester[]</span>): <span class="hljs-params">FilterSync</span>&lt;<span class="hljs-params">string</span>&gt;;
 <span class="hljs-params">ofExtname</span>(<span class="hljs-params">...tests: SegmentTester[]</span>): <span class="hljs-params">FilterSync</span>&lt;<span class="hljs-params">string</span>&gt;;</span></code></pre>
 				<blockquote>
 					<p>Example</p>
 				</blockquote>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> { ofBasename, ofDirname, ofExtname } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"find-files-by-patterns"</span>);
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> { ofBasename, ofName,
+        ofDirname, ofExtname } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"find-files-by-patterns"</span>);
 
 <span class="hljs-keyword">const</span> isMarkdownFile = ofExtname(<span class="hljs-string">".md"</span>, <span class="hljs-string">".markdown"</span>);
+<span class="hljs-keyword">const</span> isIndexFile = ofName(<span class="hljs-string">"index"</span>);
 <span class="hljs-keyword">const</span> isDataFilename = ofBasename(<span class="hljs-regexp">/^data/</span>);
 <span class="hljs-keyword">const</span> isInDocuments = ofDirname(<span class="hljs-string">"/Documents"</span>);
 
 isMarkdownFile(<span class="hljs-string">"/Documents/article.md"</span>); <span class="hljs-comment">//=&gt; `true`</span>
 isMarkdownFile(<span class="hljs-string">"/Documents/data.json"</span>); <span class="hljs-comment">//=&gt; `false`</span>
+isIndexFile(<span class="hljs-string">"/Documents/index.html"</span>); <span class="hljs-comment">//=&gt; `true`</span>
+isIndexFile(<span class="hljs-string">"/Documents/index.md"</span>); <span class="hljs-comment">//=&gt; `true`</span>
 isDataFilename(<span class="hljs-string">"/Documents/data.json"</span>); <span class="hljs-comment">//=&gt; `true`</span>
 isInDocuments(<span class="hljs-string">"/Documents/data.json"</span>); <span class="hljs-comment">//=&gt; `true`</span>
 isInDocuments(<span class="hljs-string">"/Documents/src/index.js"</span>); <span class="hljs-comment">//=&gt; `false`</span></code></pre>
@@ -599,6 +605,9 @@ onlyElementSync&lt;T&gt;(iterable: Iterable&lt;T&gt;): T | <span class="hljs-lit
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/allfilesfindersync.html" class="tsd-kind-icon">All<wbr>Files<wbr>Finder<wbr>Sync</a>
 					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/conflicterror.html" class="tsd-kind-icon">Conflict<wbr>Error</a>
+					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="interfaces/directory.html" class="tsd-kind-icon">Directory</a>
 					</li>
@@ -673,9 +682,6 @@ onlyElementSync&lt;T&gt;(iterable: Iterable&lt;T&gt;): T | <span class="hljs-lit
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#allelementssync" class="tsd-kind-icon">all<wbr>Elements<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#asynciterabletoarray" class="tsd-kind-icon">async<wbr>Iterable<wbr>ToArray</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
 						<a href="globals.html#conflictingelementserror" class="tsd-kind-icon">conflicting<wbr>Elements<wbr>Error</a>
@@ -814,6 +820,9 @@ onlyElementSync&lt;T&gt;(iterable: Iterable&lt;T&gt;): T | <span class="hljs-lit
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#ofextname" class="tsd-kind-icon">of<wbr>Extname</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#ofname" class="tsd-kind-icon">of<wbr>Name</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#ofsegment" class="tsd-kind-icon">of<wbr>Segment</a>
