@@ -8,6 +8,7 @@ import {
   ofBasename,
   ofDirname,
   ofExtname,
+  ofName,
   segments,
 } from "../src/path";
 
@@ -20,7 +21,7 @@ describe("path", () => {
     it("should arbitrarily return `false` if no base names are given", () => {
       assert.isFalse(ofBasename()(""));
     });
-    describe("(...basenames: string[]): FilterSync<string>", () => {
+    describe("(...tests: string[]): FilterSync<string>", () => {
       it("should arbitrarily return `false` if no base names are given", () => {
         const basenames: string[] = [];
         assert.isFalse(ofBasename(...basenames)(""));
@@ -32,7 +33,7 @@ describe("path", () => {
         assert.isFalse(ofBasename("file.md")("/home/user/file.html"));
       });
     });
-    describe("(...basenames: RegExp[]): FilterSync<string>", () => {
+    describe("(...tests: RegExp[]): FilterSync<string>", () => {
       it("should arbitrarily return `false` if no base names are given", () => {
         const basenames: RegExp[] = [];
         assert.isFalse(ofBasename(...basenames)(""));
@@ -48,7 +49,7 @@ describe("path", () => {
         assert.isFalse(filter("/home/user/file.html"));
       });
     });
-    describe("(...basenames: Array<((basename: string) => boolean)>): FilterSync<string>", () => {
+    describe("(...tests: Array<((basename: string) => boolean)>): FilterSync<string>", () => {
       it("should arbitrarily return `false` if no base names are given", () => {
         const basenames: Array<((basename: string) => boolean)> = [];
         assert.isFalse(ofBasename(...basenames)(""));
@@ -66,7 +67,7 @@ describe("path", () => {
         assert.throws(() => filter("/home/user/file.md"));
       });
     });
-    describe("(...basenames: Array<string | RegExp | ((basename: string) => boolean)>): FilterSync<string>", () => {
+    describe("(...tests: Array<string | RegExp | ((basename: string) => boolean)>): FilterSync<string>", () => {
       const basenames = [
         "file.md",
         /^[0-9]+/,
@@ -92,11 +93,81 @@ describe("path", () => {
       });
     });
   });
+  describe("ofName", () => {
+    it("should arbitrarily return `false` if no base names are given", () => {
+      assert.isFalse(ofName()(""));
+    });
+    describe("(...tests: string[]): FilterSync<string>", () => {
+      it("should arbitrarily return `false` if no names are given", () => {
+        const names: string[] = [];
+        assert.isFalse(ofName(...names)(""));
+      });
+      it("should return `true` if a path's name matches a string name", () => {
+        assert.isTrue(ofName("file")("/home/user/file.md"));
+      });
+      it("should return `false` if a path's name does not match a string name", () => {
+        assert.isFalse(ofName("file")("/home/user/index.html"));
+      });
+    });
+    describe("(...tests: RegExp[]): FilterSync<string>", () => {
+      it("should arbitrarily return `false` if no names are given", () => {
+        const names: RegExp[] = [];
+        assert.isFalse(ofName(...names)(""));
+      });
+      it("should return `true` if a path's name matches a regular expression pattern", () => {
+        const filter = ofName(/^file.*$/);
+        assert.isTrue(filter("/home/user/files.md"));
+        assert.isTrue(filter("/home/user/files.html"));
+      });
+      it("should return `false` if a path's name does not match a regular expression pattern", () => {
+        const filter = ofName(/^data\..*$/);
+        assert.isFalse(filter("/home/user/file.md"));
+        assert.isFalse(filter("/home/user/file.html"));
+      });
+    });
+    describe("(...tests: Array<((basename: string) => boolean)>): FilterSync<string>", () => {
+      it("should arbitrarily return `false` if no names are given", () => {
+        const names: Array<((name: string) => boolean)> = [];
+        assert.isFalse(ofName(...names)(""));
+      });
+      it("should return `true` if a path's name matches a function", () => {
+        const filter = ofName(() => true);
+        assert.isTrue(filter("/home/user/file.md"));
+      });
+      it("should return `false` if a path's name does not match a function", () => {
+        const filter = ofName(() => false);
+        assert.isFalse(filter("/home/user/file.md"));
+      });
+      it("should throw an error if a test function throws an error", () => {
+        const filter = ofName(errorSync);
+        assert.throws(() => filter("/home/user/file.md"));
+      });
+    });
+    describe("(...tests: Array<string | RegExp | ((basename: string) => boolean)>): FilterSync<string>", () => {
+      const names = ["file", /^[0-9]+/, (name) => name.startsWith("f")];
+      const filter = ofName(...names);
+      it("should arbitrarily return `false` if no names are given", () => {
+        const names: Array<
+          string | RegExp | ((basename: string) => boolean)
+        > = [];
+        assert.isFalse(ofName(...names)(""));
+      });
+      it("should return `true` if a path's name matches", () => {
+        assert.isTrue(filter("/home/user/file.md"));
+      });
+      it("should return `false` if a path's name does not match", () => {
+        assert.isFalse(filter("/home/user/no-file.md"));
+      });
+      it("should throw an error if a test function throws an error", () => {
+        assert.throws(() => ofName(errorSync, ...names)("/home/user/file.md"));
+      });
+    });
+  });
   describe("ofDirname", () => {
     it("should arbitrarily return `false` if no directory names are given", () => {
       assert.isFalse(ofDirname()(""));
     });
-    describe("(...dirnames: string[]): FilterSync<string>", () => {
+    describe("(...tests: string[]): FilterSync<string>", () => {
       it("should arbitrarily return `false` if no directory names are given", () => {
         const dirnames: string[] = [];
         assert.isFalse(ofDirname(...dirnames)(""));
@@ -112,7 +183,7 @@ describe("path", () => {
         );
       });
     });
-    describe("(...dirnames: RegExp[]): FilterSync<string>", () => {
+    describe("(...tests: RegExp[]): FilterSync<string>", () => {
       it("should arbitrarily return `false` if no directory names are given", () => {
         const dirnames: RegExp[] = [];
         assert.isFalse(ofDirname(...dirnames)(""));
@@ -128,7 +199,7 @@ describe("path", () => {
         assert.isFalse(filter("/home/user/directory/file.html"));
       });
     });
-    describe("(...dirnames: Array<((dirname: string) => boolean)>): FilterSync<string>", () => {
+    describe("(...tests: Array<((dirname: string) => boolean)>): FilterSync<string>", () => {
       it("should arbitrarily return `false` if no directory names are given", () => {
         const dirnames: Array<((dirname: string) => boolean)> = [];
         assert.isFalse(ofDirname(...dirnames)(""));
@@ -146,7 +217,7 @@ describe("path", () => {
         assert.throws(() => filter("/home/user/directory/file.md"));
       });
     });
-    describe("(...dirnames: Array<string | RegExp | ((dirname: string) => boolean)>): FilterSync<string>", () => {
+    describe("(...tests: Array<string | RegExp | ((dirname: string) => boolean)>): FilterSync<string>", () => {
       const dirnames = [
         "/home/user/directory",
         /^[0-9].$/,
@@ -176,7 +247,7 @@ describe("path", () => {
     it("should arbitrarily return `false` if no extension names are given", () => {
       assert.isFalse(ofExtname()(""));
     });
-    describe("(...extnames: string[]): FilterSync<string>", () => {
+    describe("(...tests: string[]): FilterSync<string>", () => {
       it("should arbitrarily return `false` if no extension names are given", () => {
         const extnames: string[] = [];
         assert.isFalse(ofExtname(...extnames)(""));
@@ -188,7 +259,7 @@ describe("path", () => {
         assert.isFalse(ofExtname(".md")("/home/user/file.html"));
       });
     });
-    describe("(...extnames: RegExp[]): FilterSync<string>", () => {
+    describe("(...tests: RegExp[]): FilterSync<string>", () => {
       it("should arbitrarily return `false` if no extension names are given", () => {
         const extnames: RegExp[] = [];
         assert.isFalse(ofExtname(...extnames)(""));
@@ -203,7 +274,7 @@ describe("path", () => {
         assert.isFalse(filter("/home/user/file.html"));
       });
     });
-    describe("(...extnames: Array<((extname: string) => boolean)>): FilterSync<string>", () => {
+    describe("(...tests: Array<((extname: string) => boolean)>): FilterSync<string>", () => {
       it("should arbitrarily return `false` if no extension names are given", () => {
         const extnames: Array<((extname: string) => boolean)> = [];
         assert.isFalse(ofExtname(...extnames)(""));
@@ -221,7 +292,7 @@ describe("path", () => {
         assert.throws(() => filter("/home/user/file.md"));
       });
     });
-    describe("(...extnames: Array<string | RegExp | ((extname: string) => boolean)>): FilterSync<string>", () => {
+    describe("(...tests: Array<string | RegExp | ((extname: string) => boolean)>): FilterSync<string>", () => {
       const extnames = [
         ".md",
         /^\.(md|html|json)$/,
@@ -291,7 +362,7 @@ describe("path", () => {
     });
   });
   describe("hasPathSegments", () => {
-    it("should always be failse if there are no tests", () => {
+    it("should always be false if there are no tests", () => {
       const test = hasPathSegments();
       [
         "./_folder/file.html",

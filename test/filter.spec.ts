@@ -11,7 +11,7 @@ import {
   FilterSync,
   filterSync,
 } from "../src/filter";
-import { asyncIterableToArray } from "../src/iterable";
+import { allElements } from "../src/iterable";
 
 describe("filter", () => {
   const isEvenSync: FilterSync<number> = (element: number) => element % 2 === 0;
@@ -99,14 +99,14 @@ describe("filter", () => {
     const filteredElements = [4, 6];
     it("should filter in the correct amount of elements", async () => {
       assert.strictEqual(
-        (await asyncIterableToArray(
+        (await allElements(
           filter(elements, conjunction([isEven, isGreaterThan2])),
         )).length,
         filteredElements.length,
       );
     });
     it("should only filter in elements that pass all of the filters", async () => {
-      for (const element of await asyncIterableToArray(
+      for (const element of await allElements(
         filter(elements, conjunction([isEven, isGreaterThan2])),
       )) {
         assert.isTrue(
@@ -117,14 +117,14 @@ describe("filter", () => {
     });
     it("should filter in all the elements that pass all of the filters", async () => {
       assert.deepStrictEqual(
-        await asyncIterableToArray(
+        await allElements(
           filter(elements, conjunction([isEven, isGreaterThan2])),
         ),
         filteredElements,
       );
     });
     it("should throw an error if any of the filters throws an error", async () => {
-      rejects(asyncIterableToArray(filter(elements, error)));
+      rejects(allElements(filter(elements, error)));
     });
   });
   describe("filterSync", () => {

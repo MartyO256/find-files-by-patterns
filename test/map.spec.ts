@@ -1,7 +1,7 @@
 import { rejects } from "assert";
 import { assert } from "chai";
 
-import { asyncIterableToArray } from "../src/iterable";
+import { allElements } from "../src/iterable";
 import { multiMap, multiMapSync, simpleMap, simpleMapSync } from "../src/map";
 
 describe("map", () => {
@@ -12,18 +12,18 @@ describe("map", () => {
   describe("simpleMap", () => {
     it("should correctly map the values", async () => {
       assert.deepStrictEqual(
-        await asyncIterableToArray(simpleMap([-1, 0, 1], (i) => 2 * i)),
+        await allElements(simpleMap([-1, 0, 1], (i) => 2 * i)),
         [-2, 0, 2],
       );
     });
     it("should correctly map iterable values", async () => {
       assert.deepStrictEqual(
-        await asyncIterableToArray(simpleMap(["-1", "0", "1"], (i) => `${i}0`)),
+        await allElements(simpleMap(["-1", "0", "1"], (i) => `${i}0`)),
         ["-10", "00", "10"],
       );
     });
     it("should throw an error if the mapping function throws an error", async () => {
-      rejects(asyncIterableToArray(simpleMap([0, 1, 2, 3], error)));
+      rejects(allElements(simpleMap([0, 1, 2, 3], error)));
     });
   });
   describe("simpleMapSync", () => {
@@ -46,21 +46,19 @@ describe("map", () => {
   describe("multiMap", () => {
     it("should correctly map simple values", async () => {
       assert.deepStrictEqual(
-        await asyncIterableToArray(multiMap([-1, 0, 1], async (i) => 2 * i)),
+        await allElements(multiMap([-1, 0, 1], async (i) => 2 * i)),
         [-2, 0, 2],
       );
     });
     it("should correctly map multiple values", async () => {
       assert.deepStrictEqual(
-        await asyncIterableToArray(
-          multiMap([-1, 0, 1], async (i) => [i, 2 * i]),
-        ),
+        await allElements(multiMap([-1, 0, 1], async (i) => [i, 2 * i])),
         [-1, -2, 0, 0, 1, 2],
       );
     });
     it("should correctly map simple and multiple values", async () => {
       assert.deepStrictEqual(
-        await asyncIterableToArray(
+        await allElements(
           multiMap([-1, 0, 1], async (i) => (i % 2 === 0 ? i : [i, 2 * i])),
         ),
         [-1, -2, 0, 1, 2],
@@ -68,15 +66,13 @@ describe("map", () => {
     });
     it("should correctly map simple string values", async () => {
       assert.deepStrictEqual(
-        await asyncIterableToArray(
-          multiMap(["-1", "0", "1"], async (i) => `${i}0`),
-        ),
+        await allElements(multiMap(["-1", "0", "1"], async (i) => `${i}0`)),
         ["-10", "00", "10"],
       );
     });
     it("should correctly map multiple string values", async () => {
       assert.deepStrictEqual(
-        await asyncIterableToArray(
+        await allElements(
           multiMap(["-1", "0", "1"], async (i) => [i, `${i}0`]),
         ),
         ["-1", "-10", "0", "00", "1", "10"],
@@ -84,7 +80,7 @@ describe("map", () => {
     });
     it("should correctly map simple and multiple string values", async () => {
       assert.deepStrictEqual(
-        await asyncIterableToArray(
+        await allElements(
           multiMap(["-1", "0", "1"], async (i) =>
             i === "0" ? i : [i, `${i}0`],
           ),
@@ -93,7 +89,7 @@ describe("map", () => {
       );
     });
     it("should throw an error if the mapping function throws an error", async () => {
-      rejects(asyncIterableToArray(multiMap([0, 1, 2, 3], error)));
+      rejects(allElements(multiMap([0, 1, 2, 3], error)));
     });
   });
   describe("multiMapSync", () => {

@@ -19,29 +19,12 @@ export const isAsyncIterable = <T>(object): object is AsyncIterable<T> =>
   typeof object[Symbol.asyncIterator] === "function";
 
 /**
- * Converts an asynchronous iterable to an array. The given iterable should be
- * finite.
- * @param iterable The finite iterable to convert.
- * @returns The array consisting of the elements asynchronously iterated over by
- * the given iterable.
- */
-export const asyncIterableToArray = async <T>(
-  iterable: AsyncIterable<T>,
-): Promise<T[]> => {
-  const array: T[] = [];
-  for await (const element of iterable) {
-    array.push(element);
-  }
-  return array;
-};
-
-/**
  * Retrieves the first element of an iterable.
  * @param iterable The iterable from which to retrieve the first element.
  * @return The first element of the given iterable.
  */
 export const firstElement = async <T>(
-  iterable: AsyncIterable<T>,
+  iterable: Iterable<T> | AsyncIterable<T>,
 ): Promise<T | null> => {
   for await (const element of iterable) {
     return element;
@@ -62,13 +45,25 @@ export const firstElementSync = <T>(iterable: Iterable<T>): T | null => {
 };
 
 /**
+ * A conflict error occurs when multiple elements should not be yielded by an
+ * iterable.
+ */
+export interface ConflictError<T> extends Error {
+  /**
+   * The conflicting elements which are the cause of the error.
+   */
+  conflicts: T[];
+}
+
+/**
  * Constructs an error for conflicting elements.
- * @param firstElement The first conflicting element.
- * @param secondElement The second conflicting element.
+ * @param conflicts The conflicting elements.
  * @returns The error to throw in case of conflicting elements.
  */
-const conflictingElementsError = <T>(firstElement: T, secondElement: T) =>
-  new Error(`${firstElement} is conflicting with ${secondElement}`);
+const conflictingElementsError = <T>(...conflicts: T[]): ConflictError<T> => ({
+  ...new Error(`The following elements are conflicting: ${conflicts}`),
+  conflicts,
+});
 
 /**
  * Retrieves the first and only element of an iterable.
@@ -78,14 +73,14 @@ const conflictingElementsError = <T>(firstElement: T, secondElement: T) =>
  * @return The first and only element of the given iterable.
  */
 export const onlyElement = async <T>(
-  iterable: AsyncIterable<T>,
+  iterable: Iterable<T> | AsyncIterable<T>,
 ): Promise<T | null> => {
   let retainedElement: T;
   for await (const element of iterable) {
     if (retainedElement === undefined) {
       retainedElement = element;
     } else {
-      throw conflictingElementsError(element, retainedElement);
+      throw conflictingElementsError(retainedElement, element);
     }
   }
   return retainedElement;
@@ -104,7 +99,7 @@ export const onlyElementSync = <T>(iterable: Iterable<T>): T | null => {
     if (retainedElement === undefined) {
       retainedElement = element;
     } else {
-      throw conflictingElementsError(element, retainedElement);
+      throw conflictingElementsError(retainedElement, element);
     }
   }
   return retainedElement;
@@ -117,8 +112,14 @@ export const onlyElementSync = <T>(iterable: Iterable<T>): T | null => {
  * order.
  */
 export const allElements = async <T>(
-  iterable: AsyncIterable<T>,
-): Promise<T[]> => asyncIterableToArray(iterable);
+  iterable: Iterable<T> | AsyncIterable<T>,
+): Promise<T[]> => {
+  const array: T[] = [];
+  for await (const element of iterable) {
+    array.push(element);
+  }
+  return array;
+};
 
 /**
  * Retrieves all the elements of an iterable. The iterable should be finite.

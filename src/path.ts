@@ -65,7 +65,7 @@ const ofSegment = (
  * a path's base name is equal to any of the given string base names, or if it
  * matches with any of the regular expressions, or if any of the base name
  * functions returns `true`, then the filter returns `true`.
- * @param basenames The sequence of base names on which to test paths.
+ * @param tests The set of tests run on the paths to check.
  * @throws If a test function throws an error as it is being run.
  * @returns A filter which determines whether or not a given path has a base
  * name matching a given full base name, a regular expression or a function.
@@ -74,13 +74,28 @@ export const ofBasename = (...tests: SegmentTester[]): FilterSync<string> =>
   ofSegment(tests, basename);
 
 /**
+ * Constructs a filter which determines whether or not a given path has a name
+ * matching a given full name, a regular expression or a function. The name of a
+ * path corresponds to its base name without its extension name. If a path's
+ * name is equal to any of the given string names, or if it matches with any of
+ * the regular expressions, or if any of the name functions returns `true`, then
+ * the filter returns `true`.
+ * @param tests The set of tests run on the paths to check.
+ * @throws If a test function throws an error as it is being run.
+ * @returns A filter which determines whether or not a given path has a base
+ * name matching a given full base name, a regular expression or a function.
+ */
+export const ofName = (...tests: SegmentTester[]): FilterSync<string> =>
+  ofSegment(tests, (path: string) => basename(path, extname(path)));
+
+/**
  * Constructs a filter which determines whether or not a given path has a
  * directory name matching a given full directory name, a regular expression or
  * a function. If a path's directory name is equal to any of the given string
  * directory names, or if it matches with any of the regular expressions, or if
  * any of the directory name functions returns `true`, then the filter returns
  * `true`.
- * @param dirnames The sequence of directory names on which to test paths.
+ * @param tests The set of tests run on the paths to check.
  * @throws If any of the test functions throws an error.
  * @returns A filter which determines whether or not a given path has a
  * directory name matching a given full directory name, a regular expression or
@@ -96,7 +111,7 @@ export const ofDirname = (...tests: SegmentTester[]): FilterSync<string> =>
  * extension names, or if it matches with any of the regular expressions, or if
  * any of the extension name functions returns `true`, then the filter returns
  * `true`.
- * @param extnames The sequence of extension names on which to test paths.
+ * @param tests The set of tests run on the paths to check.
  * @throws If any of the test functions throws an error.
  * @returns A filter which determines whether or not a given path has an
  * extension name matching a given full extension name, a regular expression or

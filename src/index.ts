@@ -15,6 +15,7 @@ export {
   firstElementSync,
   onlyElement,
   onlyElementSync,
+  ConflictError,
 } from "./iterable";
 export { readdir, readdirSync, readdirs, readdirsSync } from "./readdirs";
 
@@ -22,6 +23,7 @@ export {
   hasPathSegments,
   ofBasename,
   ofDirname,
+  ofName,
   ofExtname,
   segments,
 } from "./path";

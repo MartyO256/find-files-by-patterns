@@ -1,7 +1,8 @@
 # find-files-by-patterns
 
+[![npm Information Page](https://img.shields.io/npm/v/find-files-by-patterns.svg)](https://www.npmjs.com/package/find-files-by-patterns)
 ![Node Version](https://img.shields.io/badge/node-%3E%3D%2010.0.0-green.svg)
-[![Documentation](https://img.shields.io/website-up-down-green-red/https/shields.io.svg?label=documentation)](https://martyo256.github.io/find-files-by-patterns/)
+[![Documentation](https://img.shields.io/website-up-down-green-red/https/martyo256.github.io/find-files-by-patterns.svg?label=documentation)](https://martyo256.github.io/find-files-by-patterns/)
 [![Build Status](https://travis-ci.org/MartyO256/find-files-by-patterns.svg)](https://travis-ci.org/MartyO256/find-files-by-patterns)
 [![Coverage Status](https://coveralls.io/repos/github/MartyO256/find-files-by-patterns/badge.svg)](https://coveralls.io/github/MartyO256/find-files-by-patterns?branch=development)
 [![Maintainability](https://api.codeclimate.com/v1/badges/6d2069677a848c509e3a/maintainability)](https://codeclimate.com/github/MartyO256/find-files-by-patterns/maintainability)
@@ -69,7 +70,7 @@ const { findFile, upwardDirectories,
   * [`upwardDirectories` and `upwardDirectoriesSync`](#upwarddirectories-and-upwarddirectoriessync)
   * [`downwardFiles` and `downwardFilesSync`](#downwardfiles-and-downwardfilessync)
   * [`upwardFiles` and `upwardFilesSync`](#upwardfiles-and-upwardfilessync)
-  * [`ofBasename`, `ofDirname` and `ofExtname`](#ofbasename-ofdirname-and-ofextname)
+  * [`ofBasename`, `ofName`, `ofDirname` and `ofExtname`](#ofbasename-ofname-ofdirname-and-ofextname)
   * [`hasPathSegments`](#haspathsegments)
   * [`isFile` and `isFileSync`](#isfile-and-isfilesync)
   * [`isDirectory` and `isDirectorySync`](#isdirectory-and-isdirectorysync)
@@ -117,7 +118,7 @@ Directories:
 
 Filters:
 
-- [`ofBasename`, `ofDirname` and `ofExtname`](#ofBasename-ofDirname-and-ofExtname)
+- [`ofBasename`, `ofName`, `ofDirname` and `ofExtname`](#ofBasename-ofName-ofDirname-and-ofExtname)
 - [`hasPathSegments`](#hasPathSegments)
 - [`isFile` and `isFileSync`](#isFile-and-isFileSync)
 - [`isDirectory` and `isDirectorySync`](#isDirectory-and-isDirectorySync)
@@ -353,10 +354,10 @@ upwardFilesSync(startPath: string, maximumHeight: number): Iterable<string>;
 upwardFilesSync(startPath: string, endPath: string): Iterable<string>;
 ```
 
-### `ofBasename`, `ofDirname` and `ofExtname`
+### `ofBasename`, `ofName`, `ofDirname` and `ofExtname`
 
-Determines whether or not a path's `basename`, `dirname` or `extname` matches
-any of a sequence of segment testers.
+Determines whether or not a path's `basename`, `name`, `dirname` or `extname`
+matches any of a sequence of segment testers.
 A segment tester can be a string, a regular expression or a function.
 
 - If it is a string, then the segment must correspond to it for the path to
@@ -371,6 +372,7 @@ A segment tester can be a string, a regular expression or a function.
 ```ts
 type SegmentTester = string | RegExp | ((segment: string) => boolean);
 ofBasename(...tests: SegmentTester[]): FilterSync<string>;
+ofName(...tests: SegmentTester[]): FilterSync<string>;
 ofDirname(...tests: SegmentTester[]): FilterSync<string>;
 ofExtname(...tests: SegmentTester[]): FilterSync<string>;
 ```
@@ -378,14 +380,18 @@ ofExtname(...tests: SegmentTester[]): FilterSync<string>;
 > Example
 
 ```js
-const { ofBasename, ofDirname, ofExtname } = require("find-files-by-patterns");
+const { ofBasename, ofName,
+        ofDirname, ofExtname } = require("find-files-by-patterns");
 
 const isMarkdownFile = ofExtname(".md", ".markdown");
+const isIndexFile = ofName("index");
 const isDataFilename = ofBasename(/^data/);
 const isInDocuments = ofDirname("/Documents");
 
 isMarkdownFile("/Documents/article.md"); //=> `true`
 isMarkdownFile("/Documents/data.json"); //=> `false`
+isIndexFile("/Documents/index.html"); //=> `true`
+isIndexFile("/Documents/index.md"); //=> `true`
 isDataFilename("/Documents/data.json"); //=> `true`
 isInDocuments("/Documents/data.json"); //=> `true`
 isInDocuments("/Documents/src/index.js"); //=> `false`

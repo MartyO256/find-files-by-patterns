@@ -5,7 +5,7 @@ import * as mock from "mock-fs";
 
 import { resolve } from "path";
 
-import { asyncIterableToArray } from "../src/iterable";
+import { allElements } from "../src/iterable";
 import { readdir, readdirs, readdirsSync, readdirSync } from "../src/readdirs";
 
 describe("readdirs", () => {
@@ -48,10 +48,10 @@ describe("readdirs", () => {
     mock.restore();
   });
   describe("readdir", () => {
-    it("should terminate", async () => asyncIterableToArray(readdir(".")));
+    it("should terminate", async () => allElements(readdir(".")));
     it("should yield the correct amount of files", async () => {
       assert.strictEqual(
-        (await asyncIterableToArray(readdir("."))).length,
+        (await allElements(readdir("."))).length,
         2,
         "Yielded files and expected files differ in length.",
       );
@@ -76,15 +76,15 @@ describe("readdirs", () => {
     });
     it("should yield all the correct file paths", async () => {
       assert.deepStrictEqual(
-        (await asyncIterableToArray(readdir("."))).sort(),
+        (await allElements(readdir("."))).sort(),
         resolvedPaths("file.html", "files").sort(),
       );
     });
     it("should throw an error if the given directory path is a file", async () => {
-      rejects(asyncIterableToArray(readdir("./file.html")));
+      rejects(allElements(readdir("./file.html")));
     });
     it("should throw an error if the given directory path does not exist", async () => {
-      rejects(asyncIterableToArray(readdir("./inexistant-directory")));
+      rejects(allElements(readdir("./inexistant-directory")));
     });
   });
   describe("readdirSync", () => {
@@ -124,11 +124,10 @@ describe("readdirs", () => {
     });
   });
   describe("readdirs", () => {
-    it("should terminate", async () =>
-      asyncIterableToArray(readdirs([".", "./files"])));
+    it("should terminate", async () => allElements(readdirs([".", "./files"])));
     it("should yield the correct amount of files", async () => {
       assert.strictEqual(
-        (await asyncIterableToArray(
+        (await allElements(
           readdirs([
             ".",
             "./files",
@@ -164,7 +163,7 @@ describe("readdirs", () => {
     });
     it("should yield all the correct file paths", async () => {
       assert.deepStrictEqual(
-        (await asyncIterableToArray(
+        (await allElements(
           readdirs([
             ".",
             "./files",
@@ -185,10 +184,10 @@ describe("readdirs", () => {
       );
     });
     it("should throw an error if any of the given directory paths is a file", async () => {
-      rejects(asyncIterableToArray(readdirs([".", "./file.html"])));
+      rejects(allElements(readdirs([".", "./file.html"])));
     });
     it("should throw an error if any of the given directory paths does not exist", async () => {
-      rejects(asyncIterableToArray(readdirs([".", "./inexistant-directory"])));
+      rejects(allElements(readdirs([".", "./inexistant-directory"])));
     });
   });
   describe("readdirsSync", () => {
