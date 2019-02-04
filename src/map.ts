@@ -2,6 +2,8 @@ import { isAsyncIterable, isIterable } from "./iterable";
 
 /**
  * Maps the elements of an iterable using a simple mapping function.
+ * @typeparam T The type of iterated elements.
+ * @typeparam U The type of mapped elements.
  * @param iterable The iterable to map.
  * @param map The simple mapping function which maps the elements of the
  * iterable onto simple elements of a certain type.
@@ -20,6 +22,8 @@ export async function* simpleMap<T, U>(
 
 /**
  * Maps the elements of an iterable using a simple mapping function.
+ * @typeparam T The type of iterated elements.
+ * @typeparam U The type of mapped elements.
  * @param iterable The iterable to map.
  * @param map The simple mapping function which maps the elements of the
  * iterable onto simple elements of a certain type.
@@ -38,6 +42,8 @@ export function* simpleMapSync<T, U>(
 
 /**
  * Maps the elements of an iterable using a multi mapping function.
+ * @typeparam T The type of iterated elements.
+ * @typeparam U The type of mapped elements.
  * @param iterable The iterable to map.
  * @param map The multi mapping function which maps the elements of the iterable
  * onto either simple or multiple values of a certain type. The returned type of
@@ -65,6 +71,8 @@ export async function* multiMap<T, U>(
 
 /**
  * Maps the elements of an iterable using a multi mapping function.
+ * @typeparam T The type of iterated elements.
+ * @typeparam U The type of mapped elements.
  * @param iterable The iterable to map.
  * @param map The multi mapping function which maps the elements of the iterable
  * onto either simple or multiple values of a certain type. The returned type of

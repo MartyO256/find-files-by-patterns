@@ -3,6 +3,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "lib": ["esnext"],
+    "target": "esnext",
     "outDir": "./lib",
     "typeRoots": ["./node_modules/@types"],
     "alwaysStrict": true,

@@ -51,7 +51,7 @@ describe("path", () => {
     });
     describe("(...tests: Array<((basename: string) => boolean)>): FilterSync<string>", () => {
       it("should arbitrarily return `false` if no base names are given", () => {
-        const basenames: Array<((basename: string) => boolean)> = [];
+        const basenames: Array<(basename: string) => boolean> = [];
         assert.isFalse(ofBasename(...basenames)(""));
       });
       it("should return `true` if a path's base name matches a function", () => {
@@ -127,7 +127,7 @@ describe("path", () => {
     });
     describe("(...tests: Array<((basename: string) => boolean)>): FilterSync<string>", () => {
       it("should arbitrarily return `false` if no names are given", () => {
-        const names: Array<((name: string) => boolean)> = [];
+        const names: Array<(name: string) => boolean> = [];
         assert.isFalse(ofName(...names)(""));
       });
       it("should return `true` if a path's name matches a function", () => {
@@ -201,7 +201,7 @@ describe("path", () => {
     });
     describe("(...tests: Array<((dirname: string) => boolean)>): FilterSync<string>", () => {
       it("should arbitrarily return `false` if no directory names are given", () => {
-        const dirnames: Array<((dirname: string) => boolean)> = [];
+        const dirnames: Array<(dirname: string) => boolean> = [];
         assert.isFalse(ofDirname(...dirnames)(""));
       });
       it("should return `true` if a path's dirname name matches a function", () => {
@@ -276,7 +276,7 @@ describe("path", () => {
     });
     describe("(...tests: Array<((extname: string) => boolean)>): FilterSync<string>", () => {
       it("should arbitrarily return `false` if no extension names are given", () => {
-        const extnames: Array<((extname: string) => boolean)> = [];
+        const extnames: Array<(extname: string) => boolean> = [];
         assert.isFalse(ofExtname(...extnames)(""));
       });
       it("should return `true` if a path's extension name matches a function", () => {

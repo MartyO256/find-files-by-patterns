@@ -206,7 +206,7 @@ export interface FileFinder extends Function {
    * @rejects If one of the given tests throws an error.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data.csv
    * └── data.yaml
@@ -218,7 +218,7 @@ export interface FileFinder extends Function {
    * will resolve to `null`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data.json
    * └── data.yaml
@@ -230,7 +230,7 @@ export interface FileFinder extends Function {
    * `/home/user/project/data.json`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project/data
    * ├── data.json
    * └── data.yaml
@@ -279,7 +279,7 @@ export interface FileFinder extends Function {
    * resolved to `/home/user/project/files` before any file is tested.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project/data
    * ├── data.csv
    * └── data.yaml
@@ -291,7 +291,7 @@ export interface FileFinder extends Function {
    * `null`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data
    * |   ├── data.csv
@@ -306,7 +306,7 @@ export interface FileFinder extends Function {
    * the promise will resolve to `null`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project/data
    * ├── data.json
    * └── data.yaml
@@ -317,7 +317,7 @@ export interface FileFinder extends Function {
    * promise will resolve to `/home/user/project/data/data.json`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data
    * |   ├── data.json
@@ -332,7 +332,7 @@ export interface FileFinder extends Function {
    * `/home/user/project/data/data.json`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project/data
    * ├── data.json
    * └── data.yaml
@@ -345,7 +345,7 @@ export interface FileFinder extends Function {
    * same directory.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data
    * |   └── data.json
@@ -389,7 +389,7 @@ export interface FileFinderSync extends Function {
    * @throws If one of the given tests throws an error.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data.csv
    * └── data.yaml
@@ -401,7 +401,7 @@ export interface FileFinderSync extends Function {
    * will return `null`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data.json
    * └── data.yaml
@@ -445,7 +445,7 @@ export interface FileFinderSync extends Function {
    * resolved to `/home/user/project/files` before any file is tested.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project/data
    * ├── data.csv
    * └── data.yaml
@@ -456,7 +456,7 @@ export interface FileFinderSync extends Function {
    * file will be found matching that test and the function will return `null`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data
    * |   ├── data.csv
@@ -471,7 +471,7 @@ export interface FileFinderSync extends Function {
    * the function will return `null`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project/data
    * ├── data.json
    * └── data.yaml
@@ -482,7 +482,7 @@ export interface FileFinderSync extends Function {
    * function will return `/home/user/project/data/data.json`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data
    * |   ├── data.json
@@ -497,7 +497,7 @@ export interface FileFinderSync extends Function {
    * `/home/user/project/data/data.json`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project/data
    * ├── data.json
    * └── data.yaml
@@ -509,7 +509,7 @@ export interface FileFinderSync extends Function {
    * `/home/user/project/data/data.yaml` since they both pass the test.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data
    * |   └── data.json
@@ -554,7 +554,7 @@ export interface OnlyFileFinder extends FileFinder {
    * @rejects If one of the given tests throws an error.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data.csv
    * └── data.yaml
@@ -566,7 +566,7 @@ export interface OnlyFileFinder extends FileFinder {
    * will resolve to `null`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data.json
    * └── data.yaml
@@ -578,7 +578,7 @@ export interface OnlyFileFinder extends FileFinder {
    * `/home/user/project/data.json`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project/data
    * ├── data.json
    * └── data.yaml
@@ -628,7 +628,7 @@ export interface OnlyFileFinder extends FileFinder {
    * resolved to `/home/user/project/files` before any file is tested.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project/data
    * ├── data.csv
    * └── data.yaml
@@ -640,7 +640,7 @@ export interface OnlyFileFinder extends FileFinder {
    * `null`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data
    * |   ├── data.csv
@@ -655,7 +655,7 @@ export interface OnlyFileFinder extends FileFinder {
    * the promise will resolve to `null`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project/data
    * ├── data.json
    * └── data.yaml
@@ -666,7 +666,7 @@ export interface OnlyFileFinder extends FileFinder {
    * promise will resolve to `/home/user/project/data/data.json`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data
    * |   ├── data.json
@@ -681,7 +681,7 @@ export interface OnlyFileFinder extends FileFinder {
    * `/home/user/project/data/data.json`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project/data
    * ├── data.json
    * └── data.yaml
@@ -694,7 +694,7 @@ export interface OnlyFileFinder extends FileFinder {
    * directory.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data
    * |   └── data.json
@@ -739,7 +739,7 @@ export interface OnlyFileFinderSync extends FileFinderSync {
    * @throws If one of the given tests throws an error.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data.csv
    * └── data.yaml
@@ -751,7 +751,7 @@ export interface OnlyFileFinderSync extends FileFinderSync {
    * will return `null`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data.json
    * └── data.yaml
@@ -762,7 +762,7 @@ export interface OnlyFileFinderSync extends FileFinderSync {
    * `data.json`, then the function will return `/home/user/project/data.json`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project/data
    * ├── data.json
    * └── data.yaml
@@ -808,7 +808,7 @@ export interface OnlyFileFinderSync extends FileFinderSync {
    * resolved to `/home/user/project/files` before any file is tested.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project/data
    * ├── data.csv
    * └── data.yaml
@@ -819,7 +819,7 @@ export interface OnlyFileFinderSync extends FileFinderSync {
    * file will be found matching that test and the function will return `null`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data
    * |   ├── data.csv
@@ -834,7 +834,7 @@ export interface OnlyFileFinderSync extends FileFinderSync {
    * the function will return `null`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project/data
    * ├── data.json
    * └── data.yaml
@@ -845,7 +845,7 @@ export interface OnlyFileFinderSync extends FileFinderSync {
    * function will return `/home/user/project/data/data.json`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data
    * |   ├── data.json
@@ -860,7 +860,7 @@ export interface OnlyFileFinderSync extends FileFinderSync {
    * `/home/user/project/data/data.json`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project/data
    * ├── data.json
    * └── data.yaml
@@ -873,7 +873,7 @@ export interface OnlyFileFinderSync extends FileFinderSync {
    * pass the test and are in the same directory.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data
    * |   └── data.json
@@ -914,7 +914,7 @@ export interface AllFilesFinder extends Function {
    * @rejects If one of the given tests throws an error.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data.csv
    * └── data.yaml
@@ -926,7 +926,7 @@ export interface AllFilesFinder extends Function {
    * will resolve to `null`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project/data
    * ├── data.json
    * └── data.yaml
@@ -967,7 +967,7 @@ export interface AllFilesFinder extends Function {
    * resolved to `/home/user/project/files` before any file is tested.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project/data
    * ├── data.json
    * └── data.yaml
@@ -979,7 +979,7 @@ export interface AllFilesFinder extends Function {
    * `/home/user/project/data/data.yaml`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data
    * |   ├── data.json
@@ -1022,7 +1022,7 @@ export interface AllFilesFinderSync extends Function {
    * @throws If one of the given tests throws an error.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data.csv
    * └── data.yaml
@@ -1034,7 +1034,7 @@ export interface AllFilesFinderSync extends Function {
    * will return `null`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project/data
    * ├── data.json
    * └── data.yaml
@@ -1075,7 +1075,7 @@ export interface AllFilesFinderSync extends Function {
    * resolved to `/home/user/project/files` before any file is tested.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project/data
    * ├── data.json
    * └── data.yaml
@@ -1087,7 +1087,7 @@ export interface AllFilesFinderSync extends Function {
    * `/home/user/project/data/data.yaml`.
    * @example Consider the following file structure:
    *
-   * ```txt
+   * ```plaintext
    * /home/user/project
    * ├── data
    * |   ├── data.json

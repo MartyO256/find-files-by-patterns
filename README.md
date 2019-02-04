@@ -26,7 +26,7 @@ npm install find-files-by-patterns
 Assuming this file system, where the current working directory is
 `/Documents/project`:
 
-```txt
+```plaintext
 /
 └── Documents
     ├── data.csv
@@ -151,14 +151,18 @@ If no directory is supplied, then the current working directory is read.
 ```ts
 type Filter<T> = (element: T) => Promise<boolean>;
 type FilterSync<T> = (element: T) => boolean;
-findFile(...tests: Array<Filter<string> | FilterSync<string>>): Promise<
-  string | null
->;
+
+findFile(
+  ...tests: Array<Filter<string> | FilterSync<string>>
+): Promise<string | null>;
+
 findFile(
   directories: string | AsyncIterable<string> | Iterable<string>,
   ...tests: Array<Filter<string> | FilterSync<string>>
 ): Promise<string | null>;
+
 findFileSync(...tests: Array<FilterSync<string>>): string | null;
+
 findFileSync(
   directories: string | Iterable<string>,
   ...tests: Array<FilterSync<string>>
@@ -176,13 +180,18 @@ If no directory is supplied, then the current working directory is read.
 ```ts
 type Filter<T> = (element: T) => Promise<boolean>;
 type FilterSync<T> = (element: T) => boolean;
-findAllFiles(...tests: Array<Filter<string>
-                     | FilterSync<string>>): Promise<string[]>;
+
+findAllFiles(
+  ...tests: Array<Filter<string> | FilterSync<string>>
+): Promise<string[]>;
+
 findAllFiles(
   directories: string | AsyncIterable<string> | Iterable<string>,
   ...tests: Array<Filter<string> | FilterSync<string>>
 ): Promise<string[]>;
+
 findAllFilesSync(...tests: Array<FilterSync<string>>): string[];
+
 findAllFilesSync(
   directories: string | Iterable<string>,
   ...tests: Array<FilterSync<string>>
@@ -200,14 +209,18 @@ If no directory is supplied, then the current working directory is read.
 ```ts
 type Filter<T> = (element: T) => Promise<boolean>;
 type FilterSync<T> = (element: T) => boolean;
-findOnlyFile(...tests: Array<Filter<string> | FilterSync<string>>): Promise<
-  string | null
->;
+
+findOnlyFile(
+  ...tests: Array<Filter<string> | FilterSync<string>>
+): Promise<string | null>;
+
 findOnlyFile(
   directories: string | AsyncIterable<string> | Iterable<string>,
   ...tests: Array<Filter<string> | FilterSync<string>>
 ): Promise<string | null>;
+
 findOnlyFileSync(...tests: Array<FilterSync<string>>): string | null;
+
 findOnlyFileSync(
   directories: string | Iterable<string>,
   ...tests: Array<FilterSync<string>>
@@ -216,20 +229,27 @@ findOnlyFileSync(
 
 ### `downwardDirectories` and `downwardDirectoriesSync`
 
-Returns an iterable ocer the existing downward files from a start path. Symbolic
+Returns an iterable over the existing downward files from a start path. Symbolic
 links are followed and handled such that no directory is traversed twice.
 
 > Specifications
 
 ```ts
 downwardDirectories(): AsyncIterable<string>;
+
 downwardDirectories(maximumDepth: number): AsyncIterable<string>;
+
 downwardDirectories(startDirectory: string): AsyncIterable<string>;
+
 downwardDirectories(startDirectory: string,
                     maximumDepth: number): AsyncIterable<string>;
+
 downwardDirectoriesSync(): Iterable<string>;
+
 downwardDirectoriesSync(maximumDepth: number): Iterable<string>;
+
 downwardDirectoriesSync(startDirectory: string): Iterable<string>;
+
 downwardDirectoriesSync(startDirectory: string,
                         maximumDepth: number): Iterable<string>;
 ```
@@ -238,7 +258,7 @@ downwardDirectoriesSync(startDirectory: string,
 
 Assuming this file system, where the current working directory is `/Documents`:
 
-```txt
+```plaintext
 /
 └── Documents
     ├── Images
@@ -274,14 +294,21 @@ Returns an iterable over the existing directories upwards from a start path.
 
 ```ts
 upwardDirectories(): AsyncIterable<string>;
+
 upwardDirectories(startPath: string): AsyncIterable<string>;
+
 upwardDirectories(startPath: string,
                   maximumHeight: number): AsyncIterable<string>;
+
 upwardDirectories(startPath: string, endPath: string): AsyncIterable<string>;
+
 upwardDirectoriesSync(): Iterable<string>;
+
 upwardDirectoriesSync(startPath: string): Iterable<string>;
+
 upwardDirectoriesSync(startPath: string,
                       maximumHeight: number): Iterable<string>;
+
 upwardDirectoriesSync(startPath: string, endPath: string): Iterable<string>;
 ```
 
@@ -290,7 +317,7 @@ upwardDirectoriesSync(startPath: string, endPath: string): Iterable<string>;
 Assuming this file system, where the current working directory is
 `/Documents/project`:
 
-```txt
+```plaintext
 /
 └── Documents
     ├── Images
@@ -325,13 +352,20 @@ Returns and iterable over the files in each downward directory yielded by
 
 ```ts
 downwardFiles(): AsyncIterable<string>;
+
 downwardFiles(maximumDepth: number): AsyncIterable<string>;
+
 downwardFiles(startDirectory: string): AsyncIterable<string>;
+
 downwardFiles(startDirectory: string,
               maximumDepth: number): AsyncIterable<string>;
+
 downwardFilesSync(): Iterable<string>;
+
 downwardFilesSync(maximumDepth: number): Iterable<string>;
+
 downwardFilesSync(startDirectory: string): Iterable<string>;
+
 downwardFilesSync(startDirectory: string,
                   maximumDepth: number): Iterable<string>;
 ```
@@ -345,12 +379,19 @@ Returns and iterable over the files in each upward directory yielded by
 
 ```ts
 upwardFiles(): AsyncIterable<string>;
+
 upwardFiles(startPath: string): AsyncIterable<string>;
+
 upwardFiles(startPath: string, maximumHeight: number): AsyncIterable<string>;
+
 upwardFiles(startPath: string, endPath: string): AsyncIterable<string>;
+
 upwardFilesSync(): Iterable<string>;
+
 upwardFilesSync(startPath: string): Iterable<string>;
+
 upwardFilesSync(startPath: string, maximumHeight: number): Iterable<string>;
+
 upwardFilesSync(startPath: string, endPath: string): Iterable<string>;
 ```
 
@@ -371,9 +412,13 @@ A segment tester can be a string, a regular expression or a function.
 
 ```ts
 type SegmentTester = string | RegExp | ((segment: string) => boolean);
+
 ofBasename(...tests: SegmentTester[]): FilterSync<string>;
+
 ofName(...tests: SegmentTester[]): FilterSync<string>;
+
 ofDirname(...tests: SegmentTester[]): FilterSync<string>;
+
 ofExtname(...tests: SegmentTester[]): FilterSync<string>;
 ```
 
@@ -414,6 +459,7 @@ A segment tester can be a string, a regular expression or a function.
 
 ```ts
 type SegmentTester = string | RegExp | ((segment: string) => boolean);
+
 hasPathSegments(...tests: SegmentTester[]): FilterSync<string>;
 ```
 
@@ -422,10 +468,13 @@ hasPathSegments(...tests: SegmentTester[]): FilterSync<string>;
 ```js
 const { hasPathSegments } = require("find-files-by-patterns");
 
-const isNotIgnored = hasPathSegments(segment => !segment.startsWith("_"));
-isNotIgnored("project/src/_ignored.json"); //=> `false`
-isNotIgnored("project/_ignored/data.json"); //=> `false`
-isNotIgnored("project/src/data.yaml"); //=> `true`
+const isIgnored = hasPathSegments(segment => segment.startsWith("_"));
+
+isIgnored("project/src/_ignored.json"); //=> `true`
+
+isIgnored("project/_ignored/data.json"); //=> `true`
+
+isIgnored("project/src/data.yaml"); //=> `false`
 ```
 
 ### `isFile` and `isFileSync`
@@ -436,6 +485,7 @@ Determines whether or not a path exists on the file system and is a file.
 
 ```ts
 isFile(path: string): Promise<boolean>;
+
 isFileSync(path: string): boolean;
 ```
 
@@ -447,6 +497,7 @@ Determines whether or not a path exists on the file system and is a directory.
 
 ```ts
 isDirectory(path: string): Promise<boolean>;
+
 isDirectorySync(path: string): boolean;
 ```
 
@@ -459,6 +510,7 @@ a file which matches a filter.
 
 ```ts
 hasFile(test: Filter<string> | FilterSync<string>): Filter<string>;
+
 hasFileSync(test: FilterSync<string>): FilterSync<string>;
 ```
 
@@ -467,7 +519,7 @@ hasFileSync(test: FilterSync<string>): FilterSync<string>;
 Assuming this file system, where the current working directory is
 `/Documents/project`:
 
-```txt
+```plaintext
 /
 └── Documents
     ├── Images
@@ -495,6 +547,7 @@ Returns an iterable over the fully qualified file names in the given directory.
 
 ```ts
 readdir(directory: string): AsyncIterable<string>;
+
 readdirSync(directory: string): Iterable<string>;
 ```
 
@@ -507,6 +560,7 @@ directories.
 
 ```ts
 readdirs(directory: string): AsyncIterable<string>;
+
 readdirsSync(directory: string): Iterable<string>;
 ```
 
@@ -521,8 +575,10 @@ This is analogous to the array filter method.
 ```ts
 type Filter<T> = (element: T) => Promise<boolean>;
 type FilterSync<T> = (element: T) => boolean;
+
 filter<T>(iterable: Iterable<T> | AsyncIterable<T>,
           filter: Filter<T> | FilterSync<T>): AsyncIterable<T>;
+
 filterSync<T>(iterable: Iterable<T>,
               filter: FilterSync<T>): Iterable<T>;
 ```
@@ -551,7 +607,9 @@ Compounds a sequence of filters using logical conjunction.
 ```ts
 type Filter<T> = (element: T) => Promise<boolean>;
 type FilterSync<T> = (element: T) => boolean;
+
 conjunction<T>(filters: Array<Filter<T> | FilterSync<T>>): Filter<T>;
+
 conjunctionSync<T>(filters: Array<FilterSync<T>>): FilterSync<T>;
 ```
 
@@ -581,7 +639,9 @@ Compounds a sequence of filters using logical disjunction.
 ```ts
 type Filter<T> = (element: T) => Promise<boolean>;
 type FilterSync<T> = (element: T) => boolean;
+
 disjunction<T>(filters: Array<Filter<T> | FilterSync<T>>): Filter<T>;
+
 disjunctionSync<T>(filters: Array<FilterSync<T>>): FilterSync<T>;
 ```
 
@@ -608,6 +668,7 @@ Converts an iterable to an array.
 
 ```ts
 allElements<T>(iterable: AsyncIterable<T>): Promise<T[]>;
+
 allElementsSync<T>(iterable: Iterable<T>): T[];
 ```
 
@@ -619,6 +680,7 @@ Returns the first element of an iterable.
 
 ```ts
 firstElement<T>(iterable: AsyncIterable<T>): Promise<T | null>;
+
 firstElementSync<T>(iterable: Iterable<T>): T | null;
 ```
 
@@ -632,6 +694,7 @@ thrown.
 
 ```ts
 onlyElement<T>(iterable: AsyncIterable<T>): Promise<T | null>;
+
 onlyElementSync<T>(iterable: Iterable<T>): T | null;
 ```
 
