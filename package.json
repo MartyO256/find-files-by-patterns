@@ -30,17 +30,6 @@
     "test:watch": "mocha --watch-extensions ts --watch",
     "coverage": "nyc npm run test"
   },
-  "lint-staged": {
-    "*.ts": [
-      "tslint --force --format verbose",
-      "git add"
-    ],
-    "*.md": [
-      "markdown-toc -i",
-      "markdownlint",
-      "git add"
-    ]
-  },
   "keywords": [
     "find-files",
     "find-up",
