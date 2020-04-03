@@ -15,10 +15,10 @@ import {
 describe("iterable", () => {
   describe("isIterable", () => {
     const iterable = (): Iterable<boolean> =>
-      (function*() {
+      (function* (): Iterable<boolean> {
         yield true;
       })();
-    const notIterable = (): any => 0;
+    const notIterable = (): unknown => 0;
     it("should return `true` if the object is an iterable", () => {
       assert.isTrue(isIterable(iterable()));
     });
@@ -28,10 +28,10 @@ describe("iterable", () => {
   });
   describe("isAsyncIterable", () => {
     const asyncIterable = (): AsyncIterable<boolean> =>
-      (async function*() {
+      (async function* (): AsyncIterable<boolean> {
         yield true;
       })();
-    const notAsyncIterable = (): any => 0;
+    const notAsyncIterable = (): unknown => 0;
     it("should return `true` if the object is an asynchronous iterable", () => {
       assert.isTrue(isAsyncIterable(asyncIterable()));
     });
@@ -41,7 +41,7 @@ describe("iterable", () => {
   });
   describe("firstElement", () => {
     const asyncIterable = (): AsyncIterable<string> =>
-      (async function*() {
+      (async function* (): AsyncIterable<string> {
         yield* ["first", "second", "third"];
       })();
     it("should return the first element of the iterable", async () => {
@@ -63,10 +63,10 @@ describe("iterable", () => {
     });
   });
   describe("onlyElement", () => {
-    const element = (async function*() {
+    const element = (async function* (): AsyncIterable<string> {
       yield "element";
     })();
-    const elements = (async function*() {
+    const elements = (async function* (): AsyncIterable<string> {
       yield* ["first", "second", "third"];
     })();
     it("should return the only element of the iterable", async () => {
@@ -103,7 +103,7 @@ describe("iterable", () => {
   describe("allElements", () => {
     const elements = [-1, 0, 1];
     const asyncIterable = (): AsyncIterable<number> =>
-      (async function*() {
+      (async function* (): AsyncIterable<number> {
         yield* elements;
       })();
     it("should contain the correct amount of elements", async () => {

@@ -71,7 +71,7 @@ describe("path", () => {
       const basenames = [
         "file.md",
         /^[0-9]+/,
-        (basename) => basename.startsWith("f"),
+        (basename): boolean => basename.startsWith("f"),
       ];
       const filter = ofBasename(...basenames);
       it("should arbitrarily return `false` if no base names are given", () => {
@@ -144,7 +144,11 @@ describe("path", () => {
       });
     });
     describe("(...tests: Array<string | RegExp | ((basename: string) => boolean)>): FilterSync<string>", () => {
-      const names = ["file", /^[0-9]+/, (name) => name.startsWith("f")];
+      const names = [
+        "file",
+        /^[0-9]+/,
+        (name): boolean => name.startsWith("f"),
+      ];
       const filter = ofName(...names);
       it("should arbitrarily return `false` if no names are given", () => {
         const names: Array<
@@ -221,7 +225,7 @@ describe("path", () => {
       const dirnames = [
         "/home/user/directory",
         /^[0-9].$/,
-        (dirname) => dirname.startsWith("/bin"),
+        (dirname): boolean => dirname.startsWith("/bin"),
       ];
       const filter = ofDirname(...dirnames);
       it("should arbitrarily return `false` if no directory names are given", () => {
@@ -296,7 +300,7 @@ describe("path", () => {
       const extnames = [
         ".md",
         /^\.(md|html|json)$/,
-        (extname) => extname.startsWith(".md"),
+        (extname): boolean => extname.startsWith(".md"),
       ];
       const filter = ofExtname(...extnames);
       it("should arbitrarily return `false` if no extension names are given", () => {

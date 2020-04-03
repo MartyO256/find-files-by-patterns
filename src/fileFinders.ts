@@ -36,7 +36,7 @@ const handleFunctionOverload = (
   tests: Array<Filter<string> | FilterSync<string>>,
 ): [
   Iterable<string> | AsyncIterable<string>,
-  Array<Filter<string> | FilterSync<string>>
+  Array<Filter<string> | FilterSync<string>>,
 ] => {
   if (typeof directories === "string") {
     directories = [directories];

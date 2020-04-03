@@ -55,7 +55,7 @@ export function* simpleMapSync<T, U>(
 export async function* multiMap<T, U>(
   iterable: Iterable<T> | AsyncIterable<T>,
   map: (element: T) => Promise<U | Iterable<U> | AsyncIterable<U>>,
-) {
+): AsyncIterable<U> {
   for await (const element of iterable) {
     const mapped = await map(element);
     if (

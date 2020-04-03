@@ -5,10 +5,10 @@ import { allElements } from "../src/iterable";
 import { multiMap, multiMapSync, simpleMap, simpleMapSync } from "../src/map";
 
 describe("map", () => {
-  const error = async () => errorSync();
-  const errorSync = () => {
+  const errorSync = (): null => {
     throw new Error();
   };
+  const error = async (): Promise<null> => errorSync();
   describe("simpleMap", () => {
     it("should correctly map the values", async () => {
       assert.deepStrictEqual(

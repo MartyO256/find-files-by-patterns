@@ -2,7 +2,7 @@ import { rejects } from "assert";
 import { assert } from "chai";
 
 import * as mock from "mock-fs";
-import { join, resolve } from "path";
+import { resolve } from "path";
 
 import {
   downwardDirectories,
@@ -15,8 +15,8 @@ import {
 } from "../src/directories";
 import { allElements, allElementsSync } from "../src/iterable";
 
-const resolvedPath = (path: string) => resolve(path);
-const resolvedPaths = (...paths: string[]) => paths.map(resolvedPath);
+const resolvedPath = (path: string): string => resolve(path);
+const resolvedPaths = (...paths: string[]): string[] => paths.map(resolvedPath);
 
 describe("directories", () => {
   beforeEach(() => {
@@ -590,9 +590,9 @@ describe("directories", () => {
         "/",
       );
       assert.deepStrictEqual(
-        (await allElements(
-          upwardDirectories("/home/user/files/inexistant"),
-        )).sort(),
+        (
+          await allElements(upwardDirectories("/home/user/files/inexistant"))
+        ).sort(),
         correctPaths.sort(),
       );
     });

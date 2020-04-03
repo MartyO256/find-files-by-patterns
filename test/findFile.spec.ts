@@ -14,7 +14,7 @@ const error: Filter<string> = async () => {
 const errorSync: FilterSync<string> = () => {
   throw new Error();
 };
-const resolvedPath = (path: string) => resolve(path);
+const resolvedPath = (path: string): string => resolve(path);
 
 describe("findFile", () => {
   beforeEach(() => {

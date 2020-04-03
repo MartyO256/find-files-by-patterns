@@ -39,7 +39,7 @@ const startingDirectory = (path: string): Directory => ({ path, depth: 0 });
  * @returns A directory at the given path whose depth is `1` greater than that
  * of its parent.
  */
-const subdirectory = (path: string, parent: Directory) => ({
+const subdirectory = (path: string, parent: Directory): Directory => ({
   path,
   depth: parent.depth + 1,
 });
@@ -51,7 +51,9 @@ const subdirectory = (path: string, parent: Directory) => ({
  * @returns A function which determines whether or not a path has been
  * traversed.
  */
-const pathHasNotBeenTraversed = (paths: Iterable<string>) => (path: string) => {
+const pathHasNotBeenTraversed = (paths: Iterable<string>) => (
+  path: string,
+): boolean => {
   for (const query of paths) {
     if (query === path) {
       return false;
@@ -68,7 +70,7 @@ const realpathNativeSync = realpathSync.native;
  * @param maximumDepth The input maximum depth.
  * @returns An error for a negative maximum depth.
  */
-const negativeMaximumDepthError = (maximumDepth: number) =>
+const negativeMaximumDepthError = (maximumDepth: number): Error =>
   new Error(`The maximum depth of ${maximumDepth} should be positive`);
 
 /**
@@ -208,24 +210,6 @@ export interface DownwardFilesFetcherSync extends Function {
 }
 
 /**
- * @see [[DownwardFilesFetcher]] The specifications of the function.
- */
-export const downwardFiles: DownwardFilesFetcher = (
-  startDirectory?: number | string,
-  maximumDepth?: number,
-): AsyncIterable<string> => {
-  [startDirectory, maximumDepth] = handleDownwardFilesOverload(
-    startDirectory,
-    maximumDepth,
-  );
-  if (maximumDepth >= 0) {
-    return constrainedDownwardFiles(startDirectory, maximumDepth);
-  } else {
-    return unconstrainedDownwardFiles(startDirectory);
-  }
-};
-
-/**
  * Constructs an iterable over the downward files starting from a given path.
  * Symbolic links are followed, and the directories are traversed in
  * breadth-first order. Directories are read only once.
@@ -295,20 +279,20 @@ async function* constrainedDownwardFiles(
 }
 
 /**
- * @see [[DownwardFilesFetcherSync]] The specifications of the function.
+ * @see [[DownwardFilesFetcher]] The specifications of the function.
  */
-export const downwardFilesSync: DownwardFilesFetcherSync = (
+export const downwardFiles: DownwardFilesFetcher = (
   startDirectory?: number | string,
   maximumDepth?: number,
-): Iterable<string> => {
+): AsyncIterable<string> => {
   [startDirectory, maximumDepth] = handleDownwardFilesOverload(
     startDirectory,
     maximumDepth,
   );
   if (maximumDepth >= 0) {
-    return constrainedDownwardFilesSync(startDirectory, maximumDepth);
+    return constrainedDownwardFiles(startDirectory, maximumDepth);
   } else {
-    return unconstrainedDownwardFilesSync(startDirectory);
+    return unconstrainedDownwardFiles(startDirectory);
   }
 };
 
@@ -380,6 +364,24 @@ function* constrainedDownwardFilesSync(
     }
   }
 }
+
+/**
+ * @see [[DownwardFilesFetcherSync]] The specifications of the function.
+ */
+export const downwardFilesSync: DownwardFilesFetcherSync = (
+  startDirectory?: number | string,
+  maximumDepth?: number,
+): Iterable<string> => {
+  [startDirectory, maximumDepth] = handleDownwardFilesOverload(
+    startDirectory,
+    maximumDepth,
+  );
+  if (maximumDepth >= 0) {
+    return constrainedDownwardFilesSync(startDirectory, maximumDepth);
+  } else {
+    return unconstrainedDownwardFilesSync(startDirectory);
+  }
+};
 
 /**
  * An upward file fetcher constructs an iterable over the files in upward
@@ -551,7 +553,12 @@ export const upwardFiles: UpwardFilesFetcher = (
   upperBound?: number | string,
 ): AsyncIterable<string> => {
   [startPath, upperBound] = handleUpwardFilesOverload(startPath, upperBound);
-  return readdirs(upwardDirectories(startPath, upperBound as any));
+  return readdirs(
+    (upwardDirectories as (
+      startPath?: string,
+      upperBound?: number | string,
+    ) => AsyncIterable<string>)(startPath, upperBound),
+  );
 };
 
 /**
@@ -562,5 +569,10 @@ export const upwardFilesSync: UpwardFilesFetcherSync = (
   upperBound?: number | string,
 ): Iterable<string> => {
   [startPath, upperBound] = handleUpwardFilesOverload(startPath, upperBound);
-  return readdirsSync(upwardDirectoriesSync(startPath, upperBound as any));
+  return readdirsSync(
+    (upwardDirectoriesSync as (
+      startPath?: string,
+      upperBound?: number | string,
+    ) => Iterable<string>)(startPath, upperBound),
+  );
 };

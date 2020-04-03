@@ -14,8 +14,8 @@ const error: Filter<string> = async () => {
 const errorSync: FilterSync<string> = () => {
   throw new Error();
 };
-const resolvedPath = (path: string) => resolve(path);
-const resolvedPaths = (...path: string[]) => path.map(resolvedPath);
+const resolvedPath = (path: string): string => resolve(path);
+const resolvedPaths = (...path: string[]): string[] => path.map(resolvedPath);
 
 describe("findAllFiles", () => {
   beforeEach(() => {
@@ -144,10 +144,9 @@ describe("findAllFiles", () => {
       });
       it("should handle directories specified with string paths", async () => {
         assert.deepStrictEqual(
-          (await findAllFiles(
-            ["./", "./files"],
-            ofBasename("file.html"),
-          )).sort(),
+          (
+            await findAllFiles(["./", "./files"], ofBasename("file.html"))
+          ).sort(),
           resolvedPaths("./file.html", "./files/file.html").sort(),
         );
       });
@@ -212,10 +211,12 @@ describe("findAllFiles", () => {
       });
       it("should resolve to a set of matching files' path in directories", async () => {
         assert.deepStrictEqual(
-          (await findAllFiles(
-            ["/home/user/files", "/home/user/symbolic-files"],
-            ofBasename("file.html"),
-          )).sort(),
+          (
+            await findAllFiles(
+              ["/home/user/files", "/home/user/symbolic-files"],
+              ofBasename("file.html"),
+            )
+          ).sort(),
           resolvedPaths(
             "/home/user/files/file.html",
             "/home/user/symbolic-files/file.html",
@@ -239,19 +240,20 @@ describe("findAllFiles", () => {
       });
       it("should resolve to a set of matching directories' path in a directory", async () => {
         assert.deepStrictEqual(
-          (await findAllFiles(
-            "/home/user",
-            ofBasename(/^files/, /files$/),
-          )).sort(),
+          (
+            await findAllFiles("/home/user", ofBasename(/^files/, /files$/))
+          ).sort(),
           resolvedPaths("/home/user/files", "/home/user/symbolic-files").sort(),
         );
       });
       it("should resolve to a set of matching directories' path in directories", async () => {
         assert.deepStrictEqual(
-          (await findAllFiles(
-            ["/home/user", "/home/user/other-folder"],
-            ofBasename("files"),
-          )).sort(),
+          (
+            await findAllFiles(
+              ["/home/user", "/home/user/other-folder"],
+              ofBasename("files"),
+            )
+          ).sort(),
           resolvedPaths(
             "/home/user/files",
             "/home/user/other-folder/files",
@@ -260,10 +262,12 @@ describe("findAllFiles", () => {
       });
       it("should resolve to a set of matching files and directories' path", async () => {
         assert.deepStrictEqual(
-          (await findAllFiles(
-            ["/home/user", "/home/user/files"],
-            ofBasename(/^file/),
-          )).sort(),
+          (
+            await findAllFiles(
+              ["/home/user", "/home/user/files"],
+              ofBasename(/^file/),
+            )
+          ).sort(),
           resolvedPaths(
             "/home/user/files",
             "/home/user/files/file.md",
@@ -283,10 +287,12 @@ describe("findAllFiles", () => {
       });
       it("should resolve to a set of sequences of matching files sorted by directory", async () => {
         assert.deepStrictEqual(
-          (await findAllFiles(
-            ["/home/user/files", "/home/user/symbolic-folder"],
-            ofBasename(/^_/),
-          )).sort(),
+          (
+            await findAllFiles(
+              ["/home/user/files", "/home/user/symbolic-folder"],
+              ofBasename(/^_/),
+            )
+          ).sort(),
           resolvedPaths(
             "/home/user/files/_a",
             "/home/user/files/_b",

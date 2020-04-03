@@ -127,14 +127,16 @@ describe("readdirs", () => {
     it("should terminate", async () => allElements(readdirs([".", "./files"])));
     it("should yield the correct amount of files", async () => {
       assert.strictEqual(
-        (await allElements(
-          readdirs([
-            ".",
-            "./files",
-            "/home/user/symbolic-files",
-            "/home/user/symbolic-folder",
-          ]),
-        )).length,
+        (
+          await allElements(
+            readdirs([
+              ".",
+              "./files",
+              "/home/user/symbolic-files",
+              "/home/user/symbolic-folder",
+            ]),
+          )
+        ).length,
         8,
       );
     });
@@ -163,14 +165,16 @@ describe("readdirs", () => {
     });
     it("should yield all the correct file paths", async () => {
       assert.deepStrictEqual(
-        (await allElements(
-          readdirs([
-            ".",
-            "./files",
-            "/home/user/symbolic-files",
-            "/home/user/symbolic-folder",
-          ]),
-        )).sort(),
+        (
+          await allElements(
+            readdirs([
+              ".",
+              "./files",
+              "/home/user/symbolic-files",
+              "/home/user/symbolic-folder",
+            ]),
+          )
+        ).sort(),
         resolvedPaths(
           "./file.html",
           "./files",

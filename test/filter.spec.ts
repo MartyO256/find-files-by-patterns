@@ -17,7 +17,7 @@ describe("filter", () => {
   const isEvenSync: FilterSync<number> = (element: number) => element % 2 === 0;
   const isGreaterThan2Sync: FilterSync<number> = (element: number) =>
     element > 2;
-  const errorSync: FilterSync<number> = (element: number) => {
+  const errorSync: FilterSync<number> = () => {
     throw new Error();
   };
   const isEven: Filter<number> = (element: number) =>
@@ -99,9 +99,11 @@ describe("filter", () => {
     const filteredElements = [4, 6];
     it("should filter in the correct amount of elements", async () => {
       assert.strictEqual(
-        (await allElements(
-          filter(elements, conjunction([isEven, isGreaterThan2])),
-        )).length,
+        (
+          await allElements(
+            filter(elements, conjunction([isEven, isGreaterThan2])),
+          )
+        ).length,
         filteredElements.length,
       );
     });

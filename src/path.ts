@@ -32,11 +32,11 @@ const ofSegmentFilter = (segmentTests: SegmentTester[]): FilterSync<string> =>
     segmentTests.map((test) => {
       switch (typeof test) {
         case "string":
-          return (segment: string) => segment === test;
+          return (segment: string): boolean => segment === test;
         case "function":
           return test;
         default:
-          return (segment: string) => test.test(segment);
+          return (segment: string): boolean => test.test(segment);
       }
     }),
   );
@@ -196,7 +196,7 @@ export const hasPathSegments = (
   ...tests: SegmentTester[]
 ): FilterSync<string> => {
   const test = ofSegmentFilter(tests);
-  return (path: string) => {
+  return (path: string): boolean => {
     for (const segment of segments(path)) {
       if (!test(segment)) {
         return false;

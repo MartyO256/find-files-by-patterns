@@ -12,8 +12,8 @@ import {
 } from "../src/files";
 import { allElements, allElementsSync } from "../src/iterable";
 
-const resolvedPath = (path: string) => resolve(path);
-const resolvedPaths = (...paths: string[]) => paths.map(resolvedPath);
+const resolvedPath = (path: string): string => resolve(path);
+const resolvedPaths = (...paths: string[]): string[] => paths.map(resolvedPath);
 
 describe("files", () => {
   beforeEach(() => {
@@ -126,11 +126,10 @@ describe("files", () => {
         );
       });
       it("should use breadth-first traversal", async () => {
-        const concat = (path, segment) => join(path, segment);
         const basenames = ["1", "2", "3"];
         const parentDirectories = resolvedPaths(
           ...basenames.map((directory) =>
-            concat("/home/user/breadth-first", directory),
+            join("/home/user/breadth-first", directory),
           ),
         );
         const files = await allElements(
@@ -144,7 +143,7 @@ describe("files", () => {
         for (let i = 0; i < basenames.length; i++) {
           const directory = files[i];
           assert.deepStrictEqual(
-            basenames.map((file) => concat(directory, file)).sort(),
+            basenames.map((file) => join(directory, file)).sort(),
             files.slice(j, j + basenames.length).sort(),
           );
           j += basenames.length;
@@ -224,11 +223,10 @@ describe("files", () => {
         );
       });
       it("should use breadth-first traversal", async () => {
-        const concat = (path, segment) => join(path, segment);
         const basenames = ["1", "2", "3"];
         const parentDirectories = resolvedPaths(
           ...basenames.map((directory) =>
-            concat("/home/user/breadth-first", directory),
+            join("/home/user/breadth-first", directory),
           ),
         );
         const files = await allElements(
@@ -242,7 +240,7 @@ describe("files", () => {
         for (let i = 0; i < basenames.length; i++) {
           const directory = files[i];
           assert.deepStrictEqual(
-            basenames.map((file) => concat(directory, file)).sort(),
+            basenames.map((file) => join(directory, file)).sort(),
             files.slice(j, j + basenames.length).sort(),
           );
           j += basenames.length;
@@ -307,11 +305,10 @@ describe("files", () => {
         );
       });
       it("should use breadth-first traversal", () => {
-        const concat = (path, segment) => join(path, segment);
         const basenames = ["1", "2", "3"];
         const parentDirectories = resolvedPaths(
           ...basenames.map((directory) =>
-            concat("/home/user/breadth-first", directory),
+            join("/home/user/breadth-first", directory),
           ),
         );
         const files = allElementsSync(
@@ -325,7 +322,7 @@ describe("files", () => {
         for (let i = 0; i < basenames.length; i++) {
           const directory = files[i];
           assert.deepStrictEqual(
-            basenames.map((file) => concat(directory, file)).sort(),
+            basenames.map((file) => join(directory, file)).sort(),
             files.slice(j, j + basenames.length).sort(),
           );
           j += basenames.length;
@@ -407,11 +404,10 @@ describe("files", () => {
         );
       });
       it("should use breadth-first traversal", () => {
-        const concat = (path, segment) => join(path, segment);
         const basenames = ["1", "2", "3"];
         const parentDirectories = resolvedPaths(
           ...basenames.map((directory) =>
-            concat("/home/user/breadth-first", directory),
+            join("/home/user/breadth-first", directory),
           ),
         );
         const files = allElementsSync(
@@ -425,7 +421,7 @@ describe("files", () => {
         for (let i = 0; i < basenames.length; i++) {
           const directory = files[i];
           assert.deepStrictEqual(
-            basenames.map((file) => concat(directory, file)).sort(),
+            basenames.map((file) => join(directory, file)).sort(),
             files.slice(j, j + basenames.length).sort(),
           );
           j += basenames.length;
@@ -480,9 +476,9 @@ describe("files", () => {
         "/home/user/breadth-first",
       );
       assert.deepStrictEqual(
-        (await allElements(
-          upwardFiles("/home/user/files/file", "/home/user"),
-        )).sort(),
+        (
+          await allElements(upwardFiles("/home/user/files/file", "/home/user"))
+        ).sort(),
         correctFiles.sort(),
       );
     });

@@ -176,7 +176,7 @@ export const downwardDirectoriesSync: DownwardDirectoriesFetcherSync = (
  * @param startPath The start path from which to iterate upward.
  * @returns The iterable over the upward paths starting from the given path.
  */
-export function* upwardPaths(startPath: string) {
+export function* upwardPaths(startPath: string): Iterable<string> {
   let upwardDirectory = startPath;
   const { root } = parse(upwardDirectory);
   do {
@@ -201,7 +201,7 @@ export function* upwardPaths(startPath: string) {
 export function* upwardConstrainedPaths(
   startPath: string,
   maximumHeight: number,
-) {
+): Iterable<string> {
   let height = 1;
   for (const upwardPath of upwardPaths(startPath)) {
     if (height <= maximumHeight) {
@@ -227,7 +227,10 @@ export function* upwardConstrainedPaths(
  * @returns The iterable over the upward paths starting from the given path and
  * up to the given end path.
  */
-export function* upwardLimitedPaths(startPath: string, endPath: string) {
+export function* upwardLimitedPaths(
+  startPath: string,
+  endPath: string,
+): Iterable<string> {
   for (const upwardPath of upwardPaths(startPath)) {
     yield upwardPath;
     if (endPath === upwardPath) {
@@ -379,7 +382,7 @@ export interface UpwardDirectoriesFetcherSync extends Function {
  * @see [[UpwardDirectoriesFetcher]] The specifications of the function.
  */
 export const upwardDirectories: UpwardDirectoriesFetcher = (
-  startPath: string = ".",
+  startPath = ".",
   upperBound?: number | string,
 ): AsyncIterable<string> =>
   filter(overloadedUpwardPaths(startPath, upperBound), isDirectory);
@@ -388,7 +391,7 @@ export const upwardDirectories: UpwardDirectoriesFetcher = (
  * @see [[UpwardDirectoriesFetcherSync]] The specifications of the function.
  */
 export const upwardDirectoriesSync: UpwardDirectoriesFetcherSync = (
-  startPath: string = ".",
+  startPath = ".",
   upperBound?: number | string,
 ): Iterable<string> =>
   filterSync(overloadedUpwardPaths(startPath, upperBound), isDirectorySync);
