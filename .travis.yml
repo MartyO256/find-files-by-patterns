@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- "10"
+- "lts/*"
 
 os:
   - linux
@@ -20,15 +20,11 @@ stages:
 jobs:
   include:
     - stage: build
-      os: linux
-      node_js: "10"
       script:
         - yarn run build
     - stage: test
       script: yarn run test
     - stage: coverage
-      os: linux
-      node_js: "10"
       before_script:
         - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
         - chmod +x ./cc-test-reporter
@@ -39,8 +35,6 @@ jobs:
         - ./cc-test-reporter after-build
     - stage: deploy
       if: tag IS present
-      os: linux
-      node_js: "10"
       script:
         - yarn run build
         - yarn pack
@@ -49,21 +43,21 @@ jobs:
       - provider: pages
         github_token: $GITHUB_TOKEN
         local_dir: ./doc/
+        skip_cleanup: true
         keep_history: true
-        cleanup: false
         on:
           tags: true
       - provider: releases
         api_key: $GITHUB_TOKEN
+        skip_cleanup: true
         file_glob: true
         file: find-files-by-patterns-*.tgz
-        cleanup: false
         on:
           tags: true
       - provider: npm
         email: ouimetmarcantoine@gmail.com
         api_key: $NPM_TOKEN
-        cleanup: false
+        skip_cleanup: true
         on:
           tags: true
 

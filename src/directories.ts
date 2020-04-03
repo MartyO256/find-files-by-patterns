@@ -34,7 +34,6 @@ export interface DownwardDirectoriesFetcher extends Function {
    * @returns An iterable over the downward directories down to the maximum
    * depth.
    */
-  // tslint:disable-next-line:unified-signatures
   (maximumDepth: number): AsyncIterable<string>;
 
   /**
@@ -48,7 +47,6 @@ export interface DownwardDirectoriesFetcher extends Function {
    * @throws If the start path is inexistant.
    * @returns An iterable over the downward directories.
    */
-  // tslint:disable-next-line:unified-signatures
   (startDirectory: string): AsyncIterable<string>;
 
   /**
@@ -66,7 +64,6 @@ export interface DownwardDirectoriesFetcher extends Function {
    * @returns An iterable over the downward directories down to the maximum
    * depth.
    */
-  // tslint:disable-next-line:unified-signatures
   (startDirectory: string, maximumDepth: number): AsyncIterable<string>;
 }
 
@@ -96,7 +93,6 @@ export interface DownwardDirectoriesFetcherSync extends Function {
    * @returns An iterable over the downward directories down to the maximum
    * depth.
    */
-  // tslint:disable-next-line:unified-signatures
   (maximumDepth: number): Iterable<string>;
 
   /**
@@ -110,7 +106,6 @@ export interface DownwardDirectoriesFetcherSync extends Function {
    * @throws If the start path is inexistant.
    * @returns An iterable over the downward directories.
    */
-  // tslint:disable-next-line:unified-signatures
   (startDirectory: string): Iterable<string>;
 
   /**
@@ -128,7 +123,6 @@ export interface DownwardDirectoriesFetcherSync extends Function {
    * @returns An iterable over the downward directories down to the maximum
    * depth.
    */
-  // tslint:disable-next-line:unified-signatures
   (startDirectory: string, maximumDepth: number): Iterable<string>;
 }
 
@@ -288,7 +282,6 @@ export interface UpwardDirectoriesFetcher extends Function {
    * @param startPath The start path from which to traverse upwards.
    * @returns An iterable over the upward directories.
    */
-  // tslint:disable-next-line:unified-signatures
   (startPath: string): AsyncIterable<string>;
 
   /**
@@ -302,7 +295,6 @@ export interface UpwardDirectoriesFetcher extends Function {
    * @param maximumHeight The maximum height of any yielded directory path.
    * @returns An iterable over the upward directories.
    */
-  // tslint:disable-next-line:unified-signatures
   (startPath: string, maximumHeight: number): AsyncIterable<string>;
 
   /**
@@ -318,7 +310,6 @@ export interface UpwardDirectoriesFetcher extends Function {
    * encountered in the upward traversal.
    * @returns An iterable over the upward directories.
    */
-  // tslint:disable-next-line:unified-signatures
   (startPath: string, endPath: string): AsyncIterable<string>;
 }
 
@@ -344,7 +335,6 @@ export interface UpwardDirectoriesFetcherSync extends Function {
    * @param startPath The start path from which to traverse upwards.
    * @returns An iterable over the upward directories.
    */
-  // tslint:disable-next-line:unified-signatures
   (startPath: string): Iterable<string>;
 
   /**
@@ -358,7 +348,6 @@ export interface UpwardDirectoriesFetcherSync extends Function {
    * @param maximumHeight The maximum height of any yielded directory path.
    * @returns An iterable over the upward directories.
    */
-  // tslint:disable-next-line:unified-signatures
   (startPath: string, maximumHeight: number): Iterable<string>;
 
   /**
@@ -374,7 +363,6 @@ export interface UpwardDirectoriesFetcherSync extends Function {
    * encountered in the upward traversal.
    * @returns An iterable over the upward directories.
    */
-  // tslint:disable-next-line:unified-signatures
   (startPath: string, endPath: string): Iterable<string>;
 }
 

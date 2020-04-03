@@ -118,7 +118,6 @@ export interface DownwardFilesFetcher extends Function {
    * @throws If the maximum depth is negative.
    * @returns An iterable over the downward files down to the maximum depth.
    */
-  // tslint:disable-next-line:unified-signatures
   (maximumDepth: number): AsyncIterable<string>;
 
   /**
@@ -131,7 +130,6 @@ export interface DownwardFilesFetcher extends Function {
    * @throws If the starting path is inexistant.
    * @returns An iterable over the downward files.
    */
-  // tslint:disable-next-line:unified-signatures
   (startDirectory: string): AsyncIterable<string>;
 
   /**
@@ -148,7 +146,6 @@ export interface DownwardFilesFetcher extends Function {
    * @throws If the maximum depth is negative.
    * @returns An iterable over the downward files down to the maximum depth.
    */
-  // tslint:disable-next-line:unified-signatures
   (startDirectory: string, maximumDepth: number): AsyncIterable<string>;
 }
 
@@ -175,7 +172,6 @@ export interface DownwardFilesFetcherSync extends Function {
    * @throws If the maximum depth is negative.
    * @returns An iterable over the downward files down to the maximum depth.
    */
-  // tslint:disable-next-line:unified-signatures
   (maximumDepth: number): Iterable<string>;
 
   /**
@@ -188,7 +184,6 @@ export interface DownwardFilesFetcherSync extends Function {
    * @throws If the starting path is inexistant.
    * @returns An iterable over the downward files.
    */
-  // tslint:disable-next-line:unified-signatures
   (startDirectory: string): Iterable<string>;
 
   /**
@@ -205,7 +200,6 @@ export interface DownwardFilesFetcherSync extends Function {
    * @throws If the maximum depth is negative.
    * @returns An iterable over the downward files down to the maximum depth.
    */
-  // tslint:disable-next-line:unified-signatures
   (startDirectory: string, maximumDepth: number): Iterable<string>;
 }
 
@@ -407,7 +401,6 @@ export interface UpwardFilesFetcher extends Function {
    * start directory is zero. This value should be greater than or equal to one.
    * @returns An iterable over the upward files.
    */
-  // tslint:disable-next-line:unified-signatures
   (maximumHeight: number): AsyncIterable<string>;
 
   /**
@@ -419,7 +412,6 @@ export interface UpwardFilesFetcher extends Function {
    * @param startPath The start path of the upward traversal.
    * @returns An iterable over the upward files.
    */
-  // tslint:disable-next-line:unified-signatures
   (startPath: string): AsyncIterable<string>;
 
   /**
@@ -435,7 +427,6 @@ export interface UpwardFilesFetcher extends Function {
    * start path is zero. This value should be greater than or equal to one.
    * @returns An iterable over the upward files.
    */
-  // tslint:disable-next-line:unified-signatures
   (startPath: string, maximumHeight: number): AsyncIterable<string>;
 
   /**
@@ -452,7 +443,6 @@ export interface UpwardFilesFetcher extends Function {
    * directories have been read.
    * @returns An iterable over the upward files.
    */
-  // tslint:disable-next-line:unified-signatures
   (startPath: string, endDirectory: string): AsyncIterable<string>;
 }
 
@@ -480,7 +470,6 @@ export interface UpwardFilesFetcherSync extends Function {
    * start directory is zero. This value should be greater than or equal to one.
    * @returns An iterable over the upward files.
    */
-  // tslint:disable-next-line:unified-signatures
   (maximumHeight: number): Iterable<string>;
 
   /**
@@ -492,7 +481,6 @@ export interface UpwardFilesFetcherSync extends Function {
    * @param startPath The start path of the upward traversal.
    * @returns An iterable over the upward files.
    */
-  // tslint:disable-next-line:unified-signatures
   (startPath: string): Iterable<string>;
 
   /**
@@ -508,7 +496,6 @@ export interface UpwardFilesFetcherSync extends Function {
    * start path is zero. This value should be greater than or equal to one.
    * @returns An iterable over the upward files.
    */
-  // tslint:disable-next-line:unified-signatures
   (startPath: string, maximumHeight: number): Iterable<string>;
 
   /**
@@ -525,7 +512,6 @@ export interface UpwardFilesFetcherSync extends Function {
    * directories have been read.
    * @returns An iterable over the upward files.
    */
-  // tslint:disable-next-line:unified-signatures
   (startPath: string, endDirectory: string): Iterable<string>;
 }
 
