@@ -2,6 +2,9 @@ language: node_js
 node_js:
 - "10"
 
+os:
+  - linux
+
 branches:
   except:
     - gh-pages
@@ -46,21 +49,21 @@ jobs:
       - provider: pages
         github_token: $GITHUB_TOKEN
         local_dir: ./doc/
-        keep-history: true
-        skip_cleanup: true
+        keep_history: true
+        cleanup: false
         on:
           tags: true
       - provider: releases
         api_key: $GITHUB_TOKEN
         file_glob: true
         file: find-files-by-patterns-*.tgz
-        skip_cleanup: true
+        cleanup: false
         on:
           tags: true
       - provider: npm
         email: ouimetmarcantoine@gmail.com
         api_key: $NPM_TOKEN
-        skip_cleanup: true
+        cleanup: false
         on:
           tags: true
 
