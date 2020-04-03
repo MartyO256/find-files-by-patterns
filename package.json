@@ -28,13 +28,7 @@
     "doc": "typedoc --out ./doc/ ./src --mode file --module commonjs",
     "test": "mocha",
     "test:watch": "mocha --watch-extensions ts --watch",
-    "coverage": "nyc npm run test",
-    "pre-commit": "lint-staged && npm run format"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run pre-commit"
-    }
+    "coverage": "nyc npm run test"
   },
   "lint-staged": {
     "*.ts": [
@@ -68,8 +62,6 @@
 		"@typescript-eslint/parser": "^2.24.0",
     "chai": "^4.2.0",
     "coveralls": "^3.0.11",
-    "husky": "^4.2.3",
-    "lint-staged": "^10.1.1",
     "markdown-toc": "^1.2.0",
     "markdownlint-cli": "^0.22.0",
     "mocha": "^7.1.1",
