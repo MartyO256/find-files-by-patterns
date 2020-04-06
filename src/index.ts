@@ -37,12 +37,6 @@ export {
   findFileSync,
   findOnlyFile,
   findOnlyFileSync,
-  AllFilesFinder,
-  AllFilesFinderSync,
-  FileFinder,
-  FileFinderSync,
-  OnlyFileFinder,
-  OnlyFileFinderSync,
 } from "./fileFinders";
 
 export {
@@ -50,18 +44,10 @@ export {
   downwardFilesSync,
   upwardFiles,
   upwardFilesSync,
-  DownwardFilesFetcher,
-  DownwardFilesFetcherSync,
-  UpwardFilesFetcher,
-  UpwardFilesFetcherSync,
 } from "./files";
 export {
   downwardDirectories,
   downwardDirectoriesSync,
   upwardDirectories,
   upwardDirectoriesSync,
-  DownwardDirectoriesFetcher,
-  DownwardDirectoriesFetcherSync,
-  UpwardDirectoriesFetcher,
-  UpwardDirectoriesFetcherSync,
 } from "./directories";

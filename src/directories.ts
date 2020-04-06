@@ -9,148 +9,146 @@ import { filter, filterSync } from "./filter";
 import { isDirectory, isDirectorySync } from "./stat";
 
 /**
- * A downward directories fetcher constructs an iterable over the directories
- * downwards from a given directory path.
+ * Constructs an iterable over the downward directories starting from the
+ * current working directory. Symbolic links are followed, and the directories
+ * are traversed in breadth-first order. Directories are read only once. The
+ * current working directory is not yielded.
+ * @returns An iterable over the downward directories.
  */
-export interface DownwardDirectoriesFetcher extends Function {
-  /**
-   * Constructs an iterable over the downward directories starting from the
-   * current working directory. Symbolic links are followed, and the directories
-   * are traversed in breadth-first order. Directories are read only once. The
-   * current working directory is not yielded.
-   * @returns An iterable over the downward directories.
-   */
-  (): AsyncIterable<string>;
+export function downwardDirectories(): AsyncIterable<string>;
 
-  /**
-   * Constructs an iterable over the downward directories starting from the
-   * current working directory and down to a given maximum depth of a directory.
-   * Symbolic links are followed, and the directories are traversed in
-   * breadth-first order. Directories are read only once. The start directory is
-   * not yielded.
-   * @param maximumDepth The maximum depth of a read directory relative to the
-   * start directory. This maximum depth should be zero or positive.
-   * @throws If the maximum depth is negative.
-   * @returns An iterable over the downward directories down to the maximum
-   * depth.
-   */
-  (maximumDepth: number): AsyncIterable<string>;
+/**
+ * Constructs an iterable over the downward directories starting from the
+ * current working directory and down to a given maximum depth of a directory.
+ * Symbolic links are followed, and the directories are traversed in
+ * breadth-first order. Directories are read only once. The start directory is
+ * not yielded.
+ * @param maximumDepth The maximum depth of a read directory relative to the
+ * start directory. This maximum depth should be zero or positive.
+ * @throws If the maximum depth is negative.
+ * @returns An iterable over the downward directories down to the maximum
+ * depth.
+ */
+export function downwardDirectories(
+  maximumDepth: number,
+): AsyncIterable<string>;
 
-  /**
-   * Constructs an iterable over the downward directories starting from a given
-   * path. Symbolic links are followed, and the directories are traversed in
-   * breadth-first order. Directories are read only once. The start directory is
-   * not yielded.
-   * @param startDirectory The start directory from which to start the downward
-   * traversal.
-   * @throws If the start path is a file.
-   * @throws If the start path is inexistant.
-   * @returns An iterable over the downward directories.
-   */
-  (startDirectory: string): AsyncIterable<string>;
+/**
+ * Constructs an iterable over the downward directories starting from a given
+ * path. Symbolic links are followed, and the directories are traversed in
+ * breadth-first order. Directories are read only once. The start directory is
+ * not yielded.
+ * @param startDirectory The start directory from which to start the downward
+ * traversal.
+ * @throws If the start path is a file.
+ * @throws If the start path is inexistant.
+ * @returns An iterable over the downward directories.
+ */
+export function downwardDirectories(
+  startDirectory: string,
+): AsyncIterable<string>;
 
-  /**
-   * Constructs an iterable over the downward directories starting from a given
-   * path and down to a given maximum depth of a directory. Symbolic links are
-   * followed, and the directories are traversed in breadth-first order.
-   * Directories are read only once. The start directory is not yielded.
-   * @param startDirectory The start directory from which to start the downward
-   * traversal.
-   * @param maximumDepth The maximum depth of a read directory relative to the
-   * start directory. This maximum depth should be zero or positive.
-   * @throws If the start path is a file.
-   * @throws If the start path is inexistant.
-   * @throws If the maximum depth is negative.
-   * @returns An iterable over the downward directories down to the maximum
-   * depth.
-   */
-  (startDirectory: string, maximumDepth: number): AsyncIterable<string>;
-}
+/**
+ * Constructs an iterable over the downward directories starting from a given
+ * path and down to a given maximum depth of a directory. Symbolic links are
+ * followed, and the directories are traversed in breadth-first order.
+ * Directories are read only once. The start directory is not yielded.
+ * @param startDirectory The start directory from which to start the downward
+ * traversal.
+ * @param maximumDepth The maximum depth of a read directory relative to the
+ * start directory. This maximum depth should be zero or positive.
+ * @throws If the start path is a file.
+ * @throws If the start path is inexistant.
+ * @throws If the maximum depth is negative.
+ * @returns An iterable over the downward directories down to the maximum
+ * depth.
+ */
+export function downwardDirectories(
+  startDirectory: string,
+  maximumDepth: number,
+): AsyncIterable<string>;
 
 /**
  * A downward directories fetcher constructs an iterable over the directories
  * downwards from a given directory path.
  */
-export interface DownwardDirectoriesFetcherSync extends Function {
-  /**
-   * Constructs an iterable over the downward directories starting from the
-   * current working directory. Symbolic links are followed, and the directories
-   * are traversed in breadth-first order. Directories are read only once. The
-   * start directory is not yielded.
-   * @returns An iterable over the downward directories.
-   */
-  (): Iterable<string>;
-
-  /**
-   * Constructs an iterable over the downward directories starting from the
-   * current working directory and down to a given maximum depth of a directory.
-   * Symbolic links are followed, and the directories are traversed in
-   * breadth-first order. Directories are read only once. The start directory is
-   * not yielded.
-   * @param maximumDepth The maximum depth of a read directory relative to the
-   * start directory. This maximum depth should be zero or positive.
-   * @throws If the maximum depth is negative.
-   * @returns An iterable over the downward directories down to the maximum
-   * depth.
-   */
-  (maximumDepth: number): Iterable<string>;
-
-  /**
-   * Constructs an iterable over the downward directories starting from a given
-   * path. Symbolic links are followed, and the directories are traversed in
-   * breadth-first order. Directories are read only once. The start directory is
-   * not yielded.
-   * @param startDirectory The start directory from which to start the downward
-   * traversal.
-   * @throws If the start path is a file.
-   * @throws If the start path is inexistant.
-   * @returns An iterable over the downward directories.
-   */
-  (startDirectory: string): Iterable<string>;
-
-  /**
-   * Constructs an iterable over the downward directories starting from a given
-   * path and down to a given maximum depth of a directory. Symbolic links are
-   * followed, and the directories are traversed in breadth-first order.
-   * Directories are read only once. The start directory is not yielded.
-   * @param startDirectory The start directory from which to start the downward
-   * traversal.
-   * @param maximumDepth The maximum depth of a read directory relative to the
-   * start directory. This maximum depth should be zero or positive.
-   * @throws If the start path is a file.
-   * @throws If the start path is inexistant.
-   * @throws If the maximum depth is negative.
-   * @returns An iterable over the downward directories down to the maximum
-   * depth.
-   */
-  (startDirectory: string, maximumDepth: number): Iterable<string>;
-}
-
-/**
- * Returns a downward directories fetcher using the downward files function. As
- * a consequence, the status of each downward file is queried twice.
- * @see [[DownwardDirectoriesFetcher]] The specifications of the function.
- */
-export const downwardDirectories: DownwardDirectoriesFetcher = (
+export function downwardDirectories(
   startDirectory?: number | string,
   maximumDepth?: number,
-): AsyncIterable<string> => {
+): AsyncIterable<string> {
   [startDirectory, maximumDepth] = handleDownwardFilesOverload(
     startDirectory,
     maximumDepth,
   );
   return filter(downwardFiles(startDirectory, maximumDepth), isDirectory);
-};
+}
 
 /**
- * Returns a downward directories fetcher using the downward files function. As
- * a consequence, the status of each downward file is queried twice.
- * @see [[DownwardDirectoriesFetcherSync]] The specifications of the function.
+ * Constructs an iterable over the downward directories starting from the
+ * current working directory. Symbolic links are followed, and the directories
+ * are traversed in breadth-first order. Directories are read only once. The
+ * start directory is not yielded.
+ * @returns An iterable over the downward directories.
  */
-export const downwardDirectoriesSync: DownwardDirectoriesFetcherSync = (
+export function downwardDirectoriesSync(): Iterable<string>;
+
+/**
+ * Constructs an iterable over the downward directories starting from the
+ * current working directory and down to a given maximum depth of a directory.
+ * Symbolic links are followed, and the directories are traversed in
+ * breadth-first order. Directories are read only once. The start directory is
+ * not yielded.
+ * @param maximumDepth The maximum depth of a read directory relative to the
+ * start directory. This maximum depth should be zero or positive.
+ * @throws If the maximum depth is negative.
+ * @returns An iterable over the downward directories down to the maximum
+ * depth.
+ */
+export function downwardDirectoriesSync(maximumDepth: number): Iterable<string>;
+
+/**
+ * Constructs an iterable over the downward directories starting from a given
+ * path. Symbolic links are followed, and the directories are traversed in
+ * breadth-first order. Directories are read only once. The start directory is
+ * not yielded.
+ * @param startDirectory The start directory from which to start the downward
+ * traversal.
+ * @throws If the start path is a file.
+ * @throws If the start path is inexistant.
+ * @returns An iterable over the downward directories.
+ */
+export function downwardDirectoriesSync(
+  startDirectory: string,
+): Iterable<string>;
+
+/**
+ * Constructs an iterable over the downward directories starting from a given
+ * path and down to a given maximum depth of a directory. Symbolic links are
+ * followed, and the directories are traversed in breadth-first order.
+ * Directories are read only once. The start directory is not yielded.
+ * @param startDirectory The start directory from which to start the downward
+ * traversal.
+ * @param maximumDepth The maximum depth of a read directory relative to the
+ * start directory. This maximum depth should be zero or positive.
+ * @throws If the start path is a file.
+ * @throws If the start path is inexistant.
+ * @throws If the maximum depth is negative.
+ * @returns An iterable over the downward directories down to the maximum
+ * depth.
+ */
+export function downwardDirectoriesSync(
+  startDirectory: string,
+  maximumDepth: number,
+): Iterable<string>;
+
+/**
+ * A downward directories fetcher constructs an iterable over the directories
+ * downwards from a given directory path.
+ */
+export function downwardDirectoriesSync(
   startDirectory?: number | string,
   maximumDepth?: number,
-): Iterable<string> => {
+): Iterable<string> {
   [startDirectory, maximumDepth] = handleDownwardFilesOverload(
     startDirectory,
     maximumDepth,
@@ -159,7 +157,7 @@ export const downwardDirectoriesSync: DownwardDirectoriesFetcherSync = (
     downwardFilesSync(startDirectory, maximumDepth),
     isDirectorySync,
   );
-};
+}
 
 /**
  * Returns an iterable over the upward paths from a given start path up to the
@@ -261,125 +259,132 @@ const overloadedUpwardPaths = (
 };
 
 /**
- * An upward directories fetcher constructs an iterable over the directories
- * upwards from a given directory path.
+ * Constructs an iterable over the upward directories starting from the
+ * current working directory. The current working directory is not yielded.
+ * The directories are yielded in ascending order of height relative to the
+ * current working directory.
+ * @returns An iterable over the upward directories.
  */
-export interface UpwardDirectoriesFetcher extends Function {
-  /**
-   * Constructs an iterable over the upward directories starting from the
-   * current working directory. The current working directory is not yielded.
-   * The directories are yielded in ascending order of height relative to the
-   * current working directory.
-   * @returns An iterable over the upward directories.
-   */
-  (): AsyncIterable<string>;
+export function upwardDirectories(): AsyncIterable<string>;
 
-  /**
-   * Constructs an iterable over the upward directories starting from the given
-   * path. The start path is not yielded. If the start path is a file, then its
-   * directory is yielded. The directories are yielded in ascending order of
-   * height relative to the given start path.
-   * @param startPath The start path from which to traverse upwards.
-   * @returns An iterable over the upward directories.
-   */
-  (startPath: string): AsyncIterable<string>;
+/**
+ * Constructs an iterable over the upward directories starting from the given
+ * path. The start path is not yielded. If the start path is a file, then its
+ * directory is yielded. The directories are yielded in ascending order of
+ * height relative to the given start path.
+ * @param startPath The start path from which to traverse upwards.
+ * @returns An iterable over the upward directories.
+ */
+export function upwardDirectories(startPath: string): AsyncIterable<string>;
 
-  /**
-   * Constructs an iterable over the upward directories starting from the given
-   * path and up to a given maximum height. The start path is not yielded. If
-   * the start path is a file, then its directory is yielded. The directories
-   * are yielded in ascending order of height relative to the given start path.
-   * Each yielded directory has a height greater than one, and less than or
-   * equal to the given maximum height.
-   * @param startPath The start path from which to traverse upwards.
-   * @param maximumHeight The maximum height of any yielded directory path.
-   * @returns An iterable over the upward directories.
-   */
-  (startPath: string, maximumHeight: number): AsyncIterable<string>;
+/**
+ * Constructs an iterable over the upward directories starting from the given
+ * path and up to a given maximum height. The start path is not yielded. If
+ * the start path is a file, then its directory is yielded. The directories
+ * are yielded in ascending order of height relative to the given start path.
+ * Each yielded directory has a height greater than one, and less than or
+ * equal to the given maximum height.
+ * @param startPath The start path from which to traverse upwards.
+ * @param maximumHeight The maximum height of any yielded directory path.
+ * @returns An iterable over the upward directories.
+ */
+export function upwardDirectories(
+  startPath: string,
+  maximumHeight: number,
+): AsyncIterable<string>;
 
-  /**
-   * Constructs an iterable over the upward directories starting from the given
-   * path and up to a given end path. The start path is not yielded. If the
-   * start path is a file, then its directory is yielded. The directories are
-   * yielded in ascending order of height relative to the given start path. If
-   * the end path is not parent to the start path, then the iteration ends with
-   * the root of the start path. The iteration has to encounter the end path in
-   * order to end once it is yielded.
-   * @param startPath The start path from which to traverse upwards.
-   * @param endPath The path on which the iteration will end if it is
-   * encountered in the upward traversal.
-   * @returns An iterable over the upward directories.
-   */
-  (startPath: string, endPath: string): AsyncIterable<string>;
-}
+/**
+ * Constructs an iterable over the upward directories starting from the given
+ * path and up to a given end path. The start path is not yielded. If the
+ * start path is a file, then its directory is yielded. The directories are
+ * yielded in ascending order of height relative to the given start path. If
+ * the end path is not parent to the start path, then the iteration ends with
+ * the root of the start path. The iteration has to encounter the end path in
+ * order to end once it is yielded.
+ * @param startPath The start path from which to traverse upwards.
+ * @param endPath The path on which the iteration will end if it is
+ * encountered in the upward traversal.
+ * @returns An iterable over the upward directories.
+ */
+export function upwardDirectories(
+  startPath: string,
+  endPath: string,
+): AsyncIterable<string>;
 
 /**
  * An upward directories fetcher constructs an iterable over the directories
  * upwards from a given directory path.
  */
-export interface UpwardDirectoriesFetcherSync extends Function {
-  /**
-   * Constructs an iterable over the upward directories starting from the
-   * current working directory. The current working directory is not yielded.
-   * The directories are yielded in ascending order of height relative to the
-   * current working directory.
-   * @returns An iterable over the upward directories.
-   */
-  (): Iterable<string>;
-
-  /**
-   * Constructs an iterable over the upward directories starting from the given
-   * path. The start path is not yielded. If the start path is a file, then its
-   * directory is yielded. The directories are yielded in ascending order of
-   * height relative to the given start path.
-   * @param startPath The start path from which to traverse upwards.
-   * @returns An iterable over the upward directories.
-   */
-  (startPath: string): Iterable<string>;
-
-  /**
-   * Constructs an iterable over the upward directories starting from the given
-   * path and up to a given maximum height. The start path is not yielded. If
-   * the start path is a file, then its directory is yielded. The directories
-   * are yielded in ascending order of height relative to the given start path.
-   * Each yielded directory has a height greater than one, and less than or
-   * equal to the given maximum height.
-   * @param startPath The start path from which to traverse upwards.
-   * @param maximumHeight The maximum height of any yielded directory path.
-   * @returns An iterable over the upward directories.
-   */
-  (startPath: string, maximumHeight: number): Iterable<string>;
-
-  /**
-   * Constructs an iterable over the upward directories starting from the given
-   * path and up to a given end path. The start path is not yielded. If the
-   * start path is a file, then its directory is yielded. The directories are
-   * yielded in ascending order of height relative to the given start path. If
-   * the end path is not parent to the start path, then the iteration ends with
-   * the root of the start path. The iteration has to encounter the end path in
-   * order to end once it is yielded.
-   * @param startPath The start path from which to traverse upwards.
-   * @param endPath The path on which the iteration will end if it is
-   * encountered in the upward traversal.
-   * @returns An iterable over the upward directories.
-   */
-  (startPath: string, endPath: string): Iterable<string>;
+export function upwardDirectories(
+  startPath = ".",
+  upperBound?: number | string,
+): AsyncIterable<string> {
+  return filter(overloadedUpwardPaths(startPath, upperBound), isDirectory);
 }
 
 /**
- * @see [[UpwardDirectoriesFetcher]] The specifications of the function.
+ * Constructs an iterable over the upward directories starting from the
+ * current working directory. The current working directory is not yielded.
+ * The directories are yielded in ascending order of height relative to the
+ * current working directory.
+ * @returns An iterable over the upward directories.
  */
-export const upwardDirectories: UpwardDirectoriesFetcher = (
-  startPath = ".",
-  upperBound?: number | string,
-): AsyncIterable<string> =>
-  filter(overloadedUpwardPaths(startPath, upperBound), isDirectory);
+export function upwardDirectoriesSync(): Iterable<string>;
 
 /**
- * @see [[UpwardDirectoriesFetcherSync]] The specifications of the function.
+ * Constructs an iterable over the upward directories starting from the given
+ * path. The start path is not yielded. If the start path is a file, then its
+ * directory is yielded. The directories are yielded in ascending order of
+ * height relative to the given start path.
+ * @param startPath The start path from which to traverse upwards.
+ * @returns An iterable over the upward directories.
  */
-export const upwardDirectoriesSync: UpwardDirectoriesFetcherSync = (
+export function upwardDirectoriesSync(startPath: string): Iterable<string>;
+
+/**
+ * Constructs an iterable over the upward directories starting from the given
+ * path and up to a given maximum height. The start path is not yielded. If
+ * the start path is a file, then its directory is yielded. The directories
+ * are yielded in ascending order of height relative to the given start path.
+ * Each yielded directory has a height greater than one, and less than or
+ * equal to the given maximum height.
+ * @param startPath The start path from which to traverse upwards.
+ * @param maximumHeight The maximum height of any yielded directory path.
+ * @returns An iterable over the upward directories.
+ */
+export function upwardDirectoriesSync(
+  startPath: string,
+  maximumHeight: number,
+): Iterable<string>;
+
+/**
+ * Constructs an iterable over the upward directories starting from the given
+ * path and up to a given end path. The start path is not yielded. If the
+ * start path is a file, then its directory is yielded. The directories are
+ * yielded in ascending order of height relative to the given start path. If
+ * the end path is not parent to the start path, then the iteration ends with
+ * the root of the start path. The iteration has to encounter the end path in
+ * order to end once it is yielded.
+ * @param startPath The start path from which to traverse upwards.
+ * @param endPath The path on which the iteration will end if it is
+ * encountered in the upward traversal.
+ * @returns An iterable over the upward directories.
+ */
+export function upwardDirectoriesSync(
+  startPath: string,
+  endPath: string,
+): Iterable<string>;
+
+/**
+ * An upward directories fetcher constructs an iterable over the directories
+ * upwards from a given directory path.
+ */
+export function upwardDirectoriesSync(
   startPath = ".",
   upperBound?: number | string,
-): Iterable<string> =>
-  filterSync(overloadedUpwardPaths(startPath, upperBound), isDirectorySync);
+): Iterable<string> {
+  return filterSync(
+    overloadedUpwardPaths(startPath, upperBound),
+    isDirectorySync,
+  );
+}
