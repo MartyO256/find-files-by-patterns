@@ -80,22 +80,22 @@ describe("directories", () => {
   });
   describe("downwardDirectories", () => {
     describe("unconstrained", () => {
-      it("should terminate", async () => downwardDirectories());
-      it("should not yield the starting directory", async () => {
+      it("terminates", async () => downwardDirectories());
+      it("does not yield the starting directory", async () => {
         const files = await allElements(downwardDirectories());
         assert.isFalse(
           files.includes(resolvedPath(".")),
           `Starting directory ${resolvedPath(".")} was yielded.`,
         );
       });
-      it("should yield the correct amount of directories", async () => {
+      it("yields the correct amount of directories", async () => {
         assert.strictEqual(
           (await allElements(downwardDirectories())).length,
           1,
           "Actual and expected directories differ in length.",
         );
       });
-      it("should only yield correct directories", async () => {
+      it("only yields correct directories", async () => {
         const directories = resolvedPaths("./files");
         for await (const directory of downwardDirectories()) {
           assert.isTrue(
@@ -104,21 +104,21 @@ describe("directories", () => {
           );
         }
       });
-      it("should yield all the correct directories", async () => {
+      it("yields all the correct directories", async () => {
         assert.deepStrictEqual(
           (await allElements(downwardDirectories())).sort(),
           resolvedPaths("./files").sort(),
         );
       });
-      it("should not traverse symbolic cycles infinitely", async () =>
+      it("does not traverse symbolic cycles infinitely", async () =>
         downwardDirectories("/home/user/loop"));
-      it("should traverse symbolic cycles only once", async () => {
+      it("traverses symbolic cycles only once", async () => {
         assert.deepStrictEqual(
           (await allElements(downwardDirectories("/home/user/loop"))).sort(),
           resolvedPaths("/home/user/loop/loop").sort(),
         );
       });
-      it("should use breadth-first traversal", async () => {
+      it("uses breadth-first traversal", async () => {
         const parentDirectories = resolvedPaths(
           "/home/user/breadth-first",
           "/home/user/files",
@@ -146,67 +146,67 @@ describe("directories", () => {
           "Unexpected subdirectories",
         );
       });
-      it("should throw an error if the starting directory is a file", async () =>
+      it("throws an error if the starting directory is a file", async () =>
         rejects(allElements(downwardDirectories("./file.html"))));
-      it("should throw an error if the starting directory does not exist", async () =>
+      it("throws an error if the starting directory does not exist", async () =>
         rejects(allElements(downwardDirectories("./inexistant-directory"))));
     });
     describe("constrained", () => {
-      it("should terminate", async () => downwardDirectories(0));
-      it("should not yield the starting directory", async () => {
+      it("terminates", async () => downwardDirectories(0));
+      it("does not yield the starting directory", async () => {
         const files = await allElements(downwardDirectories(0));
         assert.isFalse(
           files.includes(resolvedPath(".")),
           `Starting directory ${resolvedPath(".")} was yielded.`,
         );
       });
-      it("should yield the correct amount of directories", async () => {
+      it("yields the correct amount of directories", async () => {
         assert.strictEqual(
           (await allElements(downwardDirectories(1))).length,
           1,
           "Actual and expected directories differ in length.",
         );
       });
-      it("should yield the correct amount of directories with a constraint", async () => {
+      it("yields the correct amount of directories with a constraint", async () => {
         assert.strictEqual(
           (await allElements(downwardDirectories(0))).length,
           1,
           "Actual and expected directories differ in length.",
         );
       });
-      it("should only yield correct directories", async () => {
+      it("only yields correct directories", async () => {
         const files = resolvedPaths("./files");
         for await (const file of downwardDirectories(1)) {
           assert.isTrue(files.includes(file), `Unexpected file ${file}`);
         }
       });
-      it("should only yield correct directories with a constraint", async () => {
+      it("only yields correct directories with a constraint", async () => {
         const files = resolvedPaths("./files");
         for await (const file of downwardDirectories(0)) {
           assert.isTrue(files.includes(file), `Unexpected file ${file}`);
         }
       });
-      it("should yield all the correct directories", async () => {
+      it("yields all the correct directories", async () => {
         assert.deepStrictEqual(
           (await allElements(downwardDirectories(1))).sort(),
           resolvedPaths("./files").sort(),
         );
       });
-      it("should yield all the correct directories with a constraint", async () => {
+      it("yields all the correct directories with a constraint", async () => {
         assert.deepStrictEqual(
           (await allElements(downwardDirectories(0))).sort(),
           resolvedPaths("./files").sort(),
         );
       });
-      it("should not traverse symbolic cycles infinitely", async () =>
+      it("does not traverse symbolic cycles infinitely", async () =>
         downwardDirectories("/home/user/loop", 5));
-      it("should traverse symbolic cycles only once", async () => {
+      it("traverses symbolic cycles only once", async () => {
         assert.deepStrictEqual(
           (await allElements(downwardDirectories("/home/user/loop", 5))).sort(),
           resolvedPaths("/home/user/loop/loop").sort(),
         );
       });
-      it("should use breadth-first traversal", async () => {
+      it("uses breadth-first traversal", async () => {
         const parentDirectories = resolvedPaths(
           "/home/user/breadth-first",
           "/home/user/files",
@@ -234,32 +234,32 @@ describe("directories", () => {
           "Unexpected subdirectories",
         );
       });
-      it("should throw an error if the starting directory is a file", async () =>
+      it("throws an error if the starting directory is a file", async () =>
         rejects(allElements(downwardDirectories("./file.html", 5))));
-      it("should throw an error if the starting directory does not exist", async () =>
+      it("throws an error if the starting directory does not exist", async () =>
         rejects(allElements(downwardDirectories("./inexistant-directory", 5))));
-      it("should throw an error if the constraint is negative", () =>
+      it("throws an error if the constraint is negative", () =>
         assert.throws(() => downwardDirectories("./inexistant-directory", -1)));
     });
   });
   describe("downwardDirectoriesSync", () => {
     describe("unconstrained", () => {
-      it("should terminate", () => downwardDirectoriesSync());
-      it("should not yield the starting directory", () => {
+      it("terminates", () => downwardDirectoriesSync());
+      it("does not yield the starting directory", () => {
         const files = allElementsSync(downwardDirectoriesSync());
         assert.isFalse(
           files.includes(resolvedPath(".")),
           `Starting directory ${resolvedPath(".")} was yielded.`,
         );
       });
-      it("should yield the correct amount of directories", () => {
+      it("yields the correct amount of directories", () => {
         assert.strictEqual(
           allElementsSync(downwardDirectoriesSync()).length,
           1,
           "Actual and expected directories differ in length.",
         );
       });
-      it("should only yield correct directories", () => {
+      it("only yields correct directories", () => {
         const directories = resolvedPaths("./files");
         for (const directory of downwardDirectoriesSync()) {
           assert.isTrue(
@@ -268,21 +268,21 @@ describe("directories", () => {
           );
         }
       });
-      it("should yield all the correct directories", () => {
+      it("yields all the correct directories", () => {
         assert.deepStrictEqual(
           allElementsSync(downwardDirectoriesSync()).sort(),
           resolvedPaths("./files").sort(),
         );
       });
-      it("should not traverse symbolic cycles infinitely", () =>
+      it("does not traverse symbolic cycles infinitely", () =>
         downwardDirectoriesSync("/home/user/loop"));
-      it("should traverse symbolic cycles only once", () => {
+      it("traverses symbolic cycles only once", () => {
         assert.deepStrictEqual(
           allElementsSync(downwardDirectoriesSync("/home/user/loop")).sort(),
           resolvedPaths("/home/user/loop/loop").sort(),
         );
       });
-      it("should use breadth-first traversal", () => {
+      it("uses breadth-first traversal", () => {
         const parentDirectories = resolvedPaths(
           "/home/user/breadth-first",
           "/home/user/files",
@@ -310,39 +310,39 @@ describe("directories", () => {
           "Unexpected subdirectories",
         );
       });
-      it("should throw an error if the starting directory is a file", () =>
+      it("throws an error if the starting directory is a file", () =>
         assert.throws(() =>
           allElementsSync(downwardDirectoriesSync("./file.html")),
         ));
-      it("should throw an error if the starting directory does not exist", () =>
+      it("throws an error if the starting directory does not exist", () =>
         assert.throws(() =>
           allElementsSync(downwardDirectoriesSync("./inexistant-directory")),
         ));
     });
     describe("constrained", () => {
-      it("should terminate", () => downwardDirectoriesSync(0));
-      it("should not yield the starting directory", () => {
+      it("terminates", () => downwardDirectoriesSync(0));
+      it("does not yield the starting directory", () => {
         const directories = allElementsSync(downwardDirectoriesSync(0));
         assert.isFalse(
           directories.includes(resolvedPath(".")),
           `Starting directory ${resolvedPath(".")} was yielded.`,
         );
       });
-      it("should yield the correct amount of directories", () => {
+      it("yields the correct amount of directories", () => {
         assert.strictEqual(
           allElementsSync(downwardDirectoriesSync(1)).length,
           1,
           "Actual and expected directories differ in length.",
         );
       });
-      it("should yield the correct amount of directories with a constraint", () => {
+      it("yields the correct amount of directories with a constraint", () => {
         assert.strictEqual(
           allElementsSync(downwardDirectoriesSync(0)).length,
           1,
           "Actual and expected directories differ in length.",
         );
       });
-      it("should only yield correct directories", () => {
+      it("only yields correct directories", () => {
         const directories = resolvedPaths("./files");
         for (const directory of downwardDirectoriesSync(1)) {
           assert.isTrue(
@@ -351,7 +351,7 @@ describe("directories", () => {
           );
         }
       });
-      it("should only yield correct files with a constraint", () => {
+      it("only yields correct files with a constraint", () => {
         const directories = resolvedPaths("./files");
         for (const directory of downwardDirectoriesSync(0)) {
           assert.isTrue(
@@ -360,27 +360,27 @@ describe("directories", () => {
           );
         }
       });
-      it("should yield all the correct directories", () => {
+      it("yields all the correct directories", () => {
         assert.deepStrictEqual(
           allElementsSync(downwardDirectoriesSync(1)).sort(),
           resolvedPaths("./files").sort(),
         );
       });
-      it("should yield all the correct directories with a constraint", () => {
+      it("yields all the correct directories with a constraint", () => {
         assert.deepStrictEqual(
           allElementsSync(downwardDirectoriesSync(0)).sort(),
           resolvedPaths("./files").sort(),
         );
       });
-      it("should not traverse symbolic cycles infinitely", () =>
+      it("does not traverse symbolic cycles infinitely", () =>
         downwardDirectoriesSync("/home/user/loop", 5));
-      it("should traverse symbolic cycles only once", () => {
+      it("traverses symbolic cycles only once", () => {
         assert.deepStrictEqual(
           allElementsSync(downwardDirectoriesSync("/home/user/loop", 5)).sort(),
           resolvedPaths("/home/user/loop/loop").sort(),
         );
       });
-      it("should use breadth-first traversal", () => {
+      it("uses breadth-first traversal", () => {
         const parentDirectories = resolvedPaths(
           "/home/user/breadth-first",
           "/home/user/files",
@@ -408,33 +408,33 @@ describe("directories", () => {
           "Unexpected subdirectories",
         );
       });
-      it("should throw an error if the starting directory is a file", () =>
+      it("throws an error if the starting directory is a file", () =>
         assert.throws(() =>
           allElementsSync(downwardDirectoriesSync("./file.html", 5)),
         ));
-      it("should throw an error if the starting directory does not exist", () =>
+      it("throws an error if the starting directory does not exist", () =>
         assert.throws(() =>
           allElementsSync(downwardDirectoriesSync("./inexistant-directory", 5)),
         ));
-      it("should throw an error if the constraint is negative", () =>
+      it("throws an error if the constraint is negative", () =>
         assert.throws(() =>
           downwardDirectoriesSync("./inexistant-directory", -1),
         ));
     });
   });
   describe("upwardPaths", () => {
-    it("should terminate", () => upwardPaths(resolve(".")));
-    it("should not yield the initial path", () => {
+    it("terminates", () => upwardPaths(resolve(".")));
+    it("does not yield the initial path", () => {
       const path = "/home/user/some/path";
       assert.isFalse(allElementsSync(upwardPaths(path)).includes(path));
     });
-    it("should yield the correct amount of paths", () => {
+    it("yields the correct amount of paths", () => {
       assert.strictEqual(
         allElementsSync(upwardPaths("/home/user/some/path")).length,
         4,
       );
     });
-    it("should only yield correct paths", () => {
+    it("only yields correct paths", () => {
       const correctPaths = ["/home/user/some", "/home/user", "/home", "/"];
       for (const path of upwardPaths("/home/user/some/path")) {
         assert.isTrue(
@@ -443,14 +443,14 @@ describe("directories", () => {
         );
       }
     });
-    it("should yield all the correct paths", () => {
+    it("yields all the correct paths", () => {
       const correctPaths = ["/home/user/some", "/home/user", "/home", "/"];
       assert.deepStrictEqual(
         allElementsSync(upwardPaths("/home/user/some/path")).sort(),
         correctPaths.sort(),
       );
     });
-    it("should yield all the correct paths in upward order", () => {
+    it("yields all the correct paths in upward order", () => {
       const correctPathsInOrder = [
         "/home/user/some",
         "/home/user",
@@ -464,14 +464,14 @@ describe("directories", () => {
     });
   });
   describe("upwardConstrainedPaths", () => {
-    it("should terminate", () => upwardConstrainedPaths(resolve("."), 0));
-    it("should not yield the initial path", () => {
+    it("terminates", () => upwardConstrainedPaths(resolve("."), 0));
+    it("does not yield the initial path", () => {
       const path = "/home/user/some/path";
       assert.isFalse(
         allElementsSync(upwardConstrainedPaths(path, 100)).includes(path),
       );
     });
-    it("should yield the correct amount of paths", () => {
+    it("yields the correct amount of paths", () => {
       const path = "/home/user/some/path";
       for (let i = 0; i < 10; i++) {
         assert.strictEqual(
@@ -480,7 +480,7 @@ describe("directories", () => {
         );
       }
     });
-    it("should only yield correct paths", () => {
+    it("only yields correct paths", () => {
       const correctPaths = ["/home/user/some", "/home/user", "/home", "/"];
       for (const path of upwardConstrainedPaths("/home/user/some/path", 4)) {
         assert.isTrue(
@@ -489,7 +489,7 @@ describe("directories", () => {
         );
       }
     });
-    it("should yield all the correct paths", () => {
+    it("yields all the correct paths", () => {
       const correctPaths = ["/home/user/some", "/home/user", "/home"];
       assert.deepStrictEqual(
         allElementsSync(
@@ -498,7 +498,7 @@ describe("directories", () => {
         correctPaths.sort(),
       );
     });
-    it("should yield all the correct paths in upward order", () => {
+    it("yields all the correct paths in upward order", () => {
       const correctPathsInOrder = ["/home/user/some", "/home/user", "/home"];
       assert.deepStrictEqual(
         allElementsSync(upwardConstrainedPaths("/home/user/some/path", 3)),
@@ -507,8 +507,8 @@ describe("directories", () => {
     });
   });
   describe("upwardLimitedPaths", () => {
-    it("should terminate", () => upwardLimitedPaths(resolve("."), "/"));
-    it("should not yield the initial path", () => {
+    it("terminates", () => upwardLimitedPaths(resolve("."), "/"));
+    it("does not yield the initial path", () => {
       const path = "/home/user/some/path";
       assert.isFalse(
         allElementsSync(upwardLimitedPaths(path, "/home/user/some")).includes(
@@ -516,7 +516,7 @@ describe("directories", () => {
         ),
       );
     });
-    it("should yield the correct amount of paths", () => {
+    it("yields the correct amount of paths", () => {
       const path = "/home/user/some/path";
       const limits: Map<string, number> = new Map([
         ["/home/user/some", 1],
@@ -531,7 +531,7 @@ describe("directories", () => {
         );
       }
     });
-    it("should only yield correct paths", () => {
+    it("only yields correct paths", () => {
       const correctPaths = ["/home/user/some", "/home/user", "/home", "/"];
       for (const path of upwardLimitedPaths("/home/user/some/path", "/")) {
         assert.isTrue(
@@ -540,7 +540,7 @@ describe("directories", () => {
         );
       }
     });
-    it("should yield all the correct paths", () => {
+    it("yields all the correct paths", () => {
       const correctPaths = ["/home/user/some", "/home/user", "/home"];
       assert.deepStrictEqual(
         allElementsSync(
@@ -549,7 +549,7 @@ describe("directories", () => {
         correctPaths.sort(),
       );
     });
-    it("should yield all the correct paths in upward order", () => {
+    it("yields all the correct paths in upward order", () => {
       const correctPathsInOrder = ["/home/user/some", "/home/user", "/home"];
       assert.deepStrictEqual(
         allElementsSync(upwardLimitedPaths("/home/user/some/path", "/home")),
@@ -558,15 +558,15 @@ describe("directories", () => {
     });
   });
   describe("upwardDirectories", () => {
-    it("should terminate", async () => upwardDirectories());
-    it("should yield the correct amount of paths", async () => {
+    it("terminates", async () => upwardDirectories());
+    it("yields the correct amount of paths", async () => {
       assert.strictEqual(
         (await allElements(upwardDirectories("/home/user/files/inexistant")))
           .length,
         4,
       );
     });
-    it("should only yield correct paths", async () => {
+    it("only yields correct paths", async () => {
       const correctPaths = resolvedPaths(
         "/home/user/files",
         "/home/user",
@@ -582,7 +582,7 @@ describe("directories", () => {
         );
       }
     });
-    it("should yield all the correct paths", async () => {
+    it("yields all the correct paths", async () => {
       const correctPaths = resolvedPaths(
         "/home/user/files",
         "/home/user",
@@ -596,7 +596,7 @@ describe("directories", () => {
         correctPaths.sort(),
       );
     });
-    it("should yield all the correct paths in ascending order of height", async () => {
+    it("yields all the correct paths in ascending order of height", async () => {
       const correctPaths = resolvedPaths(
         "/home/user/files",
         "/home/user",
@@ -608,7 +608,7 @@ describe("directories", () => {
         correctPaths,
       );
     });
-    it("should yield paths within the maximum height", async () => {
+    it("yields paths within the maximum height", async () => {
       const correctPaths = resolvedPaths(
         "/home/user/files",
         "/home/user",
@@ -619,7 +619,7 @@ describe("directories", () => {
         correctPaths,
       );
     });
-    it("should yield paths up to the end path", async () => {
+    it("yields paths up to the end path", async () => {
       const correctPaths = resolvedPaths(
         "/home/user/files",
         "/home/user",
@@ -634,15 +634,15 @@ describe("directories", () => {
     });
   });
   describe("upwardDirectoriesSync", () => {
-    it("should terminate", () => upwardDirectoriesSync());
-    it("should yield the correct amount of paths", () => {
+    it("terminates", () => upwardDirectoriesSync());
+    it("yields the correct amount of paths", () => {
       assert.strictEqual(
         allElementsSync(upwardDirectoriesSync("/home/user/files/inexistant"))
           .length,
         4,
       );
     });
-    it("should only yield correct paths", () => {
+    it("only yields correct paths", () => {
       const correctPaths = resolvedPaths(
         "/home/user/files",
         "/home/user",
@@ -658,7 +658,7 @@ describe("directories", () => {
         );
       }
     });
-    it("should yield all the correct paths", () => {
+    it("yields all the correct paths", () => {
       const correctPaths = resolvedPaths(
         "/home/user/files",
         "/home/user",
@@ -672,7 +672,7 @@ describe("directories", () => {
         correctPaths.sort(),
       );
     });
-    it("should yield all the correct paths in ascending order of height", () => {
+    it("yields all the correct paths in ascending order of height", () => {
       const correctPaths = resolvedPaths(
         "/home/user/files",
         "/home/user",
@@ -684,7 +684,7 @@ describe("directories", () => {
         correctPaths,
       );
     });
-    it("should yield paths within the maximum height", () => {
+    it("yields paths within the maximum height", () => {
       const correctPaths = resolvedPaths(
         "/home/user/files",
         "/home/user",
@@ -697,7 +697,7 @@ describe("directories", () => {
         correctPaths,
       );
     });
-    it("should yield paths up to the end path", () => {
+    it("yields paths up to the end path", () => {
       const correctPaths = resolvedPaths(
         "/home/user/files",
         "/home/user",

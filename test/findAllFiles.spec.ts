@@ -66,38 +66,38 @@ describe("findAllFiles", () => {
   });
   describe("async", () => {
     describe("(...tests: Array<Filter<string> | FilterSync<string>>): Promise<string[]>", () => {
-      it("should arbitrarily resolve to an empty set if no arguments are provided", async () => {
+      it("arbitrarily resolves to an empty set if no arguments are provided", async () => {
         assert.isEmpty(findAllFiles());
       });
-      it("should arbitrarily resolve to an empty set if only an empty set of tests is provided", async () => {
+      it("arbitrarily resolves to an empty set if only an empty set of tests is provided", async () => {
         const tests: Array<Filter<string>> = [];
         assert.isEmpty(findAllFiles(...tests));
       });
-      it("should search in the current working directory", async () => {
+      it("searches in the current working directory", async () => {
         assert.deepStrictEqual(
           await findAllFiles(ofBasename("file.html")),
           resolvedPaths("./file.html"),
         );
       });
-      it("should return a found directory's path", async () => {
+      it("returns a found directory's path", async () => {
         assert.deepStrictEqual(
           await findAllFiles(ofBasename("files")),
           resolvedPaths("./files"),
         );
       });
-      it("should return a found file's path", async () => {
+      it("returns a found file's path", async () => {
         assert.deepStrictEqual(
           await findAllFiles(ofBasename("file.html")),
           resolvedPaths("./file.html"),
         );
       });
-      it("should return a set with one file's path if there is only one matching file in the current working directory", async () => {
+      it("returns a set with one file's path if there is only one matching file in the current working directory", async () => {
         assert.deepStrictEqual(
           await findAllFiles(ofBasename("file.html")),
           resolvedPaths("./file.html"),
         );
       });
-      it("should return a set of matching files in the current working directory", async () => {
+      it("returns a set of matching files in the current working directory", async () => {
         assert.notEqual(
           await findAllFiles(ofBasename(/^file\./)),
           resolvedPaths("./file.csv", "./file.html", "./file.yml"),
@@ -107,42 +107,42 @@ describe("findAllFiles", () => {
           resolvedPaths("./file.csv", "./file.html", "./file.yml").sort(),
         );
       });
-      it("should return a sorted set of matching files in the current working directory", async () => {
+      it("returns a sorted set of matching files in the current working directory", async () => {
         assert.deepStrictEqual(
           await findAllFiles(ofBasename(/^file\./)),
           resolvedPaths("./file.csv", "./file.html", "./file.yml"),
         );
       });
-      it("should return an empty set if there are no matching files in the current working directory", async () => {
+      it("returns an empty set if there are no matching files in the current working directory", async () => {
         assert.deepStrictEqual(await findAllFiles(ofBasename("file.json")), []);
       });
-      it("should be rejected if one of the tests throws an error", async () => {
+      it("rejects if one of the tests throws an error", async () => {
         rejects(findAllFiles(error));
       });
     });
     describe("(directories: string | AsyncIterable<string> | Iterable<string>, ...tests: Array<Filter<string> | FilterSync<string>>): Promise<string[]>", () => {
-      it("should arbitrarily resolve to an empty set if no arguments are provided", async () => {
+      it("arbitrarily resolves to an empty set if no arguments are provided", async () => {
         assert.isEmpty(await findAllFiles());
       });
-      it("should arbitrarily resolve to an empty set if only an empty set of directories is provided", async () => {
+      it("arbitrarily resolves to an empty set if only an empty set of directories is provided", async () => {
         assert.isEmpty(await findAllFiles([]));
       });
-      it("should arbitrarily resolve to an empty set if an empty set of directories is provided", async () => {
+      it("arbitrarily resolves to an empty set if an empty set of directories is provided", async () => {
         assert.isEmpty(await findAllFiles([], ofBasename()));
       });
-      it("should arbitrarily resolve to an empty set if empty sets of directories and tests are provided", async () => {
+      it("arbitrarily resolves to an empty set if empty sets of directories and tests are provided", async () => {
         assert.isEmpty(await findAllFiles([], ...[]));
       });
-      it("should arbitrarily resolve to an empty set if there are no test to perform on files' path", async () => {
+      it("arbitrarily resolves to an empty set if there are no test to perform on files' path", async () => {
         assert.isEmpty(await findAllFiles("./"));
       });
-      it("should handle a directory specified with a string path", async () => {
+      it("handles a directory specified with a string path", async () => {
         assert.deepStrictEqual(
           await findAllFiles("./", ofBasename("file.html")),
           resolvedPaths("./file.html"),
         );
       });
-      it("should handle directories specified with string paths", async () => {
+      it("handles directories specified with string paths", async () => {
         assert.deepStrictEqual(
           (
             await findAllFiles(["./", "./files"], ofBasename("file.html"))
@@ -150,7 +150,7 @@ describe("findAllFiles", () => {
           resolvedPaths("./file.html", "./files/file.html").sort(),
         );
       });
-      it("should resolve directory paths which are not absolute relative to the current working directory", async () => {
+      it("resolves directory paths which are not absolute relative to the current working directory", async () => {
         assert.deepStrictEqual(
           await findAllFiles("./", ofBasename("file.html")),
           resolvedPaths("./file.html"),
@@ -160,12 +160,12 @@ describe("findAllFiles", () => {
           resolvedPaths("./files/file.html"),
         );
       });
-      it("should resolve to an empty set if there is no matching file in a directory", async () => {
+      it("resolves to an empty set if there is no matching file in a directory", async () => {
         assert.isEmpty(
           await findAllFiles("/home/user/files", ofBasename("inexistant.json")),
         );
       });
-      it("should resolve to en empty set if there is no matching file in directories", async () => {
+      it("resolves to en empty set if there is no matching file in directories", async () => {
         assert.isEmpty(
           await findAllFiles(
             ["/home/user/files", "/home/user/symbolic-files"],
@@ -173,25 +173,25 @@ describe("findAllFiles", () => {
           ),
         );
       });
-      it("should return a found directory's path", async () => {
+      it("returns a found directory's path", async () => {
         assert.deepStrictEqual(
           await findAllFiles("./", ofBasename("files")),
           resolvedPaths("./files"),
         );
       });
-      it("should return a found file's path", async () => {
+      it("returns a found file's path", async () => {
         assert.deepStrictEqual(
           await findAllFiles("./", ofBasename("file.html")),
           resolvedPaths("./file.html"),
         );
       });
-      it("should resolve to a set with one file's path if there is only one matching file in a directory", async () => {
+      it("resolves to a set with one file's path if there is only one matching file in a directory", async () => {
         assert.deepStrictEqual(
           await findAllFiles("/home/user/files", ofBasename("file.html")),
           resolvedPaths("/home/user/files/file.html"),
         );
       });
-      it("should resolve to a set with one file's path if there is only one matching file in a directory among the directories", async () => {
+      it("resolves to a set with one file's path if there is only one matching file in a directory among the directories", async () => {
         assert.deepStrictEqual(
           await findAllFiles(
             ["/home/user/files", "/home/user/symbolic-files"],
@@ -200,7 +200,7 @@ describe("findAllFiles", () => {
           resolvedPaths("/home/user/files/file.md"),
         );
       });
-      it("should resolve to a set of matching files' path in a directory", async () => {
+      it("resolves to a set of matching files' path in a directory", async () => {
         assert.deepStrictEqual(
           (await findAllFiles("/home/user/files", ofBasename(/^file/))).sort(),
           resolvedPaths(
@@ -209,7 +209,7 @@ describe("findAllFiles", () => {
           ).sort(),
         );
       });
-      it("should resolve to a set of matching files' path in directories", async () => {
+      it("resolves to a set of matching files' path in directories", async () => {
         assert.deepStrictEqual(
           (
             await findAllFiles(
@@ -223,13 +223,13 @@ describe("findAllFiles", () => {
           ).sort(),
         );
       });
-      it("should resolve to a set with one directory's path if there is only one matching file in a directory", async () => {
+      it("resolves to a set with one directory's path if there is only one matching file in a directory", async () => {
         assert.deepStrictEqual(
           await findAllFiles("/home/user", ofBasename("files")),
           resolvedPaths("/home/user/files"),
         );
       });
-      it("should resolve to a set with one directory's path if there is only one matching file in a directory among the directories", async () => {
+      it("resolves to a set with one directory's path if there is only one matching file in a directory among the directories", async () => {
         assert.deepStrictEqual(
           await findAllFiles(
             ["/home/user/files", "/home/user/"],
@@ -238,7 +238,7 @@ describe("findAllFiles", () => {
           resolvedPaths("/home/user/files"),
         );
       });
-      it("should resolve to a set of matching directories' path in a directory", async () => {
+      it("resolves to a set of matching directories' path in a directory", async () => {
         assert.deepStrictEqual(
           (
             await findAllFiles("/home/user", ofBasename(/^files/, /files$/))
@@ -246,7 +246,7 @@ describe("findAllFiles", () => {
           resolvedPaths("/home/user/files", "/home/user/symbolic-files").sort(),
         );
       });
-      it("should resolve to a set of matching directories' path in directories", async () => {
+      it("resolves to a set of matching directories' path in directories", async () => {
         assert.deepStrictEqual(
           (
             await findAllFiles(
@@ -260,7 +260,7 @@ describe("findAllFiles", () => {
           ).sort(),
         );
       });
-      it("should resolve to a set of matching files and directories' path", async () => {
+      it("resolves to a set of matching files and directories' path", async () => {
         assert.deepStrictEqual(
           (
             await findAllFiles(
@@ -275,7 +275,7 @@ describe("findAllFiles", () => {
           ).sort(),
         );
       });
-      it("should resolve to a sorted set of matching files in a directory", async () => {
+      it("resolves to a sorted set of matching files in a directory", async () => {
         assert.deepStrictEqual(
           (await findAllFiles("/home/user/files", ofBasename(/^_/))).sort(),
           resolvedPaths(
@@ -285,7 +285,7 @@ describe("findAllFiles", () => {
           ).sort(),
         );
       });
-      it("should resolve to a set of sequences of matching files sorted by directory", async () => {
+      it("resolves to a set of sequences of matching files sorted by directory", async () => {
         assert.deepStrictEqual(
           (
             await findAllFiles(
@@ -303,15 +303,15 @@ describe("findAllFiles", () => {
           ).sort(),
         );
       });
-      it("should be rejected if any of the given directories does not exist", async () => {
+      it("rejects if any of the given directories does not exist", async () => {
         rejects(
           findAllFiles("./inexistant-folder", ofBasename("inexistant.html")),
         );
       });
-      it("should be rejected if one of the tests throws an error", async () => {
+      it("rejects if one of the tests throws an error", async () => {
         rejects(findAllFiles("./", error));
       });
-      it("should be rejected if one of the directories is a file", async () => {
+      it("rejects if one of the directories is a file", async () => {
         rejects(
           findAllFiles(["./", "./file.html"], ofBasename("inexistant.html")),
         );
@@ -320,38 +320,38 @@ describe("findAllFiles", () => {
   });
   describe("sync", () => {
     describe("(...tests: Array<FilterSync<string>>): string[]", () => {
-      it("should arbitrarily return an empty set if no arguments are provided", () => {
+      it("returns an empty set if no arguments are provided", () => {
         assert.isEmpty(findAllFilesSync());
       });
-      it("should arbitrarily return an empty set if only an empty set of tests is provided", () => {
+      it("returns an empty set if only an empty set of tests is provided", () => {
         const tests: Array<FilterSync<string>> = [];
         assert.isEmpty(findAllFilesSync(...tests));
       });
-      it("should search in the current working directory", () => {
+      it("searches in the current working directory", () => {
         assert.deepStrictEqual(
           findAllFilesSync(ofBasename("file.html")),
           resolvedPaths("./file.html"),
         );
       });
-      it("should return a found directory's path", () => {
+      it("returns a found directory's path", () => {
         assert.deepStrictEqual(
           findAllFilesSync(ofBasename("files")),
           resolvedPaths("./files"),
         );
       });
-      it("should return a found file's path", () => {
+      it("returns a found file's path", () => {
         assert.deepStrictEqual(
           findAllFilesSync("./", ofBasename("file.html")),
           resolvedPaths("./file.html"),
         );
       });
-      it("should return a set with one file's path if there is only one matching file in the current working directory", () => {
+      it("returns a set with one file's path if there is only one matching file in the current working directory", () => {
         assert.deepStrictEqual(
           findAllFilesSync(ofBasename("file.html")),
           resolvedPaths("./file.html"),
         );
       });
-      it("should return a set of matching files in the current working directory", () => {
+      it("returns a set of matching files in the current working directory", () => {
         const actualFiles = [...findAllFilesSync(ofBasename(/^file\./))];
         for (const path of resolvedPaths(
           "./file.csv",
@@ -361,49 +361,49 @@ describe("findAllFiles", () => {
           assert.isTrue(actualFiles.includes(path));
         }
       });
-      it("should return a sorted set of matching files in the current working directory", () => {
+      it("returns a sorted set of matching files in the current working directory", () => {
         assert.deepStrictEqual(
           findAllFilesSync(ofBasename(/^file\./)).sort(),
           resolvedPaths("./file.csv", "./file.html", "./file.yml").sort(),
         );
       });
-      it("should return an empty set if there are no matching files in the current working directory", () => {
+      it("returns an empty set if there are no matching files in the current working directory", () => {
         assert.deepStrictEqual(findAllFilesSync(ofBasename("file.json")), []);
       });
-      it("should throw an error if one of the tests throws an error", () => {
+      it("throws an error if one of the tests throws an error", () => {
         assert.throws(() => findAllFilesSync(errorSync));
       });
     });
     describe("(directories: string | Iterable<string>, ...tests: Array<FilterSync<string>>): string[]", () => {
-      it("should arbitrarily return an empty set if no arguments are provided", () => {
+      it("returns an empty set if no arguments are provided", () => {
         assert.isEmpty(findAllFilesSync());
       });
-      it("should arbitrarily return an empty set if only an empty set of directories is provided", () => {
+      it("returns an empty set if only an empty set of directories is provided", () => {
         const directories: string[] = [];
         assert.isEmpty(findAllFilesSync(directories));
       });
-      it("should arbitrarily return an empty set if an empty set of directories is provided", () => {
+      it("returns an empty set if an empty set of directories is provided", () => {
         assert.isEmpty(findAllFilesSync([], ofBasename()));
       });
-      it("should arbitrarily return an empty set if empty sets of directories and tests are provided", () => {
+      it("returns an empty set if empty sets of directories and tests are provided", () => {
         assert.isEmpty(findAllFilesSync([], ...[]));
       });
-      it("should arbitrarily return an empty set if there are no tests to perform on files' path", () => {
+      it("returns an empty set if there are no tests to perform on files' path", () => {
         assert.isEmpty(findAllFilesSync("./"));
       });
-      it("should handle a directory specified with a string path", () => {
+      it("handles a directory specified with a string path", () => {
         assert.deepStrictEqual(
           findAllFilesSync("./", ofBasename("file.html")),
           resolvedPaths("./file.html"),
         );
       });
-      it("should handle directories specified with string paths", () => {
+      it("handles directories specified with string paths", () => {
         assert.deepStrictEqual(
           findAllFilesSync(["./", "./files"], ofBasename("file.html")).sort(),
           resolvedPaths("./file.html", "./files/file.html").sort(),
         );
       });
-      it("should resolve directory paths which are not absolute relative to the current working directory", () => {
+      it("resolves directory paths which are not absolute relative to the current working directory", () => {
         assert.deepStrictEqual(
           findAllFilesSync("./", ofBasename("file.html")),
           resolvedPaths("./file.html"),
@@ -413,12 +413,12 @@ describe("findAllFiles", () => {
           resolvedPaths("./files/file.html"),
         );
       });
-      it("should return an empty set if there is no matching file in a directory", () => {
+      it("returns an empty set if there is no matching file in a directory", () => {
         assert.isEmpty(
           findAllFilesSync("/home/user/files", ofBasename("inexistant.json")),
         );
       });
-      it("should return en empty set if there is no matching file in directories", () => {
+      it("returns en empty set if there is no matching file in directories", () => {
         assert.isEmpty(
           findAllFilesSync(
             ["/home/user/files", "/home/user/symbolic-files"],
@@ -426,25 +426,25 @@ describe("findAllFiles", () => {
           ),
         );
       });
-      it("should return a found directory's path", () => {
+      it("returns a found directory's path", () => {
         assert.deepStrictEqual(
           findAllFilesSync("./", ofBasename("files")),
           resolvedPaths("./files"),
         );
       });
-      it("should return a found file's path", () => {
+      it("returns a found file's path", () => {
         assert.deepStrictEqual(
           findAllFilesSync("./", ofBasename("file.html")),
           resolvedPaths("./file.html"),
         );
       });
-      it("should return a set with one file's path if there is only one matching file in a directory", () => {
+      it("returns a set with one file's path if there is only one matching file in a directory", () => {
         assert.deepStrictEqual(
           findAllFilesSync("/home/user/files", ofBasename("file.html")),
           resolvedPaths("/home/user/files/file.html"),
         );
       });
-      it("should return a set with one file's path if there is only one matching file in a directory among the directories", () => {
+      it("returns a set with one file's path if there is only one matching file in a directory among the directories", () => {
         assert.deepStrictEqual(
           findAllFilesSync(
             ["/home/user/files", "/home/user/symbolic-files"],
@@ -453,7 +453,7 @@ describe("findAllFiles", () => {
           resolvedPaths("/home/user/files/file.md"),
         );
       });
-      it("should return a set of matching files in a directory", () => {
+      it("returns a set of matching files in a directory", () => {
         assert.deepStrictEqual(
           findAllFilesSync("/home/user/files", ofBasename(/^file/)).sort(),
           resolvedPaths(
@@ -462,7 +462,7 @@ describe("findAllFiles", () => {
           ).sort(),
         );
       });
-      it("should return a set of matching files in directories", () => {
+      it("returns a set of matching files in directories", () => {
         assert.deepStrictEqual(
           findAllFilesSync(
             ["/home/user/files", "/home/user/symbolic-files"],
@@ -474,13 +474,13 @@ describe("findAllFiles", () => {
           ).sort(),
         );
       });
-      it("should return a set with one directory's path if there is only one matching file in a directory", () => {
+      it("returns a set with one directory's path if there is only one matching file in a directory", () => {
         assert.deepStrictEqual(
           findAllFilesSync("/home/user", ofBasename("files")),
           resolvedPaths("/home/user/files"),
         );
       });
-      it("should return a set with one directory's path if there is only one matching file in a directory among the directories", () => {
+      it("returns a set with one directory's path if there is only one matching file in a directory among the directories", () => {
         assert.deepStrictEqual(
           findAllFilesSync(
             ["/home/user/files", "/home/user/"],
@@ -489,13 +489,13 @@ describe("findAllFiles", () => {
           resolvedPaths("/home/user/files"),
         );
       });
-      it("should return a set of matching directories' path in a directory", () => {
+      it("returns a set of matching directories' path in a directory", () => {
         assert.deepStrictEqual(
           findAllFilesSync("/home/user", ofBasename(/^files/, /files$/)).sort(),
           resolvedPaths("/home/user/files", "/home/user/symbolic-files").sort(),
         );
       });
-      it("should return a set of matching directories' path in directories", () => {
+      it("returns a set of matching directories' path in directories", () => {
         assert.deepStrictEqual(
           findAllFilesSync(
             ["/home/user", "/home/user/other-folder"],
@@ -507,7 +507,7 @@ describe("findAllFiles", () => {
           ).sort(),
         );
       });
-      it("should return a set of matching files and directories' path", () => {
+      it("returns a set of matching files and directories' path", () => {
         assert.deepStrictEqual(
           findAllFilesSync(
             ["/home/user", "/home/user/files"],
@@ -520,7 +520,7 @@ describe("findAllFiles", () => {
           ).sort(),
         );
       });
-      it("should return a sorted set of matching files in a directory", () => {
+      it("returns a sorted set of matching files in a directory", () => {
         assert.deepStrictEqual(
           findAllFilesSync("/home/user/files", ofBasename(/^_/)).sort(),
           resolvedPaths(
@@ -530,7 +530,7 @@ describe("findAllFiles", () => {
           ).sort(),
         );
       });
-      it("should return a set of sequences of matching files sorted by directory", () => {
+      it("returns a set of sequences of matching files sorted by directory", () => {
         assert.deepStrictEqual(
           findAllFilesSync(
             ["/home/user/files", "/home/user/symbolic-folder"],
@@ -546,7 +546,7 @@ describe("findAllFiles", () => {
           ).sort(),
         );
       });
-      it("should throw an error if any of the given directories does not exist", () => {
+      it("throws an error if any of the given directories does not exist", () => {
         assert.throws(() => {
           findAllFilesSync(
             "./inexistant-folder",
@@ -554,10 +554,10 @@ describe("findAllFiles", () => {
           );
         });
       });
-      it("should throw an error if one of the tests throws an error", () => {
+      it("throws an error if one of the tests throws an error", () => {
         assert.throws(() => findAllFilesSync("./", errorSync));
       });
-      it("should throw an error if one of the directories is a file", () => {
+      it("throws an error if one of the directories is a file", () => {
         assert.throws(() =>
           findAllFilesSync(
             ["./", "./file.html"],

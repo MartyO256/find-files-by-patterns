@@ -28,33 +28,33 @@ describe("filter", () => {
     Promise.resolve(errorSync(element));
   describe("conjunction", () => {
     const filter = conjunction([isEven, isGreaterThan2]);
-    it("should return `true` for elements that pass all the filters", async () => {
+    it("returns `true` for elements that pass all the filters", async () => {
       for (const element of [4, 6, 8, 10]) {
         assert.isTrue(await filter(element));
       }
     });
-    it("should return `false` for elements that fail any of the filters", async () => {
+    it("returns `false` for elements that fail any of the filters", async () => {
       for (const element of [1, 2, 3, 5]) {
         assert.isFalse(await filter(element));
       }
     });
-    it("should throw an error if any of the filters throws an error", async () => {
+    it("throws an error if any of the filters throws an error", async () => {
       rejects(conjunction([isEven, isGreaterThan2, error])(4));
     });
   });
   describe("conjunctionSync", () => {
     const filter = conjunctionSync([isEvenSync, isGreaterThan2Sync]);
-    it("should return `true` for elements that pass all the filters", () => {
+    it("returns `true` for elements that pass all the filters", () => {
       for (const element of [4, 6, 8, 10]) {
         assert.isTrue(filter(element));
       }
     });
-    it("should return `false` for elements that fail any of the filters", () => {
+    it("returns `false` for elements that fail any of the filters", () => {
       for (const element of [1, 2, 3, 5]) {
         assert.isFalse(filter(element));
       }
     });
-    it("should throw an error if any of the filters throws an error", () => {
+    it("throws an error if any of the filters throws an error", () => {
       assert.throws(() =>
         conjunctionSync([isEvenSync, isGreaterThan2Sync, errorSync])(4),
       );
@@ -62,33 +62,33 @@ describe("filter", () => {
   });
   describe("disjunction", () => {
     const filter = disjunction([isEven, isGreaterThan2]);
-    it("should return `true` for elements that pass any of the filters", async () => {
+    it("returns `true` for elements that pass any of the filters", async () => {
       for (const element of [3, 4, 5, 6]) {
         assert.isTrue(await filter(element));
       }
     });
-    it("should return `false` for elements that fail all of the filters", async () => {
+    it("returns `false` for elements that fail all of the filters", async () => {
       for (const element of [-5, -3, -1, 1]) {
         assert.isFalse(await filter(element));
       }
     });
-    it("should throw an error if any of the filters throws an error", async () => {
+    it("throws an error if any of the filters throws an error", async () => {
       rejects(disjunction([isEven, isGreaterThan2, error])(1));
     });
   });
   describe("disjunctionSync", () => {
     const filter = disjunctionSync([isEvenSync, isGreaterThan2Sync]);
-    it("should return `true` for elements that pass any the filters", () => {
+    it("returns `true` for elements that pass any the filters", () => {
       for (const element of [3, 4, 5, 6]) {
         assert.isTrue(filter(element));
       }
     });
-    it("should return `false` for elements that fail all of the filters", () => {
+    it("returns `false` for elements that fail all of the filters", () => {
       for (const element of [-5, -3, -1, 1]) {
         assert.isFalse(filter(element));
       }
     });
-    it("should throw an error if any of the filters throws an error", () => {
+    it("throws an error if any of the filters throws an error", () => {
       assert.throws(() =>
         disjunctionSync([isEvenSync, isGreaterThan2Sync, errorSync])(1),
       );
@@ -97,7 +97,7 @@ describe("filter", () => {
   describe("filter", () => {
     const elements = [1, 2, 3, 4, 5, 6];
     const filteredElements = [4, 6];
-    it("should filter in the correct amount of elements", async () => {
+    it("filters in the correct amount of elements", async () => {
       assert.strictEqual(
         (
           await allElements(
@@ -107,7 +107,7 @@ describe("filter", () => {
         filteredElements.length,
       );
     });
-    it("should only filter in elements that pass all of the filters", async () => {
+    it("only filters in elements that pass all of the filters", async () => {
       for (const element of await allElements(
         filter(elements, conjunction([isEven, isGreaterThan2])),
       )) {
@@ -117,7 +117,7 @@ describe("filter", () => {
         );
       }
     });
-    it("should filter in all the elements that pass all of the filters", async () => {
+    it("filters in all the elements that pass all of the filters", async () => {
       assert.deepStrictEqual(
         await allElements(
           filter(elements, conjunction([isEven, isGreaterThan2])),
@@ -125,14 +125,14 @@ describe("filter", () => {
         filteredElements,
       );
     });
-    it("should throw an error if any of the filters throws an error", async () => {
+    it("throws an error if any of the filters throws an error", async () => {
       rejects(allElements(filter(elements, error)));
     });
   });
   describe("filterSync", () => {
     const elements = [1, 2, 3, 4, 5, 6];
     const filteredElements = [4, 6];
-    it("should filter in the correct amount of elements", () => {
+    it("filters in the correct amount of elements", () => {
       assert.strictEqual(
         [
           ...filterSync(
@@ -143,7 +143,7 @@ describe("filter", () => {
         filteredElements.length,
       );
     });
-    it("should only filter in elements that pass all of the filters", () => {
+    it("only filters in elements that pass all of the filters", () => {
       for (const element of filterSync(
         elements,
         conjunctionSync([isEvenSync, isGreaterThan2Sync]),
@@ -154,7 +154,7 @@ describe("filter", () => {
         );
       }
     });
-    it("should filter in all the elements that pass all of the filters", () => {
+    it("filters in all the elements that pass all of the filters", () => {
       assert.deepStrictEqual(
         [
           ...filterSync(
@@ -165,7 +165,7 @@ describe("filter", () => {
         filteredElements,
       );
     });
-    it("should throw an error if any of the filters throws an error", () => {
+    it("throws an error if any of the filters throws an error", () => {
       assert.throws(() => [...filterSync(elements, errorSync)]);
     });
   });

@@ -48,15 +48,15 @@ describe("readdirs", () => {
     mock.restore();
   });
   describe("readdir", () => {
-    it("should terminate", async () => allElements(readdir(".")));
-    it("should yield the correct amount of files", async () => {
+    it("terminates", async () => allElements(readdir(".")));
+    it("yields the correct amount of files", async () => {
       assert.strictEqual(
         (await allElements(readdir("."))).length,
         2,
         "Yielded files and expected files differ in length.",
       );
     });
-    it("should yield full paths", async () => {
+    it("yields full paths", async () => {
       const directory = resolve(".");
       for await (const file of readdir(".")) {
         assert.isTrue(
@@ -65,7 +65,7 @@ describe("readdirs", () => {
         );
       }
     });
-    it("should only yield correct file paths", async () => {
+    it("only yields correct file paths", async () => {
       const files = resolvedPaths("./file.html", "./files");
       for await (const file of readdir(".")) {
         assert.isTrue(
@@ -74,25 +74,25 @@ describe("readdirs", () => {
         );
       }
     });
-    it("should yield all the correct file paths", async () => {
+    it("yields all the correct file paths", async () => {
       assert.deepStrictEqual(
         (await allElements(readdir("."))).sort(),
         resolvedPaths("file.html", "files").sort(),
       );
     });
-    it("should throw an error if the given directory path is a file", async () => {
+    it("throws an error if the given directory path is a file", async () => {
       rejects(allElements(readdir("./file.html")));
     });
-    it("should throw an error if the given directory path does not exist", async () => {
+    it("throws an error if the given directory path does not exist", async () => {
       rejects(allElements(readdir("./inexistant-directory")));
     });
   });
   describe("readdirSync", () => {
-    it("should terminate", () => [...readdirSync(".")]);
-    it("should yield the correct amount of files", () => {
+    it("terminates", () => [...readdirSync(".")]);
+    it("yields the correct amount of files", () => {
       assert.strictEqual([...readdirSync(".")].length, 2);
     });
-    it("should yield full paths", () => {
+    it("yields full paths", () => {
       const directory = resolve(".");
       for (const file of readdirSync(".")) {
         assert.isTrue(
@@ -101,7 +101,7 @@ describe("readdirs", () => {
         );
       }
     });
-    it("should only yield correct file paths", () => {
+    it("only yields correct file paths", () => {
       const files = resolvedPaths("./file.html", "./files");
       for (const file of readdirSync(".")) {
         assert.isTrue(
@@ -110,22 +110,22 @@ describe("readdirs", () => {
         );
       }
     });
-    it("should yield all the correct file paths", () => {
+    it("yields all the correct file paths", () => {
       assert.deepEqual(
         [...readdirSync(".")].sort(),
         resolvedPaths("./file.html", "./files").sort(),
       );
     });
-    it("should throw an error if the given directory path is a file", () => {
+    it("throws an error if the given directory path is a file", () => {
       assert.throws(() => [...readdirSync("./file.html")]);
     });
-    it("should throw an error if the given directory path does not exist", () => {
+    it("throws an error if the given directory path does not exist", () => {
       assert.throws(() => [...readdirSync("./inexistant-directory")]);
     });
   });
   describe("readdirs", () => {
-    it("should terminate", async () => allElements(readdirs([".", "./files"])));
-    it("should yield the correct amount of files", async () => {
+    it("terminates", async () => allElements(readdirs([".", "./files"])));
+    it("yields the correct amount of files", async () => {
       assert.strictEqual(
         (
           await allElements(
@@ -140,7 +140,7 @@ describe("readdirs", () => {
         8,
       );
     });
-    it("should only yield correct files", async () => {
+    it("only yields correct files", async () => {
       const files = resolvedPaths(
         "./file.html",
         "./files",
@@ -163,7 +163,7 @@ describe("readdirs", () => {
         );
       }
     });
-    it("should yield all the correct file paths", async () => {
+    it("yields all the correct file paths", async () => {
       assert.deepStrictEqual(
         (
           await allElements(
@@ -187,16 +187,16 @@ describe("readdirs", () => {
         ).sort(),
       );
     });
-    it("should throw an error if any of the given directory paths is a file", async () => {
+    it("throws an error if any of the given directory paths is a file", async () => {
       rejects(allElements(readdirs([".", "./file.html"])));
     });
-    it("should throw an error if any of the given directory paths does not exist", async () => {
+    it("throws an error if any of the given directory paths does not exist", async () => {
       rejects(allElements(readdirs([".", "./inexistant-directory"])));
     });
   });
   describe("readdirsSync", () => {
-    it("should terminate", () => [...readdirsSync([".", "./files"])]);
-    it("should yield the correct amount of files", () => {
+    it("terminates", () => [...readdirsSync([".", "./files"])]);
+    it("yields the correct amount of files", () => {
       assert.strictEqual(
         [
           ...readdirsSync([
@@ -209,7 +209,7 @@ describe("readdirs", () => {
         8,
       );
     });
-    it("should only yield correct files", () => {
+    it("only yields correct files", () => {
       const files = resolvedPaths(
         "./file.html",
         "./files",
@@ -232,7 +232,7 @@ describe("readdirs", () => {
         );
       }
     });
-    it("should yield all the correct file paths", () => {
+    it("yields all the correct file paths", () => {
       assert.deepStrictEqual(
         [
           ...readdirsSync([
@@ -254,10 +254,10 @@ describe("readdirs", () => {
         ).sort(),
       );
     });
-    it("should throw an error if any of the given directory paths is a file", () => {
+    it("throws an error if any of the given directory paths is a file", () => {
       assert.throws(() => [...readdirsSync([".", "./file.html"])]);
     });
-    it("should throw an error if any of the given directory paths does not exist", () => {
+    it("throws an error if any of the given directory paths does not exist", () => {
       assert.throws(() => [...readdirsSync([".", "./inexistant-directory"])]);
     });
   });

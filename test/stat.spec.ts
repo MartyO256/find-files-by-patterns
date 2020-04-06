@@ -29,12 +29,12 @@ describe("stat", () => {
     afterEach(() => {
       mock.restore();
     });
-    it("should not throw an error if there is no file at the given path", async () => {
+    it("does not throw an error if there is no file at the given path", async () => {
       assert.isFalse(
         await isSafeStat("/home/user/inexistant-path", () => true),
       );
     });
-    it("should throw an error if there is an I/O error different from a file not found exception", async () => {
+    it("throws an error if there is an I/O error different from a file not found exception", async () => {
       rejects(
         isSafeStat(
           "/home/user/non-searchable-directory/unreadable-file",
@@ -59,10 +59,10 @@ describe("stat", () => {
     afterEach(() => {
       mock.restore();
     });
-    it("should not throw an error if there is no file at the given path", () => {
+    it("does not throw an error if there is no file at the given path", () => {
       assert.isFalse(isSafeStatSync("/home/user/inexistant-path", () => true));
     });
-    it("should throw an error if there is an I/O error different from a file not found exception", () => {
+    it("throws an error if there is an I/O error different from a file not found exception", () => {
       assert.throws(() =>
         isSafeStatSync(
           "/home/user/non-searchable-directory/unreadable-file",
@@ -83,13 +83,13 @@ describe("stat", () => {
     afterEach(() => {
       mock.restore();
     });
-    it("should return `true` if a path points to a file", async () => {
+    it("returns `true` if a path points to a file", async () => {
       assert.isTrue(await isFile("/home/user/file.html"));
     });
-    it("should return `false` if a path points to a directory", async () => {
+    it("returns `false` if a path points to a directory", async () => {
       assert.isFalse(await isFile("/home/user/directory"));
     });
-    it("should return `false` if a path does not exist", async () => {
+    it("returns `false` if a path does not exist", async () => {
       assert.isFalse(await isFile("/home/user/inexistant-path"));
     });
   });
@@ -105,13 +105,13 @@ describe("stat", () => {
     afterEach(() => {
       mock.restore();
     });
-    it("should return `true` if a path points to a file", () => {
+    it("returns `true` if a path points to a file", () => {
       assert.isTrue(isFileSync("/home/user/file.html"));
     });
-    it("should return `false` if a path points to a directory", () => {
+    it("returns `false` if a path points to a directory", () => {
       assert.isFalse(isFileSync("/home/user/directory"));
     });
-    it("should return `false` if a path does not exist", () => {
+    it("returns `false` if a path does not exist", () => {
       assert.isFalse(isFileSync("/home/user/inexistant-path"));
     });
   });
@@ -127,13 +127,13 @@ describe("stat", () => {
     afterEach(() => {
       mock.restore();
     });
-    it("should return `true` if a path points to a directory", async () => {
+    it("returns `true` if a path points to a directory", async () => {
       assert.isTrue(await isDirectory("/home/user/directory"));
     });
-    it("should return `false` if a path points to a file", async () => {
+    it("returns `false` if a path points to a file", async () => {
       assert.isFalse(await isDirectory("/home/user/file.html"));
     });
-    it("should return `false` if a path does not exist", async () => {
+    it("returns `false` if a path does not exist", async () => {
       assert.isFalse(await isDirectory("/home/user/inexistant-path"));
     });
   });
@@ -149,13 +149,13 @@ describe("stat", () => {
     afterEach(() => {
       mock.restore();
     });
-    it("should return `true` if a path points to a directory", () => {
+    it("returns `true` if a path points to a directory", () => {
       assert.isTrue(isDirectorySync("/home/user/directory"));
     });
-    it("should return `false` if a path points to a file", () => {
+    it("returns `false` if a path points to a file", () => {
       assert.isFalse(isDirectorySync("/home/user/file.html"));
     });
-    it("should return `false` if a path does not exist", () => {
+    it("returns `false` if a path does not exist", () => {
       assert.isFalse(isDirectorySync("/home/user/inexistant-path"));
     });
   });

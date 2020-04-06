@@ -19,10 +19,10 @@ describe("iterable", () => {
         yield true;
       })();
     const notIterable = (): unknown => 0;
-    it("should return `true` if the object is an iterable", () => {
+    it("returns `true` if the object is an iterable", () => {
       assert.isTrue(isIterable(iterable()));
     });
-    it("should return `false` if the object is not an iterable", () => {
+    it("returns `false` if the object is not an iterable", () => {
       assert.isFalse(isIterable(notIterable()));
     });
   });
@@ -32,10 +32,10 @@ describe("iterable", () => {
         yield true;
       })();
     const notAsyncIterable = (): unknown => 0;
-    it("should return `true` if the object is an asynchronous iterable", () => {
+    it("returns `true` if the object is an asynchronous iterable", () => {
       assert.isTrue(isAsyncIterable(asyncIterable()));
     });
-    it("should return `false` if the object is not an asynchronous iterable", () => {
+    it("returns `false` if the object is not an asynchronous iterable", () => {
       assert.isFalse(isAsyncIterable(notAsyncIterable()));
     });
   });
@@ -44,21 +44,21 @@ describe("iterable", () => {
       (async function* (): AsyncIterable<string> {
         yield* ["first", "second", "third"];
       })();
-    it("should return the first element of the iterable", async () => {
+    it("returns the first element of the iterable", async () => {
       assert.strictEqual(await firstElement(asyncIterable()), "first");
     });
-    it("should return `null` if the iterable is depleted", async () => {
+    it("returns `null` if the iterable is depleted", async () => {
       assert.isNull(await firstElement([]));
     });
   });
   describe("firstElementSync", () => {
-    it("should return the first element of the iterable", () => {
+    it("returns the first element of the iterable", () => {
       assert.strictEqual(
         firstElementSync(["first", "second", "third"]),
         "first",
       );
     });
-    it("should return `null` if the iterable is depleted", () => {
+    it("returns `null` if the iterable is depleted", () => {
       assert.isNull(firstElementSync([]));
     });
   });
@@ -69,13 +69,13 @@ describe("iterable", () => {
     const elements = (async function* (): AsyncIterable<string> {
       yield* ["first", "second", "third"];
     })();
-    it("should return the only element of the iterable", async () => {
+    it("returns the only element of the iterable", async () => {
       assert.strictEqual(await onlyElement(element), "element");
     });
-    it("should throw an error if there is more than one element in the iterable", async () => {
+    it("throws an error if there is more than one element in the iterable", async () => {
       rejects(onlyElement(elements));
     });
-    it("should throw a conflict error if there is more than one element in the iterable", async () => {
+    it("throws a conflict error if there is more than one element in the iterable", async () => {
       try {
         await onlyElement(elements);
       } catch (error) {
@@ -86,13 +86,13 @@ describe("iterable", () => {
   describe("onlyElementSync", () => {
     const element = ["element"];
     const elements = ["first", "second", "third"];
-    it("should return the only element of the iterable", () => {
+    it("returns the only element of the iterable", () => {
       assert.strictEqual(onlyElementSync(element), "element");
     });
-    it("should throw an error if there is more than one element in the iterable", () => {
+    it("throws an error if there is more than one element in the iterable", () => {
       assert.throws(() => onlyElementSync(elements));
     });
-    it("should throw a conflict error if there is more than one element in the iterable", () => {
+    it("throws a conflict error if there is more than one element in the iterable", () => {
       try {
         onlyElementSync(elements);
       } catch (error) {
@@ -106,14 +106,14 @@ describe("iterable", () => {
       (async function* (): AsyncIterable<number> {
         yield* elements;
       })();
-    it("should contain the correct amount of elements", async () => {
+    it("contains the correct amount of elements", async () => {
       assert.strictEqual(
         (await allElements(asyncIterable())).length,
         elements.length,
         "Actual async iterable array and elements array differ in size.",
       );
     });
-    it("should contain all the elements of the iterable", async () => {
+    it("contains all the elements of the iterable", async () => {
       const asyncIterableArray = await allElements(asyncIterable());
       for (const element of elements) {
         assert.isTrue(
@@ -122,20 +122,20 @@ describe("iterable", () => {
         );
       }
     });
-    it("should return all the elements of the iterable in order", async () => {
+    it("returns all the elements of the iterable in order", async () => {
       assert.deepStrictEqual(await allElements(asyncIterable()), elements);
     });
   });
   describe("allElementsSync", () => {
     const elements = [-1, 0, 1];
-    it("should contain the correct amount of elements", () => {
+    it("contains the correct amount of elements", () => {
       assert.strictEqual(
         allElementsSync(elements).length,
         elements.length,
         "Actual async iterable array and elements array differ in size.",
       );
     });
-    it("should contain all the elements of the iterable", () => {
+    it("contains all the elements of the iterable", () => {
       const syncIterableArray = allElementsSync(elements);
       for (const element of elements) {
         assert.isTrue(
@@ -144,7 +144,7 @@ describe("iterable", () => {
         );
       }
     });
-    it("should return all the elements of the iterable in order", () => {
+    it("returns all the elements of the iterable in order", () => {
       assert.deepStrictEqual(allElementsSync(elements), elements);
     });
   });

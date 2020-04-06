@@ -27,21 +27,21 @@ describe("hasFile", () => {
   afterEach(() => {
     mock.restore();
   });
-  it("should return `true` for a path that is a directory and has a matching file", async () => {
+  it("returns `true` for a path that is a directory and has a matching file", async () => {
     assert.isTrue(await hasFile(ofExtname(".html"))("/home/user"));
   });
-  it("should return `false` for a path that does not exist", async () => {
+  it("returns `false` for a path that does not exist", async () => {
     assert.isFalse(
       await hasFile(ofExtname(".html"))("/home/user/inexistant-directory"),
     );
   });
-  it("should return `false` for a path that is not a directory", async () => {
+  it("returns `false` for a path that is not a directory", async () => {
     assert.isFalse(await hasFile(ofExtname(".html"))("/home/user/file1.html"));
   });
-  it("should return `false` for a path that is a directory and doesn't have any matching file", async () => {
+  it("returns `false` for a path that is a directory and doesn't have any matching file", async () => {
     assert.isFalse(await hasFile(ofExtname(".html"))("/home/user/directory"));
   });
-  it("should throw an error if any of the tests throws an error", async () => {
+  it("throws an error if any of the tests throws an error", async () => {
     assert.isFalse(await hasFile(error)("/home/user/directory"));
   });
 });
@@ -60,21 +60,21 @@ describe("hasFileSync", () => {
   afterEach(() => {
     mock.restore();
   });
-  it("should return `true` for a path that is a directory and has a matching file", () => {
+  it("returns `true` for a path that is a directory and has a matching file", () => {
     assert.isTrue(hasFileSync(ofExtname(".html"))("/home/user"));
   });
-  it("should return `false` for a path that does not exist", () => {
+  it("returns `false` for a path that does not exist", () => {
     assert.isFalse(
       hasFileSync(ofExtname(".html"))("/home/user/inexistant-directory"),
     );
   });
-  it("should return `false` for a path that is not a directory", () => {
+  it("returns `false` for a path that is not a directory", () => {
     assert.isFalse(hasFileSync(ofExtname(".html"))("/home/user/file1.html"));
   });
-  it("should return `false` for a path that is a directory and doesn't have any matching file", () => {
+  it("returns `false` for a path that is a directory and doesn't have any matching file", () => {
     assert.isFalse(hasFileSync(ofExtname(".html"))("/home/user/directory"));
   });
-  it("should throw an error if any of the tests throws an error", () => {
+  it("throws an error if any of the tests throws an error", () => {
     assert.isFalse(hasFileSync(errorSync)("/home/user/directory"));
   });
 });
