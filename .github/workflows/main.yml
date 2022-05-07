@@ -1,0 +1,39 @@
+name: main
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  main:
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+        os:
+          - ubuntu-latest
+
+    steps:
+    - name: Clone repository
+      uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.os }} / ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+
+    - name: Install Yarn
+      run: npm install -g yarn
+
+    - name: Build
+      run: yarn run build
+
+    - name: Test with coverage
+      run: yarn run coverage
+
+    - name: Coveralls
+      uses: coverallsapp/github-action@1.1.3
+      github-token: ${{ secrets.COVERALLS_GITHUB_TOKEN }}
