@@ -10,8 +10,7 @@
 
 ---
 
-Use the iteration protocol to find files upwards and downwards in the file
-system.
+Use the iterator pattern to find files upwards and downwards in the file system.
 
 ---
 
@@ -63,32 +62,32 @@ const { findFile, upwardDirectories,
 <!-- toc -->
 
 - [API](#api)
-  * [`findFile` and `findFileSync`](#findfile-and-findfilesync)
-  * [`findAllFiles` and `findAllFilesSync`](#findallfiles-and-findallfilessync)
-  * [`findOnlyFile` and `findOnlyFileSync`](#findonlyfile-and-findonlyfilesync)
-  * [`downwardDirectories` and `downwardDirectoriesSync`](#downwarddirectories-and-downwarddirectoriessync)
-  * [`upwardDirectories` and `upwardDirectoriesSync`](#upwarddirectories-and-upwarddirectoriessync)
-  * [`downwardFiles` and `downwardFilesSync`](#downwardfiles-and-downwardfilessync)
-  * [`upwardFiles` and `upwardFilesSync`](#upwardfiles-and-upwardfilessync)
-  * [`ofBasename`, `ofName`, `ofDirname` and `ofExtname`](#ofbasename-ofname-ofdirname-and-ofextname)
-  * [`hasPathSegments`](#haspathsegments)
-  * [`isFile` and `isFileSync`](#isfile-and-isfilesync)
-  * [`isDirectory` and `isDirectorySync`](#isdirectory-and-isdirectorysync)
-  * [`hasFile` and `hasFileSync`](#hasfile-and-hasfilesync)
-  * [`readdir` and `readdirSync`](#readdir-and-readdirsync)
-  * [`readdirs` and `readdirsSync`](#readdirs-and-readdirssync)
-  * [`filter` and `filterSync`](#filter-and-filtersync)
-  * [`conjunction` and `conjunctionSync`](#conjunction-and-conjunctionsync)
-  * [`disjunction` and `disjunctionSync`](#disjunction-and-disjunctionsync)
-  * [`allElements` and `allElementsSync`](#allelements-and-allelementssync)
-  * [`firstElement` and `firstElementSync`](#firstelement-and-firstelementsync)
-  * [`onlyElement` and `onlyElementSync`](#onlyelement-and-onlyelementsync)
+  - [`findFile` and `findFileSync`](#findfile-and-findfilesync)
+  - [`findAllFiles` and `findAllFilesSync`](#findallfiles-and-findallfilessync)
+  - [`findOnlyFile` and `findOnlyFileSync`](#findonlyfile-and-findonlyfilesync)
+  - [`downwardDirectories` and `downwardDirectoriesSync`](#downwarddirectories-and-downwarddirectoriessync)
+  - [`upwardDirectories` and `upwardDirectoriesSync`](#upwarddirectories-and-upwarddirectoriessync)
+  - [`downwardFiles` and `downwardFilesSync`](#downwardfiles-and-downwardfilessync)
+  - [`upwardFiles` and `upwardFilesSync`](#upwardfiles-and-upwardfilessync)
+  - [`ofBasename`, `ofName`, `ofDirname` and `ofExtname`](#ofbasename-ofname-ofdirname-and-ofextname)
+  - [`hasPathSegments`](#haspathsegments)
+  - [`isFile` and `isFileSync`](#isfile-and-isfilesync)
+  - [`isDirectory` and `isDirectorySync`](#isdirectory-and-isdirectorysync)
+  - [`hasFile` and `hasFileSync`](#hasfile-and-hasfilesync)
+  - [`readdir` and `readdirSync`](#readdir-and-readdirsync)
+  - [`readdirs` and `readdirsSync`](#readdirs-and-readdirssync)
+  - [`filter` and `filterSync`](#filter-and-filtersync)
+  - [`conjunction` and `conjunctionSync`](#conjunction-and-conjunctionsync)
+  - [`disjunction` and `disjunctionSync`](#disjunction-and-disjunctionsync)
+  - [`allElements` and `allElementsSync`](#allelements-and-allelementssync)
+  - [`firstElement` and `firstElementSync`](#firstelement-and-firstelementsync)
+  - [`onlyElement` and `onlyElementSync`](#onlyelement-and-onlyelementsync)
 - [About](#about)
-  * [Building the documentation](#building-the-documentation)
-  * [Running the tests](#running-the-tests)
-  * [Building the library](#building-the-library)
-  * [Authors](#authors)
-  * [License](#license)
+  - [Building the documentation](#building-the-documentation)
+  - [Running the tests](#running-the-tests)
+  - [Building the library](#building-the-library)
+  - [Authors](#authors)
+  - [License](#license)
 
 <!-- tocstop -->
 

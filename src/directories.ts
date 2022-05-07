@@ -4,9 +4,9 @@ import {
   downwardFiles,
   downwardFilesSync,
   handleDownwardFilesOverload,
-} from "./files";
-import { filter, filterSync } from "./filter";
-import { isDirectory, isDirectorySync } from "./stat";
+} from "./files.js";
+import { filter, filterSync } from "./filter.js";
+import { isDirectory, isDirectorySync } from "./stat.js";
 
 /**
  * Constructs an iterable over the downward directories starting from the

@@ -1,6 +1,6 @@
 import { stat, Stats, statSync } from "fs";
 
-import { Filter, FilterSync } from "./filter";
+import { Filter, FilterSync } from "./filter.js";
 
 /**
  * Determines whether or not an error is a file not found exception.

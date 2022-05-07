@@ -2,9 +2,9 @@ import { realpath, realpathSync } from "fs";
 import { resolve } from "path";
 import { promisify } from "util";
 
-import { upwardDirectories, upwardDirectoriesSync } from "./directories";
-import { readdir, readdirs, readdirsSync, readdirSync } from "./readdirs";
-import { isDirectory, isDirectorySync } from "./stat";
+import { upwardDirectories, upwardDirectoriesSync } from "./directories.js";
+import { readdir, readdirs, readdirsSync, readdirSync } from "./readdirs.js";
+import { isDirectory, isDirectorySync } from "./stat.js";
 
 /**
  * A directory in the file system has a path and a depth relative to another
@@ -51,16 +51,16 @@ const subdirectory = (path: string, parent: Directory): Directory => ({
  * @returns A function which determines whether or not a path has been
  * traversed.
  */
-const pathHasNotBeenTraversed = (paths: Iterable<string>) => (
-  path: string,
-): boolean => {
-  for (const query of paths) {
-    if (query === path) {
-      return false;
+const pathHasNotBeenTraversed =
+  (paths: Iterable<string>) =>
+  (path: string): boolean => {
+    for (const query of paths) {
+      if (query === path) {
+        return false;
+      }
     }
-  }
-  return true;
-};
+    return true;
+  };
 
 const realpathNative = promisify(realpath.native);
 const realpathNativeSync = realpathSync.native;
@@ -468,10 +468,12 @@ export function upwardFiles(
 ): AsyncIterable<string> {
   [startPath, upperBound] = handleUpwardFilesOverload(startPath, upperBound);
   return readdirs(
-    (upwardDirectories as (
-      startPath?: string,
-      upperBound?: number | string,
-    ) => AsyncIterable<string>)(startPath, upperBound),
+    (
+      upwardDirectories as (
+        startPath?: string,
+        upperBound?: number | string,
+      ) => AsyncIterable<string>
+    )(startPath, upperBound),
   );
 }
 
@@ -554,9 +556,11 @@ export function upwardFilesSync(
 ): Iterable<string> {
   [startPath, upperBound] = handleUpwardFilesOverload(startPath, upperBound);
   return readdirsSync(
-    (upwardDirectoriesSync as (
-      startPath?: string,
-      upperBound?: number | string,
-    ) => Iterable<string>)(startPath, upperBound),
+    (
+      upwardDirectoriesSync as (
+        startPath?: string,
+        upperBound?: number | string,
+      ) => Iterable<string>
+    )(startPath, upperBound),
   );
 }

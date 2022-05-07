@@ -5,10 +5,10 @@ import {
   Filter,
   FilterSync,
   filterSync,
-} from "./filter";
-import { firstElement, firstElementSync } from "./iterable";
-import { readdir, readdirSync } from "./readdirs";
-import { isDirectory, isDirectorySync } from "./stat";
+} from "./filter.js";
+import { firstElement, firstElementSync } from "./iterable.js";
+import { readdir, readdirSync } from "./readdirs.js";
+import { isDirectory, isDirectorySync } from "./stat.js";
 
 /**
  * Constructs a filter which determines whether of not a directory has a file or

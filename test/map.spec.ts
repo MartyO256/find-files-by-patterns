@@ -1,8 +1,13 @@
 import { rejects } from "assert";
 import { assert } from "chai";
 
-import { allElements } from "../src/iterable";
-import { multiMap, multiMapSync, simpleMap, simpleMapSync } from "../src/map";
+import { allElements } from "../src/iterable.js";
+import {
+  multiMap,
+  multiMapSync,
+  simpleMap,
+  simpleMapSync,
+} from "../src/map.js";
 
 describe("map", () => {
   const errorSync = (): null => {

@@ -7,7 +7,7 @@ export {
   disjunctionSync,
   filter,
   filterSync,
-} from "./filter";
+} from "./filter.js";
 export {
   allElements,
   allElementsSync,
@@ -27,7 +27,7 @@ export {
   ofExtname,
   segments,
 } from "./path";
-export { isFile, isDirectory, isFileSync, isDirectorySync } from "./stat";
+export { isFile, isDirectory, isFileSync, isDirectorySync } from "./stat.js";
 export { hasFile, hasFileSync } from "./hasFile";
 
 export {
@@ -44,7 +44,7 @@ export {
   downwardFilesSync,
   upwardFiles,
   upwardFilesSync,
-} from "./files";
+} from "./files.js";
 export {
   downwardDirectories,
   downwardDirectoriesSync,

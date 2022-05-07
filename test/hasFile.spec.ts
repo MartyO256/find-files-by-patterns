@@ -1,9 +1,9 @@
 import { assert } from "chai";
 
-import * as mock from "mock-fs";
+import mock from "mock-fs";
 
-import { Filter, FilterSync } from "../src/filter";
-import { ofExtname } from "../src/path";
+import { Filter, FilterSync } from "../src/filter.js";
+import { ofExtname } from "../src/path.js";
 import { hasFile, hasFileSync } from "./../src/hasFile";
 
 const error: Filter<string> = async () => {

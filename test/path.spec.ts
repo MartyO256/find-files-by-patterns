@@ -1,7 +1,7 @@
 import { assert } from "chai";
 
 import { join } from "path";
-import { FilterSync } from "../src/filter";
+import { FilterSync } from "../src/filter.js";
 import {
   firstSegmentPosition,
   hasPathSegments,
@@ -10,7 +10,7 @@ import {
   ofExtname,
   ofName,
   segments,
-} from "../src/path";
+} from "../src/path.js";
 
 const errorSync: FilterSync<string> = () => {
   throw new Error();
@@ -151,9 +151,8 @@ describe("path", () => {
       ];
       const filter = ofName(...names);
       it("arbitrarily returns `false` if no names are given", () => {
-        const names: Array<
-          string | RegExp | ((basename: string) => boolean)
-        > = [];
+        const names: Array<string | RegExp | ((basename: string) => boolean)> =
+          [];
         assert.isFalse(ofName(...names)(""));
       });
       it("returns `true` if a path's name matches", () => {

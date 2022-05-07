@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "lib": ["esnext"],
-    "target": "esnext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "lib": ["ESNext"],
+    "target": "ESNext",
     "outDir": "./lib",
     "alwaysStrict": true,
     "declaration": true,
@@ -11,6 +11,7 @@
     "noImplicitAny": false,
     "downlevelIteration": true,
     "listFiles": true,
-    "listEmittedFiles": true
+    "listEmittedFiles": true,
+    "esModuleInterop": true
   }
 }

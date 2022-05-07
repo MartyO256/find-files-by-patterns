@@ -8,7 +8,7 @@ import {
   sep,
 } from "path";
 
-import { disjunctionSync, FilterSync } from "./filter";
+import { disjunctionSync, FilterSync } from "./filter.js";
 
 /**
  * A segment tester is a type which can be used to test a substring of a path.

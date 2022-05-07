@@ -1,7 +1,7 @@
 import { rejects } from "assert";
 import { assert } from "chai";
 
-import * as mock from "mock-fs";
+import mock from "mock-fs";
 import { resolve } from "path";
 
 import {
@@ -12,8 +12,8 @@ import {
   upwardDirectoriesSync,
   upwardLimitedPaths,
   upwardPaths,
-} from "../src/directories";
-import { allElements, allElementsSync } from "../src/iterable";
+} from "../src/directories.js";
+import { allElements, allElementsSync } from "../src/iterable.js";
 
 const resolvedPath = (path: string): string => resolve(path);
 const resolvedPaths = (...paths: string[]): string[] => paths.map(resolvedPath);

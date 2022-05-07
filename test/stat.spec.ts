@@ -1,7 +1,7 @@
 import { rejects } from "assert";
 import { assert } from "chai";
 
-import * as mock from "mock-fs";
+import mock from "mock-fs";
 
 import {
   isDirectory,
@@ -10,7 +10,7 @@ import {
   isFileSync,
   isSafeStat,
   isSafeStatSync,
-} from "../src/stat";
+} from "../src/stat.js";
 
 describe("stat", () => {
   describe("isSafeStat", () => {

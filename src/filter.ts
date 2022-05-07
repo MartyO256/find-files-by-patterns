@@ -38,16 +38,16 @@ export type FilterCompounderSync = <T>(
  * @param filters The filters to combine in conjunction.
  * @returns The logical conjunction of the given tests.
  */
-export const conjunction: FilterCompounder = <T>(
-  filters: Array<Filter<T> | FilterSync<T>>,
-): Filter<T> => async (element: T): Promise<boolean> => {
-  for (const filter of filters) {
-    if (!(await filter(element))) {
-      return false;
+export const conjunction: FilterCompounder =
+  <T>(filters: Array<Filter<T> | FilterSync<T>>): Filter<T> =>
+  async (element: T): Promise<boolean> => {
+    for (const filter of filters) {
+      if (!(await filter(element))) {
+        return false;
+      }
     }
-  }
-  return true;
-};
+    return true;
+  };
 
 /**
  * A conjunction is a filter which combines a given array of filters using
@@ -57,16 +57,16 @@ export const conjunction: FilterCompounder = <T>(
  * @param filters The filters to combine in conjunction.
  * @returns The logical conjunction of the given tests.
  */
-export const conjunctionSync: FilterCompounderSync = <T>(
-  filters: Array<FilterSync<T>>,
-): FilterSync<T> => (element: T): boolean => {
-  for (const filter of filters) {
-    if (!filter(element)) {
-      return false;
+export const conjunctionSync: FilterCompounderSync =
+  <T>(filters: Array<FilterSync<T>>): FilterSync<T> =>
+  (element: T): boolean => {
+    for (const filter of filters) {
+      if (!filter(element)) {
+        return false;
+      }
     }
-  }
-  return true;
-};
+    return true;
+  };
 
 /**
  * A disjunction is a filter which combines a given array of filters using
@@ -76,16 +76,16 @@ export const conjunctionSync: FilterCompounderSync = <T>(
  * @param filters The filters to combine in disjunction.
  * @returns The logical disjunction of the given tests.
  */
-export const disjunction: FilterCompounder = <T>(
-  filters: Array<Filter<T> | FilterSync<T>>,
-): Filter<T> => async (element: T): Promise<boolean> => {
-  for (const filter of filters) {
-    if (await filter(element)) {
-      return true;
+export const disjunction: FilterCompounder =
+  <T>(filters: Array<Filter<T> | FilterSync<T>>): Filter<T> =>
+  async (element: T): Promise<boolean> => {
+    for (const filter of filters) {
+      if (await filter(element)) {
+        return true;
+      }
     }
-  }
-  return false;
-};
+    return false;
+  };
 
 /**
  * A disjunction is a filter which combines a given array of filters using
@@ -96,16 +96,16 @@ export const disjunction: FilterCompounder = <T>(
  * @returns The logical disjunction of the given tests.
  */
 
-export const disjunctionSync: FilterCompounderSync = <T>(
-  filters: Array<FilterSync<T>>,
-): FilterSync<T> => (element: T): boolean => {
-  for (const filter of filters) {
-    if (filter(element)) {
-      return true;
+export const disjunctionSync: FilterCompounderSync =
+  <T>(filters: Array<FilterSync<T>>): FilterSync<T> =>
+  (element: T): boolean => {
+    for (const filter of filters) {
+      if (filter(element)) {
+        return true;
+      }
     }
-  }
-  return false;
-};
+    return false;
+  };
 
 /**
  * Filters out elements of an iterable which don't pass a given filter.

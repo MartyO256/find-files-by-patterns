@@ -10,8 +10,8 @@ import {
   Filter,
   FilterSync,
   filterSync,
-} from "../src/filter";
-import { allElements } from "../src/iterable";
+} from "../src/filter.js";
+import { allElements } from "../src/iterable.js";
 
 describe("filter", () => {
   const isEvenSync: FilterSync<number> = (element: number) => element % 2 === 0;

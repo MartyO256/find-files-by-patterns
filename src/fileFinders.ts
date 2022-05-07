@@ -5,7 +5,7 @@ import {
   filter,
   FilterSync,
   filterSync,
-} from "./filter";
+} from "./filter.js";
 import {
   allElements,
   allElementsSync,
@@ -13,8 +13,8 @@ import {
   firstElementSync,
   onlyElement,
   onlyElementSync,
-} from "./iterable";
-import { readdir, readdirs, readdirsSync, readdirSync } from "./readdirs";
+} from "./iterable.js";
+import { readdir, readdirs, readdirsSync, readdirSync } from "./readdirs.js";
 
 /**
  * Handles the function overload of asynchronous file finders. Converts a string

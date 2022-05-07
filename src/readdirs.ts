@@ -2,7 +2,7 @@ import { readdir as fsReaddir, readdirSync as fsReaddirSync } from "fs";
 import { join, resolve } from "path";
 import { promisify } from "util";
 
-import { multiMap, multiMapSync, simpleMap, simpleMapSync } from "./map";
+import { multiMap, multiMapSync, simpleMap, simpleMapSync } from "./map.js";
 
 const readdirPromise = promisify(fsReaddir);
 

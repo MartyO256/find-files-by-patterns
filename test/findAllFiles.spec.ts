@@ -1,12 +1,12 @@
 import { rejects } from "assert";
 import { assert } from "chai";
 
-import * as mock from "mock-fs";
+import mock from "mock-fs";
 import { resolve } from "path";
 
-import { findAllFiles, findAllFilesSync } from "../src/fileFinders";
-import { Filter, FilterSync } from "../src/filter";
-import { ofBasename } from "../src/path";
+import { findAllFiles, findAllFilesSync } from "../src/fileFinders.js";
+import { Filter, FilterSync } from "../src/filter.js";
+import { ofBasename } from "../src/path.js";
 
 const error: Filter<string> = async () => {
   throw new Error();

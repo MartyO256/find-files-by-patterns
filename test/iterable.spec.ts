@@ -10,7 +10,7 @@ import {
   isIterable,
   onlyElement,
   onlyElementSync,
-} from "../src/iterable";
+} from "../src/iterable.js";
 
 describe("iterable", () => {
   describe("isIterable", () => {

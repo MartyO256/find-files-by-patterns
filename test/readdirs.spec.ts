@@ -1,12 +1,17 @@
 import { rejects } from "assert";
 import { assert } from "chai";
 
-import * as mock from "mock-fs";
+import mock from "mock-fs";
 
 import { resolve } from "path";
 
-import { allElements } from "../src/iterable";
-import { readdir, readdirs, readdirsSync, readdirSync } from "../src/readdirs";
+import { allElements } from "../src/iterable.js";
+import {
+  readdir,
+  readdirs,
+  readdirsSync,
+  readdirSync,
+} from "../src/readdirs.js";
 
 describe("readdirs", () => {
   const resolvedPaths = (...paths: string[]): string[] =>

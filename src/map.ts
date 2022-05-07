@@ -1,4 +1,4 @@
-import { isAsyncIterable, isIterable } from "./iterable";
+import { isAsyncIterable, isIterable } from "./iterable.js";
 
 /**
  * Maps the elements of an iterable using a simple mapping function.
