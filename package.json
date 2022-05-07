@@ -32,7 +32,7 @@
     "doc": "typedoc --out ./doc/ ./src",
     "test": "mocha",
     "test:watch": "mocha --watch-extensions ts --watch",
-    "coverage": "nyc npm run test"
+    "coverage": "c8 --reporter text --reporter lcov npm run test"
   },
   "keywords": [
     "find-files",
@@ -53,6 +53,7 @@
     "@types/node": "^12.20.50",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
+    "c8": "^7.11.2",
     "chai": "^4.3.6",
     "coveralls": "^3.1.1",
     "eslint": "^8.15.0",
@@ -62,7 +63,6 @@
     "markdownlint-cli": "^0.31.1",
     "mocha": "^10.0.0",
     "mock-fs": "^5.1.2",
-    "nyc": "^15.1.0",
     "prettier": "^2.6.2",
     "source-map-support": "^0.5.21",
     "ts-node": "^10.7.0",
