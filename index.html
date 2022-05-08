@@ -1,1008 +1,465 @@
-<!doctype html>
-<html class="default no-js">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>find-files-by-patterns</title>
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
-</head>
-<body>
-<header>
-	<div class="tsd-page-toolbar">
-		<div class="container">
-			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
-					<div class="field">
-						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
-						<input id="tsd-search-field" type="text" />
-					</div>
-					<ul class="results">
-						<li class="state loading">Preparing search index...</li>
-						<li class="state failure">The search index is not available</li>
-					</ul>
-					<a href="index.html" class="title">find-files-by-patterns</a>
-				</div>
-				<div class="table-cell" id="tsd-widgets">
-					<div id="tsd-filter">
-						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
-						<div class="tsd-filter-group">
-							<div class="tsd-select" id="tsd-filter-visibility">
-								<span class="tsd-select-label">All</span>
-								<ul class="tsd-select-list">
-									<li data-value="public">Public</li>
-									<li data-value="protected">Public/Protected</li>
-									<li data-value="private" class="selected">All</li>
-								</ul>
-							</div>
-							<input type="checkbox" id="tsd-filter-inherited" checked />
-							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
-						</div>
-					</div>
-					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="tsd-page-title">
-		<div class="container">
-			<ul class="tsd-breadcrumb">
-				<li>
-					<a href="globals.html">Globals</a>
-				</li>
-			</ul>
-			<h1>find-files-by-patterns</h1>
-		</div>
-	</div>
-</header>
-<div class="container container-main">
-	<div class="row">
-		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<a href="#find-files-by-patterns" id="find-files-by-patterns" style="color: inherit; text-decoration: none;">
-					<h1>find-files-by-patterns</h1>
-				</a>
-				<p><a href="https://www.npmjs.com/package/find-files-by-patterns"><img src="https://img.shields.io/npm/v/find-files-by-patterns.svg" alt="npm Information Page"></a>
-					<img src="https://img.shields.io/badge/node-%3E%3D%2010.0.0-green.svg" alt="Node Version">
-					<a href="https://martyo256.github.io/find-files-by-patterns/"><img src="https://img.shields.io/website-up-down-green-red/https/martyo256.github.io/find-files-by-patterns.svg?label=documentation" alt="Documentation"></a>
-					<a href="https://travis-ci.org/MartyO256/find-files-by-patterns"><img src="https://travis-ci.org/MartyO256/find-files-by-patterns.svg" alt="Build Status"></a>
-					<a href="https://coveralls.io/github/MartyO256/find-files-by-patterns?branch=development"><img src="https://coveralls.io/repos/github/MartyO256/find-files-by-patterns/badge.svg" alt="Coverage Status"></a>
-					<a href="https://codeclimate.com/github/MartyO256/find-files-by-patterns/maintainability"><img src="https://api.codeclimate.com/v1/badges/6d2069677a848c509e3a/maintainability" alt="Maintainability"></a>
-				<a href="http://opensource.org/licenses/MIT"><img src="http://img.shields.io/badge/license-MIT-brightgreen.svg" alt="MIT license"></a></p>
-				<hr>
-				<p>Use the iteration protocol to find files upwards and downwards in the file
-				system.</p>
-				<hr>
-				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
-					<h2>Installation</h2>
-				</a>
-				<p>Using npm:</p>
-				<pre><code class="language-sh">npm install find-files-by-patterns</code></pre>
-				<p>Assuming this file system, where the current working directory is
-				<code>/Documents/project</code>:</p>
-				<pre><code class="language-plaintext">/
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>find-files-by-patterns</title><meta name="description" content="Documentation for find-files-by-patterns"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">find-files-by-patterns</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>find-files-by-patterns </h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#find-files-by-patterns" id="find-files-by-patterns" style="color: inherit; text-decoration: none;">
+  <h1>find-files-by-patterns</h1>
+</a>
+<p><a href="https://www.npmjs.com/package/find-files-by-patterns"><img src="https://img.shields.io/npm/v/find-files-by-patterns.svg" alt="npm Information Page"></a>
+<img src="https://img.shields.io/badge/node-%3E%3D%2010.0.0-green.svg" alt="Node Version">
+<a href="https://martyo256.github.io/find-files-by-patterns/"><img src="https://img.shields.io/website-up-down-green-red/https/martyo256.github.io/find-files-by-patterns.svg?label=documentation" alt="Documentation"></a>
+<a href="https://coveralls.io/github/MartyO256/find-files-by-patterns?branch=development"><img src="https://coveralls.io/repos/github/MartyO256/find-files-by-patterns/badge.svg" alt="Coverage Status"></a>
+<a href="https://codeclimate.com/github/MartyO256/find-files-by-patterns/maintainability"><img src="https://api.codeclimate.com/v1/badges/6d2069677a848c509e3a/maintainability" alt="Maintainability"></a>
+<a href="http://opensource.org/licenses/MIT"><img src="http://img.shields.io/badge/license-MIT-brightgreen.svg" alt="MIT license"></a></p>
+<hr>
+<p>Use the iterator pattern to find files upwards and downwards in the file system.</p>
+<hr>
+
+<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+  <h2>Installation</h2>
+</a>
+<p>Using npm:</p>
+<pre><code class="language-sh"><span class="hl-0">npm install find-files-by-patterns</span>
+</code></pre>
+<p>Assuming this file system, where the current working directory is
+<code>/Documents/project</code>:</p>
+<pre><code class="language-plaintext">/
 └── Documents
     ├── data.csv
     └── project
         ├── node_modules
-        └── package.json</code></pre>
-				<p>In Node.js:</p>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> { findFile, upwardDirectories,
-  ofBasename, downwardFiles } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"find-files-by-patterns"</span>);
-
-<span class="hljs-function">(<span class="hljs-params"><span class="hljs-keyword">async</span> (</span>) =&gt;</span> {
-  <span class="hljs-keyword">const</span> dataFile = <span class="hljs-keyword">await</span> findFile(upwardDirectories(), ofBasename(<span class="hljs-string">"data.csv"</span>));
-  <span class="hljs-built_in">console</span>.log(dataFile); <span class="hljs-comment">//=&gt; `/Documents/data.csv`</span>
-
-  <span class="hljs-keyword">for</span> <span class="hljs-keyword">await</span> (<span class="hljs-keyword">const</span> file <span class="hljs-keyword">of</span> downwardFiles(<span class="hljs-string">"/Documents"</span>)) {
-    <span class="hljs-built_in">console</span>.log(file);
-  }
-  <span class="hljs-comment">//=&gt; `/Documents/data.csv`</span>
-  <span class="hljs-comment">//=&gt; `/Documents/project`</span>
-  <span class="hljs-comment">//=&gt; `/Documents/project/node_modules` ...</span>
-  <span class="hljs-comment">//=&gt; `/Documents/project/package.json`</span>
-})();
+        └── package.json
 </code></pre>
-				<a href="#table-of-contents" id="table-of-contents" style="color: inherit; text-decoration: none;">
-					<h2>Table of Contents</h2>
-				</a>
-				<details>
-					<!-- toc -->
-					<ul>
-						<li><a href="#api">API</a><ul>
-								<li><a href="#findfile-and-findfilesync"><code>findFile</code> and <code>findFileSync</code></a></li>
-								<li><a href="#findallfiles-and-findallfilessync"><code>findAllFiles</code> and <code>findAllFilesSync</code></a></li>
-								<li><a href="#findonlyfile-and-findonlyfilesync"><code>findOnlyFile</code> and <code>findOnlyFileSync</code></a></li>
-								<li><a href="#downwarddirectories-and-downwarddirectoriessync"><code>downwardDirectories</code> and <code>downwardDirectoriesSync</code></a></li>
-								<li><a href="#upwarddirectories-and-upwarddirectoriessync"><code>upwardDirectories</code> and <code>upwardDirectoriesSync</code></a></li>
-								<li><a href="#downwardfiles-and-downwardfilessync"><code>downwardFiles</code> and <code>downwardFilesSync</code></a></li>
-								<li><a href="#upwardfiles-and-upwardfilessync"><code>upwardFiles</code> and <code>upwardFilesSync</code></a></li>
-								<li><a href="#ofbasename-ofname-ofdirname-and-ofextname"><code>ofBasename</code>, <code>ofName</code>, <code>ofDirname</code> and <code>ofExtname</code></a></li>
-								<li><a href="#haspathsegments"><code>hasPathSegments</code></a></li>
-								<li><a href="#isfile-and-isfilesync"><code>isFile</code> and <code>isFileSync</code></a></li>
-								<li><a href="#isdirectory-and-isdirectorysync"><code>isDirectory</code> and <code>isDirectorySync</code></a></li>
-								<li><a href="#hasfile-and-hasfilesync"><code>hasFile</code> and <code>hasFileSync</code></a></li>
-								<li><a href="#readdir-and-readdirsync"><code>readdir</code> and <code>readdirSync</code></a></li>
-								<li><a href="#readdirs-and-readdirssync"><code>readdirs</code> and <code>readdirsSync</code></a></li>
-								<li><a href="#filter-and-filtersync"><code>filter</code> and <code>filterSync</code></a></li>
-								<li><a href="#conjunction-and-conjunctionsync"><code>conjunction</code> and <code>conjunctionSync</code></a></li>
-								<li><a href="#disjunction-and-disjunctionsync"><code>disjunction</code> and <code>disjunctionSync</code></a></li>
-								<li><a href="#allelements-and-allelementssync"><code>allElements</code> and <code>allElementsSync</code></a></li>
-								<li><a href="#firstelement-and-firstelementsync"><code>firstElement</code> and <code>firstElementSync</code></a></li>
-								<li><a href="#onlyelement-and-onlyelementsync"><code>onlyElement</code> and <code>onlyElementSync</code></a></li>
-							</ul>
-						</li>
-						<li><a href="#about">About</a><ul>
-								<li><a href="#building-the-documentation">Building the documentation</a></li>
-								<li><a href="#running-the-tests">Running the tests</a></li>
-								<li><a href="#building-the-library">Building the library</a></li>
-								<li><a href="#authors">Authors</a></li>
-								<li><a href="#license">License</a></li>
-							</ul>
-						</li>
-					</ul>
-					<!-- tocstop -->
-				</details>
-				<a href="#api" id="api" style="color: inherit; text-decoration: none;">
-					<h2>API</h2>
-				</a>
-				<details>
-					<summary>Complete list of exported functions</summary>
-					<p>Finders:</p>
-					<ul>
-						<li><a href="#findFile-and-findFileSync"><code>findFile</code> and <code>findFileSync</code></a></li>
-						<li><a href="#findAllFiles-and-findAllFilesSync"><code>findAllFiles</code> and <code>findAllFilesSync</code></a></li>
-						<li><a href="#findOnlyFile-and-findOnlyFileSync"><code>findOnlyFile</code> and <code>findOnlyFileSync</code></a></li>
-					</ul>
-					<p>Files:</p>
-					<ul>
-						<li><a href="#downwardFiles-and-downwardFilesSync"><code>downwardFiles</code> and <code>downwardFilesSync</code></a></li>
-						<li><a href="#upwardFiles-and-upwardFilesSync"><code>upwardFiles</code> and <code>upwardFilesSync</code></a></li>
-					</ul>
-					<p>Directories:</p>
-					<ul>
-						<li><a href="#downwardDirectories-and-downwardDirectoriesSync"><code>downwardDirectories</code> and <code>downwardDirectoriesSync</code></a></li>
-						<li><a href="#upwardDirectories-and-upwardDirectoriesSync"><code>upwardDirectories</code> and <code>upwardDirectoriesSync</code></a></li>
-					</ul>
-					<p>Filters:</p>
-					<ul>
-						<li><a href="#ofBasename-ofName-ofDirname-and-ofExtname"><code>ofBasename</code>, <code>ofName</code>, <code>ofDirname</code> and <code>ofExtname</code></a></li>
-						<li><a href="#hasPathSegments"><code>hasPathSegments</code></a></li>
-						<li><a href="#isFile-and-isFileSync"><code>isFile</code> and <code>isFileSync</code></a></li>
-						<li><a href="#isDirectory-and-isDirectorySync"><code>isDirectory</code> and <code>isDirectorySync</code></a></li>
-						<li><a href="#hasFile-and-hasFileSync"><code>hasFile</code> and <code>hasFileSync</code></a></li>
-						<li><a href="#conjunction-and-conjunctionSync"><code>conjunction</code> and <code>conjunctionSync</code></a></li>
-						<li><a href="#disjunction-and-disjunctionSync"><code>disjunction</code> and <code>disjunctionSync</code></a></li>
-					</ul>
-					<p>Iterable <code>readdir</code>:</p>
-					<ul>
-						<li><a href="#readdir-and-readdirSync"><code>readdir</code> and <code>readdirSync</code></a></li>
-						<li><a href="#readdirs-and-readdirsSync"><code>readdirs</code> and <code>readdirsSync</code></a></li>
-					</ul>
-					<p>Iterable utilities:</p>
-					<ul>
-						<li><a href="#filter-and-filterSync"><code>filter</code> and <code>filterSync</code></a></li>
-						<li><a href="#allElements-and-allElementsSync"><code>allElements</code> and <code>allElementsSync</code></a></li>
-						<li><a href="#firstElement-and-firstElementSync"><code>firstElement</code> and <code>firstElementSync</code></a></li>
-						<li><a href="#onlyElement-and-onlyElementSync"><code>onlyElement</code> and <code>onlyElementSync</code></a></li>
-					</ul>
-				</details>
-				<a href="#codefindfilecode-and-codefindfilesynccode" id="codefindfilecode-and-codefindfilesynccode" style="color: inherit; text-decoration: none;">
-					<h3><code>findFile</code> and <code>findFileSync</code></h3>
-				</a>
-				<p>Finds the first file that matches all of the given filters in the given
-					directories.
-				If no directory is supplied, then the current working directory is read.</p>
-				<blockquote>
-					<p>Specifications</p>
-				</blockquote>
-				<pre><code class="language-ts"><span class="hljs-keyword">type</span> Filter&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">boolean</span>&gt;;
-<span class="hljs-keyword">type</span> FilterSync&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>;
+<p>In Node.js:</p>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> { </span><span class="hl-2">findFile</span><span class="hl-0">, </span><span class="hl-2">upwardDirectories</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-2">ofBasename</span><span class="hl-0">, </span><span class="hl-2">downwardFiles</span><span class="hl-0"> } = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&quot;find-files-by-patterns&quot;</span><span class="hl-0">);</span><br/><br/><span class="hl-0">(</span><span class="hl-1">async</span><span class="hl-0"> () </span><span class="hl-1">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">dataFile</span><span class="hl-0"> = </span><span class="hl-5">await</span><span class="hl-0"> </span><span class="hl-3">findFile</span><span class="hl-0">(</span><span class="hl-3">upwardDirectories</span><span class="hl-0">(), </span><span class="hl-3">ofBasename</span><span class="hl-0">(</span><span class="hl-4">&quot;data.csv&quot;</span><span class="hl-0">));</span><br/><span class="hl-0">  </span><span class="hl-6">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-6">dataFile</span><span class="hl-0">); </span><span class="hl-7">//=&gt; `/Documents/data.csv`</span><br/><br/><span class="hl-0">  </span><span class="hl-5">for</span><span class="hl-0"> </span><span class="hl-5">await</span><span class="hl-0"> (</span><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">file</span><span class="hl-0"> </span><span class="hl-1">of</span><span class="hl-0"> </span><span class="hl-3">downwardFiles</span><span class="hl-0">(</span><span class="hl-4">&quot;/Documents&quot;</span><span class="hl-0">)) {</span><br/><span class="hl-0">    </span><span class="hl-6">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-6">file</span><span class="hl-0">);</span><br/><span class="hl-0">  }</span><br/><span class="hl-0">  </span><span class="hl-7">//=&gt; `/Documents/data.csv`</span><br/><span class="hl-0">  </span><span class="hl-7">//=&gt; `/Documents/project`</span><br/><span class="hl-0">  </span><span class="hl-7">//=&gt; `/Documents/project/node_modules` ...</span><br/><span class="hl-0">  </span><span class="hl-7">//=&gt; `/Documents/project/package.json`</span><br/><span class="hl-0">})();</span><br/>
+</code></pre>
 
-findFile(
-  ...tests: <span class="hljs-built_in">Array</span>&lt;Filter&lt;<span class="hljs-built_in">string</span>&gt; | FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;
-): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>&gt;;
+<a href="#table-of-contents" id="table-of-contents" style="color: inherit; text-decoration: none;">
+  <h2>Table of Contents</h2>
+</a>
+<details>
 
-findFile(
-  directories: <span class="hljs-built_in">string</span> | AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt; | Iterable&lt;<span class="hljs-built_in">string</span>&gt;,
-  ...tests: <span class="hljs-built_in">Array</span>&lt;Filter&lt;<span class="hljs-built_in">string</span>&gt; | FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;
-): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>&gt;;
+<!-- toc -->
 
-findFileSync(...tests: <span class="hljs-built_in">Array</span>&lt;FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;): <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>;
+<ul>
+<li><a href="#api">API</a><ul>
+<li><a href="#findfile-and-findfilesync"><code>findFile</code> and <code>findFileSync</code></a></li>
+<li><a href="#findallfiles-and-findallfilessync"><code>findAllFiles</code> and <code>findAllFilesSync</code></a></li>
+<li><a href="#findonlyfile-and-findonlyfilesync"><code>findOnlyFile</code> and <code>findOnlyFileSync</code></a></li>
+<li><a href="#downwarddirectories-and-downwarddirectoriessync"><code>downwardDirectories</code> and <code>downwardDirectoriesSync</code></a></li>
+<li><a href="#upwarddirectories-and-upwarddirectoriessync"><code>upwardDirectories</code> and <code>upwardDirectoriesSync</code></a></li>
+<li><a href="#downwardfiles-and-downwardfilessync"><code>downwardFiles</code> and <code>downwardFilesSync</code></a></li>
+<li><a href="#upwardfiles-and-upwardfilessync"><code>upwardFiles</code> and <code>upwardFilesSync</code></a></li>
+<li><a href="#ofbasename-ofname-ofdirname-and-ofextname"><code>ofBasename</code>, <code>ofName</code>, <code>ofDirname</code> and <code>ofExtname</code></a></li>
+<li><a href="#haspathsegments"><code>hasPathSegments</code></a></li>
+<li><a href="#isfile-and-isfilesync"><code>isFile</code> and <code>isFileSync</code></a></li>
+<li><a href="#isdirectory-and-isdirectorysync"><code>isDirectory</code> and <code>isDirectorySync</code></a></li>
+<li><a href="#hasfile-and-hasfilesync"><code>hasFile</code> and <code>hasFileSync</code></a></li>
+<li><a href="#readdir-and-readdirsync"><code>readdir</code> and <code>readdirSync</code></a></li>
+<li><a href="#readdirs-and-readdirssync"><code>readdirs</code> and <code>readdirsSync</code></a></li>
+<li><a href="#filter-and-filtersync"><code>filter</code> and <code>filterSync</code></a></li>
+<li><a href="#conjunction-and-conjunctionsync"><code>conjunction</code> and <code>conjunctionSync</code></a></li>
+<li><a href="#disjunction-and-disjunctionsync"><code>disjunction</code> and <code>disjunctionSync</code></a></li>
+<li><a href="#allelements-and-allelementssync"><code>allElements</code> and <code>allElementsSync</code></a></li>
+<li><a href="#firstelement-and-firstelementsync"><code>firstElement</code> and <code>firstElementSync</code></a></li>
+<li><a href="#onlyelement-and-onlyelementsync"><code>onlyElement</code> and <code>onlyElementSync</code></a></li>
+</ul>
+</li>
+<li><a href="#about">About</a><ul>
+<li><a href="#building-the-documentation">Building the documentation</a></li>
+<li><a href="#running-the-tests">Running the tests</a></li>
+<li><a href="#building-the-library">Building the library</a></li>
+<li><a href="#authors">Authors</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
 
-findFileSync(
-  directories: <span class="hljs-built_in">string</span> | Iterable&lt;<span class="hljs-built_in">string</span>&gt;,
-  ...tests: <span class="hljs-built_in">Array</span>&lt;FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;
-): <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>;</code></pre>
-				<a href="#codefindallfilescode-and-codefindallfilessynccode" id="codefindallfilescode-and-codefindallfilessynccode" style="color: inherit; text-decoration: none;">
-					<h3><code>findAllFiles</code> and <code>findAllFilesSync</code></h3>
-				</a>
-				<p>Finds all the files that match all of the given filters in the given
-					directories.
-				If no directory is supplied, then the current working directory is read.</p>
-				<blockquote>
-					<p>Specifications</p>
-				</blockquote>
-				<pre><code class="language-ts"><span class="hljs-keyword">type</span> Filter&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">boolean</span>&gt;;
-<span class="hljs-keyword">type</span> FilterSync&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>;
+</details>
 
-findAllFiles(
-  ...tests: <span class="hljs-built_in">Array</span>&lt;Filter&lt;<span class="hljs-built_in">string</span>&gt; | FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;
-): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">string</span>[]&gt;;
 
-findAllFiles(
-  directories: <span class="hljs-built_in">string</span> | AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt; | Iterable&lt;<span class="hljs-built_in">string</span>&gt;,
-  ...tests: <span class="hljs-built_in">Array</span>&lt;Filter&lt;<span class="hljs-built_in">string</span>&gt; | FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;
-): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">string</span>[]&gt;;
+<a href="#api" id="api" style="color: inherit; text-decoration: none;">
+  <h2>API</h2>
+</a>
+<details>
 
-findAllFilesSync(...tests: <span class="hljs-built_in">Array</span>&lt;FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;): <span class="hljs-built_in">string</span>[];
+<summary>Complete list of exported functions</summary>
 
-findAllFilesSync(
-  directories: <span class="hljs-built_in">string</span> | Iterable&lt;<span class="hljs-built_in">string</span>&gt;,
-  ...tests: <span class="hljs-built_in">Array</span>&lt;FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;
-): <span class="hljs-built_in">string</span>[];</code></pre>
-				<a href="#codefindonlyfilecode-and-codefindonlyfilesynccode" id="codefindonlyfilecode-and-codefindonlyfilesynccode" style="color: inherit; text-decoration: none;">
-					<h3><code>findOnlyFile</code> and <code>findOnlyFileSync</code></h3>
-				</a>
-				<p>Finds the first and only file in its directory that matches all of the given
-					filters.
-				If no directory is supplied, then the current working directory is read.</p>
-				<blockquote>
-					<p>Specifications</p>
-				</blockquote>
-				<pre><code class="language-ts"><span class="hljs-keyword">type</span> Filter&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">boolean</span>&gt;;
-<span class="hljs-keyword">type</span> FilterSync&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>;
+<p>Finders:</p>
+<ul>
+<li><a href="#findFile-and-findFileSync"><code>findFile</code> and <code>findFileSync</code></a></li>
+<li><a href="#findAllFiles-and-findAllFilesSync"><code>findAllFiles</code> and <code>findAllFilesSync</code></a></li>
+<li><a href="#findOnlyFile-and-findOnlyFileSync"><code>findOnlyFile</code> and <code>findOnlyFileSync</code></a></li>
+</ul>
+<p>Files:</p>
+<ul>
+<li><a href="#downwardFiles-and-downwardFilesSync"><code>downwardFiles</code> and <code>downwardFilesSync</code></a></li>
+<li><a href="#upwardFiles-and-upwardFilesSync"><code>upwardFiles</code> and <code>upwardFilesSync</code></a></li>
+</ul>
+<p>Directories:</p>
+<ul>
+<li><a href="#downwardDirectories-and-downwardDirectoriesSync"><code>downwardDirectories</code> and <code>downwardDirectoriesSync</code></a></li>
+<li><a href="#upwardDirectories-and-upwardDirectoriesSync"><code>upwardDirectories</code> and <code>upwardDirectoriesSync</code></a></li>
+</ul>
+<p>Filters:</p>
+<ul>
+<li><a href="#ofBasename-ofName-ofDirname-and-ofExtname"><code>ofBasename</code>, <code>ofName</code>, <code>ofDirname</code> and <code>ofExtname</code></a></li>
+<li><a href="#hasPathSegments"><code>hasPathSegments</code></a></li>
+<li><a href="#isFile-and-isFileSync"><code>isFile</code> and <code>isFileSync</code></a></li>
+<li><a href="#isDirectory-and-isDirectorySync"><code>isDirectory</code> and <code>isDirectorySync</code></a></li>
+<li><a href="#hasFile-and-hasFileSync"><code>hasFile</code> and <code>hasFileSync</code></a></li>
+<li><a href="#conjunction-and-conjunctionSync"><code>conjunction</code> and <code>conjunctionSync</code></a></li>
+<li><a href="#disjunction-and-disjunctionSync"><code>disjunction</code> and <code>disjunctionSync</code></a></li>
+</ul>
+<p>Iterable <code>readdir</code>:</p>
+<ul>
+<li><a href="#readdir-and-readdirSync"><code>readdir</code> and <code>readdirSync</code></a></li>
+<li><a href="#readdirs-and-readdirsSync"><code>readdirs</code> and <code>readdirsSync</code></a></li>
+</ul>
+<p>Iterable utilities:</p>
+<ul>
+<li><a href="#filter-and-filterSync"><code>filter</code> and <code>filterSync</code></a></li>
+<li><a href="#allElements-and-allElementsSync"><code>allElements</code> and <code>allElementsSync</code></a></li>
+<li><a href="#firstElement-and-firstElementSync"><code>firstElement</code> and <code>firstElementSync</code></a></li>
+<li><a href="#onlyElement-and-onlyElementSync"><code>onlyElement</code> and <code>onlyElementSync</code></a></li>
+</ul>
+</details>
 
-findOnlyFile(
-  ...tests: <span class="hljs-built_in">Array</span>&lt;Filter&lt;<span class="hljs-built_in">string</span>&gt; | FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;
-): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>&gt;;
 
-findOnlyFile(
-  directories: <span class="hljs-built_in">string</span> | AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt; | Iterable&lt;<span class="hljs-built_in">string</span>&gt;,
-  ...tests: <span class="hljs-built_in">Array</span>&lt;Filter&lt;<span class="hljs-built_in">string</span>&gt; | FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;
-): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>&gt;;
+<a href="#findfile-and-findfilesync" id="findfile-and-findfilesync" style="color: inherit; text-decoration: none;">
+  <h3><code>findFile</code> and <code>findFileSync</code></h3>
+</a>
+<p>Finds the first file that matches all of the given filters in the given
+directories.
+If no directory is supplied, then the current working directory is read.</p>
+<blockquote>
+<p>Specifications</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hl-1">type</span><span class="hl-0"> </span><span class="hl-8">Filter</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt; = (</span><span class="hl-6">element</span><span class="hl-0">: </span><span class="hl-8">T</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-8">Promise</span><span class="hl-0">&lt;</span><span class="hl-8">boolean</span><span class="hl-0">&gt;;</span><br/><span class="hl-1">type</span><span class="hl-0"> </span><span class="hl-8">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt; = (</span><span class="hl-6">element</span><span class="hl-0">: </span><span class="hl-8">T</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-8">boolean</span><span class="hl-0">;</span><br/><br/><span class="hl-3">findFile</span><span class="hl-0">(</span><br/><span class="hl-0">  ...</span><span class="hl-6">tests</span><span class="hl-0">: </span><span class="hl-8">Array</span><span class="hl-0">&lt;</span><span class="hl-6">Filter</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt; | </span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;&gt;</span><br/><span class="hl-0">): </span><span class="hl-8">Promise</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0"> | </span><span class="hl-1">null</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">findFile</span><span class="hl-0">(</span><br/><span class="hl-0">  </span><span class="hl-6">directories</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0"> | </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt; | </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;,</span><br/><span class="hl-0">  ...</span><span class="hl-6">tests</span><span class="hl-0">: </span><span class="hl-8">Array</span><span class="hl-0">&lt;</span><span class="hl-6">Filter</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt; | </span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;&gt;</span><br/><span class="hl-0">): </span><span class="hl-8">Promise</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0"> | </span><span class="hl-1">null</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">findFileSync</span><span class="hl-0">(...</span><span class="hl-6">tests</span><span class="hl-0">: </span><span class="hl-8">Array</span><span class="hl-0">&lt;</span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;&gt;): </span><span class="hl-6">string</span><span class="hl-0"> | </span><span class="hl-1">null</span><span class="hl-0">;</span><br/><br/><span class="hl-3">findFileSync</span><span class="hl-0">(</span><br/><span class="hl-0">  </span><span class="hl-6">directories</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0"> | </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;,</span><br/><span class="hl-0">  ...</span><span class="hl-6">tests</span><span class="hl-0">: </span><span class="hl-8">Array</span><span class="hl-0">&lt;</span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;&gt;</span><br/><span class="hl-0">): </span><span class="hl-6">string</span><span class="hl-0"> | </span><span class="hl-1">null</span><span class="hl-0">;</span>
+</code></pre>
 
-findOnlyFileSync(...tests: <span class="hljs-built_in">Array</span>&lt;FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;): <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>;
+<a href="#findallfiles-and-findallfilessync" id="findallfiles-and-findallfilessync" style="color: inherit; text-decoration: none;">
+  <h3><code>findAllFiles</code> and <code>findAllFilesSync</code></h3>
+</a>
+<p>Finds all the files that match all of the given filters in the given
+directories.
+If no directory is supplied, then the current working directory is read.</p>
+<blockquote>
+<p>Specifications</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hl-1">type</span><span class="hl-0"> </span><span class="hl-8">Filter</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt; = (</span><span class="hl-6">element</span><span class="hl-0">: </span><span class="hl-8">T</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-8">Promise</span><span class="hl-0">&lt;</span><span class="hl-8">boolean</span><span class="hl-0">&gt;;</span><br/><span class="hl-1">type</span><span class="hl-0"> </span><span class="hl-8">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt; = (</span><span class="hl-6">element</span><span class="hl-0">: </span><span class="hl-8">T</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-8">boolean</span><span class="hl-0">;</span><br/><br/><span class="hl-3">findAllFiles</span><span class="hl-0">(</span><br/><span class="hl-0">  ...</span><span class="hl-6">tests</span><span class="hl-0">: </span><span class="hl-8">Array</span><span class="hl-0">&lt;</span><span class="hl-6">Filter</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt; | </span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;&gt;</span><br/><span class="hl-0">): </span><span class="hl-8">Promise</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">[]&gt;;</span><br/><br/><span class="hl-3">findAllFiles</span><span class="hl-0">(</span><br/><span class="hl-0">  </span><span class="hl-6">directories</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0"> | </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt; | </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;,</span><br/><span class="hl-0">  ...</span><span class="hl-6">tests</span><span class="hl-0">: </span><span class="hl-8">Array</span><span class="hl-0">&lt;</span><span class="hl-6">Filter</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt; | </span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;&gt;</span><br/><span class="hl-0">): </span><span class="hl-8">Promise</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">[]&gt;;</span><br/><br/><span class="hl-3">findAllFilesSync</span><span class="hl-0">(...</span><span class="hl-6">tests</span><span class="hl-0">: </span><span class="hl-8">Array</span><span class="hl-0">&lt;</span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;&gt;): </span><span class="hl-6">string</span><span class="hl-0">[];</span><br/><br/><span class="hl-3">findAllFilesSync</span><span class="hl-0">(</span><br/><span class="hl-0">  </span><span class="hl-6">directories</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0"> | </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;,</span><br/><span class="hl-0">  ...</span><span class="hl-6">tests</span><span class="hl-0">: </span><span class="hl-8">Array</span><span class="hl-0">&lt;</span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;&gt;</span><br/><span class="hl-0">): </span><span class="hl-6">string</span><span class="hl-0">[];</span>
+</code></pre>
 
-findOnlyFileSync(
-  directories: <span class="hljs-built_in">string</span> | Iterable&lt;<span class="hljs-built_in">string</span>&gt;,
-  ...tests: <span class="hljs-built_in">Array</span>&lt;FilterSync&lt;<span class="hljs-built_in">string</span>&gt;&gt;
-): <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>;</code></pre>
-				<a href="#codedownwarddirectoriescode-and-codedownwarddirectoriessynccode" id="codedownwarddirectoriescode-and-codedownwarddirectoriessynccode" style="color: inherit; text-decoration: none;">
-					<h3><code>downwardDirectories</code> and <code>downwardDirectoriesSync</code></h3>
-				</a>
-				<p>Returns an iterable over the existing downward files from a start path. Symbolic
-				links are followed and handled such that no directory is traversed twice.</p>
-				<blockquote>
-					<p>Specifications</p>
-				</blockquote>
-				<pre><code class="language-ts">downwardDirectories(): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
+<a href="#findonlyfile-and-findonlyfilesync" id="findonlyfile-and-findonlyfilesync" style="color: inherit; text-decoration: none;">
+  <h3><code>findOnlyFile</code> and <code>findOnlyFileSync</code></h3>
+</a>
+<p>Finds the first and only file in its directory that matches all of the given
+filters.
+If no directory is supplied, then the current working directory is read.</p>
+<blockquote>
+<p>Specifications</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hl-1">type</span><span class="hl-0"> </span><span class="hl-8">Filter</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt; = (</span><span class="hl-6">element</span><span class="hl-0">: </span><span class="hl-8">T</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-8">Promise</span><span class="hl-0">&lt;</span><span class="hl-8">boolean</span><span class="hl-0">&gt;;</span><br/><span class="hl-1">type</span><span class="hl-0"> </span><span class="hl-8">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt; = (</span><span class="hl-6">element</span><span class="hl-0">: </span><span class="hl-8">T</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-8">boolean</span><span class="hl-0">;</span><br/><br/><span class="hl-3">findOnlyFile</span><span class="hl-0">(</span><br/><span class="hl-0">  ...</span><span class="hl-6">tests</span><span class="hl-0">: </span><span class="hl-8">Array</span><span class="hl-0">&lt;</span><span class="hl-6">Filter</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt; | </span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;&gt;</span><br/><span class="hl-0">): </span><span class="hl-8">Promise</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0"> | </span><span class="hl-1">null</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">findOnlyFile</span><span class="hl-0">(</span><br/><span class="hl-0">  </span><span class="hl-6">directories</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0"> | </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt; | </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;,</span><br/><span class="hl-0">  ...</span><span class="hl-6">tests</span><span class="hl-0">: </span><span class="hl-8">Array</span><span class="hl-0">&lt;</span><span class="hl-6">Filter</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt; | </span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;&gt;</span><br/><span class="hl-0">): </span><span class="hl-8">Promise</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0"> | </span><span class="hl-1">null</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">findOnlyFileSync</span><span class="hl-0">(...</span><span class="hl-6">tests</span><span class="hl-0">: </span><span class="hl-8">Array</span><span class="hl-0">&lt;</span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;&gt;): </span><span class="hl-6">string</span><span class="hl-0"> | </span><span class="hl-1">null</span><span class="hl-0">;</span><br/><br/><span class="hl-3">findOnlyFileSync</span><span class="hl-0">(</span><br/><span class="hl-0">  </span><span class="hl-6">directories</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0"> | </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;,</span><br/><span class="hl-0">  ...</span><span class="hl-6">tests</span><span class="hl-0">: </span><span class="hl-8">Array</span><span class="hl-0">&lt;</span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;&gt;</span><br/><span class="hl-0">): </span><span class="hl-6">string</span><span class="hl-0"> | </span><span class="hl-1">null</span><span class="hl-0">;</span>
+</code></pre>
 
-downwardDirectories(maximumDepth: <span class="hljs-built_in">number</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
-
-downwardDirectories(startDirectory: <span class="hljs-built_in">string</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
-
-downwardDirectories(startDirectory: <span class="hljs-built_in">string</span>,
-                    maximumDepth: <span class="hljs-built_in">number</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
-
-downwardDirectoriesSync(): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
-
-downwardDirectoriesSync(maximumDepth: <span class="hljs-built_in">number</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
-
-downwardDirectoriesSync(startDirectory: <span class="hljs-built_in">string</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
-
-downwardDirectoriesSync(startDirectory: <span class="hljs-built_in">string</span>,
-                        maximumDepth: <span class="hljs-built_in">number</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;</code></pre>
-				<blockquote>
-					<p>Example</p>
-				</blockquote>
-				<p>Assuming this file system, where the current working directory is <code>/Documents</code>:</p>
-				<pre><code class="language-plaintext">/
+<a href="#downwarddirectories-and-downwarddirectoriessync" id="downwarddirectories-and-downwarddirectoriessync" style="color: inherit; text-decoration: none;">
+  <h3><code>downwardDirectories</code> and <code>downwardDirectoriesSync</code></h3>
+</a>
+<p>Returns an iterable over the existing downward files from a start path. Symbolic
+links are followed and handled such that no directory is traversed twice.</p>
+<blockquote>
+<p>Specifications</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hl-3">downwardDirectories</span><span class="hl-0">(): </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">downwardDirectories</span><span class="hl-0">(</span><span class="hl-6">maximumDepth</span><span class="hl-0">: </span><span class="hl-6">number</span><span class="hl-0">): </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">downwardDirectories</span><span class="hl-0">(</span><span class="hl-6">startDirectory</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">): </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">downwardDirectories</span><span class="hl-0">(</span><span class="hl-6">startDirectory</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">,</span><br/><span class="hl-0">                    </span><span class="hl-6">maximumDepth</span><span class="hl-0">: </span><span class="hl-6">number</span><span class="hl-0">): </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">downwardDirectoriesSync</span><span class="hl-0">(): </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">downwardDirectoriesSync</span><span class="hl-0">(</span><span class="hl-6">maximumDepth</span><span class="hl-0">: </span><span class="hl-6">number</span><span class="hl-0">): </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">downwardDirectoriesSync</span><span class="hl-0">(</span><span class="hl-6">startDirectory</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">): </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">downwardDirectoriesSync</span><span class="hl-0">(</span><span class="hl-6">startDirectory</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">,</span><br/><span class="hl-0">                        </span><span class="hl-6">maximumDepth</span><span class="hl-0">: </span><span class="hl-6">number</span><span class="hl-0">): </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span>
+</code></pre>
+<blockquote>
+<p>Example</p>
+</blockquote>
+<p>Assuming this file system, where the current working directory is <code>/Documents</code>:</p>
+<pre><code class="language-plaintext">/
 └── Documents
     ├── Images
     |   └── image.jpeg
     └── project
         ├── node_modules
-        └── package.json</code></pre>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> { downwardDirectoriesSync } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"find-files-by-patterns"</span>);
+        └── package.json
+</code></pre>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> { </span><span class="hl-2">downwardDirectoriesSync</span><span class="hl-0"> } = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&quot;find-files-by-patterns&quot;</span><span class="hl-0">);</span><br/><br/><span class="hl-0">[</span><br/><span class="hl-0">  ...</span><span class="hl-3">downwardDirectoriesSync</span><span class="hl-0">()</span><br/><span class="hl-0">]; </span><span class="hl-7">/*=&gt; `[ &#39;/Documents/Images&#39;,</span><br/><span class="hl-7">           &#39;/Documents/project&#39;,</span><br/><span class="hl-7">           &#39;/Documents/project/node_modules&#39; ]`*/</span><br/><span class="hl-0">[...</span><span class="hl-3">downwardDirectoriesSync</span><span class="hl-0">(</span><span class="hl-9">1</span><span class="hl-0">)]; </span><span class="hl-7">/*=&gt; `[ &#39;/Documents/Images&#39;,</span><br/><span class="hl-7">                                         &#39;/Documents/project&#39; ]`*/</span><br/><span class="hl-0">[...</span><span class="hl-3">downwardDirectoriesSync</span><span class="hl-0">(</span><br/><span class="hl-0">  </span><span class="hl-4">&quot;/Documents/project&quot;</span><br/><span class="hl-0">)]; </span><span class="hl-7">//=&gt; `[ &#39;/Documents/project/node_modules&#39; ]`</span><br/><span class="hl-0">[...</span><span class="hl-3">downwardDirectoriesSync</span><span class="hl-0">(</span><br/><span class="hl-0">  </span><span class="hl-4">&quot;/Documents&quot;</span><span class="hl-0">, </span><span class="hl-9">1</span><br/><span class="hl-0">)]; </span><span class="hl-7">//=&gt; `[ &#39;/Documents/Images&#39;, &#39;/Documents/project&#39; ]`</span>
+</code></pre>
 
-[
-  ...downwardDirectoriesSync()
-]; <span class="hljs-comment">/*=&gt; `[ '/Documents/Images',
-           '/Documents/project',
-           '/Documents/project/node_modules' ]`*/</span>
-[...downwardDirectoriesSync(<span class="hljs-number">1</span>)]; <span class="hljs-comment">/*=&gt; `[ '/Documents/Images',
-                                         '/Documents/project' ]`*/</span>
-[...downwardDirectoriesSync(
-  <span class="hljs-string">"/Documents/project"</span>
-)]; <span class="hljs-comment">//=&gt; `[ '/Documents/project/node_modules' ]`</span>
-[...downwardDirectoriesSync(
-  <span class="hljs-string">"/Documents"</span>, <span class="hljs-number">1</span>
-)]; <span class="hljs-comment">//=&gt; `[ '/Documents/Images', '/Documents/project' ]`</span></code></pre>
-				<a href="#codeupwarddirectoriescode-and-codeupwarddirectoriessynccode" id="codeupwarddirectoriescode-and-codeupwarddirectoriessynccode" style="color: inherit; text-decoration: none;">
-					<h3><code>upwardDirectories</code> and <code>upwardDirectoriesSync</code></h3>
-				</a>
-				<p>Returns an iterable over the existing directories upwards from a start path.</p>
-				<blockquote>
-					<p>Specifications</p>
-				</blockquote>
-				<pre><code class="language-ts">upwardDirectories(): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
-
-upwardDirectories(startPath: <span class="hljs-built_in">string</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
-
-upwardDirectories(startPath: <span class="hljs-built_in">string</span>,
-                  maximumHeight: <span class="hljs-built_in">number</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
-
-upwardDirectories(startPath: <span class="hljs-built_in">string</span>, endPath: <span class="hljs-built_in">string</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
-
-upwardDirectoriesSync(): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
-
-upwardDirectoriesSync(startPath: <span class="hljs-built_in">string</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
-
-upwardDirectoriesSync(startPath: <span class="hljs-built_in">string</span>,
-                      maximumHeight: <span class="hljs-built_in">number</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
-
-upwardDirectoriesSync(startPath: <span class="hljs-built_in">string</span>, endPath: <span class="hljs-built_in">string</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;</code></pre>
-				<blockquote>
-					<p>Example</p>
-				</blockquote>
-				<p>Assuming this file system, where the current working directory is
-				<code>/Documents/project</code>:</p>
-				<pre><code class="language-plaintext">/
+<a href="#upwarddirectories-and-upwarddirectoriessync" id="upwarddirectories-and-upwarddirectoriessync" style="color: inherit; text-decoration: none;">
+  <h3><code>upwardDirectories</code> and <code>upwardDirectoriesSync</code></h3>
+</a>
+<p>Returns an iterable over the existing directories upwards from a start path.</p>
+<blockquote>
+<p>Specifications</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hl-3">upwardDirectories</span><span class="hl-0">(): </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">upwardDirectories</span><span class="hl-0">(</span><span class="hl-6">startPath</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">): </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">upwardDirectories</span><span class="hl-0">(</span><span class="hl-6">startPath</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">,</span><br/><span class="hl-0">                  </span><span class="hl-6">maximumHeight</span><span class="hl-0">: </span><span class="hl-6">number</span><span class="hl-0">): </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">upwardDirectories</span><span class="hl-0">(</span><span class="hl-6">startPath</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">, </span><span class="hl-6">endPath</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">): </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">upwardDirectoriesSync</span><span class="hl-0">(): </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">upwardDirectoriesSync</span><span class="hl-0">(</span><span class="hl-6">startPath</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">): </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">upwardDirectoriesSync</span><span class="hl-0">(</span><span class="hl-6">startPath</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">,</span><br/><span class="hl-0">                      </span><span class="hl-6">maximumHeight</span><span class="hl-0">: </span><span class="hl-6">number</span><span class="hl-0">): </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">upwardDirectoriesSync</span><span class="hl-0">(</span><span class="hl-6">startPath</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">, </span><span class="hl-6">endPath</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">): </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span>
+</code></pre>
+<blockquote>
+<p>Example</p>
+</blockquote>
+<p>Assuming this file system, where the current working directory is
+<code>/Documents/project</code>:</p>
+<pre><code class="language-plaintext">/
 └── Documents
     ├── Images
     |   └── image.jpeg
     └── project
         ├── node_modules
-        └── package.json</code></pre>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> { upwardDirectoriesSync } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"find-files-by-patterns"</span>);
+        └── package.json
+</code></pre>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> { </span><span class="hl-2">upwardDirectoriesSync</span><span class="hl-0"> } = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&quot;find-files-by-patterns&quot;</span><span class="hl-0">);</span><br/><br/><span class="hl-0">[...</span><span class="hl-3">upwardDirectoriesSync</span><span class="hl-0">()]; </span><span class="hl-7">//=&gt; `[ &#39;/Documents&#39;, &#39;/&#39; ]`</span><br/><span class="hl-0">[...</span><span class="hl-3">upwardDirectoriesSync</span><span class="hl-0">(</span><span class="hl-9">1</span><span class="hl-0">)]; </span><span class="hl-7">//=&gt; `[ &#39;/Documents&#39; ]`</span><br/><span class="hl-0">[...</span><span class="hl-3">upwardDirectoriesSync</span><span class="hl-0">(</span><br/><span class="hl-0">  </span><span class="hl-4">&quot;/Documents/Images/image.jpeg&quot;</span><br/><span class="hl-0">)]; </span><span class="hl-7">//=&gt; `[ &#39;/Documents/Images&#39;, &#39;/Documents&#39;, &#39;/&#39; ]`</span><br/><span class="hl-0">[...</span><span class="hl-3">upwardDirectoriesSync</span><span class="hl-0">(</span><br/><span class="hl-0">  </span><span class="hl-4">&quot;/Documents/Images/image.jpeg&quot;</span><span class="hl-0">, </span><span class="hl-9">2</span><br/><span class="hl-0">)]; </span><span class="hl-7">//=&gt; `[ &#39;/Documents/Images&#39;, &#39;/Documents&#39; ]`</span><br/><span class="hl-0">[...</span><span class="hl-3">upwardDirectoriesSync</span><span class="hl-0">(</span><br/><span class="hl-0">  </span><span class="hl-4">&quot;/Documents/Images/image.jpeg&quot;</span><span class="hl-0">, </span><span class="hl-4">&quot;/Documents&quot;</span><br/><span class="hl-0">)]; </span><span class="hl-7">//=&gt; `[ &#39;/Documents/Images&#39;, &#39;/Documents&#39; ]`</span>
+</code></pre>
 
-[...upwardDirectoriesSync()]; <span class="hljs-comment">//=&gt; `[ '/Documents', '/' ]`</span>
-[...upwardDirectoriesSync(<span class="hljs-number">1</span>)]; <span class="hljs-comment">//=&gt; `[ '/Documents' ]`</span>
-[...upwardDirectoriesSync(
-  <span class="hljs-string">"/Documents/Images/image.jpeg"</span>
-)]; <span class="hljs-comment">//=&gt; `[ '/Documents/Images', '/Documents', '/' ]`</span>
-[...upwardDirectoriesSync(
-  <span class="hljs-string">"/Documents/Images/image.jpeg"</span>, <span class="hljs-number">2</span>
-)]; <span class="hljs-comment">//=&gt; `[ '/Documents/Images', '/Documents' ]`</span>
-[...upwardDirectoriesSync(
-  <span class="hljs-string">"/Documents/Images/image.jpeg"</span>, <span class="hljs-string">"/Documents"</span>
-)]; <span class="hljs-comment">//=&gt; `[ '/Documents/Images', '/Documents' ]`</span></code></pre>
-				<a href="#codedownwardfilescode-and-codedownwardfilessynccode" id="codedownwardfilescode-and-codedownwardfilessynccode" style="color: inherit; text-decoration: none;">
-					<h3><code>downwardFiles</code> and <code>downwardFilesSync</code></h3>
-				</a>
-				<p>Returns and iterable over the files in each downward directory yielded by
-				<code>downwardDirectories</code> or <code>downwardDirectoriesSync</code>.</p>
-				<blockquote>
-					<p>Specifications</p>
-				</blockquote>
-				<pre><code class="language-ts">downwardFiles(): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
+<a href="#downwardfiles-and-downwardfilessync" id="downwardfiles-and-downwardfilessync" style="color: inherit; text-decoration: none;">
+  <h3><code>downwardFiles</code> and <code>downwardFilesSync</code></h3>
+</a>
+<p>Returns and iterable over the files in each downward directory yielded by
+<code>downwardDirectories</code> or <code>downwardDirectoriesSync</code>.</p>
+<blockquote>
+<p>Specifications</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hl-3">downwardFiles</span><span class="hl-0">(): </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">downwardFiles</span><span class="hl-0">(</span><span class="hl-6">maximumDepth</span><span class="hl-0">: </span><span class="hl-6">number</span><span class="hl-0">): </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">downwardFiles</span><span class="hl-0">(</span><span class="hl-6">startDirectory</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">): </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">downwardFiles</span><span class="hl-0">(</span><span class="hl-6">startDirectory</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">,</span><br/><span class="hl-0">              </span><span class="hl-6">maximumDepth</span><span class="hl-0">: </span><span class="hl-6">number</span><span class="hl-0">): </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">downwardFilesSync</span><span class="hl-0">(): </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">downwardFilesSync</span><span class="hl-0">(</span><span class="hl-6">maximumDepth</span><span class="hl-0">: </span><span class="hl-6">number</span><span class="hl-0">): </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">downwardFilesSync</span><span class="hl-0">(</span><span class="hl-6">startDirectory</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">): </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">downwardFilesSync</span><span class="hl-0">(</span><span class="hl-6">startDirectory</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">,</span><br/><span class="hl-0">                  </span><span class="hl-6">maximumDepth</span><span class="hl-0">: </span><span class="hl-6">number</span><span class="hl-0">): </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span>
+</code></pre>
 
-downwardFiles(maximumDepth: <span class="hljs-built_in">number</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
+<a href="#upwardfiles-and-upwardfilessync" id="upwardfiles-and-upwardfilessync" style="color: inherit; text-decoration: none;">
+  <h3><code>upwardFiles</code> and <code>upwardFilesSync</code></h3>
+</a>
+<p>Returns and iterable over the files in each upward directory yielded by
+<code>upwardDirectories</code> or <code>upwardDirectoriesSync</code>.</p>
+<blockquote>
+<p>Specifications</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hl-3">upwardFiles</span><span class="hl-0">(): </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">upwardFiles</span><span class="hl-0">(</span><span class="hl-6">startPath</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">): </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">upwardFiles</span><span class="hl-0">(</span><span class="hl-6">startPath</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">, </span><span class="hl-6">maximumHeight</span><span class="hl-0">: </span><span class="hl-6">number</span><span class="hl-0">): </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">upwardFiles</span><span class="hl-0">(</span><span class="hl-6">startPath</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">, </span><span class="hl-6">endPath</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">): </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">upwardFilesSync</span><span class="hl-0">(): </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">upwardFilesSync</span><span class="hl-0">(</span><span class="hl-6">startPath</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">): </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">upwardFilesSync</span><span class="hl-0">(</span><span class="hl-6">startPath</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">, </span><span class="hl-6">maximumHeight</span><span class="hl-0">: </span><span class="hl-6">number</span><span class="hl-0">): </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">upwardFilesSync</span><span class="hl-0">(</span><span class="hl-6">startPath</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">, </span><span class="hl-6">endPath</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">): </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span>
+</code></pre>
 
-downwardFiles(startDirectory: <span class="hljs-built_in">string</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
+<a href="#ofbasename-ofname-ofdirname-and-ofextname" id="ofbasename-ofname-ofdirname-and-ofextname" style="color: inherit; text-decoration: none;">
+  <h3><code>ofBasename</code>, <code>ofName</code>, <code>ofDirname</code> and <code>ofExtname</code></h3>
+</a>
+<p>Determines whether or not a path&#39;s <code>basename</code>, <code>name</code>, <code>dirname</code> or <code>extname</code>
+matches any of a sequence of segment testers.
+A segment tester can be a string, a regular expression or a function.</p>
+<ul>
+<li>If it is a string, then the segment must correspond to it for the path to
+match.</li>
+<li>If it is a regular expression, then the segment must test against it for the
+path to match.</li>
+<li>If it is a function, then the segment must make it return <code>true</code> for the path
+to match.</li>
+</ul>
+<blockquote>
+<p>Specifications</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hl-1">type</span><span class="hl-0"> </span><span class="hl-8">SegmentTester</span><span class="hl-0"> = </span><span class="hl-8">string</span><span class="hl-0"> | </span><span class="hl-8">RegExp</span><span class="hl-0"> | ((</span><span class="hl-6">segment</span><span class="hl-0">: </span><span class="hl-8">string</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-8">boolean</span><span class="hl-0">);</span><br/><br/><span class="hl-3">ofBasename</span><span class="hl-0">(...</span><span class="hl-6">tests</span><span class="hl-0">: </span><span class="hl-6">SegmentTester</span><span class="hl-0">[]): </span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">ofName</span><span class="hl-0">(...</span><span class="hl-6">tests</span><span class="hl-0">: </span><span class="hl-6">SegmentTester</span><span class="hl-0">[]): </span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">ofDirname</span><span class="hl-0">(...</span><span class="hl-6">tests</span><span class="hl-0">: </span><span class="hl-6">SegmentTester</span><span class="hl-0">[]): </span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">ofExtname</span><span class="hl-0">(...</span><span class="hl-6">tests</span><span class="hl-0">: </span><span class="hl-6">SegmentTester</span><span class="hl-0">[]): </span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span>
+</code></pre>
+<blockquote>
+<p>Example</p>
+</blockquote>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> { </span><span class="hl-2">ofBasename</span><span class="hl-0">, </span><span class="hl-2">ofName</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-2">ofDirname</span><span class="hl-0">, </span><span class="hl-2">ofExtname</span><span class="hl-0"> } = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&quot;find-files-by-patterns&quot;</span><span class="hl-0">);</span><br/><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">isMarkdownFile</span><span class="hl-0"> = </span><span class="hl-3">ofExtname</span><span class="hl-0">(</span><span class="hl-4">&quot;.md&quot;</span><span class="hl-0">, </span><span class="hl-4">&quot;.markdown&quot;</span><span class="hl-0">);</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">isIndexFile</span><span class="hl-0"> = </span><span class="hl-3">ofName</span><span class="hl-0">(</span><span class="hl-4">&quot;index&quot;</span><span class="hl-0">);</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">isDataFilename</span><span class="hl-0"> = </span><span class="hl-3">ofBasename</span><span class="hl-0">(</span><span class="hl-10">/</span><span class="hl-11">^</span><span class="hl-10">data/</span><span class="hl-0">);</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">isInDocuments</span><span class="hl-0"> = </span><span class="hl-3">ofDirname</span><span class="hl-0">(</span><span class="hl-4">&quot;/Documents&quot;</span><span class="hl-0">);</span><br/><br/><span class="hl-3">isMarkdownFile</span><span class="hl-0">(</span><span class="hl-4">&quot;/Documents/article.md&quot;</span><span class="hl-0">); </span><span class="hl-7">//=&gt; `true`</span><br/><span class="hl-3">isMarkdownFile</span><span class="hl-0">(</span><span class="hl-4">&quot;/Documents/data.json&quot;</span><span class="hl-0">); </span><span class="hl-7">//=&gt; `false`</span><br/><span class="hl-3">isIndexFile</span><span class="hl-0">(</span><span class="hl-4">&quot;/Documents/index.html&quot;</span><span class="hl-0">); </span><span class="hl-7">//=&gt; `true`</span><br/><span class="hl-3">isIndexFile</span><span class="hl-0">(</span><span class="hl-4">&quot;/Documents/index.md&quot;</span><span class="hl-0">); </span><span class="hl-7">//=&gt; `true`</span><br/><span class="hl-3">isDataFilename</span><span class="hl-0">(</span><span class="hl-4">&quot;/Documents/data.json&quot;</span><span class="hl-0">); </span><span class="hl-7">//=&gt; `true`</span><br/><span class="hl-3">isInDocuments</span><span class="hl-0">(</span><span class="hl-4">&quot;/Documents/data.json&quot;</span><span class="hl-0">); </span><span class="hl-7">//=&gt; `true`</span><br/><span class="hl-3">isInDocuments</span><span class="hl-0">(</span><span class="hl-4">&quot;/Documents/src/index.js&quot;</span><span class="hl-0">); </span><span class="hl-7">//=&gt; `false`</span>
+</code></pre>
 
-downwardFiles(startDirectory: <span class="hljs-built_in">string</span>,
-              maximumDepth: <span class="hljs-built_in">number</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
+<a href="#haspathsegments" id="haspathsegments" style="color: inherit; text-decoration: none;">
+  <h3><code>hasPathSegments</code></h3>
+</a>
+<p>Determines whether or not all the paths segments of a path match a sequence of
+segment testers.
+A segment tester can be a string, a regular expression or a function.</p>
+<ul>
+<li>If it is a string, then the segment must correspond to it for the path to
+match.</li>
+<li>If it is a regular expression, then the segment must test against it for the
+path to match.</li>
+<li>If it is a function, then the segment must make it return <code>true</code> for the path
+to match.</li>
+</ul>
+<blockquote>
+<p>Specifications</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hl-1">type</span><span class="hl-0"> </span><span class="hl-8">SegmentTester</span><span class="hl-0"> = </span><span class="hl-8">string</span><span class="hl-0"> | </span><span class="hl-8">RegExp</span><span class="hl-0"> | ((</span><span class="hl-6">segment</span><span class="hl-0">: </span><span class="hl-8">string</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-8">boolean</span><span class="hl-0">);</span><br/><br/><span class="hl-3">hasPathSegments</span><span class="hl-0">(...</span><span class="hl-6">tests</span><span class="hl-0">: </span><span class="hl-6">SegmentTester</span><span class="hl-0">[]): </span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span>
+</code></pre>
+<blockquote>
+<p>Example</p>
+</blockquote>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> { </span><span class="hl-2">hasPathSegments</span><span class="hl-0"> } = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&quot;find-files-by-patterns&quot;</span><span class="hl-0">);</span><br/><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">isIgnored</span><span class="hl-0"> = </span><span class="hl-3">hasPathSegments</span><span class="hl-0">(</span><span class="hl-6">segment</span><span class="hl-0"> </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-6">segment</span><span class="hl-0">.</span><span class="hl-3">startsWith</span><span class="hl-0">(</span><span class="hl-4">&quot;_&quot;</span><span class="hl-0">));</span><br/><br/><span class="hl-3">isIgnored</span><span class="hl-0">(</span><span class="hl-4">&quot;project/src/_ignored.json&quot;</span><span class="hl-0">); </span><span class="hl-7">//=&gt; `true`</span><br/><br/><span class="hl-3">isIgnored</span><span class="hl-0">(</span><span class="hl-4">&quot;project/_ignored/data.json&quot;</span><span class="hl-0">); </span><span class="hl-7">//=&gt; `true`</span><br/><br/><span class="hl-3">isIgnored</span><span class="hl-0">(</span><span class="hl-4">&quot;project/src/data.yaml&quot;</span><span class="hl-0">); </span><span class="hl-7">//=&gt; `false`</span>
+</code></pre>
 
-downwardFilesSync(): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
+<a href="#isfile-and-isfilesync" id="isfile-and-isfilesync" style="color: inherit; text-decoration: none;">
+  <h3><code>isFile</code> and <code>isFileSync</code></h3>
+</a>
+<p>Determines whether or not a path exists on the file system and is a file.</p>
+<blockquote>
+<p>Specifications</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hl-3">isFile</span><span class="hl-0">(</span><span class="hl-6">path</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">): </span><span class="hl-8">Promise</span><span class="hl-0">&lt;</span><span class="hl-6">boolean</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">isFileSync</span><span class="hl-0">(</span><span class="hl-6">path</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">): </span><span class="hl-6">boolean</span><span class="hl-0">;</span>
+</code></pre>
 
-downwardFilesSync(maximumDepth: <span class="hljs-built_in">number</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
+<a href="#isdirectory-and-isdirectorysync" id="isdirectory-and-isdirectorysync" style="color: inherit; text-decoration: none;">
+  <h3><code>isDirectory</code> and <code>isDirectorySync</code></h3>
+</a>
+<p>Determines whether or not a path exists on the file system and is a directory.</p>
+<blockquote>
+<p>Specifications</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hl-3">isDirectory</span><span class="hl-0">(</span><span class="hl-6">path</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">): </span><span class="hl-8">Promise</span><span class="hl-0">&lt;</span><span class="hl-6">boolean</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">isDirectorySync</span><span class="hl-0">(</span><span class="hl-6">path</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">): </span><span class="hl-6">boolean</span><span class="hl-0">;</span>
+</code></pre>
 
-downwardFilesSync(startDirectory: <span class="hljs-built_in">string</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
-
-downwardFilesSync(startDirectory: <span class="hljs-built_in">string</span>,
-                  maximumDepth: <span class="hljs-built_in">number</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;</code></pre>
-				<a href="#codeupwardfilescode-and-codeupwardfilessynccode" id="codeupwardfilescode-and-codeupwardfilessynccode" style="color: inherit; text-decoration: none;">
-					<h3><code>upwardFiles</code> and <code>upwardFilesSync</code></h3>
-				</a>
-				<p>Returns and iterable over the files in each upward directory yielded by
-				<code>upwardDirectories</code> or <code>upwardDirectoriesSync</code>.</p>
-				<blockquote>
-					<p>Specifications</p>
-				</blockquote>
-				<pre><code class="language-ts">upwardFiles(): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
-
-upwardFiles(startPath: <span class="hljs-built_in">string</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
-
-upwardFiles(startPath: <span class="hljs-built_in">string</span>, maximumHeight: <span class="hljs-built_in">number</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
-
-upwardFiles(startPath: <span class="hljs-built_in">string</span>, endPath: <span class="hljs-built_in">string</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
-
-upwardFilesSync(): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
-
-upwardFilesSync(startPath: <span class="hljs-built_in">string</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
-
-upwardFilesSync(startPath: <span class="hljs-built_in">string</span>, maximumHeight: <span class="hljs-built_in">number</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;
-
-upwardFilesSync(startPath: <span class="hljs-built_in">string</span>, endPath: <span class="hljs-built_in">string</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;</code></pre>
-				<a href="#codeofbasenamecode-codeofnamecode-codeofdirnamecode-and-codeofextnamecode" id="codeofbasenamecode-codeofnamecode-codeofdirnamecode-and-codeofextnamecode" style="color: inherit; text-decoration: none;">
-					<h3><code>ofBasename</code>, <code>ofName</code>, <code>ofDirname</code> and <code>ofExtname</code></h3>
-				</a>
-				<p>Determines whether or not a path&#39;s <code>basename</code>, <code>name</code>, <code>dirname</code> or <code>extname</code>
-					matches any of a sequence of segment testers.
-				A segment tester can be a string, a regular expression or a function.</p>
-				<ul>
-					<li>If it is a string, then the segment must correspond to it for the path to
-					match.</li>
-					<li>If it is a regular expression, then the segment must test against it for the
-					path to match.</li>
-					<li>If it is a function, then the segment must make it return <code>true</code> for the path
-					to match.</li>
-				</ul>
-				<blockquote>
-					<p>Specifications</p>
-				</blockquote>
-				<pre><code class="language-ts"><span class="hljs-keyword">type</span> SegmentTester = <span class="hljs-built_in">string</span> | <span class="hljs-built_in">RegExp</span> | <span class="hljs-function">(<span class="hljs-params">(<span class="hljs-params">segment: <span class="hljs-built_in">string</span></span>) =&gt; <span class="hljs-built_in">boolean</span></span>);
-
-<span class="hljs-params">ofBasename</span>(<span class="hljs-params">...tests: SegmentTester[]</span>): <span class="hljs-params">FilterSync</span>&lt;<span class="hljs-params">string</span>&gt;;
-
-<span class="hljs-params">ofName</span>(<span class="hljs-params">...tests: SegmentTester[]</span>): <span class="hljs-params">FilterSync</span>&lt;<span class="hljs-params">string</span>&gt;;
-
-<span class="hljs-params">ofDirname</span>(<span class="hljs-params">...tests: SegmentTester[]</span>): <span class="hljs-params">FilterSync</span>&lt;<span class="hljs-params">string</span>&gt;;
-
-<span class="hljs-params">ofExtname</span>(<span class="hljs-params">...tests: SegmentTester[]</span>): <span class="hljs-params">FilterSync</span>&lt;<span class="hljs-params">string</span>&gt;;</span></code></pre>
-				<blockquote>
-					<p>Example</p>
-				</blockquote>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> { ofBasename, ofName,
-        ofDirname, ofExtname } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"find-files-by-patterns"</span>);
-
-<span class="hljs-keyword">const</span> isMarkdownFile = ofExtname(<span class="hljs-string">".md"</span>, <span class="hljs-string">".markdown"</span>);
-<span class="hljs-keyword">const</span> isIndexFile = ofName(<span class="hljs-string">"index"</span>);
-<span class="hljs-keyword">const</span> isDataFilename = ofBasename(<span class="hljs-regexp">/^data/</span>);
-<span class="hljs-keyword">const</span> isInDocuments = ofDirname(<span class="hljs-string">"/Documents"</span>);
-
-isMarkdownFile(<span class="hljs-string">"/Documents/article.md"</span>); <span class="hljs-comment">//=&gt; `true`</span>
-isMarkdownFile(<span class="hljs-string">"/Documents/data.json"</span>); <span class="hljs-comment">//=&gt; `false`</span>
-isIndexFile(<span class="hljs-string">"/Documents/index.html"</span>); <span class="hljs-comment">//=&gt; `true`</span>
-isIndexFile(<span class="hljs-string">"/Documents/index.md"</span>); <span class="hljs-comment">//=&gt; `true`</span>
-isDataFilename(<span class="hljs-string">"/Documents/data.json"</span>); <span class="hljs-comment">//=&gt; `true`</span>
-isInDocuments(<span class="hljs-string">"/Documents/data.json"</span>); <span class="hljs-comment">//=&gt; `true`</span>
-isInDocuments(<span class="hljs-string">"/Documents/src/index.js"</span>); <span class="hljs-comment">//=&gt; `false`</span></code></pre>
-				<a href="#codehaspathsegmentscode" id="codehaspathsegmentscode" style="color: inherit; text-decoration: none;">
-					<h3><code>hasPathSegments</code></h3>
-				</a>
-				<p>Determines whether or not all the paths segments of a path match a sequence of
-					segment testers.
-				A segment tester can be a string, a regular expression or a function.</p>
-				<ul>
-					<li>If it is a string, then the segment must correspond to it for the path to
-					match.</li>
-					<li>If it is a regular expression, then the segment must test against it for the
-					path to match.</li>
-					<li>If it is a function, then the segment must make it return <code>true</code> for the path
-					to match.</li>
-				</ul>
-				<blockquote>
-					<p>Specifications</p>
-				</blockquote>
-				<pre><code class="language-ts"><span class="hljs-keyword">type</span> SegmentTester = <span class="hljs-built_in">string</span> | <span class="hljs-built_in">RegExp</span> | <span class="hljs-function">(<span class="hljs-params">(<span class="hljs-params">segment: <span class="hljs-built_in">string</span></span>) =&gt; <span class="hljs-built_in">boolean</span></span>);
-
-<span class="hljs-params">hasPathSegments</span>(<span class="hljs-params">...tests: SegmentTester[]</span>): <span class="hljs-params">FilterSync</span>&lt;<span class="hljs-params">string</span>&gt;;</span></code></pre>
-				<blockquote>
-					<p>Example</p>
-				</blockquote>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> { hasPathSegments } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"find-files-by-patterns"</span>);
-
-<span class="hljs-keyword">const</span> isIgnored = hasPathSegments(<span class="hljs-function"><span class="hljs-params">segment</span> =&gt;</span> segment.startsWith(<span class="hljs-string">"_"</span>));
-
-isIgnored(<span class="hljs-string">"project/src/_ignored.json"</span>); <span class="hljs-comment">//=&gt; `true`</span>
-
-isIgnored(<span class="hljs-string">"project/_ignored/data.json"</span>); <span class="hljs-comment">//=&gt; `true`</span>
-
-isIgnored(<span class="hljs-string">"project/src/data.yaml"</span>); <span class="hljs-comment">//=&gt; `false`</span></code></pre>
-				<a href="#codeisfilecode-and-codeisfilesynccode" id="codeisfilecode-and-codeisfilesynccode" style="color: inherit; text-decoration: none;">
-					<h3><code>isFile</code> and <code>isFileSync</code></h3>
-				</a>
-				<p>Determines whether or not a path exists on the file system and is a file.</p>
-				<blockquote>
-					<p>Specifications</p>
-				</blockquote>
-				<pre><code class="language-ts">isFile(path: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">boolean</span>&gt;;
-
-isFileSync(path: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">boolean</span>;</code></pre>
-				<a href="#codeisdirectorycode-and-codeisdirectorysynccode" id="codeisdirectorycode-and-codeisdirectorysynccode" style="color: inherit; text-decoration: none;">
-					<h3><code>isDirectory</code> and <code>isDirectorySync</code></h3>
-				</a>
-				<p>Determines whether or not a path exists on the file system and is a directory.</p>
-				<blockquote>
-					<p>Specifications</p>
-				</blockquote>
-				<pre><code class="language-ts">isDirectory(path: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">boolean</span>&gt;;
-
-isDirectorySync(path: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">boolean</span>;</code></pre>
-				<a href="#codehasfilecode-and-codehasfilesynccode" id="codehasfilecode-and-codehasfilesynccode" style="color: inherit; text-decoration: none;">
-					<h3><code>hasFile</code> and <code>hasFileSync</code></h3>
-				</a>
-				<p>Returns a filter which determines whether or not a path is a directory that has
-				a file which matches a filter.</p>
-				<blockquote>
-					<p>Specifications</p>
-				</blockquote>
-				<pre><code class="language-ts">hasFile(test: Filter&lt;<span class="hljs-built_in">string</span>&gt; | FilterSync&lt;<span class="hljs-built_in">string</span>&gt;): Filter&lt;<span class="hljs-built_in">string</span>&gt;;
-
-hasFileSync(test: FilterSync&lt;<span class="hljs-built_in">string</span>&gt;): FilterSync&lt;<span class="hljs-built_in">string</span>&gt;;</code></pre>
-				<blockquote>
-					<p>Example</p>
-				</blockquote>
-				<p>Assuming this file system, where the current working directory is
-				<code>/Documents/project</code>:</p>
-				<pre><code class="language-plaintext">/
+<a href="#hasfile-and-hasfilesync" id="hasfile-and-hasfilesync" style="color: inherit; text-decoration: none;">
+  <h3><code>hasFile</code> and <code>hasFileSync</code></h3>
+</a>
+<p>Returns a filter which determines whether or not a path is a directory that has
+a file which matches a filter.</p>
+<blockquote>
+<p>Specifications</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hl-3">hasFile</span><span class="hl-0">(</span><span class="hl-6">test</span><span class="hl-0">: </span><span class="hl-6">Filter</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt; | </span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;): </span><span class="hl-6">Filter</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">hasFileSync</span><span class="hl-0">(</span><span class="hl-6">test</span><span class="hl-0">: </span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;): </span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span>
+</code></pre>
+<blockquote>
+<p>Example</p>
+</blockquote>
+<p>Assuming this file system, where the current working directory is
+<code>/Documents/project</code>:</p>
+<pre><code class="language-plaintext">/
 └── Documents
     ├── Images
     |   └── image.jpeg
     └── project
         ├── node_modules
-        └── package.json</code></pre>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> { findFileSync, upwardDirectoriesSync,
-  hasFileSync, ofBasename } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"find-files-by-patterns"</span>);
+        └── package.json
+</code></pre>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> { </span><span class="hl-2">findFileSync</span><span class="hl-0">, </span><span class="hl-2">upwardDirectoriesSync</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-2">hasFileSync</span><span class="hl-0">, </span><span class="hl-2">ofBasename</span><span class="hl-0"> } = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&quot;find-files-by-patterns&quot;</span><span class="hl-0">);</span><br/><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">imagesDirectory</span><span class="hl-0"> = </span><span class="hl-3">findFileSync</span><span class="hl-0">(</span><br/><span class="hl-0">  </span><span class="hl-3">upwardDirectoriesSync</span><span class="hl-0">(),</span><br/><span class="hl-0">  </span><span class="hl-3">hasFileSync</span><span class="hl-0">(</span><span class="hl-3">ofBasename</span><span class="hl-0">(</span><span class="hl-4">&quot;image.jpeg&quot;</span><span class="hl-0">))</span><br/><span class="hl-0">); </span><span class="hl-7">//=&gt; `/Documents/Images`</span>
+</code></pre>
 
-<span class="hljs-keyword">const</span> imagesDirectory = findFileSync(
-  upwardDirectoriesSync(),
-  hasFileSync(ofBasename(<span class="hljs-string">"image.jpeg"</span>))
-); <span class="hljs-comment">//=&gt; `/Documents/Images`</span></code></pre>
-				<a href="#codereaddircode-and-codereaddirsynccode" id="codereaddircode-and-codereaddirsynccode" style="color: inherit; text-decoration: none;">
-					<h3><code>readdir</code> and <code>readdirSync</code></h3>
-				</a>
-				<p>Returns an iterable over the fully qualified file names in the given directory.</p>
-				<blockquote>
-					<p>Specifications</p>
-				</blockquote>
-				<pre><code class="language-ts">readdir(directory: <span class="hljs-built_in">string</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
+<a href="#readdir-and-readdirsync" id="readdir-and-readdirsync" style="color: inherit; text-decoration: none;">
+  <h3><code>readdir</code> and <code>readdirSync</code></h3>
+</a>
+<p>Returns an iterable over the fully qualified file names in the given directory.</p>
+<blockquote>
+<p>Specifications</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hl-3">readdir</span><span class="hl-0">(</span><span class="hl-6">directory</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">): </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">readdirSync</span><span class="hl-0">(</span><span class="hl-6">directory</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">): </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span>
+</code></pre>
 
-readdirSync(directory: <span class="hljs-built_in">string</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;</code></pre>
-				<a href="#codereaddirscode-and-codereaddirssynccode" id="codereaddirscode-and-codereaddirssynccode" style="color: inherit; text-decoration: none;">
-					<h3><code>readdirs</code> and <code>readdirsSync</code></h3>
-				</a>
-				<p>Returns an iterable over the fully qualified file names in the given sequence of
-				directories.</p>
-				<blockquote>
-					<p>Specifications</p>
-				</blockquote>
-				<pre><code class="language-ts">readdirs(directory: <span class="hljs-built_in">string</span>): AsyncIterable&lt;<span class="hljs-built_in">string</span>&gt;;
+<a href="#readdirs-and-readdirssync" id="readdirs-and-readdirssync" style="color: inherit; text-decoration: none;">
+  <h3><code>readdirs</code> and <code>readdirsSync</code></h3>
+</a>
+<p>Returns an iterable over the fully qualified file names in the given sequence of
+directories.</p>
+<blockquote>
+<p>Specifications</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hl-3">readdirs</span><span class="hl-0">(</span><span class="hl-6">directory</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">): </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">readdirsSync</span><span class="hl-0">(</span><span class="hl-6">directory</span><span class="hl-0">: </span><span class="hl-6">string</span><span class="hl-0">): </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-6">string</span><span class="hl-0">&gt;;</span>
+</code></pre>
 
-readdirsSync(directory: <span class="hljs-built_in">string</span>): Iterable&lt;<span class="hljs-built_in">string</span>&gt;;</code></pre>
-				<a href="#codefiltercode-and-codefiltersynccode" id="codefiltercode-and-codefiltersynccode" style="color: inherit; text-decoration: none;">
-					<h3><code>filter</code> and <code>filterSync</code></h3>
-				</a>
-				<p>Filters out the iterated elements of an iterable for which the filter function
-					returns <code>false</code>.
-				This is analogous to the array filter method.</p>
-				<blockquote>
-					<p>Specifications</p>
-				</blockquote>
-				<pre><code class="language-ts"><span class="hljs-keyword">type</span> Filter&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">boolean</span>&gt;;
-<span class="hljs-keyword">type</span> FilterSync&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>;
+<a href="#filter-and-filtersync" id="filter-and-filtersync" style="color: inherit; text-decoration: none;">
+  <h3><code>filter</code> and <code>filterSync</code></h3>
+</a>
+<p>Filters out the iterated elements of an iterable for which the filter function
+returns <code>false</code>.
+This is analogous to the array filter method.</p>
+<blockquote>
+<p>Specifications</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hl-1">type</span><span class="hl-0"> </span><span class="hl-8">Filter</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt; = (</span><span class="hl-6">element</span><span class="hl-0">: </span><span class="hl-8">T</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-8">Promise</span><span class="hl-0">&lt;</span><span class="hl-8">boolean</span><span class="hl-0">&gt;;</span><br/><span class="hl-1">type</span><span class="hl-0"> </span><span class="hl-8">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt; = (</span><span class="hl-6">element</span><span class="hl-0">: </span><span class="hl-8">T</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-8">boolean</span><span class="hl-0">;</span><br/><br/><span class="hl-3">filter</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt;(</span><span class="hl-6">iterable</span><span class="hl-0">: </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt; | </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt;,</span><br/><span class="hl-0">          </span><span class="hl-6">filter</span><span class="hl-0">: </span><span class="hl-6">Filter</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt; | </span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt;): </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">filterSync</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt;(</span><span class="hl-6">iterable</span><span class="hl-0">: </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt;,</span><br/><span class="hl-0">              </span><span class="hl-6">filter</span><span class="hl-0">: </span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt;): </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt;;</span>
+</code></pre>
+<blockquote>
+<p>Example</p>
+</blockquote>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> { </span><span class="hl-2">filterSync</span><span class="hl-0">, </span><span class="hl-2">hasPathSegments</span><span class="hl-0"> } = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&quot;find-files-by-patterns&quot;</span><span class="hl-0">);</span><br/><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">paths</span><span class="hl-0"> = [</span><br/><span class="hl-0">  </span><span class="hl-4">&quot;/Documents/project&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-4">&quot;/Documents/project/data.json&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-4">&quot;/Documents/project/_directory&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-4">&quot;/Documents/project/_directory/data.json&quot;</span><br/><span class="hl-0">];</span><br/><span class="hl-0">[...</span><span class="hl-3">filterSync</span><span class="hl-0">(</span><span class="hl-6">paths</span><span class="hl-0">, </span><span class="hl-3">hasPathSegments</span><span class="hl-0">(</span><span class="hl-6">segment</span><span class="hl-0"> </span><span class="hl-1">=&gt;</span><span class="hl-0"> !</span><span class="hl-6">segment</span><span class="hl-0">.</span><span class="hl-3">startsWith</span><span class="hl-0">(</span><span class="hl-4">&quot;_&quot;</span><span class="hl-0">)))];</span><br/><span class="hl-7">//=&gt; `[ &#39;/Documents/project&#39;, &#39;/Documents/project/data.json&#39; ]`</span>
+</code></pre>
 
-filter&lt;T&gt;(iterable: Iterable&lt;T&gt; | AsyncIterable&lt;T&gt;,
-          filter: Filter&lt;T&gt; | FilterSync&lt;T&gt;): AsyncIterable&lt;T&gt;;
+<a href="#conjunction-and-conjunctionsync" id="conjunction-and-conjunctionsync" style="color: inherit; text-decoration: none;">
+  <h3><code>conjunction</code> and <code>conjunctionSync</code></h3>
+</a>
+<p>Compounds a sequence of filters using logical conjunction.</p>
+<blockquote>
+<p>Specifications</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hl-1">type</span><span class="hl-0"> </span><span class="hl-8">Filter</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt; = (</span><span class="hl-6">element</span><span class="hl-0">: </span><span class="hl-8">T</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-8">Promise</span><span class="hl-0">&lt;</span><span class="hl-8">boolean</span><span class="hl-0">&gt;;</span><br/><span class="hl-1">type</span><span class="hl-0"> </span><span class="hl-8">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt; = (</span><span class="hl-6">element</span><span class="hl-0">: </span><span class="hl-8">T</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-8">boolean</span><span class="hl-0">;</span><br/><br/><span class="hl-3">conjunction</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt;(</span><span class="hl-6">filters</span><span class="hl-0">: </span><span class="hl-8">Array</span><span class="hl-0">&lt;</span><span class="hl-6">Filter</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt; | </span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt;&gt;): </span><span class="hl-6">Filter</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">conjunctionSync</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt;(</span><span class="hl-6">filters</span><span class="hl-0">: </span><span class="hl-8">Array</span><span class="hl-0">&lt;</span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt;&gt;): </span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt;;</span>
+</code></pre>
+<blockquote>
+<p>Example</p>
+</blockquote>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> { </span><span class="hl-2">ofBasename</span><span class="hl-0">, </span><span class="hl-2">ofExtname</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-2">conjunctionSync</span><span class="hl-0"> } = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&quot;find-files-by-patterns&quot;</span><span class="hl-0">);</span><br/><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">validDataExtensions</span><span class="hl-0"> = [</span><span class="hl-4">&quot;.json&quot;</span><span class="hl-0">, </span><span class="hl-4">&quot;.yaml&quot;</span><span class="hl-0">, </span><span class="hl-4">&quot;.csv&quot;</span><span class="hl-0">];</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">isDataFile</span><span class="hl-0"> = </span><span class="hl-3">conjunctionSync</span><span class="hl-0">([</span><br/><span class="hl-0">  </span><span class="hl-3">ofBasename</span><span class="hl-0">(</span><span class="hl-6">basename</span><span class="hl-0"> </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-6">basename</span><span class="hl-0">.</span><span class="hl-3">startsWith</span><span class="hl-0">(</span><span class="hl-4">&quot;data&quot;</span><span class="hl-0">)),</span><br/><span class="hl-0">  </span><span class="hl-3">ofExtname</span><span class="hl-0">(...</span><span class="hl-6">validDataExtensions</span><span class="hl-0">)</span><br/><span class="hl-0">]);</span><br/><br/><span class="hl-3">isDataFile</span><span class="hl-0">(</span><span class="hl-4">&quot;/Documents/project/data.json&quot;</span><span class="hl-0">); </span><span class="hl-7">//=&gt; `true`</span><br/><span class="hl-3">isDataFile</span><span class="hl-0">(</span><span class="hl-4">&quot;/Documents/project/data.yaml&quot;</span><span class="hl-0">); </span><span class="hl-7">//=&gt; `true`</span><br/><span class="hl-3">isDataFile</span><span class="hl-0">(</span><span class="hl-4">&quot;/Documents/project/_data.json&quot;</span><span class="hl-0">); </span><span class="hl-7">//=&gt; `false`</span>
+</code></pre>
 
-filterSync&lt;T&gt;(iterable: Iterable&lt;T&gt;,
-              filter: FilterSync&lt;T&gt;): Iterable&lt;T&gt;;</code></pre>
-				<blockquote>
-					<p>Example</p>
-				</blockquote>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> { filterSync, hasPathSegments } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"find-files-by-patterns"</span>);
+<a href="#disjunction-and-disjunctionsync" id="disjunction-and-disjunctionsync" style="color: inherit; text-decoration: none;">
+  <h3><code>disjunction</code> and <code>disjunctionSync</code></h3>
+</a>
+<p>Compounds a sequence of filters using logical disjunction.</p>
+<blockquote>
+<p>Specifications</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hl-1">type</span><span class="hl-0"> </span><span class="hl-8">Filter</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt; = (</span><span class="hl-6">element</span><span class="hl-0">: </span><span class="hl-8">T</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-8">Promise</span><span class="hl-0">&lt;</span><span class="hl-8">boolean</span><span class="hl-0">&gt;;</span><br/><span class="hl-1">type</span><span class="hl-0"> </span><span class="hl-8">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt; = (</span><span class="hl-6">element</span><span class="hl-0">: </span><span class="hl-8">T</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-8">boolean</span><span class="hl-0">;</span><br/><br/><span class="hl-3">disjunction</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt;(</span><span class="hl-6">filters</span><span class="hl-0">: </span><span class="hl-8">Array</span><span class="hl-0">&lt;</span><span class="hl-6">Filter</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt; | </span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt;&gt;): </span><span class="hl-6">Filter</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">disjunctionSync</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt;(</span><span class="hl-6">filters</span><span class="hl-0">: </span><span class="hl-8">Array</span><span class="hl-0">&lt;</span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt;&gt;): </span><span class="hl-6">FilterSync</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt;;</span>
+</code></pre>
+<blockquote>
+<p>Example</p>
+</blockquote>
+<pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> { </span><span class="hl-2">ofBasename</span><span class="hl-0">, </span><span class="hl-2">disjunctionSync</span><span class="hl-0"> } = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&quot;find-files-by-patterns&quot;</span><span class="hl-0">);</span><br/><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">isDataFilename</span><span class="hl-0"> = </span><span class="hl-3">disjunctionSync</span><span class="hl-0">([</span><br/><span class="hl-0">  </span><span class="hl-3">ofBasename</span><span class="hl-0">(</span><span class="hl-4">&quot;data.json&quot;</span><span class="hl-0">),</span><br/><span class="hl-0">  </span><span class="hl-3">ofBasename</span><span class="hl-0">(</span><span class="hl-4">&quot;_data.json&quot;</span><span class="hl-0">)</span><br/><span class="hl-0">]);</span><br/><br/><span class="hl-3">isDataFilename</span><span class="hl-0">(</span><span class="hl-4">&quot;/Documents/project/data.json&quot;</span><span class="hl-0">); </span><span class="hl-7">//=&gt; `true`</span><br/><span class="hl-3">isDataFilename</span><span class="hl-0">(</span><span class="hl-4">&quot;/Documents/project/_data.json&quot;</span><span class="hl-0">); </span><span class="hl-7">//=&gt; `true`</span><br/><span class="hl-3">isDataFilename</span><span class="hl-0">(</span><span class="hl-4">&quot;/Documents/project/data.yaml&quot;</span><span class="hl-0">); </span><span class="hl-7">//=&gt; `false`</span>
+</code></pre>
 
-<span class="hljs-keyword">const</span> paths = [
-  <span class="hljs-string">"/Documents/project"</span>,
-  <span class="hljs-string">"/Documents/project/data.json"</span>,
-  <span class="hljs-string">"/Documents/project/_directory"</span>,
-  <span class="hljs-string">"/Documents/project/_directory/data.json"</span>
-];
-[...filterSync(paths, hasPathSegments(<span class="hljs-function"><span class="hljs-params">segment</span> =&gt;</span> !segment.startsWith(<span class="hljs-string">"_"</span>)))];
-<span class="hljs-comment">//=&gt; `[ '/Documents/project', '/Documents/project/data.json' ]`</span></code></pre>
-				<a href="#codeconjunctioncode-and-codeconjunctionsynccode" id="codeconjunctioncode-and-codeconjunctionsynccode" style="color: inherit; text-decoration: none;">
-					<h3><code>conjunction</code> and <code>conjunctionSync</code></h3>
-				</a>
-				<p>Compounds a sequence of filters using logical conjunction.</p>
-				<blockquote>
-					<p>Specifications</p>
-				</blockquote>
-				<pre><code class="language-ts"><span class="hljs-keyword">type</span> Filter&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">boolean</span>&gt;;
-<span class="hljs-keyword">type</span> FilterSync&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>;
+<a href="#allelements-and-allelementssync" id="allelements-and-allelementssync" style="color: inherit; text-decoration: none;">
+  <h3><code>allElements</code> and <code>allElementsSync</code></h3>
+</a>
+<p>Converts an iterable to an array.</p>
+<blockquote>
+<p>Specifications</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hl-3">allElements</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt;(</span><span class="hl-6">iterable</span><span class="hl-0">: </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt;): </span><span class="hl-8">Promise</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">[]&gt;;</span><br/><br/><span class="hl-3">allElementsSync</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt;(</span><span class="hl-6">iterable</span><span class="hl-0">: </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt;): </span><span class="hl-2">T</span><span class="hl-0">[];</span>
+</code></pre>
 
-conjunction&lt;T&gt;(filters: <span class="hljs-built_in">Array</span>&lt;Filter&lt;T&gt; | FilterSync&lt;T&gt;&gt;): Filter&lt;T&gt;;
+<a href="#firstelement-and-firstelementsync" id="firstelement-and-firstelementsync" style="color: inherit; text-decoration: none;">
+  <h3><code>firstElement</code> and <code>firstElementSync</code></h3>
+</a>
+<p>Returns the first element of an iterable.</p>
+<blockquote>
+<p>Specifications</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hl-3">firstElement</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt;(</span><span class="hl-6">iterable</span><span class="hl-0">: </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt;): </span><span class="hl-8">Promise</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0"> | </span><span class="hl-1">null</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">firstElementSync</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt;(</span><span class="hl-6">iterable</span><span class="hl-0">: </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt;): </span><span class="hl-2">T</span><span class="hl-0"> | </span><span class="hl-1">null</span><span class="hl-0">;</span>
+</code></pre>
 
-conjunctionSync&lt;T&gt;(filters: <span class="hljs-built_in">Array</span>&lt;FilterSync&lt;T&gt;&gt;): FilterSync&lt;T&gt;;</code></pre>
-				<blockquote>
-					<p>Example</p>
-				</blockquote>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> { ofBasename, ofExtname,
-  conjunctionSync } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"find-files-by-patterns"</span>);
+<a href="#onlyelement-and-onlyelementsync" id="onlyelement-and-onlyelementsync" style="color: inherit; text-decoration: none;">
+  <h3><code>onlyElement</code> and <code>onlyElementSync</code></h3>
+</a>
+<p>Returns the only yielded element of an iterable.
+If there is more than one element yielded by the iterable, then an error is
+thrown.</p>
+<blockquote>
+<p>Specifications</p>
+</blockquote>
+<pre><code class="language-ts"><span class="hl-3">onlyElement</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt;(</span><span class="hl-6">iterable</span><span class="hl-0">: </span><span class="hl-6">AsyncIterable</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt;): </span><span class="hl-8">Promise</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0"> | </span><span class="hl-1">null</span><span class="hl-0">&gt;;</span><br/><br/><span class="hl-3">onlyElementSync</span><span class="hl-0">&lt;</span><span class="hl-8">T</span><span class="hl-0">&gt;(</span><span class="hl-6">iterable</span><span class="hl-0">: </span><span class="hl-6">Iterable</span><span class="hl-0">&lt;</span><span class="hl-2">T</span><span class="hl-0">&gt;): </span><span class="hl-2">T</span><span class="hl-0"> | </span><span class="hl-1">null</span><span class="hl-0">;</span>
+</code></pre>
 
-<span class="hljs-keyword">const</span> validDataExtensions = [<span class="hljs-string">".json"</span>, <span class="hljs-string">".yaml"</span>, <span class="hljs-string">".csv"</span>];
-<span class="hljs-keyword">const</span> isDataFile = conjunctionSync([
-  ofBasename(<span class="hljs-function"><span class="hljs-params">basename</span> =&gt;</span> basename.startsWith(<span class="hljs-string">"data"</span>)),
-  ofExtname(...validDataExtensions)
-]);
+<a href="#about" id="about" style="color: inherit; text-decoration: none;">
+  <h2>About</h2>
+</a>
 
-isDataFile(<span class="hljs-string">"/Documents/project/data.json"</span>); <span class="hljs-comment">//=&gt; `true`</span>
-isDataFile(<span class="hljs-string">"/Documents/project/data.yaml"</span>); <span class="hljs-comment">//=&gt; `true`</span>
-isDataFile(<span class="hljs-string">"/Documents/project/_data.json"</span>); <span class="hljs-comment">//=&gt; `false`</span></code></pre>
-				<a href="#codedisjunctioncode-and-codedisjunctionsynccode" id="codedisjunctioncode-and-codedisjunctionsynccode" style="color: inherit; text-decoration: none;">
-					<h3><code>disjunction</code> and <code>disjunctionSync</code></h3>
-				</a>
-				<p>Compounds a sequence of filters using logical disjunction.</p>
-				<blockquote>
-					<p>Specifications</p>
-				</blockquote>
-				<pre><code class="language-ts"><span class="hljs-keyword">type</span> Filter&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">boolean</span>&gt;;
-<span class="hljs-keyword">type</span> FilterSync&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">element: T</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>;
+<a href="#building-the-documentation" id="building-the-documentation" style="color: inherit; text-decoration: none;">
+  <h3>Building the documentation</h3>
+</a>
+<pre><code class="language-sh"><span class="hl-0">npm run doc</span>
+</code></pre>
 
-disjunction&lt;T&gt;(filters: <span class="hljs-built_in">Array</span>&lt;Filter&lt;T&gt; | FilterSync&lt;T&gt;&gt;): Filter&lt;T&gt;;
+<a href="#running-the-tests" id="running-the-tests" style="color: inherit; text-decoration: none;">
+  <h3>Running the tests</h3>
+</a>
+<pre><code class="language-sh"><span class="hl-0">npm run </span><span class="hl-3">test</span>
+</code></pre>
 
-disjunctionSync&lt;T&gt;(filters: <span class="hljs-built_in">Array</span>&lt;FilterSync&lt;T&gt;&gt;): FilterSync&lt;T&gt;;</code></pre>
-				<blockquote>
-					<p>Example</p>
-				</blockquote>
-				<pre><code class="language-js"><span class="hljs-keyword">const</span> { ofBasename, disjunctionSync } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"find-files-by-patterns"</span>);
+<a href="#building-the-library" id="building-the-library" style="color: inherit; text-decoration: none;">
+  <h3>Building the library</h3>
+</a>
+<pre><code class="language-sh"><span class="hl-0">npm run build</span>
+</code></pre>
 
-<span class="hljs-keyword">const</span> isDataFilename = disjunctionSync([
-  ofBasename(<span class="hljs-string">"data.json"</span>),
-  ofBasename(<span class="hljs-string">"_data.json"</span>)
-]);
+<a href="#authors" id="authors" style="color: inherit; text-decoration: none;">
+  <h3>Authors</h3>
+</a>
+<ul>
+<li><strong>Marc-Antoine Ouimet</strong> - <a href="https://github.com/MartyO256">MartyO256</a></li>
+</ul>
 
-isDataFilename(<span class="hljs-string">"/Documents/project/data.json"</span>); <span class="hljs-comment">//=&gt; `true`</span>
-isDataFilename(<span class="hljs-string">"/Documents/project/_data.json"</span>); <span class="hljs-comment">//=&gt; `true`</span>
-isDataFilename(<span class="hljs-string">"/Documents/project/data.yaml"</span>); <span class="hljs-comment">//=&gt; `false`</span></code></pre>
-				<a href="#codeallelementscode-and-codeallelementssynccode" id="codeallelementscode-and-codeallelementssynccode" style="color: inherit; text-decoration: none;">
-					<h3><code>allElements</code> and <code>allElementsSync</code></h3>
-				</a>
-				<p>Converts an iterable to an array.</p>
-				<blockquote>
-					<p>Specifications</p>
-				</blockquote>
-				<pre><code class="language-ts">allElements&lt;T&gt;(iterable: AsyncIterable&lt;T&gt;): <span class="hljs-built_in">Promise</span>&lt;T[]&gt;;
-
-allElementsSync&lt;T&gt;(iterable: Iterable&lt;T&gt;): T[];</code></pre>
-				<a href="#codefirstelementcode-and-codefirstelementsynccode" id="codefirstelementcode-and-codefirstelementsynccode" style="color: inherit; text-decoration: none;">
-					<h3><code>firstElement</code> and <code>firstElementSync</code></h3>
-				</a>
-				<p>Returns the first element of an iterable.</p>
-				<blockquote>
-					<p>Specifications</p>
-				</blockquote>
-				<pre><code class="language-ts">firstElement&lt;T&gt;(iterable: AsyncIterable&lt;T&gt;): <span class="hljs-built_in">Promise</span>&lt;T | <span class="hljs-literal">null</span>&gt;;
-
-firstElementSync&lt;T&gt;(iterable: Iterable&lt;T&gt;): T | <span class="hljs-literal">null</span>;</code></pre>
-				<a href="#codeonlyelementcode-and-codeonlyelementsynccode" id="codeonlyelementcode-and-codeonlyelementsynccode" style="color: inherit; text-decoration: none;">
-					<h3><code>onlyElement</code> and <code>onlyElementSync</code></h3>
-				</a>
-				<p>Returns the only yielded element of an iterable.
-					If there is more than one element yielded by the iterable, then an error is
-				thrown.</p>
-				<blockquote>
-					<p>Specifications</p>
-				</blockquote>
-				<pre><code class="language-ts">onlyElement&lt;T&gt;(iterable: AsyncIterable&lt;T&gt;): <span class="hljs-built_in">Promise</span>&lt;T | <span class="hljs-literal">null</span>&gt;;
-
-onlyElementSync&lt;T&gt;(iterable: Iterable&lt;T&gt;): T | <span class="hljs-literal">null</span>;</code></pre>
-				<a href="#about" id="about" style="color: inherit; text-decoration: none;">
-					<h2>About</h2>
-				</a>
-				<a href="#building-the-documentation" id="building-the-documentation" style="color: inherit; text-decoration: none;">
-					<h3>Building the documentation</h3>
-				</a>
-				<pre><code class="language-sh">npm run doc</code></pre>
-				<a href="#running-the-tests" id="running-the-tests" style="color: inherit; text-decoration: none;">
-					<h3>Running the tests</h3>
-				</a>
-				<pre><code class="language-sh">npm run <span class="hljs-built_in">test</span></code></pre>
-				<a href="#building-the-library" id="building-the-library" style="color: inherit; text-decoration: none;">
-					<h3>Building the library</h3>
-				</a>
-				<pre><code class="language-sh">npm run build</code></pre>
-				<a href="#authors" id="authors" style="color: inherit; text-decoration: none;">
-					<h3>Authors</h3>
-				</a>
-				<ul>
-					<li><strong>Marc-Antoine Ouimet</strong> - <a href="https://github.com/MartyO256">MartyO256</a></li>
-				</ul>
-				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
-					<h3>License</h3>
-				</a>
-				<p>This project is licensed under the MIT License. See the <a href="LICENSE.md">LICENSE.md</a>
-				file for details.</p>
-			</div>
-		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
-					</li>
-				</ul>
-			</nav>
-			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="interfaces/conflicterror.html" class="tsd-kind-icon">Conflict<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/directory.html" class="tsd-kind-icon">Directory</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="globals.html#filter" class="tsd-kind-icon">Filter</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#filtercompounder" class="tsd-kind-icon">Filter<wbr>Compounder</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#filtercompoundersync" class="tsd-kind-icon">Filter<wbr>Compounder<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="globals.html#filtersync" class="tsd-kind-icon">Filter<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#segmenttester" class="tsd-kind-icon">Segment<wbr>Tester</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#statchecker" class="tsd-kind-icon">Stat<wbr>Checker</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#readdirpromise" class="tsd-kind-icon">readdir<wbr>Promise</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#realpathnative" class="tsd-kind-icon">realpath<wbr>Native</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#realpathnativesync" class="tsd-kind-icon">realpath<wbr>Native<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="globals.html#specialcharacters" class="tsd-kind-icon">special<wbr>Characters</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#allelements" class="tsd-kind-icon">all<wbr>Elements</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#allelementssync" class="tsd-kind-icon">all<wbr>Elements<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#conflictingelementserror" class="tsd-kind-icon">conflicting<wbr>Elements<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#conjunction" class="tsd-kind-icon">conjunction</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#conjunctionsync" class="tsd-kind-icon">conjunction<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#constraineddownwardfiles" class="tsd-kind-icon">constrained<wbr>Downward<wbr>Files</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#constraineddownwardfilessync" class="tsd-kind-icon">constrained<wbr>Downward<wbr>Files<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#disjunction" class="tsd-kind-icon">disjunction</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#disjunctionsync" class="tsd-kind-icon">disjunction<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#downwarddirectories" class="tsd-kind-icon">downward<wbr>Directories</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#downwarddirectoriessync" class="tsd-kind-icon">downward<wbr>Directories<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#downwardfiles" class="tsd-kind-icon">downward<wbr>Files</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#downwardfilessync" class="tsd-kind-icon">downward<wbr>Files<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#filter" class="tsd-kind-icon">filter</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#filtersync" class="tsd-kind-icon">filter<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#findallfiles" class="tsd-kind-icon">find<wbr>All<wbr>Files</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#findallfilessync" class="tsd-kind-icon">find<wbr>All<wbr>Files<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#findfile" class="tsd-kind-icon">find<wbr>File</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#findfilesync" class="tsd-kind-icon">find<wbr>File<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#findonlyfile" class="tsd-kind-icon">find<wbr>Only<wbr>File</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#findonlyfilesync" class="tsd-kind-icon">find<wbr>Only<wbr>File<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#firstelement" class="tsd-kind-icon">first<wbr>Element</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#firstelementsync" class="tsd-kind-icon">first<wbr>Element<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#firstsegmentposition" class="tsd-kind-icon">first<wbr>Segment<wbr>Position</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#handledownwardfilesoverload" class="tsd-kind-icon">handle<wbr>Downward<wbr>Files<wbr>Overload</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#handlefunctionoverload" class="tsd-kind-icon">handle<wbr>Function<wbr>Overload</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#handlefunctionoverloadsync" class="tsd-kind-icon">handle<wbr>Function<wbr>Overload<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#handleupwardfilesoverload" class="tsd-kind-icon">handle<wbr>Upward<wbr>Files<wbr>Overload</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#hasfile" class="tsd-kind-icon">has<wbr>File</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#hasfilesync" class="tsd-kind-icon">has<wbr>File<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#haspathsegments" class="tsd-kind-icon">has<wbr>Path<wbr>Segments</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#isasynciterable" class="tsd-kind-icon">is<wbr>Async<wbr>Iterable</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#isdirectory" class="tsd-kind-icon">is<wbr>Directory</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#isdirectorystatchecker" class="tsd-kind-icon">is<wbr>Directory<wbr>Stat<wbr>Checker</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#isdirectorysync" class="tsd-kind-icon">is<wbr>Directory<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#isfile" class="tsd-kind-icon">is<wbr>File</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#isfilenotfoundexception" class="tsd-kind-icon">is<wbr>File<wbr>Not<wbr>Found<wbr>Exception</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#isfilestatchecker" class="tsd-kind-icon">is<wbr>File<wbr>Stat<wbr>Checker</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#isfilesync" class="tsd-kind-icon">is<wbr>File<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#isiterable" class="tsd-kind-icon">is<wbr>Iterable</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#issafestat" class="tsd-kind-icon">is<wbr>Safe<wbr>Stat</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#issafestatsync" class="tsd-kind-icon">is<wbr>Safe<wbr>Stat<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#multimap" class="tsd-kind-icon">multi<wbr>Map</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#multimapsync" class="tsd-kind-icon">multi<wbr>Map<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#negativemaximumdeptherror" class="tsd-kind-icon">negative<wbr>Maximum<wbr>Depth<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#ofbasename" class="tsd-kind-icon">of<wbr>Basename</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#ofdirname" class="tsd-kind-icon">of<wbr>Dirname</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#ofextname" class="tsd-kind-icon">of<wbr>Extname</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#ofname" class="tsd-kind-icon">of<wbr>Name</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#ofsegment" class="tsd-kind-icon">of<wbr>Segment</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#ofsegmentfilter" class="tsd-kind-icon">of<wbr>Segment<wbr>Filter</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#onlyelement" class="tsd-kind-icon">only<wbr>Element</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#onlyelementsync" class="tsd-kind-icon">only<wbr>Element<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#overloadedupwardpaths" class="tsd-kind-icon">overloaded<wbr>Upward<wbr>Paths</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#pathhasnotbeentraversed" class="tsd-kind-icon">path<wbr>Has<wbr>Not<wbr>Been<wbr>Traversed</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#readdir" class="tsd-kind-icon">readdir</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#readdirsync" class="tsd-kind-icon">readdir<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#readdirs" class="tsd-kind-icon">readdirs</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#readdirssync" class="tsd-kind-icon">readdirs<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#safestat" class="tsd-kind-icon">safe<wbr>Stat</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#safestatsync" class="tsd-kind-icon">safe<wbr>Stat<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#segments" class="tsd-kind-icon">segments</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#simplemap" class="tsd-kind-icon">simple<wbr>Map</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="globals.html#simplemapsync" class="tsd-kind-icon">simple<wbr>Map<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#startingdirectory" class="tsd-kind-icon">starting<wbr>Directory</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#subdirectory" class="tsd-kind-icon">subdirectory</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#unconstraineddownwardfiles" class="tsd-kind-icon">unconstrained<wbr>Downward<wbr>Files</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#unconstraineddownwardfilessync" class="tsd-kind-icon">unconstrained<wbr>Downward<wbr>Files<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#upwardconstrainedpaths" class="tsd-kind-icon">upward<wbr>Constrained<wbr>Paths</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#upwarddirectories" class="tsd-kind-icon">upward<wbr>Directories</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#upwarddirectoriessync" class="tsd-kind-icon">upward<wbr>Directories<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#upwardfiles" class="tsd-kind-icon">upward<wbr>Files</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#upwardfilessync" class="tsd-kind-icon">upward<wbr>Files<wbr>Sync</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#upwardlimitedpaths" class="tsd-kind-icon">upward<wbr>Limited<wbr>Paths</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="globals.html#upwardpaths" class="tsd-kind-icon">upward<wbr>Paths</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div>
-</div>
-<footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
-<div class="overlay"></div>
-<script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
-</body>
-</html>
+<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+  <h3>License</h3>
+</a>
+<p>This project is licensed under the MIT License. See the <a href="LICENSE.md">LICENSE.md</a>
+file for details.</p>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/ConflictError.html" class="tsd-kind-icon">Conflict<wbr/>Error</a></li><li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#Filter" class="tsd-kind-icon">Filter</a></li><li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#FilterSync" class="tsd-kind-icon">Filter<wbr/>Sync</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#allElements" class="tsd-kind-icon">all<wbr/>Elements</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#allElementsSync" class="tsd-kind-icon">all<wbr/>Elements<wbr/>Sync</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#conjunction" class="tsd-kind-icon">conjunction</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#conjunctionSync" class="tsd-kind-icon">conjunction<wbr/>Sync</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#disjunction" class="tsd-kind-icon">disjunction</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#disjunctionSync" class="tsd-kind-icon">disjunction<wbr/>Sync</a></li><li class="tsd-kind-function"><a href="modules.html#downwardDirectories" class="tsd-kind-icon">downward<wbr/>Directories</a></li><li class="tsd-kind-function"><a href="modules.html#downwardDirectoriesSync" class="tsd-kind-icon">downward<wbr/>Directories<wbr/>Sync</a></li><li class="tsd-kind-function"><a href="modules.html#downwardFiles" class="tsd-kind-icon">downward<wbr/>Files</a></li><li class="tsd-kind-function"><a href="modules.html#downwardFilesSync" class="tsd-kind-icon">downward<wbr/>Files<wbr/>Sync</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#filter" class="tsd-kind-icon">filter</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#filterSync" class="tsd-kind-icon">filter<wbr/>Sync</a></li><li class="tsd-kind-function"><a href="modules.html#findAllFiles" class="tsd-kind-icon">find<wbr/>All<wbr/>Files</a></li><li class="tsd-kind-function"><a href="modules.html#findAllFilesSync" class="tsd-kind-icon">find<wbr/>All<wbr/>Files<wbr/>Sync</a></li><li class="tsd-kind-function"><a href="modules.html#findFile" class="tsd-kind-icon">find<wbr/>File</a></li><li class="tsd-kind-function"><a href="modules.html#findFileSync" class="tsd-kind-icon">find<wbr/>File<wbr/>Sync</a></li><li class="tsd-kind-function"><a href="modules.html#findOnlyFile" class="tsd-kind-icon">find<wbr/>Only<wbr/>File</a></li><li class="tsd-kind-function"><a href="modules.html#findOnlyFileSync" class="tsd-kind-icon">find<wbr/>Only<wbr/>File<wbr/>Sync</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#firstElement" class="tsd-kind-icon">first<wbr/>Element</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#firstElementSync" class="tsd-kind-icon">first<wbr/>Element<wbr/>Sync</a></li><li class="tsd-kind-function"><a href="modules.html#hasFile" class="tsd-kind-icon">has<wbr/>File</a></li><li class="tsd-kind-function"><a href="modules.html#hasFileSync" class="tsd-kind-icon">has<wbr/>File<wbr/>Sync</a></li><li class="tsd-kind-function"><a href="modules.html#hasPathSegments" class="tsd-kind-icon">has<wbr/>Path<wbr/>Segments</a></li><li class="tsd-kind-function"><a href="modules.html#isDirectory" class="tsd-kind-icon">is<wbr/>Directory</a></li><li class="tsd-kind-function"><a href="modules.html#isDirectorySync" class="tsd-kind-icon">is<wbr/>Directory<wbr/>Sync</a></li><li class="tsd-kind-function"><a href="modules.html#isFile" class="tsd-kind-icon">is<wbr/>File</a></li><li class="tsd-kind-function"><a href="modules.html#isFileSync" class="tsd-kind-icon">is<wbr/>File<wbr/>Sync</a></li><li class="tsd-kind-function"><a href="modules.html#ofBasename" class="tsd-kind-icon">of<wbr/>Basename</a></li><li class="tsd-kind-function"><a href="modules.html#ofDirname" class="tsd-kind-icon">of<wbr/>Dirname</a></li><li class="tsd-kind-function"><a href="modules.html#ofExtname" class="tsd-kind-icon">of<wbr/>Extname</a></li><li class="tsd-kind-function"><a href="modules.html#ofName" class="tsd-kind-icon">of<wbr/>Name</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#onlyElement" class="tsd-kind-icon">only<wbr/>Element</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#onlyElementSync" class="tsd-kind-icon">only<wbr/>Element<wbr/>Sync</a></li><li class="tsd-kind-function"><a href="modules.html#readdir" class="tsd-kind-icon">readdir</a></li><li class="tsd-kind-function"><a href="modules.html#readdirSync" class="tsd-kind-icon">readdir<wbr/>Sync</a></li><li class="tsd-kind-function"><a href="modules.html#readdirs" class="tsd-kind-icon">readdirs</a></li><li class="tsd-kind-function"><a href="modules.html#readdirsSync" class="tsd-kind-icon">readdirs<wbr/>Sync</a></li><li class="tsd-kind-function"><a href="modules.html#segments" class="tsd-kind-icon">segments</a></li><li class="tsd-kind-function"><a href="modules.html#upwardDirectories" class="tsd-kind-icon">upward<wbr/>Directories</a></li><li class="tsd-kind-function"><a href="modules.html#upwardDirectoriesSync" class="tsd-kind-icon">upward<wbr/>Directories<wbr/>Sync</a></li><li class="tsd-kind-function"><a href="modules.html#upwardFiles" class="tsd-kind-icon">upward<wbr/>Files</a></li><li class="tsd-kind-function"><a href="modules.html#upwardFilesSync" class="tsd-kind-icon">upward<wbr/>Files<wbr/>Sync</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
