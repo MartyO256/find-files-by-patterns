@@ -1,5 +1,5 @@
 {
-  "name": "find-files-by-patterns-esm",
+  "name": "find-files-by-patterns",
   "sideEffects": false,
   "packageManager": "yarn@3.2.0",
   "version": "2.0.3",
@@ -8,11 +8,11 @@
   "author": "Marc-Antoine Ouimet <ouimetmarcantoine@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/devunion/find-files-by-patterns-esm.git"
+    "url": "https://github.com/MartyO256/find-files-by-patterns.git"
   },
-  "homepage": "https://github.com/devunion/find-files-by-patterns-esm#readme",
+  "homepage": "https://github.com/MartyO256/find-files-by-patterns#readme",
   "bugs": {
-    "url": "https://github.com/devunion/find-files-by-patterns-esm/issues",
+    "url": "https://github.com/MartyO256/find-files-by-patterns/issues",
     "email": "ouimetmarcantoine@gmail.com"
   },
   "type": "module",
