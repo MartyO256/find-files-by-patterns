@@ -16,8 +16,8 @@ export {
   onlyElement,
   onlyElementSync,
   ConflictError,
-} from "./iterable";
-export { readdir, readdirSync, readdirs, readdirsSync } from "./readdirs";
+} from "./iterable.js";
+export { readdir, readdirSync, readdirs, readdirsSync } from "./readdirs.js";
 
 export {
   hasPathSegments,
@@ -26,9 +26,9 @@ export {
   ofName,
   ofExtname,
   segments,
-} from "./path";
+} from "./path.js";
 export { isFile, isDirectory, isFileSync, isDirectorySync } from "./stat.js";
-export { hasFile, hasFileSync } from "./hasFile";
+export { hasFile, hasFileSync } from "./hasFile.js";
 
 export {
   findAllFiles,
@@ -37,7 +37,7 @@ export {
   findFileSync,
   findOnlyFile,
   findOnlyFileSync,
-} from "./fileFinders";
+} from "./fileFinders.js";
 
 export {
   downwardFiles,
@@ -50,4 +50,4 @@ export {
   downwardDirectoriesSync,
   upwardDirectories,
   upwardDirectoriesSync,
-} from "./directories";
+} from "./directories.js";
